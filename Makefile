@@ -31,6 +31,9 @@ figs/out/%.pdf: figs/src/%.svg
 	epstopdf "$(FIG_TMP)" --outfile="$@"
 	rm "$(FIG_TMP)"
 
+bibsort: refs.bib
+	bibtool -s -o ./refs.bib -i ./refs.bib
+
 clean:
 	$(RM) figs/out/*.pdf *.eps
 	$(RM) *.dvi *.aux *.log *.blg *.bbl *.out *.lof *.lot *.toc

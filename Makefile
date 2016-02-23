@@ -1,4 +1,4 @@
-REPORT=proposal
+REPORT=thesis
 LATEX=pdflatex
 BIBTEX=bibtex
 REF1=refs

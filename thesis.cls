@@ -5,8 +5,10 @@
 %%	Preparation of Master's Thesis and Doctoral Dissertations
 %% Version 1.00 written by John P. Weiss, 1997
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	version 1.13, Hongcheng Ni, March 2014 -- made compatible with
+%%		hyperref.
 %%	version 1.12, Hongcheng Ni, March 2014 -- added title before
-%%              the advisor's name in the signature page
+%%		the advisor's name in the signature page.
 %%	version 1.11, Bruce Fast, April 2008 -- changed left margin
 %%		from 1.75" to 1", and added \IRBprotocol option
 %%	version 1.10, E. Joshua Rigler, January 2003 -- making it safe
@@ -32,11 +34,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{thesis}[2014/03/24]	% version 1.12
+\ProvidesClass{thesis}[2014/03/27]	% version 1.13
 
 \typeout{}
 \typeout{--------------------------------------------------------------}
-\typeout{ +---+ Thesis Style (thesis.cls) version 1.12}
+\typeout{ +---+ Thesis Style (thesis.cls) version 1.13}
 \typeout{ +---+ for University of Colorado Ph.D. theses/dissertations.}
 \typeout{ * Conforms to the University of Colorado at Boulder Graduate}
 \typeout{ * School "SPECIFICATIONS for Preparation of Master's Thesis}
@@ -401,11 +403,11 @@
 % Adds the appropriate label to the ToC/LoF/LoT
 
 \addtocontents{lof}{\protect\contentsline {part}
-	{\protect\figurenameToC}{\protect\relax}}
+	{\protect\figurenameToC}{\protect\relax}{}}
 \addtocontents{lot}{\protect\contentsline {part}
-	{\protect\tablenameToC}{\protect\relax}}
+	{\protect\tablenameToC}{\protect\relax}{}}
 \addtocontents{toc}{\protect\contentsline {part}
-	{\protect\chapternameToC}{\protect\relax}}
+	{\protect\chapternameToC}{\protect\relax}{}}
 
 % NUMBERING STYLES, DEFAULT VALUES
 
@@ -560,7 +562,7 @@
 		\setcounter{section}{\value{th@SectionSave}}
 	\fi
 	\addtocontents{toc}{\protect\contentsline {part}
-		{\protect\appendixnameToC}{\protect\relax}}
+		{\protect\appendixnameToC}{\protect\relax}{}}
 	\renewcommand*{\th@DefTheChapter}{\Alph{chapter}}
 	}
 
@@ -1024,7 +1026,7 @@
 	\end{list}
 	\vfill
 	\begin{center}
-		A dissertation proposal submitted to the\\
+		A thesis submitted to the\\
 		Faculty of the Graduate School of the\\
 		University of Colorado in partial fulfillment\\
 		of the requirements for the degree of\\
@@ -1041,7 +1043,7 @@
 	\thispagestyle{empty}
 	\vspace*{\fill}
 	\begin{center}
-		This dissertation proposal entitled:\\
+		This thesis entitled:\\
 		\th@title\\
 		written by\
 		\th@fwdname\\
@@ -1061,7 +1063,7 @@
 	\th@dateline
 	\vspace*{\fill}
 	\begin{center}
-		The final copy of this dissertation proposal has been examined by
+		The final copy of this thesis has been examined by
 		the signatories, and we find that both the content
 		and the form meet acceptable presentation standards
 		of scholarly work in the above mentioned discipline.
@@ -1074,16 +1076,16 @@
 	\clearpage
 	\th@AbstractPageStyle
 	\doublespacing	% 1998 revision of Grad School Specs
-	%% \begin{list}{}{\setlength{\leftmargin}{2em}
-	%% 		\setlength{\itemindent}{-2em}
-	%% 		\setlength{\topsep}{0pt}
-	%% 		\setlength{\itemsep}{0pt}}
-	%% 	\item \th@revname\ (\th@degree)
-	%% 	\item \th@title
-    %%     \item Proposal directed by \th@advisortitle\ \th@advisor
-	%% \end{list}
-	%% \par
-	%% \vspace*{4\parsep}
+	\begin{list}{}{\setlength{\leftmargin}{2em}
+			\setlength{\itemindent}{-2em}
+			\setlength{\topsep}{0pt}
+			\setlength{\itemsep}{0pt}}
+		\item \th@revname\ (\th@degree)
+		\item \th@title
+        \item Thesis directed by \th@advisortitle\ \th@advisor
+	\end{list}
+	\par
+	\vspace*{4\parsep}
 	\th@abstractStash	% finally, the actual abstract
 }
 \newcommand{\th@Dedicationpage}{

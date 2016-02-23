@@ -11,7 +11,7 @@
 *.toc
 
 # LaTeX Output
-proposal.pdf
+thesis.pdf
 
 # Figure Cruft
 *.eps

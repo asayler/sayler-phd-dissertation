@@ -69,7 +69,7 @@
 
 %%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
 
-\title{Securing and Managing Trust\\in Modern Computing Applications}
+\title{Securing and Managing Secrets in Modern Computing Applications}
 
 \author{Andy}{Sayler}
 
@@ -94,48 +94,41 @@
 
   \OnePageChapter
 
-  Today, users routinely push vast troves of private data into a
-  myriad of cloud services, store personal information on mobile
-  devices, and communicate about sensitive topics over public
-  networks. These uses, while convenient, demonstrate a growing gap
-  between users' desired use cases and their ability to control and
-  protect their data. Today, users are often forced to choose between
-  leveraging modern technologies and services, potentially exposing
-  their data to a variety of questionably trustworthy third parties,
-  and maintaining privacy and security of their data.
+  The amount of digital data generated and stored by users increases
+  every day. In order to protect this data, modern computing systems
+  employ numerous cryptographic and access control solutions. Almost
+  all of such solution, however, require the keeping of certain
+  secrets as the basis of their security models. How best to store,
+  secure, and control access to such secrets is a significant
+  challenge. Such secrets must be stored in a manner that secures them
+  from a variety of potentially malicious devices and actors while
+  also enabling the kinds of functionality users expect today.
 
-  I feel these two choices represent a false dichotomy that can be
-  resolved by disentangling the security and access control mechanisms
-  used to protect user data from the underlying third parties that
-  store and act on this data. To accomplish this disentanglement, I
-  propose isolating core user secrets (e.g. passwords, cryptographic
-  keys, etc) and storing these core secrets via a dedicated,
-  standardized, and service-oriented secret storage system. Such
-  secrets can be leveraged to bootstrap further privacy and security
-  enhancing techniques (e.g. via the client-side encryption of
-  third-party stored user data). This ``Secret Storage as a Service''
-  (SSaaS) model allows users to reduce the trust they must place in
-  any single third party while still providing mechanisms to support
-  the range of cloud-based, multi-user, multi-device use-cases popular
+  In order to facilitate such flexible but secure storage of secrets,
+  I propose isolating secrets from the applications that rely on them
+  and storing these secrets via a standardized, service-oriented
+  secret storage system.  This ``Secret Storage as a Service'' (SSaaS)
+  model allows users to reduce the trust they must place in any single
+  device or actor while still providing mechanisms to support the
+  range of cloud-based, multi-user, multi-device use-cases popular
   today.
 
-  In this dissertation proposal, I present an overview of the
-  challenges posed to the security and privacy of user data today. I
-  introduce a framework for evaluating the degree to which we must
-  trust various third parties across a range of popular usage
-  patterns, as well as the mechanisms by which this trust can be
-  violated. I explore the problems with the traditional third party
-  trust model and discuss ways in which the SSaaS model helps
-  alleviate these issues. I discuss the qualities a desirable SSaaS
-  ecosystem would have, propose several applications where the SSaaS
-  model can significantly increase user security and privacy, and
-  present a first-generation SSaaS prototype. Finally, I propose the
-  additional research I will undertake to complete this dissertation,
-  including a survey of modern services and technologies using the
-  proposed trust-analysis framework, the implementation of a
-  second-generation SSaaS prototype, the implementation of a variety
-  of useful SSaaS-backed encryption applications, and an analysis of
-  the security, performance, and capabilities of said systems.
+  In this document, I begin by presenting an overview of the
+  secret-storage problem and how it relates to the security and
+  privacy of user data today. I continue by introducing a framework
+  for evaluating the degree to which we must trust various systems and
+  parties across a range of popular usage patterns, as well as the
+  mechanisms by which this trust can be violated. I then discuss ways
+  in which the SSaaS model helps avoid such trust and security
+  failures. I go on to discuss the qualities a desirable SSaaS
+  ecosystem would have as well as some of the previously proposed
+  secret storage solutions. I then present both first-generation and
+  next-generation SSaaS prototypes and discuss the improvements they
+  make over previous secret storage systems. Next, I discuss how an
+  SSaaS approach would integrate with a range of applications,
+  including the presentation of several prototype SSaaS-backed
+  applications. Finally I discusses the legal and policy implications
+  of such a system.
 
 }
 
@@ -170,7 +163,7 @@
 \input chap_ssaas.tex
 \input chap_custos.tex
 \input chap_apps.tex
-\input chap_planned.tex
+%\input chap_planned.tex
 
 %%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
 \bibliographystyle{plain} % or "siam", or "alpha", etc.
@@ -183,4 +176,4 @@
 
 \end{document}
 
-%%  LocalWords:  SSaaS tex Custos
+%%  LocalWords:  SSaaS tex Custos ssaas custos

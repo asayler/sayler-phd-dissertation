@@ -1,7 +1,19 @@
+% 
+% PhD Dissertation Thesis
+%
+% 2016
+%
+% Andy Sayler
+% www.andysayler.com
+
+
 \documentclass[defaultstyle,11pt]{thesis}
 
+% System Packages
 \usepackage{array}
 \usepackage{epsfig}
+\usepackage{color}
+\usepackage{hyperref}
 \usepackage{url}
 \usepackage{float}
 \usepackage{caption}
@@ -9,8 +21,16 @@
 \usepackage{tabu}
 \usepackage{tikz-qtree}
 \usepackage{fancyvrb}
-
 \usepackage{listings}
+
+% Package Options
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 \lstset{
   language={},
   basicstyle=\footnotesize,
@@ -40,10 +60,12 @@
   sensitive=true
 }
 
+% Macros
+\input macros.tex
+
+% Other Options
 \clubpenalty = 10000
 \widowpenalty = 10000
-
-\input macros.tex
 
 %%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
 
@@ -117,14 +139,14 @@
 
 }
 
-%% \dedication[Dedication]{
-%%   TBD
-%% }
+\dedication[Dedication]{
+  Todo
+}
 
-%% \acknowledgements{
-%%   \OnePageChapter
-%%   TBD
-%% }
+\acknowledgements{
+  \OnePageChapter
+  Todo
+}
 
 %\ToCisShort % use this only for 1-page Table of Contents
 
@@ -161,4 +183,4 @@
 
 \end{document}
 
-%%  LocalWords:  SSaaS tex Custos ssaas custos
+%%  LocalWords:  SSaaS tex Custos

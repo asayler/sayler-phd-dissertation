@@ -9,6 +9,7 @@
 *.log
 *.lot
 *.toc
+*.out
 
 # LaTeX Output
 thesis.pdf

@@ -21,7 +21,7 @@ security and privacy enhancing features are built.
 \subsection{Symmetric Cryptography}
 
 Modern cryptographic systems come in two flavors: symmetric
-cryptographic and asymmetric cryptography. Symmetric cryptography
+cryptography and asymmetric cryptography. Symmetric cryptography
 algorithms function on the principle that a single ``key'' is used for
 both halves of given cryptographic operation (e.g. encryption and
 decryption). Asymmetric algorithms (discussed in the next section)
@@ -39,31 +39,30 @@ the encryption key: the longer the key, the more secure the data
 encrypted with it is. Common modern symmetric encryption algorithms
 include block-ciphers such as AES~\cite{nist2001} and
 TwoFish~\cite{schneier1998} as well as stream ciphers such as (the now
-deprecated) RC4~\cite{rc4-source}\footnote{Many block ciphers can
-  actually be used as stream ciphers by leveraging operation modes
-  such as the CTR and OFB.}.
+deprecated) RC4~\cite{rc4-source}. Many block ciphers can also be used
+as stream ciphers by leveraging operation modes such as the CTR and
+OFB~\cite{schneier2010crypto}.
 
 In addition to encryption and decryption, symmetric cryptography
 algorithms can also be used to provide secure message integrity and
 authenticity verification. Such keyed hash algorithms leverage a
-secret symmetric authentication key to generate a message
-authentication code (MAC) across a given piece of data. This MAC can
-then be shipped to another user along with the data over which it was
-generated. Any other holder of the authentication key who receives
-said data can recompute the MAC value independently, comparing their
-computed value to the one that was sent and verifying the authenticity
-and integrity of the associated data in the process. In this manner,
-users who share a symmetric authentication key can ensure that the
-data they send to each other is not tampered with in transit and that
-it comes from another holder of the required key. MAC algorithms can
-be built from existing hash functions
-(e.g. HMAC-SHA-256~\cite{kelly2007}) using mechanisms such as
-HMAC~\cite{krawczyk1997} or from existing symmetric block ciphers
-(e.g. AES-CMAC~\cite{song2006}) using mechanisms such as
+secret authentication key to generate a message authentication code
+(MAC) across a given piece of data. This MAC can then be shipped to
+another user along with the data over which it was generated. Any
+holder of the authentication key who receives said data can recompute
+the MAC value independently, comparing their computed value to the one
+that was sent and verifying the authenticity and integrity of the
+associated data in the process. In this manner, users who share a
+symmetric authentication key can ensure that the data they send to
+each other is not tampered with in transit and that it comes from
+another holder of the required key. MAC algorithms can be built from
+existing hash functions (e.g. HMAC-SHA-256~\cite{kelly2007}) using
+mechanisms such as HMAC~\cite{krawczyk1997} or from existing symmetric
+block ciphers (e.g. AES-CMAC~\cite{song2006}) using mechanisms such as
 CMAC~\cite{Black2005, dworkin2005}. In most situations, both
 encryption and authentication are used in tandem to form a secure
-challenge capable of communicating data that is indecipherable to
-outsiders and over which any outside data tampering can be detected.
+channel capable of communicating data that is indecipherable to
+outsiders and over which any data tampering can be detected.
 
 While symmetric cryptography algorithms are useful in situations where
 a single actor will be both encrypting and decrypting a piece of data
@@ -85,17 +84,20 @@ communication channel.
 \subsection{Asymmetric Cryptography}
 
 The major breakthrough in solving this challenge came in 1976 when
-Diffie and Hellman proposed a system for asymmetric cryptography
-(i.e. public-key cryptography)~\cite{diffie1976}\footnote{Asymmetric
-  cryptographic was actually independently developed by the GCHQ (the
-  British signal-intelligence counterpart to the US National Security
-  Agency) in the early 1970s prior to the publication of Diffie and
-  Hellman's paper, but this work was classified and remained a secret
-  until the late 1990s.}: a cryptography system in which one key is
-used for encryption while a second related key is used for
-decryption. When properly designed, it is computationally infeasible
-to derive one of the keys in an asymmetric cryptography system from
-the other, allowing a user to publish one of their keys for public
+Diffie and Hellman proposed several novel cryptographic constructs,
+most notably including a system for multiple parties to negotiate a
+symmetric encryption key across an insecure
+channel~\cite{diffie1976}\footnote{Such methods were actually
+  independently developed by the GCHQ (the British signal-intelligence
+  counterpart to the US National Security Agency) in the early 1970s
+  prior to the publication of Diffie and Hellman's paper, but this
+  work was classified and remained a secret until the late
+  1990s.~\cite{singh1999}}. These concepts paved the way for the
+development of asymmetric cryptography (i.e. public-key cryptography):
+a cryptography system in which one key is used for encryption while a
+second related key is used for decryption. When properly designed, it
+is computationally infeasible to derive one of these keys from the
+other, allowing a user to publish one of their keys for public
 consumption while keeping the corresponding key private. A member of
 the public can then use a user's public key to encrypt a message that
 only the holder of the corresponding private key will be able to
@@ -105,24 +107,36 @@ message that only the recipient can read without requiring an
 in-person meeting or similar out-of-band secure communication channel.
 
 Asymmetric cryptography relies on the existence of ``trapdoor''
-functions in order to operate. These functions can be quickly solved
-in one direction, but are computationally difficult to reverse without
-a special piece of information (e.g. the 'key'). Factoring large
-numbers is a classic example of a trapdoor function (and the method on
-which many modern public key encryption systems are based). Factoring
-large numbers is computationally difficult in cases where some piece
-of secret information (e.g. one of the factors) is not known. While,
-Diffie and Hellman proposed a potential implementation of a public key
-cryptography system, the first practical public key crypto system came
-a few years latter with the invention of the RSA~\cite{rivest1978}
-algorithm. In addition to public/private key systems, Diffie and
-Hellman also proposed a system for joint key generation where two
-parties can negotiate a secrete across an insecure connection. Like
-asymmetric cryptography, such a system can be used to bootstrap secure
-communications across an insecure channel by allowing two parties to
-derive a mutual secret that can then be used to facilitate further
-secure communication using a symmetric encryption and authentication
-algorithm.
+functions. These functions can be quickly solved in one direction, but
+are computationally difficult to reverse without knowledge of a secret
+piece of information (e.g. the 'key'). Factoring large numbers is a
+classic example of a trapdoor function (and the method on which many
+modern public key encryption systems are based). Factoring large
+numbers is computationally difficult in cases where some piece of
+secret information (e.g. one of the factors) is not known. Other
+systems rely on the computation of discreet logarithms across elliptic
+curves (ECC cryptography)~\cite{Koblitz1987, Miller1986}, computations
+across lattices\footnote{Lattice-based encryption schemes are believed
+  to be resistant to (thus far only theoretical) quantum-based attacks
+  that are successful at breaking more traditional factoring and
+  ECC-based schemes.}~\cite{Ajtai1996}, and beyond.
+
+While, Diffie and Hellman proposed a theoretical implementation of a
+public key cryptography system, the first practical public key crypto
+system came a few years latter with the invention of the
+RSA~\cite{rivest1978} algorithm. Diffie and Hellman's joint key
+negotiation scheme, however, remains a critical component of
+asymmetric cryptography systems today -- especially those that employ
+``forward secrecy'' designs (i.e. designs that can keep previously
+exchanged messages secure even if one of the parties is compromised at
+a future date). Both asymmetric cryptography schemes such as RSA and
+secure negotiation schemes such as Diffie-Hellman can be used to
+bootstrap secure communications across an insecure channel by allowing
+two parties to derive or exchange a mutual secret (e.g. session key)
+that can then be used to facilitate further secure communication using
+a symmetric encryption and authentication algorithm. Symmetric
+algorithms tend to be more performant then asymmetric algorithms,
+making such split-type crypto systems desirable.
 
 Asymmetric encryption can be used to build the two additional core
 asymmetric cryptography primitives: cryptographic verification and
@@ -135,10 +149,10 @@ the public can then decrypt using the signers public key. Since only
 the owner of a given key-pair should have access to the private key
 necessary to generate such a message, the owner can ``prove'' to the
 public that a given message comes from them. Similar to symmetric MAC
-systems, asymmetric signatures can also be used to verify that signed
-data has not been altered in transit since any alteration would result
-in a verification failure when a member of the public decrypts the
-message signature.
+systems, asymmetric signatures can be used to verify that signed data
+has not been altered in transit. Any alteration would result in a
+verification failure when a member of the public decrypts the message
+signature - making such alterations detectable by the public at large.
 
 Just as asymmetric encryption gives rise to cryptographically secure
 signature algorithms, cryptographically secure signature algorithms
@@ -148,40 +162,54 @@ an authentication server, the server can verify that the message
 signature is valid using John's public key, authenticating John in the
 process. The server need only have a list of public keys for each
 approved user. It can then leverage the assertion that only the
-indented user has access to the private key corresponding to each
+identified user has access to the private key corresponding to each
 approved public key, and is thus the only one capable of generating a
 signed message on that user's behalf, as the basis of user
 authentication.
 
-As mentioned above, both symmetric and asymmetric cryptography are
-often used together. Asymmetric cryptography is useful for
-bootstrapping a secure communication channel by allowing the secure
-exchange of symmetric encryption and authentication keys over a
-previously insecure channel. These session keys can then be used to
-continue all further communication using symmetric encryption and MAC
-algorithms. Symmetric algorithms tend to be more performant then
-asymmetric algorithms, making such split-type crypto systems
-desirable.
+Such system can be further layered and generalized to build
+cryptographically-secure hierarchical assertion systems attesting to
+the veracity of a range of data. Such public-key infrastructure (PKI)
+systems allow the public to extrapolate their trust of a core set
+actors (i.e. Certificate Authorities, or CAs) to the any party for
+which such actors are willing to certify specific facts. For example,
+a server can trust a specific CA to manually verify the identities of
+various users (e.g. by having them visit their office and present a
+photo ID). This CA can then cryptographically sign a combination of
+their declaration attesting to the identity of each user and a copy of
+the user's public key. Such signed combination forms a user
+``certificate'' that can be presented to various parties. These
+parties can then use their knowledge of the trusted CA's public key to
+verify the identity attestation attached to the user certificate --
+allowing them to then trust that the user themselves are who they
+claim to be. This user can then use their ability to prove they (and
+only they) control a private key corresponding to the public key
+attached to the certificate to authenticate to a service. The x509 PKI
+standard is an example of such a PKI system~\cite{rfc5280} - and is
+widely used to prove the validity of domain name ownership on the
+Internet (i.e. that green browser bar you see when connecting to a
+website over \texttt{HTTPS}).
 
 \subsection{Secret Sharing}
 
 Beyond the rise of public key cryptography, one of the other major
 cryptographic breakthroughs of the last fifty years was the invention
 of cryptographically secure secret sharing schemes. In particular, Adi
-Shamir (the 'S' form ``RSA'') proposed a practical and robust secret
+Shamir (the 'S' from ``RSA'') proposed a practical and robust secret
 sharing scheme in 1979~\cite{shamir1979}. In this work, Shamir lays
 out the basics of what has come to be known as Shamir Secret Sharing:
 a method for splitting a piece of information up into two or more
 pieces such that holders of any subset of the pieces cannot infer any
 information about the pieces they do not hold or the original block as
-a whole. Shamir Secret Sharing allows a user to divide a piece of D
-data into N pieces of which K or more pieces can be used to recompute
-the original value of D. A user with fewer than K pieces, however, has
-no more information about the value of D than a user with no
-pieces. This system provides a highly useful method for distributing
-information amongst multiple parties or systems in situations where no
-single party or system can be fully trusted. Such systems can also be
-used to provide redundancy by selecting N to be greater than K.
+a whole. Shamir Secret Sharing allows a user to divide a piece of $D$
+data into $N$ pieces of which $K$ or more pieces can be used to
+recompute the original value of $D$. A user with fewer than $K$
+pieces, however, has no more information about the value of $D$ than a
+user with no pieces. Such ``$N$ choose $K$'' systems provide a highly
+useful method for distributing information amongst multiple parties or
+systems in situations where no single party or system can be fully
+trusted. Such systems can also be used to provide redundancy by
+selecting $N$ to be greater than $K$.
 
 Shamir Secret Sharing, unlike all known asymmetric encryption
 techniques, does not rely on computational complexity as the basis of
@@ -189,18 +217,18 @@ its security. Instead, it is fundamentally secure based on information
 theory principles. Thus, unlike computationally secure systems such as
 RSA, Shamir Secret Sharing can not be broken regardless of the amount
 of computational power one posses. Shamir Secret Sharing functions on
-the basis of defining a polynomial of degree (K-1) over a finite field
-with the D data encoded as the first order-zero term. N points are
+the basis of defining a polynomial of degree $K-1$ over a finite field
+with the $D$ data encoded as the first order-zero term. $N$ points are
 then selected from this polynomial and distributed to the
-participants. Since K points (but no fewer) will uniquely identify the
-original polynomial, and thus allow the derivation of D, K users must
-combine their pieces in order to re-compute D.
+participants. Since $K$ points (but no fewer) will uniquely identify the
+original polynomial, and thus allow the derivation of $D$, $K$ users must
+combine their pieces in order to re-compute $D$.
 
-Shamir Secret Sharing (and related systems) are useful in a wide range
-of situations where one needs to distribute trust across multiple
-entities. In particular, secret sharing techniques are leveraged in
-some cryptographically-based access control systems like that
-described in~\cite{goyal2006}.
+Shamir Secret Sharing (and related ``$N$ choose $K$'' systems) are
+useful in a wide range of situations where one needs to distribute
+trust across multiple entities. In particular, secret sharing
+techniques are leveraged in some cryptographically-based access
+control systems like that described in~\cite{goyal2006}.
 
 \section{Usability}
 \label{chap:background:usability}
@@ -217,30 +245,60 @@ challenging for the average user to execute properly: often leading to
 security failures that have little to do with the quality of the
 cryptography itself.
 
-PGP, one of the longest-running cryptographic security projects, is
-known to have major usability issues, making it largely
-incomprehensible to all but the most highly-trained
-users~\cite{whitten1999}. These challenge are largely related to the
-average user's inability to properly manage the various cryptographic
-keys required for the proper use of PGP~\cite{green-challenge}. This
-has led multiple parties to call for the retirement of
-PGP~\cite{green-pgp} and/or to suggest alternatives~\cite{mailpile,
-  openwhisper, google-endtoend}. It remains to be seen if any of the
-purposed alternatives will be able to provide the level of security
-offered by PGP while avoiding the usability pitfalls leveraging PGP
-traditionally entails.
+The poster child of the ``cryptographic system are largely unusable''
+school of thought is a system for encrypting and cryptographically
+signing email messages known as PGP~\cite{callas2007}. PGP (and it's
+open-source implementation - GnuPG/GPG~\cite{gnupg}) is one of the
+longest-running cryptographic security projects, but is also known to
+have major usability issues, making it largely incomprehensible to all
+but the most highly-trained users~\cite{whitten1999}. These challenge
+are largely related to the average user's inability to properly manage
+the various cryptographic keys required for the proper use of
+PGP~\cite{green-challenge}. This has led multiple parties to call for
+the retirement of PGP~\cite{green-pgp} and/or to suggest
+alternatives~\cite{borisov2004, mailpile, openwhisper,
+  google-endtoend}. It remains to be seen if any of the purposed
+alternatives will be able to provide (or improve upon) the level of
+security offered by PGP while avoiding the usability pitfalls
+leveraging PGP traditionally entails.
 
 Similar challenges have been observed with other end-user
 cryptographic systems, ranging from secure storage devices to various
 communication mediums~\cite{sweikata2009}. In all cases, properly
 obtaining, storing, and controlling access to cryptographic keys and
 related cryptographic secrets tends to be a task for which the typical
-user is ill-suited. Thus, while cryptographic systems like S/MIME have
-seen limited success in the enterprise where a central authority and
-staff can handle all key management duties, they have largely failed
-for individual computer users~\cite{ramsdell-rfc5751}. How best to
-build systems that are both cryptographically secure and easy to use
-remains an open and pressing question.
+user is ill-suited. Thus, while cryptographic systems like
+S/MIME~\cite{ramsdell-rfc5751} have seen limited success in the
+enterprise where a central authority and staff can handle all key
+management duties, they have largely failed for individual computer
+users.
+
+Even cryptographic systems that largely avoid burdening the user with
+key-management responsibilities are subject to numerous usability
+challenges. Take, for example, systems such as
+Tor~\cite{Dingledine2004} which are designed to allow users to
+anonymously browse the Internet or otherwise utilize network resources
+without leaking their identity. Securely using these systems, while
+important for subverting censorship and authoritarian regimes, entails
+overcoming numerous usability challenges. Most of these challenges are
+related to the fact that all secure systems have limitations and make
+assumptions about the manner in which they will be used. If these
+limitations are exceeded or assumptions violated, the security of the
+system is unlikely to hold. While such limitations and assumptions are
+necessary in order to make implementing secure systems possible, they
+do not always align well with the manner in which users might use the
+given system. When such assumptions fail to align with user
+expectations, security failures result. Tor has been subject to
+several notable security failings related to mismatches between user
+behavior and usage limits and assumptions. For example, a Tor user who
+then logs into a site on which they have a known user account
+(e.g. Facebook or Gmail) while connected to the Tor network risks
+unmasking themselves not through any failings of Tor itself, but
+through the voluntary self-identification that occurs when they enter
+their username on such a site~\cite{goodin-dreadpirate}.
+
+How best to build systems that are both cryptographically
+secure and easy to use remains an open and pressing question.
 
 \section{Storage}
 \label{chap:background:storage}
@@ -642,4 +700,5 @@ systems of the 21st century.
 %%  LocalWords:  Shamir NTFS AFS CIFS SMB SFS OceanStore CFS SiRiUS
 %%  LocalWords:  Plutus Miltchev ACL LAFS Rackspace CAPEX OPEX PUE
 %%  LocalWords:  PaaS Heroku SaaS aaS FOSS TwoFish OFB HMAC SHA CMAC
-%%  LocalWords:  GCHQ cepheus DAC SELinux RBAC eCryptFS Ceph
+%%  LocalWords:  GCHQ cepheus DAC SELinux RBAC eCryptFS Ceph ECC CA's
+%%  LocalWords:  CAs HTTPS

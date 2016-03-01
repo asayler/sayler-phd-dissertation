@@ -519,10 +519,10 @@ does not require modifying user mappings, only role mappings.
 \section{The Cloud}
 
 The previous 10 years have seen a major shift in the manner in which
-users and developers obtain various compute resources. Gone are the
+users and developers obtain various computing resources. Gone are the
 days where one must purchase there own hardware or operate their own
 computing systems. Instead, numerous companies are more then happy to
-sell you any compute service you require for a pre-established
+sell you any computing service you require for a pre-established
 time-metered rate. This ``Cloud'' computing model significantly lowers
 the barrier to entry to those needing to leverage compute resources,
 increasing the availability of such services and driving a vast shift
@@ -543,7 +543,7 @@ systems. Namely:
   allows companies to shift what are traditionally one-time up-front
   capitol expenditures (CAPEX, e.g. large arrays of servers) to
   regular operational expenditures (OPEX, e.g. a monthly fee). This
-  fact gives rise to a number of potential benefits. Where as spinning
+  fact gives rise to a number of potential benefits. Whereas spinning
   up traditional compute infrastructure requires a large initial
   investment, cloud compute infrastructure can be purchased for as low
   as a few dollars each month. This drastically lowers the barrier of
@@ -559,7 +559,7 @@ systems. Namely:
   traditional CAPEX model.
 \item[Flexibility] \hfill \\ The ``pay-for-what-you-need'' cloud
   purchasing model is also far more flexible then the traditional
-  in-house computing model. Where as the traditional model requires
+  in-house computing model. While the traditional model requires
   buyers to accurately predict their future compute requirements
   before making the initial purchase, the cloud allows users to scale
   infrastructure as required and without any real need for accurate
@@ -612,7 +612,7 @@ they provide. The common cloud services in use today include:
   machine and build up from there. Amazon EC2~\cite{amazon-ec2} and
   Google Compute Engine~\cite{google-compute} are both example of IaaS
   services.
-\item[PaaS:] One step up the stack we have ``Platform as a Service''
+\item[PaaS:] One step up the stack exist ``Platform as a Service''
   offerings. PaaS systems provide the end user with an environment
   capable of running their code, but abstract away a lot of the lower
   level details of setting up and managing a full OS and virtual
@@ -632,9 +632,9 @@ It is not uncommon for one layer of cloud services to be built atop a
 lower layer. E.g. an SaaS system might be built atop a PaaS system,
 itself built atop an IaaS system. Furthermore, the ``...aaS'' inherent
 in the names of each of these layers reflects another cloud trend: the
-popularity of service oriented architectures. Such architectures
-abstract a set of useful actions into a service that can be consumed
-by users. Such systems encourage the standardization and
+popularity of service oriented architectures~\cite{Valipour2009}. Such
+architectures abstract a set of useful actions into a service that can
+be consumed by users. Such systems encourage the standardization and
 commoditization of a wide range of useful computing tasks. This allows
 developers of new services to lean heavily on existing services:
 adding only the specific new functionality they need without having to
@@ -658,8 +658,8 @@ include:
   much larger numbers. Cloud providers have discovered that it is more
   cost effective to utilize cheap consumer parts and simply design
   systems to cope with the higher rates of failure such parts exhibit
-  then it is to buy ultra-high end parts with lower failures rates but
-  disproportionately higher costs~\cite{atwood2007}. This shift has
+  then it is to buy high-end parts with lower failures rates but
+  disproportionately larger costs~\cite{atwood2007}. This shift has
   made hardware an easily replaceable and interchangeable commodity in
   modern data center design, lowering the cost and barriers to entry
   involved in constructing and maintaining such data centers.
@@ -671,23 +671,23 @@ include:
   software alike. Virtualization is what has made it simple and cost
   effective for cloud-providers to offer their services, slicing
   discreet physical systems between many paying users. Virtualization
-  also allows providers to separate users from any singular piece of
-  hardware -- providers can now migrate users between physical systems
-  in order to meet up-time and load balancing goals without the user
-  even being aware of such a process.
+  also allows providers to separate tenants from any singular piece of
+  hardware -- providers can now migrate tenants between physical
+  systems in order to meet up-time and load balancing goals without
+  the user even being aware of such a process.
 \item[Free and Open Source Software (and Hardware)] \hfill \\ The rise
   of Linux and related Free and Open Source Software (FOSS) systems
   has closely tracked the rise of the cloud. This is no
   coincidence. FOSS systems allow users to quickly and cheaply deploy
   a range of applications without having to worry about purchasing
   specialty high-cost software, vendor lock-in, or any number of other
-  barriers to deployment mobility. While the cloud provide cheap,
-  commodity hardware resources, FOSS provides cheap, commodity
-  software to make such resources do useful things. Furthermore, many
-  cloud providers have combined the ubiquity of commodity hardware
-  with the ethos of FOSS to create open-hardware ecosystems -- making
-  it a lot simpler for service providers to build and deploy
-  cloud-optimized computing hardware~\cite{opencompute}.
+  barriers to deployment mobility. While the cloud provided cheap,
+  commodity (often virtual) hardware resources, FOSS provides cheap,
+  commodity software to make such resources do useful
+  things. Furthermore, many cloud providers have combined the ubiquity
+  of commodity hardware with the ethos of FOSS to create open-hardware
+  ecosystems -- making it a lot simpler for service providers to build
+  and deploy cloud-optimized computing hardware~\cite{opencompute}.
 \end{packed_desc}
 
 The success of the ``cloud'' is not due to any singular new idea or

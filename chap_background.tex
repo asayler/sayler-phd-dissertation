@@ -311,13 +311,13 @@ store. Digital data storage and access control techniques have morphed
 and changed over the last 50 years, and many of these changes have
 bearing on the work presented in this proposal.
 
-Early storage and file system technologies often simply neglected data
-security, lacking robust encryption, verification, and access control
-primitives. The rise of multi-user operating systems like Unix
-mandated the creation of basic file-system access control
+Lacking robust encryption, verification, and access control
+primitives, early storage and file system technologies often simply
+neglected data security. The rise of multi-user operating systems like
+Unix mandated the creation of basic file-system access control
 schemes. Thus we gained the traditional Unix file access control and
-permissioning scheme as part of the virtual file system (VFS)
-abstraction inherent in all legacy and modern Unix-like operating
+permissioning scheme as part of the virtual file system
+(VFS)~\cite{linux-vfs} abstraction inherent in all Unix-like operating
 systems. This system, however, has a number of limitations: it
 supports only a single, basic access control model (owner, group, and
 other; R/W/E permissions), it requires a trusted system for
@@ -357,8 +357,8 @@ designed to extend access control semantics beyond the local machine
 to large networks or even the global internet. Still others explore
 the use of novel access control models more expressive then Unix
 permissions or Windows NT ACLs. Many system combine more than one of
-these approaches to build a fully featured next generation secure
-storage system.
+these approaches to build a fully featured next-generation storage
+system.
 
 \cite{kher2005} presents a survey of the security models of various
 data storage systems, sorting such systems into basic networked file
@@ -388,12 +388,13 @@ data.  Systems like the Cryptographic File Systems
 single-user end-to-end file encryption. While end-to-end encryption is
 a powerful security model for enabling secure storage atop untrusted
 systems, it does pose challenges with respect to multi-user,
-multi-device use cases since it generally requires that all clients
-have access to private cryptographic credentials in order to
-effectively read or write files. In order to support both end-to-end
-encryption and multi-user scenarios, researchers have proposed
-multi-user cryptographic storage systems like SiRiUS~\cite{goh2003},
-cepheus~\cite{fu1998}, or Plutus~\cite{kallahalla2003}.
+multi-device use cases. These challenges arise from the requirement
+that all clients have access to private cryptographic credentials in
+order to effectively read or write files. In order to support both
+end-to-end encryption and multi-user scenarios, researchers have
+proposed multi-user cryptographic storage systems like
+SiRiUS~\cite{goh2003}, cepheus~\cite{fu1998}, or
+Plutus~\cite{kallahalla2003}.
 
 Miltchev, et al.~\cite{miltchev2008} presents a framework for
 analyzing the suitability of various distributed file systems for
@@ -409,7 +410,8 @@ authentication is an effective way to support autonomous delegation,
 capability-based access control systems tend to lack support for
 auditing and accountability, ACL-based access control systems pose
 scalability challenges when used across administrative domains, and
-revocation and user autonomy are often at odds.
+revocation and user autonomy are often at odds. How best to solve
+these problems remain open questions.
 
 Beyond traditional local and networked file systems, many users have
 turned to cloud-backed storage technologies today. System like
@@ -417,12 +419,12 @@ Dropbox~\cite{dropbox} or Google Drive~\cite{google-drive} offer
 mechanism for storing arbitrary files on third-party cloud
 servers. Such files can either be accessed via a web browser or synced
 to a local machine via various client-side utilities. Other cloud
-services exchange the traditional file storage model all together in
+services forgo the traditional file storage model all together in
 favor of various object storage abstractions: Amazon's
 S3~\cite{amazon-s3} and Ceph~\cite{ceph} are examples of such
 systems. These systems can either be used for raw key:object data
 storage or as a block-oriented backing store for higher level file
-storage abstractions such as Dropbox or Google Drive. System live
+storage abstractions such as Dropbox or Google Drive. System like
 Dropbox, Google Drive, or Amazon S3 all rely on a centralized, trusted
 third party storage provider for ``secure'' operation. To overcome
 this requirement distributed systems such as
@@ -455,10 +457,10 @@ control systems each user is a member of one or more groups and each
 file has an owner and group. The three file permissions (read, write,
 and execute) are granted on the basis of a user's relationship to a
 given file: either the user is the file owner, the user is a member of
-the file's group, or the user is neither of these things. This
-model is fairly flexible, and continues to be used today as the core
-access control model in many Unix-like operating systems (e.g. BSD,
-Linux, OSX, etc).
+the file's group, or the user is neither of these things. This model
+is flexible enough to support many use cases, and continues to be used
+today as the core access control model in many Unix-like operating
+systems (e.g. BSD, Linux, OSX, etc).
 
 Access Control List (ACL) based schemes gained prominence in 1990s and
 were popularized by the Windows NT family of operating systems. ACLs
@@ -489,12 +491,12 @@ owns all files and never transfer this ownership to any other
 user. Traditional Unix access control systems as well as ACL access
 control systems can generally be used in either MAC or DAC based
 systems. MAC systems are generally preferred in high security
-environments where the centralized management models they offer lead
-to tighter control over data. DAC systems are more common in general
-purpose systems where the extra flexibility they offer reduces the
-administrative burden. Most Unix-like systems are DAC systems by
-design, but extensions (e.g. SELinux) can be used to add MAC
-properties to these systems.
+environments where centralized management models are common and to
+tighter control over data is desirable. DAC systems are more common in
+general purpose systems where the extra flexibility they offer reduces
+the administrative burden. Most Unix-like systems are DAC systems by
+design, but extensions (e.g. SELinux~\cite{Loscocco2001}) can be used
+to add MAC properties to these systems.
 
 Many of the early access control systems pose a host of manageability
 challenges. How do you coordinate the permissions of thousands of

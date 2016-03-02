@@ -49,13 +49,13 @@ abstract analysis of safety and security in computing systems and
 provides a framework for analyzing software security risks, potential
 harms, and security requirements. Finally, \cite{cebula2010} takes a
 comprehensive look at operational cyber-security risks across
-technical, human, process, and external risks.
+technical, human, process, and external factors.
 
 While all of these efforts provided a basis for trust, threat, and
 security analysis of computing systems, they do not dive into the
 specific intricacies of the third-party trust requirements inherent in
-cloud computing systems. This is a deficiency on which I focus in
-Chapter~\ref{chap:trust}.
+cloud computing systems. This is a deficiency I seek to correct in the
+Trust Model presented in Chapter~\ref{chap:trust}.
 
 \section{Minimizing Third Party Trust}
 \label{chap:related:minimize}
@@ -66,15 +66,16 @@ efforts aim to leverage cryptographic primitives as an alternative to
 a trusted third party (TPP). As mentioned in
 Section~\ref{chap:background:crypto}, cryptographically-based systems
 generally require little to no trust in external systems or parties,
-only in the underlying math. Other efforts use information theory
-primitives such as the secret sharing schemes (also discussed in
-Section~\ref{chap:background:crypto}) to try to limit how much damage
-any single TPP can do. Such efforts generally require multiple third
-parties to collude to accomplish most attacks. In many cases, these
-efforts also explore the trade-offs between the convenience and
-capabilities that trusted third party systems can provide and the
-security risks of requiring one of more trusted third parties. Various
-third-party trust limiting efforts are discussed below.
+only in the underlying math (and associated implementations). Other
+efforts use information theory primitives such as secret sharing
+schemes (also discussed in Section~\ref{chap:background:crypto}) to
+try to limit how much damage any single TPP can do. Such efforts
+generally require multiple third parties to collude to accomplish most
+attacks. In many cases, these efforts also explore the trade-offs
+between the convenience and capabilities that trusted third party
+systems can provide and the security risks of requiring one of more
+trusted third parties. Various third-party trust limiting efforts are
+discussed below.
 
 \subsection{Cryptographic Access Control}
 
@@ -92,7 +93,7 @@ control system and the ability to bypass it\footnote{E.g. as in the
   case of Edward Snowden's collection of large troves of secret NSA
   data from a facility where he acted as a systems
   administrator.}. This is an acceptable limitations in many
-situations, especially those based on a centrally managed system with
+situations, especially those based on centrally managed systems with
 existing physical security and administrative safeguards in place. But
 in distributed systems or the cloud where physical and administrative
 control is not guaranteed, a more robust system that lacks this
@@ -163,11 +164,16 @@ solve all trust-related problems. In the practical since, the
 available homomorphic systems today are limited to only preforming
 certain operations. Furthermore, while such systems allow the
 processing of data atop untrusted infrastructure, they do not provide
-a solution for user cases where you wish to share plain-text data with
+a solution for use cases where you wish to share plain-text data with
 other users or otherwise leverage an application that inherently
-requires data to be decrypted. As in other cases, they also do not
-provide a general solution for the management of the associated
-cryptographic keys protecting such operations.
+requires data to be decrypted. Homomorphic encryption systems also
+risk leaking certain classes of data as a side effect of the
+computation they perform. E.g. a homomorphic system may be able to
+sort data without know its contents, but in doing so, it might still
+elan something about the relative ordering of elements. As in other
+cases, such systems also fail to provide a general solution for the
+management of the associated cryptographic keys protecting such
+operations.
 
 \subsection{Secure Storage}
 

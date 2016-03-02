@@ -2,8 +2,8 @@
 \label{chap:challenges}
 
 As mentioned in Chapter~\ref{chap:intro}, the last 10+ years have
-heralded the rapid expansion of a number of digital data related use
-cases. In order to accommodate these use-cases, most modern services
+heralded the rapid expansion of a range of digital-data-related use
+cases. In order to accommodate these use cases, most modern services
 leverage some form of third-party compute or data storage
 systems. These third-party systems, however, raise questions about the
 privacy and security of user data. In particular, to what degree can
@@ -49,9 +49,9 @@ of a number of solutions that aim to separate a user's data from any
 single device and to ensure that users may access their data
 regardless of device. Such solutions can generally be placed into two
 groups: services that sync user data between devices (i.e. sync
-services) and services that store all user data in a centralized and
-globally accessible location and provide a manner for users to access
-this date from each device (i.e. locker services).
+services) and services that store all user data in a centralized
+location and provide a manner for users to access this date from each
+device (i.e. locker services).
 
 Sync services operate on the premise that user data will be stored
 locally on each device, but will also be automatically kept in sync
@@ -67,14 +67,14 @@ multi-device data access problem for several reasons:
 \begin{packed_desc}
 \item[Bandwidth Efficient:] Sync services only require Internet access
   to update data between devices. The act of reading data already
-  present on a device only requires access to the local copy, avoiding
-  the need to consume bandwidth communicating with an external
-  server. This is a desirable quality in situations where bandwidth is
-  at a premium and would either be cost prohibitive or performance
-  restricting to consume every time data needed to be read. Sync
-  services tend to be bandwidth efficient even when modifying data
-  since they can cache a series of updates locally, only syncing the
-  final differential state to other devices.
+  present on a device accesses only the local copy, avoiding the need
+  to consume bandwidth communicating with an external server. This is
+  a desirable quality in situations where bandwidth would either be
+  cost prohibitive or performance restricting to consume every time
+  data needed to be read. Sync services also tend to be bandwidth
+  efficient even when writing data since they can cache a series of
+  updates locally and sync only the final differential state to other
+  devices.
 \item[Offline Support:] As an extension to the previous point, sync
   services are capable of operating in situations where no Internet or
   network connection is available. Since all data access is available
@@ -103,7 +103,7 @@ One of the main challenges to sync services is their local storage
 requirement. While such a requirement allows for some of the benefits
 listed above, it also limits the total available storage afforded to
 each user to the size of their smallest device. Most sync services
-offer partial-sync options to help mitigate such issues, but these
+offer selective-sync options to help mitigate such issues, but these
 tend to be burdensome to configure and are often relegated to the
 purview of advanced users. In situations where a user wishes to store
 more data then can be fit on any single device, locker services may
@@ -111,8 +111,8 @@ offer a more desirable solution.
 
 Locker service operate by storing all user data on a central server
 and then providing mechanisms for users to access and modify this data
-there. Such services are reminiscent of more traditional networked
-file systems such as NFS~\cite{sandberg1985} or
+from remote devices. Such services are reminiscent of more traditional
+networked file systems such as NFS~\cite{sandberg1985} or
 SMB~\cite{microsoft-smb2}. Data locker services store all user data in
 a logically-centralized and globally-accessible location where each
 individual user device may access it for the propose of reading,
@@ -141,7 +141,7 @@ services have several desirable qualities:
   where more then one person might be accessing and modifying data
   simultaneously.
 \item[Centralized Control:] Due to the manner in which most locker
-  services store their data, such services often provide more
+  services store their data, such services often provide a more
   centralized control point then a potentially distributed sync
   service. Such control may be desirable in corporate environments
   where a single administrator wishes to track user file access,
@@ -293,7 +293,7 @@ day-to-day power consumption~\cite{neurio} or record their exercise
 habits~\cite{fitbit} are becoming increasingly popular. The data from
 such devices in generally passed back to third party processing
 platforms where useful insights are drawn from it and returned to the
-user. Often such systems leverage their access to data form a
+user. Often such systems leverage their access to data from a
 multitude of users to return more useful information then the data
 from any single user could provide. It seems likely that such services
 will continue to increase in popularity as the cost of deploying IoT
@@ -337,11 +337,11 @@ the way through the user-facing software, in order to guarantee any
 level of security. In a world where most developers rely on IaaS and
 PaaS systems for production deployment, such full stack control is
 generally not possible. The less trust a developer must place in their
-IaaS or PaaS providers, the more direct control they retain over the
-security and privacy of their applications. Modern security and
-privacy enhancing technology systems should be capable of operating
-securely even when the underlying hardware or platform lies outside of
-the developers full control.
+IaaS or PaaS systems and providers, the more direct control they
+retain over the security and privacy of their applications. Modern
+security and privacy enhancing technology systems should be capable of
+operating securely even when the underlying hardware or platform lies
+outside of the developer's full control.
 
 Additionally, cloud-based deployments are often scaled up and down
 dynamically as load requires. An application that begins running atop
@@ -357,13 +357,13 @@ security and privacy enhancing technology in an IaaS/PaaS based world.
 
 It is not uncommon for developers to be working atop remote
 infrastructure when utilizing PaaS and IaaS systems. As such, security
-and privacy enhancing technologies can should not make assumptions
-about a user's ability to physically access a machine. Such physical
-access is sometimes required by security enhancing technologies for
-the purpose of bootstrapping various encryption systems using
-SmartCards, USB drives, etc. Unfortunately the remote, cloud-based
-nature of many modern systems do not allow for such physical-access
-dependent mechanisms.
+and privacy enhancing technologies should not make assumptions about a
+user's ability to physically access a machine. Such physical access is
+sometimes required by security enhancing technologies for the purpose
+of bootstrapping various encryption systems using SmartCards, USB
+drives, etc. Unfortunately the remote, cloud-based nature of many
+modern systems do not allow for such physical-access dependent
+mechanisms.
 
 Similarly, most IaaS-backed servers or PaaS-backed services are
 expected to autonomously operate headlessly (i.e. without a human
@@ -372,21 +372,31 @@ appropriate to expect developers to be able to provide interactive
 keyboard input in support of a security or privacy enhancing
 technology. For example, most existing full-disk encryption systems
 require a user to enter a pre-boot password each time the system
-reboots. Such systems can not operate in a modern cloud-backed
-environment and thus are not useful use in such
-scenarios. Furthermore, most modern cloud infrastructure is
-bootstrapped automatically by developers using systems like
-Puppet~\cite{puppet} or Chef~\cite{chef}. Thus, modern security and
-privacy enhancing technologies must also offer support for automated
-configuration.
+starts in order to bootstrap the encryption system. Such systems are
+not easy to operate in a modern cloud-backed environment and thus are
+of limited usefulness in such scenarios.
+
+Furthermore, the trend toward headless, ephemeral infrastructure
+capable of rapidly scaling up or down is driving the adoption of
+configuration management systems such as Puppet~\cite{puppet} or
+Chef~\cite{chef}. Such systems are necessary to help developers
+automate the otherwise monotonous process of configuring cloud compute
+resources manually. Indeed, the sheer number of cloud servers involved
+in most larger scale production deployments makes manual management
+impossible.~\footnote{This fact has given rise to the sentiment that
+  ``servers are cattle, not pets'' -- meaning developers should focus
+  on automatically managing large numbers of systems instead of
+  carefully curating individual systems.}  Thus, new security and
+privacy enhancing technologies must be able to operate securely even
+when their configuration must be automated.
 
 Assumptions about a developer's ability to physically access a
 machine, to interactively provide input to a machine, or to manually
 deploy each machine no longer hold under the current practice of using
-ephemeral cloud-backed infrastructure. As such. it's important that
-any developer-targeted privacy or security enhancing technology avoids
-making such assumptions, ensuring that it can operate effectively even
-atop IaaS and PaaS infrastructure.
+automated, ephemeral cloud-backed infrastructure. As such. it's
+important that any developer-targeted privacy or security enhancing
+technology avoids making such assumptions, ensuring that it can
+operate effectively even atop modern deployment practices.
 
 \section{Threats to Security and Privacy}
 \label{chap:challenges:threats}
@@ -395,13 +405,12 @@ The current cloud-computing and third-party solution trends raise a
 number of security and privacy related questions. To what degree must
 we trust each service provider to protect our data? How good our
 service providers at protecting data? What other threats do modern
-usage models expose? I explore examples of some of these questions
-below.
+usage models expose?
 
 Almost all of the use cases discussed in
 \S~\ref{chap:challenges:usecases} involve ceding some degree of trust
 to one or more third parties. This often comes in the form of storing
-data or executing computations on their third servers. But to what
+data or executing computations on third-party servers. But to what
 degree is this trust well placed? How likely is such trust to lead to
 an unintended disclosure or manipulation of private data or a related
 security failure? Chapter~\ref{chap:trust} discusses these concepts in
@@ -424,7 +433,7 @@ occurring:
   performed on $\approx700$ users without their explicit knowledge or
   consent. Facebook misused the trust placed in it by its users by
   leveraging and manipulating their data in unforeseen ways.
-\item[Uber User Travel History:] Ride-share app Uber recently made
+\item[Uber User Travel History:] In 2014, ride-share app Uber made
   headlines when it used the travel-history of a number of its more
   prominent users to display a live user-location map at a launch
   party~\cite{sims2014}. Similarly, the company also used stored user
@@ -437,9 +446,9 @@ occurring:
   shoppers were pregnant based on the kind of items they
   bought. Target would then leverage this data to send customers
   coupons optimized for pregnant individuals. In one case, this
-  practice even lead to the outing of a pregnant teenage daughter to
-  her previously unaware father~\cite{hill2012}. Clearly such outcomes
-  are not within the realm of what most shopper expect when purchasing
+  practice even lead to the outing of a pregnant teenager to her
+  previously unaware father~\cite{hill2012}. Clearly such outcomes are
+  not within the realm of what most shoppers expect when purchasing
   items at Target.
 \end{packed_desc}
 
@@ -457,15 +466,15 @@ occur due to a direct attack on third party or through a mistake or
 oversight on the part of the third party. Thus, even if we trust that
 a third party won't intentionally misuse our data, we must still
 question whether or not they are capable of providing adequate
-protection for our data. Today we are generally fully reliant on third
+protection for our data. Today we are generally reliant on third
 parties to protect the data they store and to faithfully enforce any
 access control or sharing restrictions we specify.
 
 Unfortunately, there are many examples of third party data breaches
 resulting in the unintended release of user data. 2014 alone saw the
-release of over 550 million user identities and associated data
-online, representing about 1 in 5 internet users
-globally~\cite{symanteccorporation2014}. While not intentional, such
+release of almost 350 million user identities and associated data
+online, representing over 10\% of internet users
+globally~\cite{symanteccorporation2015}. While not intentional, such
 breaches still call into question the degree to which we should trust
 third parties with our data. Examples include:
 
@@ -482,6 +491,16 @@ third parties with our data. Examples include:
   system, the weak default security requirements for iCloud accounts
   made it relatively simple for attackers to compromise such accounts
   and steal data.
+\item[Office of Personnel Management Breach:] In 2015, The US Office
+  of Personnel Management (OPM) announced that their systems had been
+  breached, exposing the personal data of pretty much anyone who has
+  held or currently holds a US Government security
+  clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This
+  breach, in addition to having high strategic value to foreign
+  attackers, reveled sensitive personnel data of a huge number of US
+  government employees and contractors. This leak was largely due to
+  the use of old and outdated storage and security system employed by
+  the OPM.
 \item[Anthem and Premera Blue Cross Breaches:] In early 2015 two major
   US health insurance companies were subject to attacks that breached
   their user records, allowing the release of personal, financial, and
@@ -725,6 +744,6 @@ secrets is ever allowed?\footnote{This question is merely a variant of
 propose to explore in my thesis.
 
 %%  LocalWords:  OneDrive IoT SMB OwnCloud WebDAV LAFS IaaS PaaS Uber
-%%  LocalWords:  iCloud Premera Heartbleed Shellshock OpenSSL NSA
+%%  LocalWords:  iCloud Premera Heartbleed Shellshock OpenSSL NSA OPM
 %%  LocalWords:  Snowden th FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS
 %%  LocalWords:  Levison

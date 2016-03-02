@@ -532,11 +532,14 @@ of such services by various governments for the propose of wide-spread
 surveillance. In particular, the NSA leaks revealed by Mr. Edward
 Snowden demonstrate the US government's widespread data surveillance
 programs targeting popular cloud data
-providers~\cite{greenwald-prism}. While such actions, at least in the
-US, raise numerous questions of constitutional legality under the 4th
-Amendment~\cite{us-constitution-amend4}, it does not at present change
-the fact that such searches are known to be occurring. Thus, we are
-forced to not only consider our trust of the various third party
+providers~\cite{greenwald-prism}.  Outside the Unites States,
+government-compelled surveillance and user data access are equally, of
+not more, pervasive~\cite{netfreedom2015}.  While such
+actions, at least in the US, raise numerous questions of
+constitutional legality under the 4th
+Amendment~\cite{us-constitution-amend4}, that does not at present
+change the fact that such searches are known to be occurring. Thus, we
+are forced to not only consider our trust of the various third party
 providers in the cloud, but also our trust of the governments of the
 jurisdictions in which such providers operate.
 
@@ -556,7 +559,7 @@ instances of government data introspection include:
   joint NSA and British GCHQ effort to intercept and monitor traffic
   within Google's and Yahoo's data center to data center
   networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure,
-  this intra data center traffic was not generally encrypted, and thus
+  this intra-datacenter traffic was not generally encrypted, and thus
   was an ideal point for another entity to intercept and monitor user
   data. Both cases demonstrate a concerted government effort to access
   and monitor user data atop popular cloud services.
@@ -566,14 +569,37 @@ instances of government data introspection include:
   to the lesser legal protections such communications receive under
   the US Third-party doctrine~\cite{scotus-usvmiller,
     scotus-smithvmaryland}). In August 2013 Lavabit shuttered its
-  service in service in response to a US government subpoena requiring
-  Lavabit to turn over all of its encrypted user traffic as well as
-  the associated SSL encryption keys necessary to decrypt
+  service in response to a US government subpoena requiring Lavabit to
+  turn over all of its encrypted user traffic as well as the
+  associated SSL encryption keys necessary to decrypt
   it~\cite{lavabit, levsion-lavabit}. After a legal fight, Lavabit
   founder Ladar Levison was forced to disclose the encryption keys
   protecting his service. The Lavabit example shows the government's
   willingness to compel service operators to aid in the monitoring and
   collection of user data.
+\item[Apple v. FBI:] In response to the 2015 San Bernardino shootings,
+  the FBI is seeking to compel Apple to help it decrypt the shooter's
+  iPhone~\cite{ars-cookvfbi}. The form of encryption Apple uses to
+  protect the iPhone involves the use of a hardware-linked encryption
+  key that can not be extracted from the phone. Furthermore, this key
+  can not be used on the phone without a user-provided passcode. By
+  default, Apple limits the number of guesses a user may make at this
+  passcode and throttles the speed at which a user may guess
+  passcodes. The FBI wishes to compel Apple to update the software on
+  the iPhone in question so that they may try to guess an unlimited
+  number of passcodes at a high rate of speed\footnote{Due to Apple's
+    use of signature-verified code, it is not possible for the FBI (or
+    anyone else) to update the Apple's software themselves - instead
+    Apple (or the holder of Apple's cryptographic code signing key)
+    must approve and sign any updated code before the iPhone will run
+    it.}\cite{eff-applecrypto}. Apple has declined to honor this
+  request~\cite{apple-fbiletter}. The case is currently being fought
+  in the courts. As in the Lavabit case, this case demonstrates
+  government willingness and interest in compelling companies to
+  assist them in accessing private user data, even going so far as to
+  potentially require companies to avoid the use of certain forms of
+  encryption or security-enhancing features that would make such
+  assistance difficult or impossible to provide.
 \item[The Great Firewall:] Moving beyond US-based government digital
   surveillance, China has long been known to employ one of the most
   sophisticated web monitoring and content control systems in
@@ -586,13 +612,13 @@ instances of government data introspection include:
   hindered.
 \end{packed_desc}
 
-These examples demonstrate the willingness of many governments to
-ensure they can access and monitor user data in the cloud. When
-designing security and privacy enhancing systems, we must account for
-the fact that services providers may find themselves in positions
-where they are compelled to turn over data (or even collude in its
-collection) or where they face large scale surveillance of all
-internal and external network traffic.
+These examples demonstrate the willingness of governments to ensure
+they can access and monitor user data in the cloud. When designing
+security and privacy enhancing systems, we must account for the fact
+that services providers may find themselves in positions where they
+are compelled to turn over data (or even collude in its collection) or
+where they face large scale surveillance of all internal and external
+network traffic.
 
 \subsection{Physical Security}
 
@@ -609,9 +635,9 @@ device. Modern usage patterns break this assumption in several ways.
 First, the multi-device nature of most users increases the number of
 computing devices potentially storing copies of sensitive user
 data. This results in an increased physical attack
-surface. Furthermore, many modern compute devices are inherently
-mobile, easily carried by the user and moved about. The combination of
-these facts gratefully increase the likelihood of a computing device
+surface. Furthermore, many modern compute devices are designed to be
+mobile -- easily carried by the user and moved about. The combination
+of these facts greatly increase the likelihood of a computing device
 storing user data being lost or stolen. As such, it's critical that we
 design systems that are resilient to data compromise even when they
 fall into the hands of unauthorized actors. The likelihood of user
@@ -621,7 +647,7 @@ for this fact.
 
 As mentioned previously, physical control over IaaS-based services is
 also not generally possible. We are thus forced to run many of our
-modern services atop hardware under another parties control. This lack
+modern services atop hardware under another party's control. This lack
 of physical hardware access has repercussions for modern threat
 models. To what extent can the hardware provider interfere with or
 bypass the security of software that runs on their systems? What
@@ -646,9 +672,9 @@ The confluence of modern use cases and modern security concerns place
 restrictions on the manner in which we must design and build
 successful privacy and security enhancing systems. These security
 concerns form the basis for the threat model against which our systems
-must be able to defend. The requirement that we support modern use
-cases place limitations on the manners in which we may defend against
-these threats. These limitations disqualify many existing solutions
+must be able to defend. The need to support modern use cases place
+limitations on the manners in which we may defend against these
+threats. These limitations disqualify many existing security solutions
 and underline the need for new approaches.
 
 Traditionally the solution to many of the threats discussed in
@@ -659,23 +685,24 @@ secure: e.g. encryption does not rely on any system or authority for
 the enforcement of its security guarantees, it is instead the
 intrinsic properties of the underlying math itself that give rise to
 its security claims. Thus encryption and related cryptographic
-primitives can serve as the basis for systems that are designed to
-operate securely atop untrusted hardware or services.
+primitives (e.g. authentication, etc) can serve as the basis for
+systems that are designed to operate securely atop untrusted hardware
+or services.
 
 A number of existing encryption systems have been designed and
 deployed with an aim towards protecting user data in the scenarios
 discussed previously. For example, full-disk encryption systems such
-as LUKS~\cite{luks} protect user data at rest and can help guard
-against data leaks if a storage device is lost, stolen, or otherwise
-acquired by an adversary. Unfortunately, such systems fail to account
-for many modern use cases. In particular, full disk encryption systems
-generally require the user to interactively supply a pass phrase at
-boot time in order to bootstrap the decryption of the data on the
-system. Such requirements are not generally possible to fulfill when
-using cloud-based infrastructure such as IaaS-backed virtual
-machines. Simply doing away with such pass-phrases isn't a viable
-solution either since the security of the entire system rests upon the
-intended user, and only that user, being able to provide such
+as dm-crypt/LUKS~\cite{dm-crypt, luks} protect user data at rest and
+can help guard against data leaks if a storage device is lost, stolen,
+or otherwise acquired by an adversary. Unfortunately, such systems
+fail to account for many modern use cases. In particular, full disk
+encryption systems generally require the user to interactively supply
+a pass phrase at boot time in order to bootstrap the decryption of the
+data on the system. Such requirements are not generally possible to
+fulfill when using cloud-based infrastructure such as IaaS-backed
+virtual machines. Simply doing away with such pass-phrases isn't a
+viable solution either since the security of the entire system rests
+upon the intended user, and only that user, being able to provide such
 information. I.e. a full disk encryption system that stores a copy of
 the user pass-phrase locally to avoid the need for the user to type it
 in is no more secure then a system without encryption at all. You're
@@ -715,10 +742,10 @@ would employ such tactics in the first place.
 
 Thus, I assert that most traditional encryption systems are not good
 fits for the poplar third-party backed use cases today. Fortunately,
-in these situations it is not the encryption itself that is
-flawed. This is fortunate: modern state-of-the-art encryption is quite
-a powerful tool and it would be a major loss to be unable to leverage
-it in pursuit of privacy and security enhancing systems. Encryption is
+in these situations it is not the cryptography itself that is
+flawed. This is fortunate: modern state-of-the-art crypto is quite a
+powerful tool and it would be a major loss to be unable to leverage it
+in pursuit of privacy and security enhancing systems. Cryptography is
 a viable tool for helping us reduce the trust we must place in various
 third parties.
 
@@ -733,17 +760,20 @@ them to decrypt user data. In fact, encryption key storage represents
 just a subset of the larger secret storage problem: How can a a user
 securely store various secrets (encryption keys, passwords, personal
 data, etc) in a manner that allows them to access them when and where
-desire while also ensuring that no unauthorized access to these
-secrets is ever allowed?\footnote{This question is merely a variant of
-  the Always/Never paradox often encountered when attempting to build
+they desire while also ensuring that no unauthorized access to these
+secrets is allowed?\footnote{This question is merely a variant of the
+  Always/Never paradox often encountered when attempting to build
   secure systems. The problem was probably most famously encountered
   during the Cold War in the design of nuclear weapons: How can you
   ensure a nuclear weapon always detonates when its use is
   intentional, but never detonates when its use is
-  not?~\cite{schlosser2013}} This is the basis of the questions I
-propose to explore in my thesis.
+  not?~\cite{schlosser2013}} And once securely stored, how can a user
+use these secrets to bootstrap modern security and privacy enhancing
+solution in a manner that support a range of desirable use cases?
+These questions and my proposed solutions form the basis of the work
+presented in this thesis.
 
 %%  LocalWords:  OneDrive IoT SMB OwnCloud WebDAV LAFS IaaS PaaS Uber
 %%  LocalWords:  iCloud Premera Heartbleed Shellshock OpenSSL NSA OPM
 %%  LocalWords:  Snowden th FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS
-%%  LocalWords:  Levison
+%%  LocalWords:  Levison Bernardino passcode passcodes dm

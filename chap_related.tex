@@ -179,12 +179,12 @@ operations.
 
 Beyond data processing, the ability to securely store data atop third
 party infrastructure while also minimizing the degree of third party
-trust this entails has been and remains a desirable goal. As such, a
-number of projects have undertaken efforts aimed at achieving such
-protections. Secure data storage is one of the most targeted
-applications by security and privacy enhancing systems. And for good
-reason -- the ability to securely store data is a critical primitive
-for maintaining the security and privacy of our computing systems.
+is a desirable goal. As such, a number of projects have undertaken
+efforts aimed at achieving such protections. Secure data storage is
+one of the most common class of security and privacy enhancing
+systems. And for good reason -- the ability to securely store data is
+a critical primitive for maintaining the security and privacy of our
+computing systems.
 
 A number of traditional client-server encrypted file systems exist
 with the design goal of avoiding server-side
@@ -207,9 +207,9 @@ either accidental or intentional, of a subset of nodes does not result
 in the loss, corruption, or exposure of user data. Depot focuses on
 data integrity and availability in the presence of untrusted
 nodes. Tahoe focus on data integrity and privacy in the presence of
-untrusted untrusted nodes. OceanStore has elements of both as well as
-a focus on large scale deployments that provide for properties like
-data locality to enhance performance.
+untrusted nodes. OceanStore has elements of both as well as a focus on
+large scale deployments that provide for properties like data locality
+to enhance performance.
 
 In many of these systems, however, key management primitives are still
 ignored or pushed down to the user, leading to usability issues and
@@ -243,18 +243,18 @@ traditional tools of for securing email, OpenPGP~\cite{openpgp} and
 its various implementation (e.g. GnuPG~\cite{gnupg} and Symantec
 PGP~\cite{pgp}), are not new. But they have seen renewed levels of
 interest after Edward Snowden revealed his use of such tools and
-advocated for them as effective NSA counter measures. Unfortunately
-these tools remain no more usable today then they were 20 years ago,
-leading to the multitude of usability issues discussed in
-Section~\ref{chap:background:usability}. In response, tools like
-Mailpile~\cite{mailpile} and Whiteout~\cite{whiteout} have been
-created with the aim of making PGP-based email security more friendly
-for the average user. Similarly, Google and Yahoo have both engaged in
-efforts aimed and making PGP-like encryption and authentication
-systems available to their webmail users~\cite{google-endtoend,
-  yahoo-endtoend}. Other systems such as STEED aim to adapt
-traditional PGP principles to make the primitives simpler for the
-average end-user to deal with~\cite{koch2011}.
+advocated for them as effective mass-surveillance counter
+measures. Unfortunately these tools remain no more usable today then
+they were 20 years ago, leading to the multitude of usability issues
+discussed in Section~\ref{chap:background:usability}. In response,
+tools like Mailpile~\cite{mailpile} and Mailvelope!\cite{mailvelope}
+have been created with the aim of making PGP-based email security more
+friendly for the average user. Similarly, Google and Yahoo are both
+engaging in efforts aimed and making PGP-like encryption and
+authentication systems available to their webmail
+users~\cite{google-endtoend, yahoo-endtoend}. Other systems such as
+STEED aim to adapt traditional PGP principles to make the primitives
+simpler for the average end-user to deal with~\cite{koch2011}.
 
 But even these recent pushes to re-skin PGP and make it more user
 friendly can't overcome many of the fundamental issues with the
@@ -263,37 +263,26 @@ major form of modern communion: real-time chat. To overcome these
 deficiencies, systems like Open Whisper's
 TextSecure~\cite{openwhisper} and ChatSecure~\cite{chatsecure} have
 been created. Both systems rely on the Off-the-Record secure messaging
-protocol to achieve encrypted, authenticated, and
-forward-secure\footnote{Forward secrecy is a property of secure
-  communication that ensures that the short-term sessions keys used to
-  protect individual messages can not be derived from any long-term
-  authentication or related keys. In short, it guarantees that prior
-  messages can not be decrypted should an adversary manage to
-  compromise a long-term user key at an point in the future. Such
-  systems are commonly implemented by decoupling session keys from
-  user authentication keys, using systems such as Diffie-Hellman key
-  derivation~\cite{diffie1976} to generate the former while only
-  relying on the latter for the prevention of Man-in-the-Middle
-  attacks during the initial setup process.} real-time communication
-between two or more parties~\cite{otr-v3, borisov2004,
-  goldberg2009}. Such systems aim to make secure real-time
-communication as simple as possible, and have shown promise in terms
-of popularity and usability. But these systems are not necessarily
-well suited to replace PGP since they rely on the real-time nature of
-chat communication to attain forward secrecy. Similarly usable and
-forward-secure solutions for non-real-time systems like email systems
-remain elusive.
+protocol to achieve encrypted, authenticated, and forward-secure
+real-time communication between two or more parties~\cite{otr-v3,
+  borisov2004, goldberg2009}. Such systems aim to make secure
+real-time communication as simple as possible, and have shown promise
+in terms of popularity and usability. But these systems are not
+necessarily well suited to replace PGP since they rely on the
+real-time nature of chat communication to attain forward
+secrecy. Similarly usable and forward-secure solutions for
+non-real-time systems like email systems remain elusive.
 
 While secure communication systems are seeing a lot of development and
 showing promise, all of the solutions discussed above are
 communication-specific solutions. As such, they are complimentary to
 the work presented in this proposal related to general methods for
-reducing third party trust and managing secrets and cryptographic
+reducing third party trust and managing secrets such as cryptographic
 keys.
 
 \subsection{Password Managers}
 
-One of the most common forms of third-party secret storage available
+One of the most common classes of third party secret storage available
 today is that of password storage by end-user password managers. The
 well-documented failure of user-chosen passwords as a reliable
 security mechanisms~\cite{goodin-bible, goodin-passwords} has led
@@ -305,16 +294,21 @@ use~\cite{schneier-passwords, krebs-passwords, brodkin-passman}.
 Systems such as LastPass~\cite{lastpass} and
 OnePassword~\cite{onepassword} provide users with a hosted platform on
 which to manage and store their passwords. These systems utilize a
-single-third party for data storage in order to accommodate the
+single third party for data storage in order to accommodate the
 multi-device sync and multi-user sharing use cases presented in
 Section~\ref{chap:challenges:usecases}. But in doing so, they require
 the user to place a fair amount of trust in the third-party
 provider. Such systems do tend to perform client-side encryption and
 generally are designed to avoid storing the user's master password in
 a recoverable form, mitigating some of the potential for third party
-abuse, but at the end of the day, they still require the user to trust
-a single third party with their credentials, and by proxy, access to
-their online services and accounts.
+abuse. But at the end of the day, such systems still require the user
+to trust a single third party with their credentials, and by proxy,
+access to their online services and accounts. Nor are such service
+infallible. There have been several noted flaws and breaches of such
+systems over the previous few years\footnote{Fortunately the deign of
+  such systems was able to largely mitigate the worst damages from
+  these breaches.}\cite{blackhat-lastpass, changedmy-lastpass,
+  lastpass-blog-breach}.
 
 Password management systems share some of the same goals I propose in
 this document -- namely, the storage of end-user secrets in a secure
@@ -328,8 +322,8 @@ implementation from needing to trust any single third party.
 \subsection{Storage Tools}
 
 Beyond secure communication and password storage lies the more general
-problem of arbitrary secure user storage. As mentioned in
-Section~\ref{chap:challenges:usecases}, many user expect such storage
+problem of arbitrary secure data storage. As mentioned in
+Section~\ref{chap:challenges:usecases}, most users expect such storage
 to provide multi-user and multi-device support in addition to raw
 secure storage, disqualifying many of the traditional encrypted file
 system solutions from the running. Popular storage services like
@@ -357,8 +351,7 @@ minimizing third party trust. Furthermore, as mentioned above, these
 services still rely on a moderate degree of trust in a single third
 party in order to facilitate sharing use cases. The work proposed in
 this document could be leveraged to re-implement such systems while
-further suppressing the final vestiges of single-party third-party
-trust.
+further suppressing reliance on a single trusted third party.
 
 \section{Key Management Systems}
 \label{chap:related:keymgmt}
@@ -377,7 +370,7 @@ are discussed in this section.
 
 As discussed previously, many existing secure storage systems fail to
 meet the needs of today's users due to the fact that their restrictive
-and tightly coupled key management systems fail to accommodate a range
+and tightly coupled key management systems can't accommodate a range
 of modern use cases. A number of existing secure file systems have
 acknowledged the issues created by tightly coupling key management
 with a specific storage solution (or of ignoring key management all
@@ -423,8 +416,8 @@ encryption keys in a manner such that two separate keys could be used
 to decrypt any given piece of data)~\cite{denning1996}; e.g. the
 infamous NSA-backed Clipper chip. These systems, however, fail the
 single-trusted-third-party test, requiring a high degree of user trust
-in one external entity. To overcome such trust concentrations, Blaze
-proposes a distributed key escrow system that makes key escrow
+in one external entity. To overcome such trust concentrations, Matt
+Blaze proposes a distributed key escrow system that makes key escrow
 requests transparent and leverages a distributed consensuses to avoid
 any single rogue actor using such a system to steal a key or gain
 unauthorized access to end-user data~\cite{blaze1996}.
@@ -436,19 +429,20 @@ traditional escrow-based use cases (e.g. key sharing for multi-device
 sync or key sharing for document collaboration). Furthermore, the
 existing scholarship around key escrow systems fail to explore the
 benefits and possibilities of the general purpose secret storage
-systems described in this proposal. The secrets storage systems
-described in this proposal can, however, fulfill many of the
-traditional roles of a distributed key-escrow system.
+systems described in this document. The secret storage systems
+described herein can, however, fulfill many of the traditional roles
+of a distributed key-escrow system.
 
-\subsection{Cloud Key Management}
+\subsection{Automated and Cloud Key and Secret Management}
 
-Perhaps the most closely related work to that proposed here is the
-various cloud-backed key-management systems introduced over the
-previous five years. These systems are a reaction to many of the
-developer-facing use cases discussed in
+The most closely related work to that proposed here is the various
+automation and cloud oriented key and secret management systems
+introduced over the previous five years. These systems are a reaction
+to many of the developer-facing use cases discussed in
 Section~\ref{chap:challenges:usecases}. They aim to make key
-management and secure key storage primitives available to developers
-leveraging third-party cloud platforms.
+management and secret storage primitives available to developers
+leveraging automated configuration management systems and/or
+third-party cloud platforms.
 
 Rackspace's CloudKeep\cite{cloudkeep-presentation, cloudkeep} (now
 OpenStack Barbican~\cite{openstack-barbican}) aims to create a
@@ -457,18 +451,15 @@ applications, avoiding the need to re-implement such systems in each
 application. Similar to the SSaaS system proposed in this document,
 CloudKeep aims to ease developer burden while increasing the security
 of end-user applications by focusing security code in a centralized,
-carefully curated system. Similar commercial systems also exist with
-the aim of providing developers with turnkey key-management
-systems~\cite{gazzang, porticor, rosen2012}. Such systems, however,
-lack the generic secret-storage flexibility of the systems discussed
-here. Most also still require placing trust in a single third party --
-although this party may now differ from the party proving the
-underlying cloud compute or data storage servers. They also lack the
-cross-platform standardization necessary to incentive some of
-market-driven forms of trust-preserving behavior discussed in
-Chapter~\ref{chap:ssaas}.
+carefully curated system. CloudKeep/Barbican integrates with the
+OpenStack~\cite{openstack} cloud infrastructure management platform to
+provide secret storage services to OpenStack users. Such a system,
+however, still requires the user to trust the OpenStack provider with
+the storage of their secrets, and does not allow for the party
+providing secret storage to be easily decoupled from the party
+providing other cloud services.
 
-Finally, various IaaS platforms have begun offering cloud-based
+Similarly, various IaaS platforms have begun offering cloud-based
 Hardware Security Module (HSM) solutions. HSMs traditionally refer to
 dedicated hardware co-processors capable of storing user cryptographic
 keys in a manner that prevents them from ever being extracted. Such
@@ -490,8 +481,24 @@ SSaaS work discussed in this proposal could potentially be used to
 build similar ``soft'' HSM systems without requiring single
 third-party trust~\cite{lorier-pkcs11}.
 
+Beyond infrastructure-tied services, a number of open source secret
+storage systems have been recently developed by industry, including
+HashiCorp's Vault~\cite{vault}, Lyft's Confidant~\cite{confidant}, and
+Square's Keywhiz~\cite{keywhiz}. Similar commercial systems also exist
+with the aim of providing developers with turnkey key-management
+systems~\cite{gazzang, porticor, rosen2012}. Such systems, however,
+lack the generic secret-storage flexibility of the systems discussed
+here. Most also still generally require placing trust in a single
+third party, or in the case of self-hosted solutions, a single server
+-- although this party may now differ from the party providing the
+underlying cloud compute or data storage servers. They also lack the
+cross-platform standardization necessary to incentive some of
+market-driven forms of trust-preserving behavior discussed in
+Chapters~\ref{chap:trust} and~\ref{chap:ssaas}.
+
 %%  LocalWords:  CryptoCache OceanStore SFS Plutus Custos SSaaS TPP
 %%  LocalWords:  Rackspace's CloudKeep Custos's CryptDB CleanOS NSA
 %%  LocalWords:  Snowden Mailpile TextSecure ChatSecure LastPass IaaS
 %%  LocalWords:  OnePassword Diffie SpiderOak Tresorit Wuala Shamir
 %%  LocalWords:  HSMs PKCS Heartbleed Snowden's OpenStack Barbican
+%%  LocalWords:  Mailvelope HashiCorp's Lyft's Keywhiz

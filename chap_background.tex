@@ -127,9 +127,17 @@ system came a few years latter with the invention of the
 RSA~\cite{rivest1978} algorithm. Diffie and Hellman's joint key
 negotiation scheme, however, remains a critical component of
 asymmetric cryptography systems today -- especially those that employ
-``forward secrecy'' designs (i.e. designs that can keep previously
-exchanged messages secure even if one of the parties is compromised at
-a future date). Both asymmetric cryptography schemes such as RSA and
+``forward secrecy'' designs.\footnote{Forward secrecy is a property of
+  secure communication that ensures that the short-term sessions keys
+  used to protect individual messages can not be derived from any
+  long-term authentication or related keys. In short, it guarantees
+  that prior messages can not be decrypted should an adversary manage
+  to compromise a long-term user key at any point in the future. Such
+  systems are commonly implemented by decoupling session keys from
+  user authentication keys, using systems such as Diffie-Hellman key
+  derivation to generate the former while only relying on the latter
+  for the prevention of Man-in-the-Middle attacks during the initial
+  setup process.} Both asymmetric cryptography schemes such as RSA and
 secure negotiation schemes such as Diffie-Hellman can be used to
 bootstrap secure communications across an insecure channel by allowing
 two parties to derive or exchange a mutual secret (e.g. session key)

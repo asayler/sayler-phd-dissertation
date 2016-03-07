@@ -1,4 +1,4 @@
-\chapter{Custos: An SSaaS Prototype}
+\chapter{Custos: A First-Generation SSaaS Prototype}
 \label{chap:custos}
 
 Custos\footnote{Custos is Latin for ``guard''.} is a prototype SSP
@@ -20,7 +20,7 @@ insights here. Additional information is available at
 \end{figure}
 
 Figure \ref{fig:custos-overview} shows the core Custos components. The
-bulk of Custos's functionality is handled on the SSP server side. The
+bulk of Custos's functionality is handled on the SSP server. The
 Custos SSP server implements the following components:
 
 \begin{packed_desc}
@@ -402,8 +402,8 @@ with a specific group. These groups can be used to allow multiple
 users to administrator a set of secrets and to control who can create
 new secrets within a group.
 
-The Custos API is secured via SSL/HTTPS. Custos servers are
-authenticated over SSL via the standard public key infrastructure
+The Custos API is secured via TLS/HTTPS. Custos servers are
+authenticated over TLS via the standard public key infrastructure
 (PKI) mechanisms (e.g. certificate authorities, etc)\footnote{In
   situations were the traditional PKI mechanisms are deemed
   undesirable, it may be possible to authenticate Custos servers via
@@ -429,16 +429,15 @@ for a given secret across all Custos servers holding a share of that
 secret. Likewise, a user must manually query each server holding a
 share of a secret for audit data in order to aggregate the full audit
 history for a given secret. Developing methods for more easily
-coordinating ACC and audit information for a set of secret shares
-across multiple SSPs is one of the proposed efforts in
-Chapter~\ref{chap:planned}.
+coordinating the storage and management of a set of secret shares
+across multiple SSPs is one of the focuses of the Tutamen design
+discussed in Chapter~\ref{chap:tutamen}.
 
 \section{Implementation}
 
 I've created prototype implementations of both a Custos server and a
 sample Custos client. These implementations exist to test and
-demonstrate the basic SSaaS concepts proposed here. Expanding these
-prototypes is part of the proposed work in Chapter~\ref{chap:planned}.
+demonstrate the basic SSaaS concepts proposed here.
 
 \subsection{SSP Server}
 
@@ -451,8 +450,7 @@ leverages the Flask~\cite{python-flask} web framework to implement the
 Custos API, and provides HTTPS support via the Apache~\cite{apache}
 web server. The server is capable of handling a few hundreds key
 requests per second, depending on the complexity of the associated
-ACCs. Increasing the performance of the SSP server is the topic of
-future work.
+ACCs.
 
 \subsection{EncFS}
 

@@ -18,18 +18,20 @@ number of parties we must trust. But what does it mean to trust a
 third party in the cloud? Before discussing the details of an SSaaS
 ecosystem, it's helpful to further define ``trust''. In this chapter,
 I define a model for analyzing trust and apply this model to compare
-traditional cloud-backed offerings to SSaaS-backed offerings.
+various traditional software and technology deployments to SSaaS-backed
+options.
 
 \section{Analyses Framework}
 \label{chap:trust:framework}
 
-Generally, when we use the cloud, we must trust third-party service
-providers with our data. The manner in which this third party trust
-relates to the privacy of user data has two main factors: how much
-trust do we place in third parties (e.g. how much of our personal data
-do we grant them access to), and in what manner can they violate this
-trust (e.g. how can they abuse the access they are granted). I will thus
-evaluate cloud trust models across two main axes: the \emph{degree} of
+Generally, when we use modern computing devices and services, we must
+trust third-party manufactures and service providers with our
+data. The manner in which this third party trust relates to the
+privacy of user data has two main factors: how much trust do we place
+in third parties (e.g. how much of our personal data do we grant them
+access to), and in what manner can they violate this trust (e.g. how
+can they abuse the access they are granted). I will thus evaluate
+computing trust models across two main axes: the \emph{degree} of
 trust we must place in third parties, and the manner in which this
 trust might be \emph{violated}. Our ideal trust model for a given use
 case will minimize the degree of third party trust while also
@@ -48,10 +50,9 @@ following data-related capabilities:
   Can a third party read and interpret the private user data they
   store? Misuse of this capability may result in the exposure of user
   data.
-\item[Manipulation (W):] \hfill \\ 
-  Can a third party modify the private user data to which they have
-  access? Misuse of this capability may result in the ability to
-  manipulate a user via the manipulation of their private data
+\item[Manipulation (W):] \hfill \\ Can a third party modify the
+  private user data to which they have access? Misuse of this
+  capability may result in the ability to manipulate a user
   (e.g. changing appointments on a user's calendar, etc).
 \item[Meta-analysis (M):] \hfill \\
   Can a third party gather user metadata related to any stored private
@@ -136,8 +137,8 @@ users are also effectively granting the manipulation (\emph{W})
 capability as well since the user has no mechanisms for ensuring that
 Dropbox can't manipulate their data. Finally, Dropbox has full access
 to user metadata related to their usage of the service, granting them
-the \emph{M} capability. Thus, Dropbox users are fully trusting
-Dropbox with all possible trust capabilities.
+the \emph{M} capability. Thus, Dropbox users must trust Dropbox with
+all possible capabilities.
 
 But how likely is it that Dropbox might misuse any of these
 capabilities, thus violating the user's trust and privacy? In terms of
@@ -175,14 +176,14 @@ passwords~\cite{dropbox-passwords}. Needless to say, while Dropbox
 works to avoid these kinds of violations, they are certainly still
 possible, have occurred in the past, and may well occur in the future.
 
-As we can see, a traditional cloud service like Dropbox both requires
-an essentially full degree of user trust (i.e. \emph{S}, \emph{R},
-\emph{W}, and \emph{M} capabilities) while also being susceptible to a
-full range of trust violations (e.g. \emph{P}, \emph{C}, \emph{U},
-\emph{I}, and \emph{O} type violations). Dropbox is not unique. Other
-modern cloud services from social media sites, to file lockers, to
-communication systems all suffer from the same high-trust, high
-potential for violations paradigm.
+As we can see, a traditional cloud service like Dropbox currently
+requires an essentially full degree of user trust (i.e. \emph{S},
+\emph{R}, \emph{W}, and \emph{M} capabilities) while also being
+susceptible to a full range of trust violations (e.g. \emph{P},
+\emph{C}, \emph{U}, \emph{I}, and \emph{O} type violations). Dropbox
+is not unique. Other modern computing services from social media
+sites, to file lockers, to communication systems all suffer from the
+same high-trust, high potential for violations paradigm.
 
 \section{SSaaS Model}
 \label{chap:trust:ssaas}
@@ -265,14 +266,14 @@ framework:
 
 \begin{packed_desc}
 \item[Colluding (L):] \hfill \\ This class of violation occurs when
-  multiple trusted parties collude to gain capabilities over user data
-  beyond what the user intended each individually to have. An example
-  would be an SSP sharing the user's encryption keys with the feature
-  provider storing the corresponding encrypted data.
+  multiple partially-trusted parties collude to gain capabilities over
+  user data beyond what the user intended each individually to
+  have. An example would be an SSP sharing the user's encryption keys
+  with the feature provider storing the corresponding encrypted data.
 \end{packed_desc}
 
-This framework provided the basis for analyzing third party trust as
-well as the basic argument in favor of SSaaS as trust-reducing
+This framework provided a basis for analyzing third party trust as
+well as the basic argument in favor of SSaaS as a trust-reducing
 system. I discuss SSP trust and violation mitigation further in
 Chapter~\ref{chap:ssaas}.
 

@@ -10,11 +10,26 @@ SRCS = $(TEX) $(REFS)
 
 FIG_TMP = tmp.eps
 FIGS = $(patsubst %, figs/out/%.pdf, \
-         TrustModel-Seperated TrustModel-Traditional \
-         Arch-Sharded App-FileLocker \
-         App-FileStore App-DataRepo App-SecureEmail \
-         App-SSHServer App-SSHAgent App-PKCS11 \
-	     Custos-Overview Custos-OU Custos-ACS)
+         App-DataRepo \
+         App-FileLocker \
+         App-FileStore \
+         App-PKCS11 \
+         App-SecureEmail \
+         App-SSHAgent \
+         App-SSHServer \
+         Arch-Sharded \
+         Custos-ACS \
+         Custos-OU \
+	     Custos-Overview \
+         TrustModel-Seperated \
+         TrustModel-Traditional \
+         Tutamen-Op-Fetch \
+         Tutamen-Op-Store \
+         Tutamen-Structs-ACS \
+         Tutamen-Structs-SS \
+         Tutamen-System-Base \
+         Tutamen-System-Distributed \
+         )
 
 all: pdf
 

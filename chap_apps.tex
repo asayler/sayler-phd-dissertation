@@ -5,19 +5,20 @@ As mentioned in previous chapters, the SSaaS model can be utilized
 across a range of applications. In each case, the model allows users
 to reduce the trust they must place in any single third-party while
 also supporting popular use cases. I present several potential SSaaS
-applications in this chapter. Some of these applications are also
-discussed in~\cite{custos-trios}.
+applications in this chapter.
 
 \section{Storage}
 
 One of the primary applications of the SSaaS model is to secure
 storage systems, both local and hosted. These applications are all
 variations on the previously discussed encrypted data + SSaaS-backed
-keys model. In such applications, applications handle the encryption
-and verification of data locally, sending only encrypted data to third
-parities or storing such data on high risk devices. In order to ensure
-that such client-side encryption does not break traditional features
-associated with cloud and mobile data storage, clients store the
+keys model (Chapters~\ref{chap:intro},~\ref{chap:challenges},
+and~\ref{chap:ssaas}). In such applications, locally executed programs
+handle the encryption and verification of data, sending only encrypted
+data to third parities and/or storing only encrypted data on high risk
+devices. In order to ensure that such client-side encryption does not
+break traditional features associated with cloud and mobile data
+storage, such applications leverage the SSaaS model to store the
 associated encryption keys with one or more Secret Storage Providers.
 
 \subsection{Cloud File Sync/Storage}
@@ -76,7 +77,7 @@ strong case for using SSaaS-backed encryption systems for
 datacenter-based servers. Leveraging virtual (as well as physical)
 servers hosted in cloud data centers is an extremely popular
 deployment method. Unfortunately, as mentioned in
-Chapter~\ref{chap:challenges}, the administrator's lack of physical
+Chapter~\ref{chap:challenges}, an administrator's lack of physical
 access to such servers makes it difficult to utilize privacy-enhancing
 technologies like Full Disk Encryption (FDE) or file-system level
 encryption. In the FDE case, users are generally required to provide
@@ -118,12 +119,11 @@ SSP into providing decryption keys, the SSP would still be able to log
 and audit the event -- making it extremely difficult for a data center
 host to access secure user data in an undetectable manner.
 
-Possible implementations of server-based encryption efforts are
-discussed further in Chapter~\ref{chap:planned}. Such implementations
-would provide a mechanism to significantly decrease the amount of
-trust developers (and by proxy, their users) must place in the
-providers of hosted server infrastructure without significantly
-raising the cost or overhead of leveraging such infrastructure.
+SSaaS-backed, server-based encryption efforts would provide a
+mechanism to significantly decrease the amount of trust developers
+(and by proxy, their users) must place in the providers of hosted
+server infrastructure without significantly raising the cost or
+overhead of leveraging such infrastructure.
 
 \subsection{Mobile Device Encryption}
 
@@ -257,7 +257,7 @@ As in previous cases, third party trust can be minimized by sharding
 keys across multiple SSPs. Furthermore, such systems could guarantee
 some degree of forward secrecy by having the SSP automatically expire
 and delete keys after a certain period of time -- something that
-traditional email encryption systems struggle to support. Such designs
+traditional email encryption systems fail to support. Such designs
 have the potential to raise the default level of security inherent in
 mass digital communication without significantly inconveniencing
 users.
@@ -357,15 +357,15 @@ properly authenticate that the server they are accessing is in fact
 the correct server and not malicious man-in-the-middle
 attacker. Unlike SSL, however, SSH does not rely on a central
 certificate authority structure for the verification of keys. Instead
-it uses a ``trust on first use'' model that fingerprints a server key
-the first time the user connects and then assumes that this key will
-remain associated with a given server address indefinitely. If an
-ephemeral cloud server generates a new server SSH key each time it's
-recreated, or if multiple logically equivalent, load-balanced servers
-all have different SSH keys, a user will be unable to verify that the
-server is equivalent to the one they originally accessed. This issue
-could be overcome by storing the SSH verification keys for a server
-with one or more SSPs as shown in
+it uses a ``trust on first use'' (ToFU) model that fingerprints a
+server key the first time the user connects and then assumes that this
+key will remain associated with a given server address
+indefinitely. If an ephemeral cloud server generates a new server SSH
+key each time it's recreated, or if multiple logically equivalent,
+load-balanced servers all have different SSH keys, a user will be
+unable to verify that the server is equivalent to the one they
+originally accessed. This issue could be overcome by storing the SSH
+verification keys for a server with one or more SSPs as shown in
 Figure~\ref{fig:apps-sshserver}. Then, when a server is recreated, or
 when a single logical server is balanced between multiple instances,
 it still has access to the same SSH keys originally in use, ensuring

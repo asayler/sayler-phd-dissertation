@@ -384,9 +384,9 @@ As discussed in Chapter~\ref{chap:related}, a number of systems have
 been developed with the aim of overcoming the trust challenges. These
 systems include ``end-to-end'' encrypted file storage serves such as
 Tresorit~\cite{tresorit}. These systems aim to place limits on a their
-own ability to leverage the access (\texttt{R}) capability through the
+own ability to leverage the access (\emph{R}) capability through the
 use of client-side encryption. Likewise, they aim to limit their
-access to the manipulation (\texttt{W}) capability through client-side
+access to the manipulation (\emph{W}) capability through client-side
 data authentication. In the base case where a user merely wishes to
 store data on a single device and not share it with others, these
 systems are fairly successful in achieving their desired trust
@@ -416,11 +416,11 @@ and leads to a breakdown of their claim that their users need not
 trust such service providers themselves, at least when employing
 multi-user sharing. By mounting a MitM attack on a user trying to
 share data with another user, such service providers can regain the
-\texttt{R} and \texttt{W} capabilities they claim not to
+\emph{R} and \emph{W} capabilities they claim not to
 have. Furthermore, these services do little to mitigate their access
-to metadata (\texttt{M} capability). Nor do they provide ways for
+to metadata (\emph{M} capability). Nor do they provide ways for
 users to avoid data loss in the event that one of the services goes
-offline or shuts down (\texttt{S} capability).
+offline or shuts down (\emph{S} capability).
 
 In terms of trust violations, such ``secure'' cloud storage services
 are being paid to store user data, disincentivizing implicit

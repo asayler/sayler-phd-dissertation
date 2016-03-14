@@ -277,4 +277,202 @@ well as the basic argument in favor of SSaaS as a trust-reducing
 system. I discuss SSP trust and violation mitigation further in
 Chapter~\ref{chap:ssaas}.
 
-%%  LocalWords:  SSaaS FISC SSP CMAC
+\section{Trust Survey of Existing Systems}
+\label{chap:trust:survey}
+
+In order to evaluate the trust and security of the SSaaS ecosystem,
+it's useful to apply this trust model to a number of existing
+scenarios. Table~\ref{tab:trust:app:cap} shows a summery of the
+capabilities granted to third parties across a number of common
+applications. Table~\ref{tab:trust:app:threats} shows known and likely
+threats posed by third parties across the same range of
+applications. Each of these applications is discussed in more depth
+below.
+
+\begin{table}[!th]
+  \footnotesize
+  \centering
+  \tabulinesep = 2pt
+  \begin{tabu} to \textwidth
+    { | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | }
+    \hline
+    \textbf{Application}
+    & \textbf{Storage}
+    & \textbf{Access}
+    & \textbf{Manipulation}
+    & \textbf{Meta-analysis}
+    \\ \hline
+    Dropbox
+    & Full
+    & Full
+    & Full
+    & Full
+    \\ \hline
+    Tresorit
+    & Full
+    & Partial
+    & Partial
+    & Full
+    \\ \hline
+  \end{tabu}
+  \caption{Third Party Trust Capabilities}
+  \label{tab:trust:app:cap}
+\end{table}
+
+\begin{table}[!th]
+  \footnotesize
+  \centering
+  \tabulinesep = 2pt
+  \begin{tabu} to \textwidth
+    { | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | X[1,c,m]
+      | }
+    \hline
+    \textbf{Application}
+    & \textbf{Implicit}
+    & \textbf{Compelled}
+    & \textbf{Unintended}
+    & \textbf{Insider}
+    & \textbf{Outsider}
+    & \textbf{Colluding}
+    \\ \hline
+    Dropbox
+    & Desincent.
+    & Vulnerable
+    & Desincent.
+    & Desincent.
+    & Desincent.
+    & N/A
+    \\ \hline
+    Tresorit
+    & Desincent.
+    & Minimal
+    & Desincent.
+    & Desincent.
+    & Desincent.
+    & N/A
+    \\ \hline
+  \end{tabu}
+  \caption{Third Party Trust Violations}
+  \label{tab:trust:app:threats}
+\end{table}
+
+\subsection{Cloud File Storage}
+
+As mentioned, cloud file storage is a popular third party use
+case. I've discussed Dropbox~\cite{dropbox} as an example cloud
+storage provider extensively in the earlier sections of this
+chapter. A summery of the Dropbox trust model results are shown the
+Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. As
+previously concluded, Dropbox both requires a full range of trusted
+capabilities and is susceptible to a full range of violations this
+trust. Google Drive~\cite{google-drive}, Microsoft
+OneDrive~\cite{microsoft-onedrive}, and related services have similar
+trust profiles to Dropbox.
+
+As discussed in Chapter~\ref{chap:related}, a number of systems have
+been developed with the aim of overcoming the trust challenges. These
+systems include ``end-to-end'' encrypted file storage serves such as
+Tresorit~\cite{tresorit}. These systems aim to place limits on a their
+own ability to leverage the access (\texttt{R}) capability through the
+use of client-side encryption. Likewise, they aim to limit their
+access to the manipulation (\texttt{W}) capability through client-side
+data authentication. In the base case where a user merely wishes to
+store data on a single device and not share it with others, these
+systems are fairly successful in achieving their desired trust
+mitigations. In order to sync data across multiple devices using such
+systems, a user must manually provide some secret (e.g. a password,
+etc) on each device to bootstrap its operation. While potentially
+burdensome and inconvenient, this practice is in line with these
+services trusted capabilities mitigation since ti does not require any
+additional third party trust.
+
+The place where these systems falter at mitigating third party trust
+is via their support for multi-user sharing and collaboration. Such
+services tend to accomplish multi-user sharing by acting as a trusted
+certificate authority (CA) in charge of issuing user
+certificates\footnote{A certificate is a combination of a user's
+  public key combined with certain metadata and signed by a trusted
+  issuers. See Section~\ref{chap:background:crypto} for more
+  information.} These certificates are then used with various
+asymmetric cryptographic primitives (e.g. RSA~\cite{rivest1978}) to
+exchange the necessary secrets between users and bootstrap secure
+multi-user sharing. Unfortunately, as a trusted CA, these services are
+capable of issuing fraudulent user certificates to themselves or other
+parties. This allows them to mount man-in-the-middle (MitM) attacks on
+any user trying to share data by impersonating other users utilizing
+the services. This define is discussed in depth at~\cite{wilson2014},
+and leads to a breakdown of their claim that their users need not
+trust such service providers themselves, at least when employing
+multi-user sharing. By mounting a MitM attack on a user trying to
+share data with another user, such service providers can regain the
+\texttt{R} and \texttt{W} capabilities they claim not to
+have. Furthermore, these services do little to mitigate their access
+to metadata (\texttt{M} capability). Nor do they provide ways for
+users to avoid data loss in the event that one of the services goes
+offline or shuts down (\texttt{S} capability).
+
+In terms of trust violations, such ``secure'' cloud storage services
+are being paid to store user data, disincentivizing implicit
+violations. Compelled violations are more difficult since the third
+party provider lacks aces to the client-side secrets necessary to
+decrypt or modify the encrypted and authenticated data they store. Due
+to the trust-whole that exists in such services sharing
+implementations, however, it is possible that such a service could be
+compelled to mount a MitM attack on a user sharding data in order to
+provide such data to the compelling party (similar to government
+efforts to compel Apple to create a flawed version of OSX that would
+be vulnerable to brute force attacks~\cite{ars-cookvfbi}). Similarly,
+such a service could be compelled to surrender their CA private key,
+allowing the compelling party to take over their CA role and mount
+such a MitM attack themselves (similar to the how Lavabit was
+compelled to turn over their private TLS keys to facilitate government
+access to the data they
+controlled~\cite{levsion-lavabit}). Unintentional, Insider, and
+Outsider violations are all similar to the traditional use case: such
+violations are technically possible, but the third party at least has
+a vested interest in avoiding such violations for reputation-related
+reasons.
+
+A summery of the Tresorit trust model results are shown the
+Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. Such a
+service does more to mitigate third party trust and reduce the
+likelihood of violations than a traditional cloud storage service, but
+still leave room for improvement. SpiderOak~\cite{spideroak},
+Wuala~\cite{wuala}, and related services have similar trust profiles
+to Dropbox.
+
+\subsection{Social Media}
+
+Facebook
+
+\subsection{Communications}
+
+Gmail
+
+\subsection{Password Managers}
+
+LastPass
+
+\subsection{Cloud Infrastructure Services}
+
+EC2
+
+\subsection{SSaaS Alternatives}
+
+Base Secret Storage (Hashcorp's Vault)
+
+Shared Secret Storage
+
+%%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Desincent MitM
+%%  LocalWords:  SpiderOak Wuala Lavabit

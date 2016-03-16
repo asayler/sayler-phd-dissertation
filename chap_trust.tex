@@ -325,6 +325,18 @@ below.
     & Full
     & Full
     \\ \hline
+    Gmail
+    & Full
+    & Full
+    & Full
+    & Full
+    \\ \hline
+    Hangouts
+    & Full
+    & Full
+    & Full
+    & Full
+    \\ \hline
   \end{tabu}
   \caption{Third Party Trust Capabilities}
   \label{tab:trust:app:cap}
@@ -362,13 +374,29 @@ below.
     \\ \hline
     Tresorit
     & Desincent.
-    & Minimal
+    & Minimized
     & Desincent.
     & Desincent.
     & Desincent.
     & N/A
     \\ \hline
     Facebook
+    & Vulnerable
+    & Vulnerable
+    & Desincent.
+    & Desincent.
+    & Desincent.
+    & N/A
+    \\ \hline
+    Gmail
+    & Vulnerable
+    & Vulnerable
+    & Desincent.
+    & Desincent.
+    & Desincent.
+    & N/A
+    \\ \hline
+    Hangouts
     & Vulnerable
     & Vulnerable
     & Desincent.
@@ -514,9 +542,41 @@ profiles to Facebook.
 
 \subsection{Communications}
 
-Gmail
-WhatsApp
-GnuPG
+Communication systems ranging from email and chat to voice and video
+calling are another popular modern use case. The privacy and security
+of these systems are a matter of great public concern, and indeed many
+of the current legal privacy and security battles revolve around the
+ability to communicates in a private and secure manner
+(e.g.~\cite{apple-fbiletter, greenwald-prism, levsion-lavabit}). It is
+thus useful to apply my trust model to the analysis of several such
+services. I'll analyze both traditional (Gmail) and secure (GPG/PGP)
+email services as well as traditional (Google Hangouts) and secure
+(Open Whisper's Signal) chat applications.
+
+Gmail~\cite{google-gmail} and Hangouts~\cite{google-hangouts} are both
+Google-hosted communication services - placing them fairly soundly in
+the ``traditional cloud services'' camp. As such, their profiles are
+similar to those of Dropbox and Facebook. Both services require
+granting Google a full range of capabilities over user data. Like
+Facebook, both services are ad-supported - increasing the likelihood
+of implicit violations. Similarly, both services are prone to
+compelled violations\footnote{It's possible such services are actually
+  at an increased risk of compelled violations due to the existence of
+  laws such as the Communications Assistance for Law Enforcement Act
+  (CALEA)~\cite{calea-usc, calea-fcc} specifically designed to aid the
+  government in obtaining a user's communications as well as the
+  lowered standards law enforcement agencies are traditionally
+  required to meet to access a user's digital communications as per
+  the third party doctrine~\cite{scotus-usvmiller,
+    scotus-smithvmaryland}.}, and are disincentivized, although by no
+means immune, to unintentional, insider, and outsider
+violations. Thus, Google is able to analyze, alter, and expose any
+data
+
+GPG/PGP
+
+Signal
+
 
 \subsection{Password Managers}
 
@@ -533,4 +593,4 @@ Base Secret Storage (Hashcorp's Vault)
 Shared Secret Storage
 
 %%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Desincent MitM
-%%  LocalWords:  SpiderOak Wuala Lavabit
+%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA

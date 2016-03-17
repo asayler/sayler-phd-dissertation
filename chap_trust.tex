@@ -331,14 +331,29 @@ below.
     & Full
     & Full
     \\ \hline
+    PGP/GPG
+    & Full
+    & None
+    & None
+    & Full
+    \\ \hline
     Hangouts
     & Full
     & Full
     & Full
     & Full
     \\ \hline
+    TextSecure
+    & Full
+    & None
+    & None
+    & Minimal
+    \\ \hline
   \end{tabu}
-  \caption{Third Party Trust Capabilities}
+  \caption[Third Party Trust Capabilities]{
+    Third Party Trust Capabilities\\
+    \textit{(Least Trust) None, Minimal, Partial, Full (Most Trust)}
+  }
   \label{tab:trust:app:cap}
 \end{table}
 
@@ -366,7 +381,7 @@ below.
     \\ \hline
     Dropbox
     & Desincent.
-    & Vulnerable
+    & Known
     & Desincent.
     & Desincent.
     & Desincent.
@@ -374,15 +389,15 @@ below.
     \\ \hline
     Tresorit
     & Desincent.
-    & Minimized
+    & Desincent.
     & Desincent.
     & Desincent.
     & Desincent.
     & N/A
     \\ \hline
     Facebook
-    & Vulnerable
-    & Vulnerable
+    & Known
+    & Known
     & Desincent.
     & Desincent.
     & Desincent.
@@ -390,22 +405,41 @@ below.
     \\ \hline
     Gmail
     & Vulnerable
-    & Vulnerable
+    & Known
     & Desincent.
     & Desincent.
     & Desincent.
+    & N/A
+    \\ \hline
+    PGP/GPG
+    & N/A
+    & N/A
+    & Mitigated
+    & Mitigated
+    & Mitigated
     & N/A
     \\ \hline
     Hangouts
     & Vulnerable
-    & Vulnerable
+    & Known
     & Desincent.
     & Desincent.
     & Desincent.
     & N/A
     \\ \hline
+    TextSecure
+    & Disincentivized
+    & Disincentivized
+    & Mitigated
+    & Mitigated
+    & Mitigated
+    & N/A
+    \\ \hline
   \end{tabu}
-  \caption{Third Party Trust Violations}
+  \caption[Third Party Trust Violations]{
+    Third Party Trust Violations\\
+    \textit{(Least Likely) Minimized, Mitigated, Disincentivized, Vulnerable, Known (Most Likely)}
+  }
   \label{tab:trust:app:threats}
 \end{table}
 
@@ -424,7 +458,7 @@ trust profiles to Dropbox.
 
 As discussed in Chapter~\ref{chap:related}, a number of systems have
 been developed with the aim of overcoming the trust challenges. These
-systems include ``end-to-end'' encrypted file storage serves such as
+systems include ``end-to-end'' encrypted file storage services such as
 Tresorit~\cite{tresorit}. These systems aim to place limits on a their
 own ability to leverage the access (\emph{R}) capability through the
 use of client-side encryption. Likewise, they aim to limit their
@@ -436,7 +470,7 @@ mitigations. In order to sync data across multiple devices using such
 systems, a user must manually provide some secret (e.g. a password,
 etc) on each device to bootstrap its operation. While potentially
 burdensome and inconvenient, this practice is in line with these
-services trusted capabilities mitigation since ti does not require any
+services trusted capabilities mitigation since it does not require any
 additional third party trust.
 
 The place where these systems falter at mitigating third party trust
@@ -444,47 +478,56 @@ is via their support for multi-user sharing and collaboration. Such
 services tend to accomplish multi-user sharing by acting as a trusted
 certificate authority (CA) in charge of issuing user
 certificates\footnote{A certificate is a combination of a user's
-  public key combined with certain metadata and signed by a trusted
-  issuers. See Section~\ref{chap:background:crypto} for more
-  information.} These certificates are then used with various
-asymmetric cryptographic primitives (e.g. RSA~\cite{rivest1978}) to
-exchange the necessary secrets between users and bootstrap secure
-multi-user sharing. Unfortunately, as a trusted CA, these services are
-capable of issuing fraudulent user certificates to themselves or other
+  public key and certain metadata signed by a trusted issuers. See
+  Section~\ref{chap:background:crypto} for more information.} These
+certificates are then used with various asymmetric cryptographic
+primitives (e.g. RSA~\cite{rivest1978}) to exchange the necessary
+secrets between users and bootstrap secure multi-user
+sharing. Unfortunately, as a trusted CA, these services are capable of
+issuing fraudulent user certificates to themselves or other
 parties. This allows them to mount man-in-the-middle (MitM) attacks on
 any user trying to share data by impersonating other users utilizing
-the services. This define is discussed in depth at~\cite{wilson2014},
-and leads to a breakdown of their claim that their users need not
-trust such service providers themselves, at least when employing
-multi-user sharing. By mounting a MitM attack on a user trying to
-share data with another user, such service providers can regain the
-\emph{R} and \emph{W} capabilities they claim not to
+the services. This deficiency is discussed in depth
+at~\cite{wilson2014}, and leads to a breakdown of their claim that
+their users need not trust such service providers themselves, at least
+when employing multi-user sharing. By mounting a MitM attack on a user
+trying to share data with another user, such service providers can
+regain the \emph{R} and \emph{W} capabilities they claim not to
 have. Furthermore, these services do little to mitigate their access
-to metadata (\emph{M} capability). Nor do they provide ways for
-users to avoid data loss in the event that one of the services goes
-offline or shuts down (\emph{S} capability).
+to metadata (\emph{M} capability). Nor do they provide ways for users
+to avoid data loss in the event that one of the services goes offline
+or shuts down (\emph{S} capability).
 
 In terms of trust violations, such ``secure'' cloud storage services
 are being paid to store user data, disincentivizing implicit
-violations. Compelled violations are more difficult since the third
-party provider lacks aces to the client-side secrets necessary to
-decrypt or modify the encrypted and authenticated data they store. Due
-to the trust-whole that exists in such services sharing
-implementations, however, it is possible that such a service could be
-compelled to mount a MitM attack on a user sharding data in order to
-provide such data to the compelling party (similar to government
-efforts to compel Apple to create a flawed version of OSX that would
-be vulnerable to brute force attacks~\cite{ars-cookvfbi}). Similarly,
-such a service could be compelled to surrender their CA private key,
-allowing the compelling party to take over their CA role and mount
-such a MitM attack themselves (similar to the how Lavabit was
-compelled to turn over their private TLS keys to facilitate government
-access to the data they
-controlled~\cite{levsion-lavabit}). Unintentional, Insider, and
+violations. Compelled violations are also made difficult since the
+third party provider lacks access to the client-side secrets necessary
+to decrypt or modify the encrypted and authenticated data they
+store. Due to the CA trust requirements that exists in such services'
+sharing implementations, however, it is possible that such a service
+could be compelled to mount a MitM attack on one of their users in
+order to provide such data to the compelling party (similar to
+government efforts to compel Apple to create a flawed version of OSX
+that would be vulnerable to brute force
+attacks~\cite{ars-cookvfbi}). Similarly, such a service could be
+compelled to surrender their CA private key, allowing the compelling
+party to take over the trusted CA role and mount such a MitM attack
+themselves (similar to the how Lavabit was compelled to turn over
+their private TLS keys to facilitate government access to the data
+they controlled~\cite{levsion-lavabit}). Unintentional, Insider, and
 Outsider violations are all similar to the traditional use case: such
 violations are technically possible, but the third party at least has
 a vested interest in avoiding such violations for reputation-related
 reasons.
+
+Furthermore, since services such as Tresorit are not open source or
+widely audited by independent parties, the user must trust that the
+code they are running to access such services is faithfully
+implementing the security guarantees it such services claim to
+support. It is possible that such a service could ship a flawed
+version of their code due to a wide range of trust violations
+(e.g. they could be compelled to ship such code, or it could be an
+honest unintentional mistake).
 
 A summary of the Tresorit trust model results are shown the
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. Such a
@@ -505,18 +548,17 @@ interactions for the purpose of selling targeted advertising to
 companies wishing to reach certain types of users. Given their
 ubiquity in the modern Internet landscape, as well as their position
 as ad-suppurated services, it's useful to evaluate modern Social Media
-sites using my trust model.
-
-Facebook is the larger social media site today, serving over 1.5
-billion users as of 2015~\cite{foster2014}. As such, I'll evaluate it
-as an example of the variety of social media site available today.
+sites using my trust model. Facebook is the largest social media site
+today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
+such, I'll evaluate it as an example of the variety of social media
+site available today.
 
 In terms of capabilities, Facebook, like Dropbox and other traditional
-cloud services, must be trusted with a full range of trusted
+cloud services, must be trusted with a full range of
 capabilities. Facebook is responsible for faithfully storing user
 data, Facebook can access and read all data it stores, Facebook can
 manipulate the data it stores, and Facebook is capable of performing
-meta-analysis what data users are accessing and of how they are
+meta-analysis of what data users are accessing and of how they are
 accessing it.
 
 In terms of likelihood of trust violations, Facebook differs a bit
@@ -529,11 +571,12 @@ violations ranging from the Emotional Contagion Study~\cite{goel2014}
 to its use of user's photos in the ads it
 serves~\cite{mashable-socialads}. Beyond implicit trust violations,
 Facebook's trust violation profile is again similar to other
-traditional cloud services such as Dropbox. Compelled violations are
-possible, Unintentional, insider, and outsider violations are all
-possible, but Facebook has an active interest in avoiding them, and
-collusion violation aren't really applicable since Facebook is a
-single-party actor.
+traditional cloud services such as Dropbox. Like
+Dropbox~\cite{dropbox-transparency}, Compelled violations are known to
+occur~\cite{facebook-transparency}. Unintentional, insider, and
+outsider violations are all possible, but Facebook has an active
+interest in avoiding them. Collusion violations aren't really
+applicable since Facebook is a single-party actor.
 
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
 summery of the Facebook trust model analysis. Google
@@ -559,24 +602,127 @@ the ``traditional cloud services'' camp. As such, their profiles are
 similar to those of Dropbox and Facebook. Both services require
 granting Google a full range of capabilities over user data. Like
 Facebook, both services are ad-supported - increasing the likelihood
-of implicit violations. Similarly, both services are prone to
-compelled violations\footnote{It's possible such services are actually
-  at an increased risk of compelled violations due to the existence of
-  laws such as the Communications Assistance for Law Enforcement Act
-  (CALEA)~\cite{calea-usc, calea-fcc} specifically designed to aid the
-  government in obtaining a user's communications as well as the
-  lowered standards law enforcement agencies are traditionally
-  required to meet to access a user's digital communications as per
-  the third party doctrine~\cite{scotus-usvmiller,
-    scotus-smithvmaryland}.}, and are disincentivized, although by no
-means immune, to unintentional, insider, and outsider
-violations. Thus, Google is able to analyze, alter, and expose any
-data
+of implicit trust violations (although unlike Facebook, Google seems
+to have a better track record of not committing such
+violations). Similarly, both services are known to be subject to
+compelled violations~\cite{google-transparency}\footnote{It's possible
+  such cloud communication services are actually at an increased risk
+  of compelled violations relative to other cloud services due to the
+  existence of laws such as the Communications Assistance for Law
+  Enforcement Act (CALEA)~\cite{calea-usc, calea-fcc} specifically
+  designed to aid the government in obtaining a user's communications
+  as well as the lowered standards law enforcement agencies are
+  traditionally required to meet to access a user's digital
+  communications as per the third party
+  doctrine~\cite{scotus-usvmiller, scotus-smithvmaryland}.}, and are
+disincentivized, although by no means immune, from committing
+unintentional, insider, and outsider violations\footnote{Google has
+  taken steps to ensure communication between all of its data centers
+  and between mail servers are encrypted in transit, helping to
+  minimize outsider
+  violations~\cite{gmail-blog-encryption}. Similarly, it has recently
+  started providing end users with information as to whether or not
+  encrypted email transmission was possible and whether or not an
+  email' sender has been authenticated~\cite{gmail-blog-indicators}.
+  In both cases however, third parties, not end users, remain in full
+  control of all the necessary encryption keys, limiting this
+  protection to the mitigations of outsider violations, and doing
+  little to mitigate implicit, compelled, unintentional, or insider
+  violations.}. Thus, Google is able to analyze, alter, and expose any
+data that travels across its network using either service - either of
+it's own volition or due to a compelled order or unauthorized data
+breach.
 
-GPG/PGP
+The OpenPGP protocol~\cite{callas2007} is one of the traditional
+mechanisms for securing digital communications. It is most widely used
+with email - and is implemented in a wide variety of applications from
+desktop apps such as GnuPG (GPG)~\cite{gnupg} to browser-based plugins
+such as Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes
+public-key cryptography to end-to-end encrypt and authenticate
+messages traveling across untrusted mediums. It can be applied atop
+mail traversing traditional email systems such as Gmail as well as to
+messages traversing chat applications such as Google Hangouts. When
+used with such service, PGP provides an additional level of trust
+mitigation above and beyond what is possible to achieve via the native
+services themselves. In terms of trusted capabilities, a user
+employing PGP atop a traditional third party cloud service such as
+Gmail minimizes both the third party's access (via encryption) and
+manipulation (via authentication) capabilities. In such a scenario
+only the end-users involved in a given communication, and not any
+third party through which that communication might pass, have access
+to the necessary cryptographic keys required to read or alter the
+message. The third party, however, is may still capture metadata about
+the communication since such metadata is outside of the scope of the
+message content that PGP is capable of securing. The third party is
+also still capable of dropping or deleting the communication all
+together, and thus still poses the ``storage'' capability.
 
-Signal
+Since PGP isn't controlled by any single third party, there is no
+straightforward analysis of its likelihood of PGP-related trust
+violations. Thus, it does not make sense to discuss the likelihood of
+implicit or compelled PGP violations. PGP can certainly aid in
+mitigating the effects of such violations by other third parties since
+it limits the capabilities of such parties as discussed above, but the
+likelihood of such violations by those that create PGP-based apps
+themselves is not readily analyzable. Most PGP implementations are,
+however, open source. This helps to mitigate (although not necessarily
+prevent, e.g.~\cite{heartbleed}) unintentional, insider, and outsider
+violations by maximizing the number of eyes on the code and reducing
+the likelihood of mistakes or intentionally coded vulnerabilities and
+back doors. And since PGP effectively limits the available
+capabilities, even if a trust violation occurs, the likelihood of such
+a violation resulting in a successful exposure of user data is low.
 
+Due to the numerous challenges and deficiencies associated with using
+OpenPGP-based systems~\cite{green-pgp}, developers have created a
+number of alternate secure communication protocols. These protocols
+aim to provide forward-security, metadata privacy, deniability,
+contact authentication, and message encryption and authentication for
+(primarily) real-time communication such as instant messaging and chat
+systems. Examples of such protocol include OTR~\cite{otr-v3} and
+OTR-derived protocols like TextSecure~\cite{otr-advanced-ratchet}. The
+TextSecure protocol is used by several apps such Open Whisper System's
+Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. TextSecure is
+thus a useful target to analyze under my trust framework.
+
+TextSecure is an OTR-derived asynchronous secure messaging
+protocol. It uses various forms of asymmetric cryptography to provide
+users with end-to-end encrypted and authenticated individual and group
+message capabilities. TextSecure has been formally analyzed and proven
+to provide secure encryption and message
+authentication~\cite{frosch2014}. Use of TextSecure thus denies any
+third party through which TextSecure message might pass (including the
+TextSecure server itself) the access or manipulation
+capabilities. Furthermore, TextSecure makes efforts to secure all
+metadata from non-participating actors as the server itself. This
+strongly curtails a third party's ability to analyze message
+metadata. It is still possible for a network-level adversary or the
+TextSecure server to discover the raw network (e.g. IP) endpoints
+involved in a TextSecure exchange, but higher level details are not
+available. It's also possible to couple TextSecure with existing
+network anonymity systems such as Tor to mitigate such network-level
+meta-analysis~\cite{intercept-chatting}. TextSecure users are still
+dependent on a third party to operate a TextSecure server in order to
+communicate in the first place (e.g. it's not a fully distributed
+protocol), but beyond this ``storage''-like capability, TextSecure
+almost no other capabilities to any third party.
+
+Like OpenPGP, TextSecure is a protocol implemented by several
+different apps. Such application providers (e.g. Open Whisper Systems)
+specifically market their products as being a secure alternative to
+more traditional chat systems, and thus are strongly dissuaded from
+committing any kind of implicit or compelled trust
+violation. Furthermore, most TextSecure implications are open source,
+which mitigates the likelihood of unintentional\footnote{Researchers
+  have discovered bugs in TextSecure, but these bugs were quickly
+  patched~\cite{frosch2014}.}, insider, or outsider
+violations. TextSecure has also undergone external audits and reviews,
+further decreasing the likelihood of an unintentional or insider
+violation~\cite{frosch2014}. As in OpenPGP, even if a violation
+occurred, the capability restrictions discussed above severely limit
+what data the violation would expose. TextSecure thus represents a
+successful effort to reduce third party trust exposure and secure user
+comm unctions.
 
 \subsection{Password Managers}
 
@@ -593,4 +739,5 @@ Base Secret Storage (Hashcorp's Vault)
 Shared Secret Storage
 
 %%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Desincent MitM
-%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA
+%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA Hashcorp's
+%%  LocalWords:  Mailvelope TextSecure OTR WhatsApp

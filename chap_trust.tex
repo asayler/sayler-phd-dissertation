@@ -917,11 +917,97 @@ violations.
 
 \subsection{SSaaS Alternatives}
 
-Base Secret Storage (Hashcorp's Vault)
+All of the applications analyzed thus far have employed various
+non-SSaaS-based models for security and secret management. For
+comparison, I present an analysis of the two primary Secret Storage as
+a Service models discussed in Chapter~\ref{chap:ssaas}: a single
+secret store provider (SSP) model and the multi storage provider
+model.
 
-Shared Secret Storage
+In the single SSP model, the end user store their secrets with a
+single SSP third party, potentially using these secrets to protect a
+separate set of data stored with traditional cloud provider. Such a
+model is used by the Custos prototype presented in
+Chapter~\ref{chap:custos} as well as existing secret storage systems
+such as Hachicorp's Vault~\cite{vault}. In such a model, the end user
+is still grating one or more third parties the full ``storage''
+capability since the failure of other the SSP or the traditional cloud
+provider will result in a loss of user access top their data. In such
+a scenario, however, the end user is granting a more limited set of
+``access'' and ``manipulation'' capabilities since no single third
+party has access to both the users data and the secrets necessary to
+decrypt or alter it. E.g. the user can store encrypted and
+cryptographically authenticate data atop Dropbox and store the
+associated crypto keys with their SSP, ensuring that neither the SSP
+nor Dropbox can easily read or manipulate their data. The SSP can,
+however, modify and read the user's secrets themselves, which
+depending on the use case, may still allow them to access a variety of
+user data depending on the nature of the SSP-backed application in
+question. Similar to previously discussed systems, the single-SSP
+model still allows both the SSP and any associated cloud storage
+providers a high degree of access to user metadata regarding the
+secrets they store or the data such secrets exist to protect.
+
+In terms of likelihood of trust violations, the single-SSP model is
+similar to other privacy-preserving applications such as
+TextSecure. In an SSaaS ecosystem, there should be a multitude of
+competing SSPs, one or more of which an end-user will pay for secret
+storage. Such competition coupled with the storage-for-profit business
+case strongly disincentivizes both implicit trust failures by any
+single SSP. Compelled violations are similarly disincentivized - and
+it is likely that an SSP would take steps to minimize compelled
+failures in order to uphold it's reputation. Unintended violations can
+also be mitigated by ensuring SSPs use publicly audited and/or open
+source implementation of their systems. A single SSPs is, however, at
+risk of colluding with whichever cloud provider a user is using to
+store the corresponding encrypted data for the keys they store with
+their SSP. If such an SSP colluded with such a storage provider, both
+parties could succeed in accessing the user's data and regaining the
+``access'' and ``manipulation'' capabilities they claim to avoid.
+
+In order to improve upon the trust degree and risk inherent in the
+single-SSP model, it's possible for user to move to a multi-SSP SSaaS
+model. In such a model, the user shards their secrets across multiple
+SSPs using a $n$ choose $k$ scheme the provided both privacy and
+redundancy (details of such schemes are discussed in more depth in
+Section~\ref{chap:ssaas:trust}). The multi-SSP model provides a
+reduced degree of trust profile compared to the single-SSP model. In
+such a scenario, the user can mitigate the need to trust any single
+third party with the ``storage'' capability since they have now
+redundancy spread their data across multiple SSPs. Thus the failure of
+a single (and potentially more, depending on the values of $n$ and
+$k$) SSP will not result in data loss. Furthermore, the ``access'' and
+``manipulation'' capabilities are further reduced since no single SSP
+has access to the user's secrets. Furthermore, the use of
+multiple-SSPs may even reduce the user's metadata exposure by allowing
+the user to reduce having any single SSP hold all of their secrets or
+see all of their secret access patterns.
+
+The multi-SSP model also reduce the risk profile associated with SSP
+trust violations. As in the single-SSP use case, implicit violations
+are disincentivized by nature of the SSP business model. In the
+multi-SSP use case, however, compelled violations are further
+minimized since no single SSP can be compelled to provide all of the
+require data to access a user's secrets. As such, a compelling entity
+would be forced to compel multiple parties, potentially located across
+multiple jurisdictions, in order to access a user's
+secrets. Unintended violations are again minimized assuming prudent
+use of open source code and public audits. The risk of
+collusion-related violation are also further reduced due to the fact
+that the multi-SSP use case requires a greater number of colluding
+parties to succeed in mounting a collusion-type violation. The greater
+the number of required colluding parties, the less likely such a
+collusion is to occur.
+
+Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} provide
+a summer of both the single-SSP and multi-SSP SSaaS models. As these
+tables show, the trust profiles of such models score on par or better
+than existing privacy-enhancing systems such as PGP and Tresorit. As
+discussed in other chapters, however, such models offer additional
+functionality above and beyond that achievable using more traditional
+solutions.
 
 %%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Disincent MitM
-%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA Hashcorp's
+%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA
 %%  LocalWords:  Mailvelope TextSecure OTR WhatsApp LastPass's IaaS
-%%  LocalWords:  freemium SSPs Heartbleed
+%%  LocalWords:  freemium SSPs Heartbleed Custos Hachicorp's

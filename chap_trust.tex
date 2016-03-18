@@ -299,7 +299,9 @@ required. ``Partial'' (two points) indicates that the application
 takes steps to minimize third party trust for specific capacities, but
 still require more trust than is actually necessary. ``Full'' (three
 points) indicates that the application does nothing to mitigate third
-party trust for a given capability.
+party trust for a given capability. The score column shows the point
+sum of the other columns. Lower scores represent lower degrees of
+third party trust.
 
 \begin{table}[!hb]
   \footnotesize
@@ -311,6 +313,7 @@ party trust for a given capability.
       | X[1,c,m]
       | X[1,c,m]
       | X[1,c,m]
+      | X[0.5,c,m]
       | }
     \hline
     \textbf{Application}
@@ -318,72 +321,84 @@ party trust for a given capability.
     & \textbf{Access}
     & \textbf{Manipulation}
     & \textbf{Meta-analysis}
+    & \textbf{Score}
     \\ \hline
     Dropbox
     & Full
     & Full
     & Full
     & Full
+    & 12
     \\ \hline
     Tresorit
     & Full
     & Partial
     & Partial
     & Full
+    & 10
     \\ \hline
     Facebook
     & Full
     & Full
     & Full
     & Full
+    & 12
     \\ \hline
     Gmail
     & Full
     & Full
     & Full
     & Full
+    & 12
     \\ \hline
     PGP/GPG
     & Full
     & None
     & None
     & Full
+    & 6
     \\ \hline
     Hangouts
     & Full
     & Full
     & Full
     & Full
+    & 12
     \\ \hline
     TextSecure
     & Full
     & None
     & None
     & Minimal
+    & 4
     \\ \hline 
     LastPass
     & Full
     & Minimal
     & Full
     & Full
+    & 10
     \\ \hline 
     Amazon EC2
     & Full
     & Full
     & Full
     & Full
+    & 12
     \\ \hline 
     Single SSP
     & Full
     & Partial
     & Partial
     & Full
+    & 10
     \\ \hline 
     Multiple SSPs
     & Partial
     & Minimal
     & Minimal
     & Partial
+    & 6
     \\ \hline 
  \end{tabu}
   \caption[Degree of Third Party Trust Across Capabilities]{
@@ -400,10 +415,10 @@ based on the likelihood the third party (or parties) providing a
 specific application are to commit various types of trust
 violations. ``Insider'' and ``Outsider'' type violations are not
 included separately since they are really just subclasses of
-``Unintentional'' violation. ``Minimized'' (zero points) indicates that
-the third parties backing a given application have taken active steps
-to minimize the likelihood that a given type of trust violation might
-occur (e.g. by publicly fighting court orders, undergoing public
+``Unintentional'' violation. ``Minimized'' (zero points) indicates
+that the third parties backing a given application have taken active
+steps to minimize the likelihood that a given type of trust violation
+might occur (e.g. by publicly fighting court orders, undergoing public
 audits and reviews, etc). ``Disincentivized'' (one point) indicates
 that the third party's business model or other incentivization factors
 actively disfavor a given class of trust violation. ``Vulnerable''
@@ -412,7 +427,9 @@ to avoid committing a certain type of trust violation, but that such
 violations have not necessary occurred. ``Known'' (three points)
 indicates that a third party has a historic record of committing
 specific type of trust violations and has not taken steps to reduce
-the risk of such violations in the future.
+the risk of such violations in the future. The score column shows the
+point sum of the other columns. Lower scores represent less risk of
+third party trust violations.
 
 \begin{table}[!hb]
   \footnotesize
@@ -424,6 +441,7 @@ the risk of such violations in the future.
       | X[1,c,m]
       | X[1,c,m]
       | X[1,c,m]
+      | X[0.5,c,m]
       | }
     \hline
     \textbf{Application}
@@ -431,72 +449,84 @@ the risk of such violations in the future.
     & \textbf{Compelled}
     & \textbf{Unintended}
     & \textbf{Colluding}
+    & \textbf{Score}
     \\ \hline
     Dropbox
     & Disincent.
     & Known
     & Disincent.
     & N/A
+    & 5
     \\ \hline
     Tresorit
     & Disincent.
     & Vulnerable
     & Disincent.
     & N/A
+    & 4
     \\ \hline
     Facebook
     & Known
     & Known
     & Disincent.
     & N/A
+    & 7
     \\ \hline
     Gmail
     & Vulnerable
     & Known
     & Disincent.
     & N/A
+    & 6
     \\ \hline
     PGP/GPG
     & Disincent.
     & Disincent.
     & Minimized
     & N/A
+    & 2
     \\ \hline
     Hangouts
     & Vulnerable
     & Known
     & Disincent.
     & N/A
+    & 6
     \\ \hline
     TextSecure
     & Disincent.
     & Disincent.
     & Minimized
     & N/A
+    & 2
     \\ \hline
     LastPass
     & Disincent.
     & Vulnerable
     & Disincent.
     & N/A
+    & 4
     \\ \hline
     Amazon EC2
     & Disincent.
     & Known
     & Disincent.
     & N/A
+    & 5
     \\ \hline
     Single SSP
     & Disincent.
     & Disincent.
     & Minimized
     & Disincent.
+    & 3
     \\ \hline
     Multiple SSPs
     & Disincent.
     & Minimized
     & Minimized
     & Minimized
+    & 1
     \\ \hline
   \end{tabu}
   \caption[Risk of Third Party Trust Violations]{

@@ -1,4 +1,4 @@
-REPORT=thesis
+REPORT=dissertation
 LATEX=pdflatex
 BIBTEX=bibtex
 REF1=refs

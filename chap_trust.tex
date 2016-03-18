@@ -355,6 +355,12 @@ below.
     & Full
     & Full
     \\ \hline 
+    Amazon EC2
+    & Full
+    & Full
+    & Full
+    & Full
+    \\ \hline 
  \end{tabu}
   \caption[Third Party Trust Capabilities]{
     Third Party Trust Capabilities\\
@@ -386,35 +392,35 @@ below.
     & \textbf{Colluding}
     \\ \hline
     Dropbox
-    & Desincent.
+    & Disincent.
     & Known
-    & Desincent.
-    & Desincent.
-    & Desincent.
+    & Disincent.
+    & Disincent.
+    & Disincent.
     & N/A
     \\ \hline
     Tresorit
-    & Desincent.
+    & Disincent.
     & Vulnerable
-    & Desincent.
-    & Desincent.
-    & Desincent.
+    & Disincent.
+    & Disincent.
+    & Disincent.
     & N/A
     \\ \hline
     Facebook
     & Known
     & Known
-    & Desincent.
-    & Desincent.
-    & Desincent.
+    & Disincent.
+    & Disincent.
+    & Disincent.
     & N/A
     \\ \hline
     Gmail
     & Vulnerable
     & Known
-    & Desincent.
-    & Desincent.
-    & Desincent.
+    & Disincent.
+    & Disincent.
+    & Disincent.
     & N/A
     \\ \hline
     PGP/GPG
@@ -428,9 +434,9 @@ below.
     Hangouts
     & Vulnerable
     & Known
-    & Desincent.
-    & Desincent.
-    & Desincent.
+    & Disincent.
+    & Disincent.
+    & Disincent.
     & N/A
     \\ \hline
     TextSecure
@@ -442,6 +448,14 @@ below.
     & N/A
     \\ \hline
     LastPass
+    & Disincent.
+    & Vulnerable
+    & Disincent.
+    & Disincent.
+    & Disincent.
+    & N/A
+    \\ \hline
+    Amazon EC2
     & Disincent.
     & Vulnerable
     & Disincent.
@@ -797,7 +811,43 @@ one or more of the passwords they store with LastPass in the process.
 
 \subsection{Cloud Infrastructure Services}
 
-EC2
+Most modern cloud services are operated atop infrastructure provided
+by shared infrastructure service provides such as Amazon or
+Google. The benefits of such arrangements are discussed in detail in
+Section~\ref{chap:background:cloud}. Given that cloud infrastructure
+is the primary method of deploying most modern software, it's useful
+to analyze the trust a user of such service must place in their
+provider. I'll analyze Amazon's Elastic Cloud Compute (EC2) service as
+a typical Infrastructure-as-a-Service (IaaS) example. A summery of the
+results appear in Tables~\ref{tab:trust:app:cap}
+and~\ref{tab:trust:app:threats}.
+
+Amazon EC2~\cite{amazon-ec2} allows user to spin up virtual machines
+(VMs) running user-specified operating systems and code atop
+Amazon-owner servers. In such a situation, a user can control the
+specification of their VM, but are entirely reliant on Amazon to
+faithfully provide the underlying hardware. The traditional wisdom in
+computer security is that anyone who controls the hardware has the
+ability to subvert any software-level security control implemented
+atop it. Thus, since Amazon controls the hardware underlying EC2, they
+effectively have full control over any data end-user stores atop
+EC2. Amazon could (theoretically) read all system memory, all system
+disk, and even alter the behoove of the processor in such a system to
+control the execution flow of any software running on EC2. EC2 thus
+requires the end user to grant Amazon full capabilities to store,
+read, modify, or meta-analyses any the data stored or processed via an
+EC2-backed VM.
+
+The profile of Amazon's proclivity for trust violation follow that of
+other service-oriented cloud operators such as Dropbox, Tresorit,
+etc. Amazon charges user for the right to use EC2, and faces
+competition from numerous other actors in the cloud service provider
+space. Thus, Amazon is strongly disincentivized from committing any
+form of implicit trust violations. Amazon, like other third parties,
+is subject to a range of compelled
+violations~\cite{amazon-transparency}. Likewise, Amazon is
+disincentivized from committing unintentional insider or outsider
+violations.
 
 \subsection{SSaaS Alternatives}
 
@@ -805,7 +855,7 @@ Base Secret Storage (Hashcorp's Vault)
 
 Shared Secret Storage
 
-%%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Desincent MitM
+%%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Disincent MitM
 %%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA Hashcorp's
-%%  LocalWords:  Mailvelope TextSecure OTR WhatsApp LastPass's
+%%  LocalWords:  Mailvelope TextSecure OTR WhatsApp LastPass's IaaS
 %%  LocalWords:  freemium

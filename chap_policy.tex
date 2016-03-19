@@ -33,7 +33,7 @@ impossible) to securely implement SSaaS-related ideas, and by proxy,
 the privacy and security enhancements SSaaS systems might
 provide. Indeed, any effort that curtails the use or access to strong
 cryptography is likely to damage the security of a wide range of digital
-systems~\cite{abelson2015}.
+systems.
 
 \subsubsection{A brief history of Cryptography Regulation}
 
@@ -124,10 +124,125 @@ actions will play out remains to be seen.
 
 \subsubsection{A Defense of Cryptography}
 
-+ Bans on crypto
-+ 1A Issues
-+ 4A Amendment Issues
-+ Wassenaar
+Government efforts to ban cryptography have been countered with a
+variety of legal and policy arguments. These arguments won out during
+the efforts to regulate and ban cryptography during the
+1990s. Hopefully, they will win out again today.
+
+From a policy perspective, there are a variety arguments against
+efforts to ban or regulate various form of cryptography. They tend to
+fall along a two standard lines:
+
+\begin{packed_desc}
+\item[More Harm Than Good] \hfill \\ As discussed in this document and
+  elsewhere~\cite{abelson2015}, cryptography is a critical tool for
+  protecting the security and privacy of modern computing
+  systems. Thus, any effort aimed at weakening cryptography for the
+  purpose of minimizing its effectiveness to ``bad'' actors is just as
+  likelihood to minimizing its effectiveness to ``good'' actors that
+  rely on cryptography to protect their system and data. Indeed,
+  efforts to curtail the use of strong cryptography would severely
+  damage the security of financial, communication, and data storage
+  systems. Any backdoor available to the US government is an
+  additional point of failure that an attacker may use to compromise
+  and access a system. Furthermore, any policy of providing the US
+  government with special access to cryptographically protected data
+  will likely be mirrored by other countries -- many of which may have
+  far weaker legal protections against the abuse of such
+  powers. E.g. if the US government can demand special access, so can
+  China or North Korea -- weakening the security of US citizens abroad
+  or anyone wishing to secure their selves and systems from
+  potentially repressive regimes. Bans of cryptography thus trade the
+  security of a huge number of normal individuals for the insecurity
+  of a small number of potentially bad actors -- and that's not a
+  trade that's worth making.
+\item[Ineffectiveness] \hfill \\ Beyond the fact that bans on
+  cryptography are likely to cause more harm than good to society as a
+  whole, such bans are widely believed to be largely ineffective. Even
+  if the US manages to ban the use of cryptography, cryptographic
+  concepts are no longer a niche subject. There are hundreds
+  cryptographic products available worldwide, more of half of which
+  are developed and distributed outside o after Untied
+  States~\cite{schneier2016}. The Internet and modern commerce systems
+  make such products widely available to almost anyone. Thus, even if
+  the US manages to ban cryptography, those wishing to sue it will
+  just obtain cryptography related products elsewhere. Modern
+  cryptographic concepts are also widely understood and
+  taught~\cite{schneier2010crypto}. There are thus a wide variety of
+  individuals capable of creating cryptographic secure systems from
+  scratch.\footnote{Although it is not advisable for most individuals
+    to attempt to ``roll their own'' cryptography due to the
+    likelihood of mistakes and lack of formal vetting and review.} It
+  would not be difficult for organizations or individuals wishing to
+  employ even banned cryptography concepts to find someone to build
+  such systems for them.
+\item[Better Options] \hfill \\ Law enforcement organizations (LEOs)
+  often cute the ``going dark'' problem as the reason why
+  cryptographic restrictions are necessary. ``Going dark'' refer to
+  the idea that as the use of cryptography grows the ability to law
+  enforcement to monitor criminal activity and prevent or prosecute
+  crimes diminishes~\cite{anderson2013}. What this viewpoint fails to
+  acknowledge is the fact that this is the golden age of surveillance
+  - and law enforcement agencies have access to more data than they
+  ever have had before~\cite{swire2011}. Thus, even with the
+  widespread use of encryption, LEOs have more access to digital
+  criminal data than at any point in human history. As such, there are
+  number ways to combat crime without weakening encryption. Such
+  mechanisms may require more time and effort than the kind automated
+  digital surveillance subverted by the use of encryption, but such
+  time and effort is a necessary price to pay to ensure the balance
+  between privacy and security. Instead of weakening encryption, law
+  enforcement can focused on targeted investigations of specific
+  individuals, leveraging the large digital footprints even
+  cryptography-employing users leave behind. And even when using
+  cryptography, individuals are still prone to a wide range of
+  targeted attacks, from efforts to compromise individual systems, and
+  subvert any cryptography they may employ in the process to social
+  engineering Attucks that are historically very effective against
+  even cryptography employing adversaries. AT the end of the day,
+  there are numerous tools available to law enforcement to pursue
+  criminals. Weakening encryption need not be one of them.
+\end{packed_desc}
+
+Beyond policy arguments against regulating or banning cryptography, there
+are also a number of legal arguments preventing such efforts. In
+particular, any effort to ban cryptography would raise series
+constitutional questions, including:
+
+\begin{packed_desc}
+\item[1\textsuperscript{st} Amendment] \hfill \\ As previously
+  mentioned, bans on the publication of source code,
+  cryptography-related or otherwise, raise numerous
+  1\textsuperscript{st} Amendment questions. The free speech
+  guarantees provided by the 1\textsuperscript{st} Amendment have
+  generally been interpreted to apply to source
+  code~\cite{ninthcir-bernstein, sixthcir-junger}.\footnote{Indeed,
+    this ``code as speech'' interpretation is fairly critical to the
+    use of US Copyright Law for the protection of code-related
+    intellectual property.} As such, any ban on cryptography source
+  code is likely an unconstitutional prior restraint on the author's
+  freedom of speech. Traditionally, courts have taken a dim few of
+  laws imposing such prior restraint~\cite{scotus-nearvminnesota},
+  even in cases where national security my be
+  impinged~\cite{scotus-nytvus}. Additionally, efforts to mandate the
+  inclusion of a backdoor in certain software are likely
+  unconstitutional compelled speech. Just as blocking the publication
+  of source code interferes with the author's free speech rights,
+  mandating the author publish or included certain components in their
+  code is also a violation of their free speech
+  rights~\cite{scotus-wooleyvmaynard}. While there have been
+  exceptions such interpretations, it's unlikely that broadness of any
+  general purpose cryptography limitations coupled with the likely
+  ineffectiveness of such rules would meet the kind of ``narrowly
+  tailored speech limits in effective support of a legitimate
+  government interest'' requirements such a law would have to overcome
+  to meet constitutional muster.
+\item[2\textsuperscript{nd} Amendment] \hfill \\ 
+\item[4\textsuperscript{th} Amendment] \hfill \\ 
+\item[5\textsuperscript{th} Amendment] \hfill \\ 
+\end{packed_desc}
+
+\subsubsection{Cryptography and SSaaS}
 
 \subsection{Proliferation of Cryptography}
 \label{chap:policy:crypto:proliferation}
@@ -147,5 +262,5 @@ actions will play out remains to be seen.
 + Liability/Insurance
 + Standards
 
-%%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA
+%%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar

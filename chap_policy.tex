@@ -33,7 +33,9 @@ impossible) to securely implement SSaaS-related ideas, and by proxy,
 the privacy and security enhancements SSaaS systems might
 provide. Indeed, any effort that curtails the use or access to strong
 cryptography is likely to damage the security of a wide range of digital
-systems~\cite{Abelson2015}.
+systems~\cite{abelson2015}.
+
+\subsubsection{A brief history of Cryptography Regulation}
 
 Strong cryptography is a relatively recent development in the timeline
 of human history. Modern digital cryptography didn't really come about
@@ -60,6 +62,68 @@ States. During this time, cryptographically secure systems were not
 readily available for use by individuals not associated with the
 aforementioned institutions.
 
+The availability of strong cryptography to the general public begin to
+change in the early 1990s with the release of
+PGP~\cite{zimmermann-pgp10}. PGP quickly became the first widely
+distributed encryption software designed for use by ordinary
+individuals. It's Internet-based distribution also quickly drew the
+attention of US authorities who viewed it as a violation of the export
+control laws banning the export of cryptographic technology with key
+length beyond 40-bits. In defiance of such acquisitions, PGP's author
+published the entire source code of PGP as a book, the contents of
+which could be scanned and compiled by anyone with a
+copy~\cite{zimmermann-pgpsource}. This publication forced a discussion
+of the First Amendment~\cite{us-constitution-amend1} issues associated
+with the distribution of computer source code. Such discussions,
+coupled with several court cases~\cite{ninthcir-bernstein,
+  sixthcir-junger} in favor of the protection of computer source code
+under the First Amendment, led to the US government rolling back
+(although not completely eliminating) most of the export control rules
+surrounding cryptography by the early 2000s~\cite{kehl2015}.
+
+During this same time, the government tried to standardize a
+backdoored encryption system known as the Clipper
+Chip~\cite{whitehouse-clipper}. The chip was designed to be embedded
+in systems where it would provide ``strong'' encryption via the
+Slipjack algorithm while maintaining the government's ability to
+decrypt such encryption via the use of escrowed master keys. The
+Clipper Chip quickly feel into disfavor, however, when researchers
+demonstrated simple methods for bypassing its escrow
+mechanisms~\cite{blaze1994}. This was soon followed by discoveries of
+weaknesses in the Slipjack algorithm~\cite{biham1998}. The Clipper
+chip was never widely adopted at the government largely gave up on
+pushing backdoored encryption systems by the start of the 2000s.
+
+After the failure of both the governments export control based
+regulations and their pushes for key escrow-based encryption standards
+in the 1990s, efforts to control and regulate cryptography were
+largely quote through the 2000s and early 2010s. But by the mid 2010s,
+however, such efforts again begin to pick up. The Edward Snowden
+revelations related to spying abuses by the US National Security
+Agency (NSA) in the early 2010s led to a rise in privacy awareness
+among the general populace~\cite{pew-privsec14}. This, in turn, led a
+push to increase is the sue of strong cryptography across a wide range
+of products, from websites~\cite{mozilla-deprecatehttp} to
+email~\cite{gmail-blog-encryption} to
+smartphones~\cite{ars-ios-encrypt, ars-android-encrypt}. The
+associated increase is end-user use of cryptography has led to renewed
+calls by law enforcement agencies (most notably the US FBI) to mandate
+the use of breakable encryption in any scenario were the government
+can get a warrant to access the associated
+data~\cite{comey-testimony-encryption}. Such calls have culminated in
+the ongoing court battle between Apple and FBI over whether or not the
+FBI can use the All Writs Act~\cite{usc-allwrits} to compel Apple to
+modify the iPhone operating system to expedite the rate at which the
+FBI can guess the pass-code required to decrypt the
+phone~\cite{ars-cookvfbi}. Congress has also responded to such calls
+by suggesting legislation ranging from the formation of encryption
+``study'' committees~\cite{hr4651} to outright bans on the use of
+strong encryption~\cite{bennett-burrbill} to bans on such bans of
+encryption~\cite{hr4528}. How these court cases and legislative
+actions will play out remains to be seen.
+
+\subsubsection{A Defense of Cryptography}
+
 + Bans on crypto
 + 1A Issues
 + 4A Amendment Issues
@@ -83,4 +147,5 @@ aforementioned institutions.
 + Liability/Insurance
 + Standards
 
-%%  LocalWords:  SSaaS DES
+%%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA
+%%  LocalWords:  Wassenaar

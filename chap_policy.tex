@@ -6,13 +6,68 @@ questions in the security and privacy space. A number of these
 implications have been alluded to in the previous chapters. This
 chapter explores some of these policy questions in greater depth.
 
-\section{Use of Cryptography}
+\section{Cryptography}
 \label{chap:policy:crypto}
+
+Many of the ideas proposed in this document rely on the use of a
+variety of cryptographic primitives, including symmetric encryption,
+message authentication codes (MAC), asymmetric encryption, asymmetric
+authentication, and cryptographic signatures. Such cryptographic
+primitives, however, have a checkered legal and policy history, at
+least in the United States\footnote{the bulk of this chapter will
+  focus on US policy and laws since that is the jurisdiction in which
+  the author resides and is most intimately familiar. Similar ideas
+  are applicable to other jurisdictions.}. This section provides an
+overview of cryptography-related policy concerns.
+
+\subsection{Limits on Use of Cryptography}
+\label{chap:policy:crypto:limits}
+
+From the export-control bans of the first crypto wars~\cite{kehl2015}
+to the Apple v FBI crypto debate, whether or not strong cryptography
+should be available to the general public is a hotly debated
+topic. Should the government ever succeed in banning or strongly
+curtailing the development, distribution, or use of strong
+cryptography, it will become substantially more difficult (if not
+impossible) to securely implement SSaaS-related ideas, and by proxy,
+the privacy and security enhancements SSaaS systems might
+provide. Indeed, any effort that curtails the use or access to strong
+cryptography is likely to damage the security of a wide range of digital
+systems~\cite{Abelson2015}.
+
+Strong cryptography is a relatively recent development in the timeline
+of human history. Modern digital cryptography didn't really come about
+until the end World War Two and the advent of information
+theory~\cite{shannon1945}. Prior to that point in time, most
+``cryptography'' systems were based on folk-theory, obscure language,
+one-time pads, mechanical machines, or other items not soundly rooted
+in mathematical theory. Even though the groundwork was laid by the end
+of world war two, modern practical digital cryptography systems didn't
+really become available until the publication of DES in the mid
+1970~\cite{fips46} and the invention of asymmetric cryptography around
+the same time~\cite{diffie1976}. The combination of a standardized
+symmetric key algorithms coupled with the ability to negotiate and/or
+exchange symmetric keys over insecure channels using asymmetric
+techniques made digital cryptography a practical tool for securing
+communications, the security of which rested on the provable
+difficulty of solving certain classes of mathematical problems. From
+the late 1970s through the 1980s, digital cryptography remained
+largely a tool for governments, militaries, and financial
+corporations, and as such was often classified as a ``munition'' and
+placed under various export control laws regulating the manner in
+which encryption technology could be distributed outside of the United
+States. During this time, cryptographically secure systems were not
+readily available for use by individuals not associated with the
+aforementioned institutions.
 
 + Bans on crypto
 + 1A Issues
 + 4A Amendment Issues
 + Wassenaar
+
+\subsection{Proliferation of Cryptography}
+\label{chap:policy:crypto:proliferation}
+
 
 \section{Law Enforcement}
 \label{chap:policy:leo}
@@ -27,3 +82,5 @@ chapter explores some of these policy questions in greater depth.
 + Data Sharing
 + Liability/Insurance
 + Standards
+
+%%  LocalWords:  SSaaS DES

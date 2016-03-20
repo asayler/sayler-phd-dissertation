@@ -20,9 +20,6 @@ least in the United States\footnote{the bulk of this chapter will
   are applicable to other jurisdictions.}. This section provides an
 overview of cryptography-related policy concerns.
 
-\subsection{Limits on Use of Cryptography}
-\label{chap:policy:crypto:limits}
-
 From the export-control bans of the first crypto wars~\cite{kehl2015}
 to the Apple v FBI crypto debate, whether or not strong cryptography
 should be available to the general public is a hotly debated
@@ -35,7 +32,7 @@ provide. Indeed, any effort that curtails the use or access to strong
 cryptography is likely to damage the security of a wide range of digital
 systems.
 
-\subsubsection{A brief history of Cryptography Regulation}
+\subsection{A Brief History of Cryptography Regulation}
 
 Strong cryptography is a relatively recent development in the timeline
 of human history. Modern digital cryptography didn't really come about
@@ -58,9 +55,20 @@ largely a tool for governments, militaries, and financial
 corporations, and as such was often classified as a ``munition'' and
 placed under various export control laws regulating the manner in
 which encryption technology could be distributed outside of the United
-States. During this time, cryptographically secure systems were not
-readily available for use by individuals not associated with the
-aforementioned institutions.
+States.\footnote{The U.S. did allow the export of certain types of
+  purposely weak crypto, e.g. crypto with key lengths below 40
+  bits. This had the extremely unfortunate effect of encouraging the
+  standardization and proliferation of various weak crypto algorithms in a
+  wide range of consumer-facing software in order to allow the
+  software to be distributed internationally. The proliferation of such
+  ``export-grade'' cryptography has come back to bite us today -- many
+  applications still contain support for such algorithms, and that
+  support makes those products vulnerable to ``downgrade'' attacks that
+  trick the software into using this weak crypto, exposing the user to
+  attack in the process (e.g. FREAK~\cite{beurdouche2015} and
+  Logjam~\cite{adrian2015}.} During this time, cryptographically
+secure systems were not readily available for use by individuals not
+associated with the aforementioned institutions.
 
 The availability of strong cryptography to the general public begin to
 change in the early 1990s with the release of
@@ -122,7 +130,7 @@ strong encryption~\cite{bennett-burrbill} to bans on such bans of
 encryption~\cite{hr4528}. How these court cases and legislative
 actions will play out remains to be seen.
 
-\subsubsection{A Defense of Cryptography}
+\subsection{A Defense of Cryptography}
 
 Government efforts to ban cryptography have been countered with a
 variety of legal and policy arguments. These arguments won out during
@@ -231,21 +239,147 @@ constitutional questions, including:
   mandating the author publish or included certain components in their
   code is also a violation of their free speech
   rights~\cite{scotus-wooleyvmaynard}. While there have been
-  exceptions such interpretations, it's unlikely that broadness of any
-  general purpose cryptography limitations coupled with the likely
+  exceptions to such interpretations, it's unlikely the broadness of
+  any general purpose cryptography limitations coupled with the likely
   ineffectiveness of such rules would meet the kind of ``narrowly
   tailored speech limits in effective support of a legitimate
   government interest'' requirements such a law would have to overcome
-  to meet constitutional muster.
-\item[2\textsuperscript{nd} Amendment] \hfill \\ 
-\item[4\textsuperscript{th} Amendment] \hfill \\ 
-\item[5\textsuperscript{th} Amendment] \hfill \\ 
+  to meet constitutional muster. Still open to debatable, however, is
+  whether or not first amendment protections are limited merely to the
+  source code implementing encryption, or whether they apply to
+  executable binaries as well. If such protections are limited to raw
+  source code, it could effectively prevent the widespread use of
+  cryptography to those capable of acquiring and building source
+  code. Such an outcome would have a detrimental impact on the general
+  lay populace not generally capable of such actions.
+\item[2\textsuperscript{nd} Amendment] \hfill \\ One of the more
+  creative constitutional defenses of cryptography~\cite{xkcd-504}
+  comes via the 2\textsuperscript{nd} Amendment - granting citizens
+  the right to ``keep and bear
+  arms''~\cite{us-constitution-amend2}. The idea is that since the
+  government already has a history of considering cryptography to be a
+  weapon, then the second amendment should be used to protect the
+  rights of citizens to poses and use cryptography. This theory has
+  never been tested in a court, but its not entirely unreasonable to
+  believe that cryptography is a necessary component of maintaining a
+  ``well regulated militia'' today, and thus should be protected by
+  the 2\textsuperscript{nd} Amendment~\cite{scotus-usvmiller}. It is
+  also not unreasonable to assume that if the Constitution were being
+  written today, cryptography would seem a much more natural fit for
+  protection via something like the second amendment then
+  firearms. Whether or not this argument will pass judicial scrutiny
+  remains to be seen. And even if it does, 2\textsuperscript{nd}
+  Amendment are likely to guarantee a weaker set of rights than
+  1\textsuperscript{st} Amendment protections since the
+  2\textsuperscript{nd} Amendment only protects the right to ``keep
+  and bear'' cryptography, where as the first amendment also protects
+  its distribution. It may be possible, however, to take a split
+  approach to protecting cryptography where things like cryptographic
+  source code and research are protected via the 1\textsuperscript{st}
+  Amendment whereas binary programs or hardware employing cryptography
+  are protected via the 2\textsuperscript{nd} Amendment -- similar in
+  mechanism to how the 1\textsuperscript{st} would protect the
+  publication of a design of a firearm while the 2\textsuperscript{nd}
+  Amendment would protect the possession of the firearm itself.
+\item[4\textsuperscript{th} Amendment] \hfill \\ Many law enforcement
+  agencies cite the importance of being able to access information for
+  which they have secured probable cause warrant as their reason for
+  wishing to restrict the use of cryptography. Such opponents fear the
+  ability of cryptography to render such lawfully obtained warrants
+  useless. Whether or not the 4\textsuperscript{th}
+  Amendment~\cite{us-constitution-amend4} can be used to compel a
+  cryptography provider to decrypt communications in order to comply
+  with a valid warrant remains to be seen. Traditional interpretations
+  (including the much malign Third Party
+  Doctrine~\cite{thompson-thirdparty}) hold that if a third party
+  holds the key necessary to decrypt a user's communication, then they
+  can be compelled to provide it to the government -- often without
+  even requiring a probable cause warrant at all. But what about cases
+  where the third party lacks any ability to decrypt the data? Can
+  they still be forced to aid the government in serving a valid
+  warrant?  The answer to this question probably hinges on the
+  ``reasonableness'' of such a request. The ongoing Apple v. FBI
+  litigation may help shed some light on this question. At it's heart,
+  it would seem that cryptography provides the ultimate tool for
+  protecting an individual's 4\textsuperscript{th} Amendment rights -
+  since such technology helps ensure that individual remain ``secure
+  in their persons, houses, papers, and effects''. But how best to
+  reconcile this protection with a valid ``probable cause'' warrant
+  remains is a matter of great debate. And ultimately, especially in
+  cases where only the end user posses the information necessary to
+  decrypt communication, the answer to this question may have more
+  bearing on the 5\textsuperscript{th} Amendment than the
+  4\textsuperscript{th}. And it seems unlikely that the need to serve
+  a 4\textsuperscript{th} Amendment warrant would ever justify the
+  potential violations of the 1\textsuperscript{st} and
+  2\textsuperscript{nd} Amendments that any general ban on the use of
+  cryptography would entail.
+\item[5\textsuperscript{th} Amendment] \hfill \\ Assuming the
+  1\textsuperscript{st} and 2\textsuperscript{nd} amendments can
+  protects an individuals right to distribute, posses, and use
+  cryptography, then it falls on the 5\textsuperscript{th} Amendment
+  to protect an individuals right not to be forced to disclose the
+  necessary password or encryption key required to decrypt a piece of
+  information. The right against self incrimination has long been held
+  to protect individuals against compelled testimony -- which should
+  include being forced to provide a memorized pass-code or password
+  necessary to decrypt a piece of information.\footnote{If the user
+    has written down there password, however, or locked their phone
+    with a fingerprint, 5\textsuperscript{th} Amendment protections no
+    longer apply since the evidence is then physical, not
+    testimonial.}  Courts, however, are currently split on whether or
+  not the 5\textsuperscript{th} Amendment protects individuals from
+  being forced to provide decryption assistance~\cite{usvboucher,
+    commonwealthvgelfgatt, usvdoe}. Further complicating matters,
+  certain types of cryptography can be designed to decrypt a
+  ciphertext to different plaintexts depending on the password or key
+  provided. Thus, it is possible that an individual could provide one
+  password to decrypt a file to a picture of a cat and another
+  password to decrypt a file to a plan for robbing a bank. Additional
+  password could provide yet additional contents. In such an
+  arrangement, there is no reliable way to know how many different
+  plaintexts are hidden within a given ciphertext. Thus, even if the
+  government does succeed in compelling an individual to ``decrypt''
+  their documents, it is entirely possible they would still wind up
+  with a set of files other than the ones they were seeking. And it
+  seems unlikely any court would allow the government to continue
+  compelling a suspect to provide new pass-phrases until they happened
+  to get a decrypted set of tiles that factored their case, especially
+  since it's possible no such files exist at all. The
+  5\textsuperscript{th} Amendment has historically protect the
+  contents of an individuals mind. Cryptography allows an individual
+  to expand the contents of their mind by leveraging a small piece of
+  memorized information (i.e. a pass-code or praise) to protect much
+  larger pieces of offloaded information (e.g. a hard drive). Whether
+  or not such an expansion is accessible to the US legal system
+  remains to be decided.\footnote{Deciding whether or not such
+    expansions are acceptable using cryptography will likely have a
+    direct implication on the potential future world where human
+    brains are technologically upgradeable. Indeed, there is likely
+    little functional difference between using a cryptographically
+    protected hard drive couple with a memorize pass-code to expand
+    one ``memory'' and installing a bio-mimicking computer chip that
+    expands one memory. In a world were you have the technology to
+    upgrade the the amount of data you can store (and potentially
+    where the government has the technology to ``mind-read'' by
+    downloading such data), does the 5\textsuperscript{th} Amendment
+    still protect the contents of one's mind? While such questions
+    remain largely academic today, it may not be long before courts
+    are being asked to decide such questions.}
 \end{packed_desc}
 
-\subsubsection{Cryptography and SSaaS}
+There are clear policy reason to avoid curtailing or discouraging the
+sue of cryptography, as well as clear legal hurtles to doing
+so. Hopefully cryptography remains widely and freely available to all,
+since any reduction in access to cryptography would have severe
+consequence on a range of security enhancing and privacy preserving
+technologies.
 
-\subsection{Proliferation of Cryptography}
-\label{chap:policy:crypto:proliferation}
+\subsection{Cryptography Regulation and SSaaS}
+
+
+
+\cite{thompson-thirdparty}
 
 
 \section{Law Enforcement}
@@ -263,4 +397,4 @@ constitutional questions, including:
 + Standards
 
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
-%%  LocalWords:  Wassenaar
+%%  LocalWords:  Wassenaar nd th

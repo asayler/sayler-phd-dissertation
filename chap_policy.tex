@@ -20,18 +20,6 @@ least in the United States\footnote{the bulk of this chapter will
   are applicable to other jurisdictions.}. This section provides an
 overview of cryptography-related policy concerns.
 
-From the export-control bans of the first crypto wars~\cite{kehl2015}
-to the Apple v FBI crypto debate, whether or not strong cryptography
-should be available to the general public is a hotly debated
-topic. Should the government ever succeed in banning or strongly
-curtailing the development, distribution, or use of strong
-cryptography, it will become substantially more difficult (if not
-impossible) to securely implement SSaaS-related ideas, and by proxy,
-the privacy and security enhancements SSaaS systems might
-provide. Indeed, any effort that curtails the use or access to strong
-cryptography is likely to damage the security of a wide range of digital
-systems.
-
 \subsection{A Brief History of Cryptography Regulation}
 
 Strong cryptography is a relatively recent development in the timeline
@@ -131,6 +119,18 @@ encryption~\cite{hr4528}. How these court cases and legislative
 actions will play out remains to be seen.
 
 \subsection{A Defense of Cryptography}
+
+From the export-control bans of the first crypto wars~\cite{kehl2015}
+to the Apple v FBI crypto debate, whether or not strong cryptography
+should be available to the general public is a hotly debated
+topic. Should the government ever succeed in banning or strongly
+curtailing the development, distribution, or use of strong
+cryptography, it will become substantially more difficult (if not
+impossible) to securely implement SSaaS-related ideas, and by proxy,
+the privacy and security enhancements SSaaS systems might
+provide. Indeed, any effort that curtails the use or access to strong
+cryptography is likely to damage the security of a wide range of digital
+systems.
 
 Government efforts to ban cryptography have been countered with a
 variety of legal and policy arguments. These arguments won out during
@@ -263,10 +263,10 @@ constitutional questions, including:
   never been tested in a court, but its not entirely unreasonable to
   believe that cryptography is a necessary component of maintaining a
   ``well regulated militia'' today, and thus should be protected by
-  the 2\textsuperscript{nd} Amendment~\cite{scotus-usvmiller}. It is
-  also not unreasonable to assume that if the Constitution were being
-  written today, cryptography would seem a much more natural fit for
-  protection via something like the second amendment then
+  the 2\textsuperscript{nd} Amendment~\cite{scotus-usvmiller-guns}. It
+  is also not unreasonable to assume that if the Constitution were
+  being written today, cryptography would seem a much more natural fit
+  for protection via something like the second amendment then
   firearms. Whether or not this argument will pass judicial scrutiny
   remains to be seen. And even if it does, 2\textsuperscript{nd}
   Amendment are likely to guarantee a weaker set of rights than
@@ -368,19 +368,173 @@ constitutional questions, including:
     are being asked to decide such questions.}
 \end{packed_desc}
 
-There are clear policy reason to avoid curtailing or discouraging the
-sue of cryptography, as well as clear legal hurtles to doing
+There are clear policy reasons to avoid curtailing or discouraging the
+use of cryptography, as well as clear legal hurtles to doing
 so. Hopefully cryptography remains widely and freely available to all,
 since any reduction in access to cryptography would have severe
 consequence on a range of security enhancing and privacy preserving
-technologies.
+technologies -- including on the ideas proposed in this document.
 
 \subsection{Cryptography Regulation and SSaaS}
 
+The debate surrounding the regulation of cryptography interacts with
+the the secret storage as a service (SSaaS) ideas proposed in this
+document is several ways. First, and most obviously, any general
+restrictions on the use of cryptography would make it difficult or
+impossible to implement SSaaS software such as Custos
+(Chapter~\ref{chap:custos}) and Tutamen
+(Chap~\ref{chap:tutamen}). Indeed, both system rely on the security of
+both the public Certificate Authority (CA) system as well as on the
+ability to leverage a range of strong cryptography algorithms and
+libraries. Any regulation that reduces the security of the CA system
+(e.g. by forcing CAs to escrow copies of their signing keys with the
+government) or that restrictions access to cryptographic libraries
+(e.g. OpenSSL~\cite{openssl}) will reduce the security of the proposes
+SSaaS ideas and implementations. But such harm is not unique to the
+SSaaS ideas and software -- indeed a wide range of products and
+systems will be detrimentally harmed by any restrictions on the use or
+distribution of cryptography.
 
+One of the policy questions underlying the SSaaS ecosystem is that of
+how the system might be treated (or avoid be treated) as a key escrow
+system. As discussed in Chapter~\ref{chap:related}, the SSaaS idea,
+especially when used to store cryptographic keys, looks a bit like
+previously proposed key escrow systems. It is thus tempting to suggest
+that the SSaaS model may in fact provide a potential solution to the
+ongoing encryption debate by providing a standardized mechanism for
+escrowing keys. E.g. in the multi-SSP use case, the government could
+require that a user leverage one or more government-controlled SSPs,
+such that the government could recover any user's encryption key
+should they so require. Clearly, this is not the intended usage of the
+SSaaS ecosystem, but it one that is likely to appeal to those who
+believe in the government's absolute right to access any data
+(encrypted or otherwise) with a warrant.
 
-\cite{thompson-thirdparty}
+% Todo: rearrange this chapter/section
 
+Secret Storage providers (SSPs) are likely to be appealing targets for
+both legal and extralegal introspection. whether such services are
+storing encryption keys for user data or raw user secrets, it is
+likely they will be the target of a range of government information
+requests. This fact suggests a number of policy-related questions and
+potential solutions. If we start with the premise that in order for
+the SSaaS ecosystem to flourish, users must enjoy at least a modicum
+of privacy protections for the secrets they store with the SSP, then
+the next questions becomes what policy initiatives are necessary to
+maximize a privacy of SSP-stored data.
+
+Since Secret Storage Providers are most likely to be operated by third
+parties (as opposed to operated by the individual requiring secret
+storage services). As such, they are likely to be subject to the third
+party doctrine~\cite{thompson-thirdparty}. This doctrine holds that
+individuals who voluntarily store their data with third parties have
+no reasonable expectation of privacy~\cite{scotus-katzvus} for such
+data. While such a decision may have made since in the mid 20th
+century when it was established via a series of Supreme Court
+rulings~\cite{scotus-usvmiller-privacy, scotus-smithvmaryland}, it
+does not translate well to a world where storing data online is the
+norm. Before any US-based SSP can be trusted to securing user data, it
+is necessary for the third party doctrine to be abolished. Users
+should have a reasonable expectation of privacy for any data they
+store online, just as they would for any data stored on a hard drive
+at their home. Fortunately there is movement toward the abolition of
+the third party doctrine. On the judicial front, the Supreme Court has
+suggested that it may be time to reevaluate the
+principle~\cite{scotus-usvjones}. Congress also seems interested in
+reevaluating the statue, making progress toward efforts such as
+reforming the Electronic Communications Privacy Act (ECPA)~\cite{ecpa}
+to include a warrant requirement for digitally stored emails and
+related data~\cite{eff-ecpareform}. The abolition of the third party
+doctrine and the establishment of traditional due process rights for
+digital data, even when stored with third parties, is a necessary step
+toward developing a healthy and trustworthy SSaaS ecosystem.
+
+The next step toward encouraging the trustworthy and secure SSPs is
+the establishment of liability for the loss of digital secrets stored
+with a third party in good faith. If a SSP is breached, causing the
+exposure of stored user secrets, the user should be able to hold the
+SSP liable for the breach and seek relief form the SSP for any damage
+that results due to the leak. That nature of this liability could take
+several forms. The most obvious form would be to impose civil
+liability commensurate with the value of any exposed secrets on the
+party responsible for the secure storage of such secrets. This opens
+up the thorny issue of how to value the loss of a secret since some
+secrets may be worth very little (e.g. an encryption key protecting a
+set of not particularly sensitive family vacation photos) while other
+could be wroth quite a lot (e.g. an encryption key protecting a trade
+secret or other sensitive material). One way to overcome the valuation
+challenge would be to have users declare the value of their secrets
+when they are stored, similar to the manner in which one might declare
+the value of a parcel when shipping it for the purpose of securing
+insurance. Given such a delectation, the SSP could charge a user
+varying amounts: more ``valuable'' secrets should cost more to store,
+while less ``valuable'' secrets cost less. Damages in the event that a
+secret is loss could then be calculated as a multiple of this
+value. In cases where the loss results due to an unforeseeable event
+or otherwise through no fault of the SSP, the user would be reimbursed
+the declared value of the secret (or potentially some fraction of
+it). In the case where a secret is lost due to SSP negligence, the
+user would be reimbursed several multiples of the secret value. As
+mentioned in Chapter~\ref{chap:ssaas}, each SSP would likely be
+required to secure insurance to cover the cost of such liability
+payouts in the event that a breach occurs. These insurers, in turn,
+would charge each SSP an insurance fee on the basis of how ``secure''
+(or the inverse: how ``risky'') an SSPs storage practice are. Indeed,
+it is even possible that the government itself might act as such an
+insurer (or underwriter), as they currently do with banks via the
+Federal Deposit Insurance Corporation (FDIC)~\cite{fdic}. Establishing
+a standard system and expectation of secret breach liability will help
+to incentive security best practices and will provide users with a
+measure of relief in the event that their secrets are leaked,
+increasing adoption of the SSaaS ecosystem.
+
+Beyond civil liability, its also possible that it would be appropriate
+to establish some degree of criminal liability for malpracticing or
+negligent SSPs. Such liability cold mirror existing criminal
+malpractice and negligence laws such as those imposed on doctors,
+contractors, and engineers. Such criminal liability would allow the
+prosecution of particularly bad SSP operators and help to ensure that
+the SSP market remains relatively safe for consumers wishing to
+utilize the SSaaS ecosystem.
+
+The establishment of as least civil liability for SSPs might also have
+benefits in the ongoing ``forced decryption'' and key escrow
+debates. The very nature of the SSaaS ecosystem likely makes it an
+appealing model for those wishing to impose key escrow
+requirements. Should an SSaaS ecosystem become a standard means of
+storing secrets such as user encryption keys, it is not inconceivable
+that the government might wish to pass a requirement that a user
+escrow a copy of all of their secrets with a government-controlled SSP
+for use in th event that the government must serve a valid warrant on
+a user's encrypted data. As previously discussed, such a practice has
+a number of flaws and would be bad public policy. None the less,
+should the government wish to pursue such a policy, having an
+established system of civil liability for the loss user secret data
+would be useful. If such a system were crafted to avoid exempting
+government-controlled SSPs from civil liability
+requirements\footnote{Although the government does have a habit of
+  exempting itself from such requirements, so establishing government
+  liability for SSP-related data loss may be challenging.}, it could
+help minimize the number of keys the government chooses to
+escrow. Indeed, such a system would impose a huge liability risk on
+the government SSP, potentially causing the government to rethink the
+wisdom of such a system in the first place. If the government can not
+afford to reimburse the range of American companies and individuals
+who would suffer damage in the event that a government-controlled SSP
+were breached, they would be unable to operate in the first place. The
+more general form of this argument is that any civil liability remain
+will place strict limits on the size of any single SSP. Once an SSP
+grows beyond the size for which it find an insurer to voter its
+liability risk, it would be forced to stop accepting new
+customers. Such a natural limit of the size and power of any single
+SSP is a healthy property of a SSaaS ecosystem since it would
+encourage the competition of a multitude of SSPs and would force users
+to shard their secrets across multiple SSPs to minimize risk.
+
+% Third Party Doctrine
+% SSP Insurance
+%%% Establish liability
+% Jurisdictional hacks
 
 \section{Law Enforcement}
 \label{chap:policy:leo}
@@ -397,4 +551,5 @@ technologies.
 + Standards
 
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
-%%  LocalWords:  Wassenaar nd th
+%%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo
+%%  LocalWords:  ECPA

@@ -506,6 +506,7 @@ respected just as data stored on a user themselves or in a safe in
 their home.
 
 \subsection{Privacy Breach Liability}
+\label{chap:policy:trustworthiness:liability}
 
 Beyond the need to treat SSP-stored data with the same privacy
 protections as personally stored data lies the need to hold SSPs
@@ -810,6 +811,85 @@ sub-domains~\cite{lee2014} is necessary for encouraging a health SSaaS
 ecosystem.
 
 \subsection{Liability and Insurance}
+
+Sharding secrets across multiple SSPs also has repercussions for the
+liability and insurance ideas discussed in
+Section~\ref{chap:policy:trustworthiness:liability}. The main question
+secret sharding posses to SSP-related liability ideas in that of the
+val us of a single secret shard. I.e. if an SSP is liable for leaks of
+user data, how to we value the harm caused by leak of a single shard
+of a secret?
+
+Values for secret shards could range from being equal to the value of
+the unsharded secret to being worth nothing at all. Making secret
+shards worth as much as the secret itself makes since if you assume
+that the exposure of any secret shard is an unacceptable risk since it
+increases the risk of the exposure of the entire secret. On the other
+extreme, values secret shards as worthless makes since if you assume
+that each shard taken by itself provide no information about the
+underlying secret, and is thus ``worthless'', even if leaked. It's
+likely that the best solution lies somewhere in between. Valuing
+secrets shards as equal to th value of an unsharded secret will likely
+make the sharding of secrets cot prohibitive. Assuming that the
+declared values of a secret is the driving mechanism an SSP Will use
+to charge users for secret storage, then valuing secret shards the
+same as secrets increases the users cost to store the secret on the
+order of a factor of $k$, where $k$ is the number of SSPs a user
+wishes to shared their secret across. This represents an undesirable
+increase in cost. Similarly, valuing secret shards as worthless
+ignores the realty that the leak of multiple shards can still reveal
+the secret -- imposing the same harm on the user that the leak of an
+unsharded secret would. But if shard are ''worthless'', than the user
+will have no ability to seek restitution for the harms they suffer
+from the SSPs responsible for leaking each shard. This is also
+undesirable.
+
+Intuitively, it would make the most sense for the act of secret
+sharding to have no effective impact on either a user's cost to store
+the secret more their ability to recoup losses if the secret shards
+are leaked. To accomplish such as equivalency, it is necessary to
+value each shard of a $k$ choose $n$ secret split as being worth $v/n$
+where $v$ represents the cost of the unsharded secret and $n$
+represents the number of shards necessary to reconstitute the
+secret. In such a situation, the user's secret is effectively leaks
+when $n$ shards are exposed. The exposure of $n$ shards allows the
+user to seek damages for a value equal to $v/n$ from each of the $n$
+SSPs, resulting in the same value $v$ they would be due in the
+unsharded case. Similarly, the cots to the user to store each secret
+shard should be equal to $c/n$ where $c$ is the cost to store the
+unsharded secret. As in the liability valuation, such a split will
+ensure the user pays the same for a sharded secret as an unsharded
+secret. Since $k$ choose $n$ secret shadings schemes allow for the
+user to specify a $k$ greater than $n$ for the purpose of adding
+redundancy to the system, a user may still end up paying more to store
+a sharded secret than an unsharded secret in any case where $k$ is
+greater than $n$. In such situations, however, the user is gaining an
+additional degree of redundancy that they did not have before,
+justifying the additional cost. Thus, valuing secret shards at $v/n$
+for the purpose of liability and charging for their storage at a rate
+of $c/n$ will avoid financial or liability related disincentives to
+sharding secrets across multiple providers.
+
+The user can do even better than this in situations where the cost to
+store a secret is exponentially, instead of linearly, related to the
+declared value of the secret. E.g. it is not inconceivable that the
+cost to store a secret valued \$1000 should be more than 10x the cost
+to store a secret valued at \$10. Such a nonlinear cost vs value curve
+can be justified by the fact that more expensive secrets are likely to
+be more desirable targets for attackers, and thus command a higher
+premium to store relative to their value. Assuming SSPs adopt such
+non-linear cost regimens, sharding a secret become financially
+beneficial to the user since it minimize the declared value of each
+individual shard, reducing the total cost. Whereas a linear cost of
+secret storage based on secret value results in the same total cost to
+the user when sharding their secrets across multiple providers, a
+non-linear secret storage cost can cause the user to realize a saving
+by sharding their secrets, further encouraging the practice. It is
+thus potentially desirable for SSPs to adopt non-linear secret storage
+cost regimes where the cost to store a secret increases geometrically
+or exponentially with its declared value. Such an ecosystem would
+further encourage user to shard their secrets across multiple
+providers, increasing user security while reading SSP trust and cost.
 
 \subsection{Jurisdictional Issues}
 \label{chap:policy:trust:jurisdiction}

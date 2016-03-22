@@ -50,11 +50,12 @@ health SSaaS ecosystem. These initiatives include:
 \item[Access to Strong Cryptography:] In order to ensure the security
   of the underlying technology and protocols, it is critical that user
   are allowed to access and utilize strong cryptography.
-\item[SSP Privacy:] In order to instill (at least minimal) trust in
-  individual SSPs, its important that users have an ``expectation of
-  privacy'' for the data they store with each SSP. Furthermore, it is
-  important for users to have the right to seek relief from SSPs who's
-  practices result in the exposure of user secrets.
+\item[SSP Privacy and Security:] In order to instill (at least
+  minimal) trust in individual SSPs, its important that users have an
+  ``expectation of privacy'' for the data they store with each
+  SSP. Furthermore, it is important for users to have the right to
+  seek relief from SSPs who's practices result in the exposure of user
+  secrets.
 \item[Openness and Transparency:] One way of minimizing the trust the
   user must place in the SSaaS ecosystem is to insure that the core
   SSaaS software and protocols remain open and auditable. Such an
@@ -455,6 +456,7 @@ consequence on a range of security enhancing and privacy preserving
 technologies. This included on the SSaaS ideas proposed in this
 document.
 
+% Maximizing Trustworthiness
 \section{Privacy of SSP-Stored Data}
 
 Secret Storage providers (SSPs) are likely to be appealing targets for
@@ -602,10 +604,122 @@ best practices. It will provide users with a measure of relief in the
 event that their secrets are leaked, increasing adoption of the SSaaS
 ecosystem.
 
+% Minimizing Forced Trust
 \section{Openness and Transparency}
+
+Thus far, this chapter has explored mechanisms to ensuring entities
+within the SSaaS ecosystem remain secure and trustworthy. As
+discussed throughout this document, however, it is also important to
+provide end-users with tools for minimizing the trust they must place
+in the SSaaS system or its actors. One mechanism for minimizing such
+trust is to ensure that the code and protocols underlying the SSaaS
+ecosystem remain open and transparent.
+
+\subsection{Protocol Standardization and Transparency}
+
+It is important that the specifications for any SSaaS protocols
+(e.g. Custos, Tutamen, etc) remain open and encumber IP-related
+restrictions. In such a process, several tenants must be
+upheld:
+
+\begin{packed_desc}
+\item[Openness of Process:] The standardization process itself must be
+  open to the widest possible range of individuals and encourage the
+  participation of such individuals. Furthermore, the process must
+  occur in public such that even those outside of the process may
+  review and comment on the work undertaken within the process.
+\item[Availability of Standards:] Both drafts and final versions of
+  any standards must be freely and widely available under permissive
+  licensing terms that allows the reproduction and distribution of
+  said standards without requiring any licensing fees.
+\item[Unencumbered by Intellectual Property Restrictions:] The
+  technology discussed in a standard must be freely available or
+  otherwise unencumbered by the need to secure individual intellectual
+  property licenses or to pay licensing fees. It should be possible
+  for outside parties to develop custom implementation of any standard
+  and for end-users to utilize such implementations without either
+  having to secure a license or pay a fee.
+\end{packed_desc}
+
+This set of requirements helps to ensure that standards can be widely
+disseminated and adopted, and that a range of competing
+implementations are such standards can be created and
+distributed. Such process are already used by a variety of standards
+setting bodies such as thus undertaken by the W3C~\cite{w3c} for the
+development of web-related standards. Having a similarly open SSaaS
+standardized process is important to a healthy SSaaS ecosystem in
+order to encourage the adoption of a single SSaaS standard. Such a
+standard, in turn, enables users to switch between multiple SSPs and
+avoids the kinds of SSP lock-in issue proprietary SSaaS protocols
+might cause. Having an open and reviewable protocol also reduces the
+need for users to trust the protocol publisher directly by allowing
+independent review.
+
+\subsection{Free and Open Source Implementations}
+
+Beyond the importance of developing SSaaS protocols in open and making
+them freely available, it is also important that (at least some)
+implementations of these protocols be open and freely available. Such
+a requirement is secondary to having a free and open protocols, since
+a free and open protocol is what allows the development of free and
+open implementations in the first place. The use of such
+implementations by SSPs will avoid forcing SSP users to trust that the
+SSP has faithfully implemented the SSP protocol by facilitating the
+review of such code by end end-users themselves (or third parties with
+an interest in the end user's security).\footnote{Although this leaves
+  open the problem of how to ensure that an SSP is running the open
+  source software they claim to run, as opposed to running software
+  that appears to be an open source variant to external observers, but
+  that is actually a malicious or flawed clone. This problem might be
+  dealt with via the insurance and liability issues previously
+  discussed -- i.e. insures might require audits of an SSP's deployed
+  code base and/or make their insurance programs contingent on the use
+  of certain open source SSaaS protocol
+  implementations. Alternatively, it is possible research from the
+  ``reproducible builds'' space might assist in this
+  task~\cite{DeCarnedeCarnavalet2014}. How to verify such reproducible
+  builds for third party hosted software, however, remains an open
+  problem.}
+
+In order to be truly ``open'', an SSaaS implementation would need to
+be both developed in the open and provide users with access to its
+source code. Both forms of openness can be accomplished by hosting
+code on a public source code reportedly such as GitHub~\cite{github}
+and by conducting development discussions on an open mailing
+list. Such openness ensures that users are free to review the
+implementation of the SSaaS protocols themselves, reducing their need
+to trust the software itself.
+
+Beyond mere openness, it is also important that the software be Free
+(as in freedom, not as in beer). In the open source community, such
+freedom is generally premised on four core ``rights'': the right of
+the user to run the software as they wish, the right of the user to
+review and modify the software, the right of the user to redistribute
+unmodified copies of the software, and the right of the user to
+redistribute modified copies of the
+software~\cite{fsf-freedomns}. Cloud-based software such as that
+employed by SSPs also benefits from a fifth requirement: that the
+service provider provide the use with a copy of the code they are
+running~\cite{agpl}. Granting these rights to users helps to ensure
+that they are free not only to independently review software, but also
+to improve and redistribute a piece of software in the event that they
+dislike what they find while reviewing it. These are important
+properties since they further allows users to reduce their trust and
+reliance on any single implementations of the SSaaS protocols.
+
+While having a single standardized protocol is critical for the
+development of a healthy SSaaS ecosystem, the opposite is true for
+implementations of this standard. A healthy SSaaS ecosystem should
+sport a variety of implementations (free/open or proprietary) of the
+SSaaS protocol standard. Such a diversity of implementations allows
+users to avoid having to trust any single implementation, and
+decreases the insecurity that can result from a software
+monoculture. Ensuring there at least a few core SSaaS implementation
+strains remain free and open will help to encourage the development of
+additional SSaaS strains, creating this desirable level of diversity.
 
 \section{Use of Multiple SSPs}
 
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo
-%%  LocalWords:  ECPA SSP's Custos DIY
+%%  LocalWords:  ECPA SSP's Custos DIY GitHub

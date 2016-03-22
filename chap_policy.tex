@@ -6,78 +6,151 @@ questions in the security and privacy space. A number of these
 implications have been alluded to in the previous chapters. This
 chapter explores some of these policy questions in greater depth.
 
-\section{Cryptography}
+\section{Toward a Healthy SSaaS Ecosystem}
+
+If the Secret Storage as a Service (SSaaS) ecosystem is to flourish,
+the public must first be convinced that it is a viable solution for
+increasing the security and privacy of the devices and services they
+use (and that it does not have a detrimental impact on their ability
+to utilize such devices and services). While policy initiatives can do
+little to convince users that the SSaaS ecosystem does not impose an
+undue burden on their desired use cases\footnote{That's the job of
+  previous chapters in this document, as well as of developers and
+  marketers building SSaaS-backed solutions.}, policy initiatives can
+help to encourage the development of a security and privacy preserving
+SSaaS ecosystem. Achieving such an outcome relies on three main
+components:
+
+\begin{packed_desc}
+\item[Validity of the Secret Storage System:] Users must have some
+  degree of faith in the security of the underlying SSaaS technologies
+  and protocols. If such technology is viewed with suspicion, the
+  SSaaS ecosystem is unlikely to thrive.
+\item[Validity of Secret Storage Providers:] Users must also have some
+  degree of faith in the security of individual Secret Storage
+  Providers (SSPs) and the privacy of data stored there. While a user
+  can take steps to minimize how much they must trust each SSP (see
+  next point), if SSPs are viewed as unreliable and untrustworthy in
+  general, the SSaaS ecosystem will suffer.
+\item[Ability to Minimize Trust:] While a degree of trust on both the
+  SSaaS protocols as well as in each SSP is useful to help the SSaaS
+  ecosystem thrive, it's also important that users have tools for
+  minimizing the degree to which they must trust any single part of or
+  party in the SSaaS system. This ability acts as the final security
+  and privacy backstop for users, ensuring that their data remains
+  secure even if their trust in specific protocols or SSPs turns out
+  to be misplaced.
+\end{packed_desc}
+
+There are a number of policy initiatives that will help to encourage
+the development of these user views, and by proxy, the growth of a
+health SSaaS ecosystem. These initiatives include:
+
+\begin{packed_desc}
+\item[Access to Strong Cryptography:] In order to ensure the security
+  of the underlying technology and protocols, it is critical that user
+  are allowed to access and utilize strong cryptography.
+\item[SSP Privacy:] In order to instill (at least minimal) trust in
+  individual SSPs, its important that users have an ``expectation of
+  privacy'' for the data they store with each SSP. Furthermore, it is
+  important for users to have the right to seek relief from SSPs who's
+  practices result in the exposure of user secrets.
+\item[Openness and Transparency:] One way of minimizing the trust the
+  user must place in the SSaaS ecosystem is to insure that the core
+  SSaaS software and protocols remain open and auditable. Such an
+  openness can be achieved by making all core code open source and by
+  applying liberal licensing to all core protocols .
+\item[Use of Multiple SSPs:] As discussed, the main mechanism for
+  limiting trust in any single SSP is to shard secrets across multiple
+  SSPs. As such, it is important to both avoid polices that limit the
+  ability of user to leverage a wide range of SSPs while also
+  leveraging policies that encourage the development of an multitude
+  of competing secret storage providers.
+\end{packed_desc}
+
+Each of these policy goals, as well as specific ideas for potential
+achievement of each goal, are discussed through the reminder of this
+chapter.
+
+\section{Access to Strong Cryptography}
 \label{chap:policy:crypto}
 
 Many of the ideas proposed in this document rely on the use of a
 variety of cryptographic primitives, including symmetric encryption,
 message authentication codes (MAC), asymmetric encryption, asymmetric
-authentication, and cryptographic signatures. Such cryptographic
-primitives, however, have a checkered legal and policy history, at
-least in the United States\footnote{the bulk of this chapter will
-  focus on US policy and laws since that is the jurisdiction in which
-  the author resides and is most intimately familiar. Similar ideas
-  are applicable to other jurisdictions.}. This section provides an
-overview of cryptography-related policy concerns.
+authentication, and cryptographic signatures. Indeed, the security of
+the SSaaS ecosystem rests on the ability of users to leverage a range
+of cryptographic primitives. Such cryptographic primitives, however,
+have a checkered legal and policy history, at least in the United
+States\footnote{the bulk of this chapter will focus on US policy and
+  laws since that is the jurisdiction in which the author resides and
+  is most intimately familiar. Similar ideas are applicable to other
+  jurisdictions.}. This section provides an overview of
+cryptography-related policy concerns.
 
 \subsection{A Brief History of Cryptography Regulation}
 
 Strong cryptography is a relatively recent development in the timeline
 of human history. Modern digital cryptography didn't really come about
-until the end World War Two and the advent of information
+until the end World War II and the advent of information
 theory~\cite{shannon1945}. Prior to that point in time, most
-``cryptography'' systems were based on folk-theory, obscure language,
-one-time pads, mechanical machines, or other items not soundly rooted
+``cryptography'' systems were based on folk-theory, obscure languages,
+one-time pads, mechanical devices, or other items not soundly rooted
 in mathematical theory. Even though the groundwork was laid by the end
-of world war two, modern practical digital cryptography systems didn't
+of World War II, modern practical digital cryptography systems didn't
 really become available until the publication of DES in the mid
-1970~\cite{fips46} and the invention of asymmetric cryptography around
-the same time~\cite{diffie1976}. The combination of a standardized
-symmetric key algorithms coupled with the ability to negotiate and/or
-exchange symmetric keys over insecure channels using asymmetric
-techniques made digital cryptography a practical tool for securing
-communications, the security of which rested on the provable
-difficulty of solving certain classes of mathematical problems. From
-the late 1970s through the 1980s, digital cryptography remained
-largely a tool for governments, militaries, and financial
-corporations, and as such was often classified as a ``munition'' and
-placed under various export control laws regulating the manner in
-which encryption technology could be distributed outside of the United
-States.\footnote{The U.S. did allow the export of certain types of
-  purposely weak crypto, e.g. crypto with key lengths below 40
-  bits. This had the extremely unfortunate effect of encouraging the
-  standardization and proliferation of various weak crypto algorithms in a
-  wide range of consumer-facing software in order to allow the
-  software to be distributed internationally. The proliferation of such
-  ``export-grade'' cryptography has come back to bite us today -- many
-  applications still contain support for such algorithms, and that
-  support makes those products vulnerable to ``downgrade'' attacks that
-  trick the software into using this weak crypto, exposing the user to
-  attack in the process (e.g. FREAK~\cite{beurdouche2015} and
-  Logjam~\cite{adrian2015}.} During this time, cryptographically
-secure systems were not readily available for use by individuals not
-associated with the aforementioned institutions.
+1970s~\cite{fips46} and the invention of asymmetric cryptography
+around the same time~\cite{diffie1976}. The combination of a
+standardized symmetric key algorithm coupled with the ability to
+negotiate and/or exchange symmetric keys over insecure channels using
+asymmetric techniques made digital cryptography a practical tool for
+securing communications. Unlike previous systems, the security of such
+communications rested on the provable difficulty of solving certain
+classes of mathematical problems. From the late 1970s through the
+1980s, digital cryptography remained largely a tool for governments,
+militaries, and financial corporations, and as such was often
+classified as a ``munition'' and placed under various export control
+laws regulating the manner in which encryption technology could be
+distributed outside of the United States.\footnote{The U.S. did allow
+  the export of certain types of purposely weak crypto, e.g. crypto
+  with key lengths below 40 bits. This had the extremely unfortunate
+  effect of encouraging the standardization and proliferation of
+  various weak crypto algorithms in a wide range of consumer-facing
+  software in order to allow the international distribution of such
+  software. The proliferation of such ``export-grade'' cryptography
+  still comes back to bite us today -- many applications still contain
+  support for such algorithms, and that support makes those products
+  vulnerable to ``downgrade'' attacks that trick the software into
+  using this weak crypto. Recent vulnerabilities such as
+  FREAK~\cite{beurdouche2015} and Logjam~\cite{adrian2015} are based
+  on such attacks.} During this time, cryptographically secure systems
+were not readily available for use by individuals not associated with
+the aforementioned institutions.
 
 The availability of strong cryptography to the general public begin to
-change in the early 1990s with the release of
+increase in the early 1990s with the release of
 PGP~\cite{zimmermann-pgp10}. PGP quickly became the first widely
 distributed encryption software designed for use by ordinary
-individuals. It's Internet-based distribution also quickly drew the
-attention of US authorities who viewed it as a violation of the export
-control laws banning the export of cryptographic technology with key
-length beyond 40-bits. In defiance of such acquisitions, PGP's author
-published the entire source code of PGP as a book, the contents of
-which could be scanned and compiled by anyone with a
+individuals.\footnote{Although, as mentioned previously, the ability
+  of ``ordinary'' individuals to actually use PGP is highly
+  questionable\cite{whitten1999}.}  PGP's Internet-based distribution
+also quickly drew the attention of US authorities who viewed such
+publication as a violation of the export control laws banning the
+export of cryptographic technologies with key lengths exceeding
+40-bits. In defiance of such accusations, PGP's author published the
+entire source code of PGP as a traditional bound book, the contents of
+which could be scanned and compiled by anyone with a printed
 copy~\cite{zimmermann-pgpsource}. This publication forced a discussion
 of the First Amendment~\cite{us-constitution-amend1} issues associated
 with the distribution of computer source code. Such discussions,
 coupled with several court cases~\cite{ninthcir-bernstein,
-  sixthcir-junger} in favor of the protection of computer source code
-under the First Amendment, led to the US government rolling back
-(although not completely eliminating) most of the export control rules
-surrounding cryptography by the early 2000s~\cite{kehl2015}.
+  sixthcir-junger} in favor of the protection of the distribution
+computer source code under the First Amendment, led to the US
+government rolling back (although not completely eliminating) most of
+the export control rules surrounding cryptography by the early
+2000s~\cite{kehl2015}.
 
-During this same time, the government tried to standardize a
+During this same period, the government tried to standardize a
 backdoored encryption system known as the Clipper
 Chip~\cite{whitehouse-clipper}. The chip was designed to be embedded
 in systems where it would provide ``strong'' encryption via the
@@ -85,61 +158,64 @@ Slipjack algorithm while maintaining the government's ability to
 decrypt such encryption via the use of escrowed master keys. The
 Clipper Chip quickly feel into disfavor, however, when researchers
 demonstrated simple methods for bypassing its escrow
-mechanisms~\cite{blaze1994}. This was soon followed by discoveries of
-weaknesses in the Slipjack algorithm~\cite{biham1998}. The Clipper
-chip was never widely adopted at the government largely gave up on
-pushing backdoored encryption systems by the start of the 2000s.
+mechanisms~\cite{blaze1994}. The publication of such mechanisms was
+soon followed by discoveries of weaknesses in the Slipjack
+algorithm~\cite{biham1998}. Due to these flaws, and a general distrust
+of any system requiring the escrowing of encryption keys with the
+government, the Clipper chip was never widely adopted and the
+government largely gave up on pushing backdoored encryption systems by
+the start of the 2000s.
 
-After the failure of both the governments export control based
-regulations and their pushes for key escrow-based encryption standards
-in the 1990s, efforts to control and regulate cryptography were
-largely quote through the 2000s and early 2010s. But by the mid 2010s,
-however, such efforts again begin to pick up. The Edward Snowden
-revelations related to spying abuses by the US National Security
-Agency (NSA) in the early 2010s led to a rise in privacy awareness
-among the general populace~\cite{pew-privsec14}. This, in turn, led a
-push to increase is the sue of strong cryptography across a wide range
-of products, from websites~\cite{mozilla-deprecatehttp} to
-email~\cite{gmail-blog-encryption} to
+After the failure of both the government's export control based
+cryptography regulations and their push for key escrow-based
+encryption standards, efforts to control and regulate cryptography
+were largely quite through the 2000s and early 2010s. Recently,
+however, this has begun to change. The Edward Snowden revelations
+related to spying abuses by the US National Security Agency (NSA) in
+the early 2010s led to a rise in privacy awareness among the general
+populace~\cite{pew-privsec14}. This, in turn, led a push to increase
+the use of strong cryptography across a wide range of
+consumer-oriented products, from websites~\cite{mozilla-deprecatehttp}
+to email~\cite{gmail-blog-encryption} to
 smartphones~\cite{ars-ios-encrypt, ars-android-encrypt}. The
-associated increase is end-user use of cryptography has led to renewed
-calls by law enforcement agencies (most notably the US FBI) to mandate
-the use of breakable encryption in any scenario were the government
-can get a warrant to access the associated
-data~\cite{comey-testimony-encryption}. Such calls have culminated in
-the ongoing court battle between Apple and FBI over whether or not the
-FBI can use the All Writs Act~\cite{usc-allwrits} to compel Apple to
-modify the iPhone operating system to expedite the rate at which the
-FBI can guess the pass-code required to decrypt the
-phone~\cite{ars-cookvfbi}. Congress has also responded to such calls
-by suggesting legislation ranging from the formation of encryption
-``study'' committees~\cite{hr4651} to outright bans on the use of
-strong encryption~\cite{bennett-burrbill} to bans on such bans of
-encryption~\cite{hr4528}. How these court cases and legislative
-actions will play out remains to be seen.
+associated increase in end-user use of cryptography has led to renewed
+calls by law enforcement agencies around the world (including the US
+FBI~\cite{comey-testimony-encryption}) to mandate the use of breakable
+encryption in any scenario were a government feels they are justified
+in accessing the underlying data (e.g. when issues a probably cause
+warrant). Such calls have culminated in the ongoing court battle
+between Apple and FBI over whether or not the FBI can use the All
+Writs Act~\cite{usc-allwrits} to compel Apple to modify the iPhone
+operating system to expedite the rate at which the FBI can guess the
+pass-code required to decrypt a phone~\cite{ars-cookvfbi}. Congress
+has also responded to such calls by suggesting legislation ranging
+from the formation of encryption ``study'' committees~\cite{hr4651} to
+outright bans on the use of strong encryption~\cite{bennett-burrbill}
+to bans on such bans of encryption~\cite{hr4528}. How these court
+cases and legislative actions will play out remains to be seen.
 
 \subsection{A Defense of Cryptography}
 
 From the export-control bans of the first crypto wars~\cite{kehl2015}
-to the Apple v FBI crypto debate, whether or not strong cryptography
-should be available to the general public is a hotly debated
-topic. Should the government ever succeed in banning or strongly
-curtailing the development, distribution, or use of strong
+to the Apple v FBI crypto debate today, whether or not strong
+cryptography should be available to the general public is a hotly
+contested topic. Should the government ever succeed in banning or
+strongly curtailing the development, distribution, or use of strong
 cryptography, it will become substantially more difficult (if not
 impossible) to securely implement SSaaS-related ideas, and by proxy,
 the privacy and security enhancements SSaaS systems might
-provide. Indeed, any effort that curtails the use or access to strong
-cryptography is likely to damage the security of a wide range of digital
-systems.
+provide. Indeed, any effort that curtails the use of or access to
+strong cryptography is likely to damage the security of a wide range
+of digital systems.
 
 Government efforts to ban cryptography have been countered with a
-variety of legal and policy arguments. These arguments won out during
+variety of policy and legal arguments. These arguments won out during
 the efforts to regulate and ban cryptography during the
 1990s. Hopefully, they will win out again today.
 
 From a policy perspective, there are a variety arguments against
 efforts to ban or regulate various form of cryptography. They tend to
-fall along a two standard lines:
+fall along a three standard tracks:
 
 \begin{packed_desc}
 \item[More Harm Than Good] \hfill \\ As discussed in this document and
@@ -147,11 +223,11 @@ fall along a two standard lines:
   protecting the security and privacy of modern computing
   systems. Thus, any effort aimed at weakening cryptography for the
   purpose of minimizing its effectiveness to ``bad'' actors is just as
-  likelihood to minimizing its effectiveness to ``good'' actors that
-  rely on cryptography to protect their system and data. Indeed,
-  efforts to curtail the use of strong cryptography would severely
-  damage the security of financial, communication, and data storage
-  systems. Any backdoor available to the US government is an
+  likely to minimizing its effectiveness to ``good'' actors. And many
+  ``good'' actor rely on cryptography to protect their systems and
+  data. Efforts to curtail the use of strong cryptography would
+  severely damage the security of financial, communication, and data
+  storage systems. Any backdoor available to the US government is an
   additional point of failure that an attacker may use to compromise
   and access a system. Furthermore, any policy of providing the US
   government with special access to cryptographically protected data
@@ -161,60 +237,62 @@ fall along a two standard lines:
   China or North Korea -- weakening the security of US citizens abroad
   or anyone wishing to secure their selves and systems from
   potentially repressive regimes. Bans of cryptography thus trade the
-  security of a huge number of normal individuals for the insecurity
+  security of a large number of normal individuals for the insecurity
   of a small number of potentially bad actors -- and that's not a
   trade that's worth making.
 \item[Ineffectiveness] \hfill \\ Beyond the fact that bans on
-  cryptography are likely to cause more harm than good to society as a
-  whole, such bans are widely believed to be largely ineffective. Even
-  if the US manages to ban the use of cryptography, cryptographic
-  concepts are no longer a niche subject. There are hundreds
-  cryptographic products available worldwide, more of half of which
-  are developed and distributed outside o after Untied
-  States~\cite{schneier2016}. The Internet and modern commerce systems
-  make such products widely available to almost anyone. Thus, even if
-  the US manages to ban cryptography, those wishing to sue it will
-  just obtain cryptography related products elsewhere. Modern
-  cryptographic concepts are also widely understood and
-  taught~\cite{schneier2010crypto}. There are thus a wide variety of
-  individuals capable of creating cryptographic secure systems from
-  scratch.\footnote{Although it is not advisable for most individuals
-    to attempt to ``roll their own'' cryptography due to the
-    likelihood of mistakes and lack of formal vetting and review.} It
-  would not be difficult for organizations or individuals wishing to
-  employ even banned cryptography concepts to find someone to build
-  such systems for them.
+  cryptography are likely to cause more harm than good, such bans are
+  widely believed to be ineffective. Even if the US manages to ban the
+  use of cryptography, cryptographic concepts are no longer a niche
+  subject. There are hundreds cryptographic products available
+  worldwide, more than half of which are developed and distributed
+  outside of the Untied States~\cite{schneier2016}. The Internet and
+  modern commerce systems make such products widely available to
+  almost anyone. Thus, even if the US manages to ban cryptography,
+  those wishing to use it will just obtain cryptography-related
+  products elsewhere. Modern cryptographic concepts are also widely
+  understood and taught~\cite{schneier2010crypto}. There are thus a
+  wide variety of individuals capable of creating cryptographically
+  secure systems from scratch.\footnote{Although it is not advisable
+    for most individuals to attempt to ``roll their own'' cryptography
+    if they can avoid needing to do so. Such DIY low-level
+    cryptographic systems have a historically high likelihood of
+    mistakes due to the lack of formal vetting and widespread review.}
+  Thus, it would not be difficult for organizations or individuals
+  wishing to employ banned cryptography concepts to find someone
+  to build such systems for them.
 \item[Better Options] \hfill \\ Law enforcement organizations (LEOs)
-  often cute the ``going dark'' problem as the reason why
-  cryptographic restrictions are necessary. ``Going dark'' refer to
-  the idea that as the use of cryptography grows the ability to law
-  enforcement to monitor criminal activity and prevent or prosecute
-  crimes diminishes~\cite{anderson2013}. What this viewpoint fails to
-  acknowledge is the fact that this is the golden age of surveillance
-  - and law enforcement agencies have access to more data than they
-  ever have had before~\cite{swire2011}. Thus, even with the
-  widespread use of encryption, LEOs have more access to digital
-  criminal data than at any point in human history. As such, there are
-  number ways to combat crime without weakening encryption. Such
-  mechanisms may require more time and effort than the kind automated
-  digital surveillance subverted by the use of encryption, but such
-  time and effort is a necessary price to pay to ensure the balance
-  between privacy and security. Instead of weakening encryption, law
-  enforcement can focused on targeted investigations of specific
-  individuals, leveraging the large digital footprints even
-  cryptography-employing users leave behind. And even when using
-  cryptography, individuals are still prone to a wide range of
-  targeted attacks, from efforts to compromise individual systems, and
-  subvert any cryptography they may employ in the process to social
-  engineering Attucks that are historically very effective against
-  even cryptography employing adversaries. AT the end of the day,
-  there are numerous tools available to law enforcement to pursue
-  criminals. Weakening encryption need not be one of them.
+  often cite the ``going dark'' problem as the reason why
+  cryptographic restrictions are necessary. ``Going dark'' refers to
+  the idea that as the use of cryptography grows the ability of law
+  enforcement to monitor criminal activity for the purpose of
+  preventing or prosecuting crimes
+  diminishes~\cite{anderson2013}. What this viewpoint fails to
+  acknowledge is the fact that this is the golden age of surveillance:
+  law enforcement agencies have access to more data than they ever
+  have had before~\cite{swire2011}. Thus, even with the widespread use
+  of encryption, LEOs have more access to data about a potential
+  criminal than at any prior point in human history. As such, there
+  are a multitude of ways to combat crime without weakening
+  cryptography. Such mechanisms may require more time and effort than
+  the kind automated digital surveillance the use of cryptography
+  subverts, but such time and effort is a necessary price to pay to
+  ensure a proper balance between privacy and security. Instead of
+  weakening encryption, law enforcement can focus their efforts on
+  targeted investigations of specific individuals, leveraging the
+  large digital footprints even cryptography-employing users leave
+  behind. And even when using cryptography, individuals are still
+  prone to a wide range of targeted attacks, from efforts to
+  compromise individual systems, and subvert any cryptography they may
+  employ, to social engineering attacks that tend to be very effective
+  against even cryptography employing adversaries. There are numerous
+  tools available to law enforcement to pursue criminals. Weakening
+  encryption need not be one of them.
 \end{packed_desc}
 
-Beyond policy arguments against regulating or banning cryptography, there
-are also a number of legal arguments preventing such efforts. In
-particular, any effort to ban cryptography would raise series
+Beyond policy arguments against regulating or banning cryptography,
+there are also a number of legal arguments preventing such efforts. In
+particular, any effort to ban cryptography would raise serious
 constitutional questions, including:
 
 \begin{packed_desc}
@@ -233,54 +311,56 @@ constitutional questions, including:
   laws imposing such prior restraint~\cite{scotus-nearvminnesota},
   even in cases where national security my be
   impinged~\cite{scotus-nytvus}. Additionally, efforts to mandate the
-  inclusion of a backdoor in certain software are likely
+  inclusion of a backdoor in certain software are likely a form of
   unconstitutional compelled speech. Just as blocking the publication
   of source code interferes with the author's free speech rights,
-  mandating the author publish or included certain components in their
-  code is also a violation of their free speech
+  mandating an author publishes or includes certain components in
+  their code is also a violation of their free speech
   rights~\cite{scotus-wooleyvmaynard}. While there have been
-  exceptions to such interpretations, it's unlikely the broadness of
-  any general purpose cryptography limitations coupled with the likely
-  ineffectiveness of such rules would meet the kind of ``narrowly
+  exceptions to such interpretations, it is unlikely the broadness of
+  any general limits of cryptography, coupled with the traditional
+  ineffectiveness of such limits, would meet the kind of ``narrowly
   tailored speech limits in effective support of a legitimate
   government interest'' requirements such a law would have to overcome
-  to meet constitutional muster. Still open to debatable, however, is
+  to meet constitutional muster. Still open to debate, however, is
   whether or not first amendment protections are limited merely to the
   source code implementing encryption, or whether they apply to
-  executable binaries as well. If such protections are limited to raw
-  source code, it could effectively prevent the widespread use of
-  cryptography to those capable of acquiring and building source
-  code. Such an outcome would have a detrimental impact on the general
-  lay populace not generally capable of such actions.
+  executable binaries built form such code as well. If such
+  protections are limited to raw source code, it could effectively
+  prevent the widespread use of cryptography to those capable of
+  acquiring and building source code. Such an outcome would have a
+  detrimental impact on the general populace who often lack the
+  ability to perform such actions.
 \item[2\textsuperscript{nd} Amendment] \hfill \\ One of the more
   creative constitutional defenses of cryptography~\cite{xkcd-504}
-  comes via the 2\textsuperscript{nd} Amendment - granting citizens
-  the right to ``keep and bear
-  arms''~\cite{us-constitution-amend2}. The idea is that since the
-  government already has a history of considering cryptography to be a
-  weapon, then the second amendment should be used to protect the
-  rights of citizens to poses and use cryptography. This theory has
-  never been tested in a court, but its not entirely unreasonable to
-  believe that cryptography is a necessary component of maintaining a
-  ``well regulated militia'' today, and thus should be protected by
-  the 2\textsuperscript{nd} Amendment~\cite{scotus-usvmiller-guns}. It
-  is also not unreasonable to assume that if the Constitution were
-  being written today, cryptography would seem a much more natural fit
-  for protection via something like the second amendment then
-  firearms. Whether or not this argument will pass judicial scrutiny
-  remains to be seen. And even if it does, 2\textsuperscript{nd}
-  Amendment are likely to guarantee a weaker set of rights than
-  1\textsuperscript{st} Amendment protections since the
-  2\textsuperscript{nd} Amendment only protects the right to ``keep
-  and bear'' cryptography, where as the first amendment also protects
-  its distribution. It may be possible, however, to take a split
-  approach to protecting cryptography where things like cryptographic
-  source code and research are protected via the 1\textsuperscript{st}
-  Amendment whereas binary programs or hardware employing cryptography
+  comes via the 2\textsuperscript{nd} Amendment granting citizens the
+  right to ``keep and bear arms''~\cite{us-constitution-amend2}. The
+  idea is that since the government already has a history of
+  considering cryptography to be a weapon, then the second amendment
+  should be used to protect the rights of citizens to posses and use
+  cryptography. This theory has never been tested in a court, but it
+  is not entirely unreasonable to believe that cryptography is a
+  necessary component of maintaining a ``well regulated militia''
+  today, and thus should be protected by the 2\textsuperscript{nd}
+  Amendment~\cite{scotus-usvmiller-guns}. It is also not unreasonable
+  to assume that if the Constitution were being written today,
+  cryptography would seem a much more natural fit for protection via
+  something like the second amendment then firearms. Whether or not
+  this argument will pass judicial scrutiny remains to be seen. And
+  even if it does, the 2\textsuperscript{nd} Amendment is likely to
+  guarantee a weaker set of rights than 1\textsuperscript{st}
+  Amendment protections since the 2\textsuperscript{nd} Amendment only
+  protects the right to ``keep and bear'' cryptography, where as the
+  1\textsuperscript{st} Amendment also protects the right to
+  distribute cryptography. It may be possible, however, to take a
+  split approach to protecting cryptography where cryptographic source
+  code and research are protected via the 1\textsuperscript{st}
+  Amendment while binary programs or hardware employing cryptography
   are protected via the 2\textsuperscript{nd} Amendment -- similar in
-  mechanism to how the 1\textsuperscript{st} would protect the
-  publication of a design of a firearm while the 2\textsuperscript{nd}
-  Amendment would protect the possession of the firearm itself.
+  mechanism to how the 1\textsuperscript{st} Amendment would protect
+  the publication of a design of a firearm while the
+  2\textsuperscript{nd} Amendment would protect the possession of the
+  firearm itself.
 \item[4\textsuperscript{th} Amendment] \hfill \\ Many law enforcement
   agencies cite the importance of being able to access information for
   which they have secured probable cause warrant as their reason for
@@ -288,34 +368,33 @@ constitutional questions, including:
   ability of cryptography to render such lawfully obtained warrants
   useless. Whether or not the 4\textsuperscript{th}
   Amendment~\cite{us-constitution-amend4} can be used to compel a
-  cryptography provider to decrypt communications in order to comply
-  with a valid warrant remains to be seen. Traditional interpretations
-  (including the much malign Third Party
-  Doctrine~\cite{thompson-thirdparty}) hold that if a third party
-  holds the key necessary to decrypt a user's communication, then they
-  can be compelled to provide it to the government -- often without
-  even requiring a probable cause warrant at all. But what about cases
-  where the third party lacks any ability to decrypt the data? Can
-  they still be forced to aid the government in serving a valid
-  warrant?  The answer to this question probably hinges on the
-  ``reasonableness'' of such a request. The ongoing Apple v. FBI
-  litigation may help shed some light on this question. At it's heart,
-  it would seem that cryptography provides the ultimate tool for
-  protecting an individual's 4\textsuperscript{th} Amendment rights -
-  since such technology helps ensure that individual remain ``secure
-  in their persons, houses, papers, and effects''. But how best to
-  reconcile this protection with a valid ``probable cause'' warrant
-  remains is a matter of great debate. And ultimately, especially in
-  cases where only the end user posses the information necessary to
-  decrypt communication, the answer to this question may have more
-  bearing on the 5\textsuperscript{th} Amendment than the
-  4\textsuperscript{th}. And it seems unlikely that the need to serve
-  a 4\textsuperscript{th} Amendment warrant would ever justify the
-  potential violations of the 1\textsuperscript{st} and
-  2\textsuperscript{nd} Amendments that any general ban on the use of
-  cryptography would entail.
+  service provider to decrypt data in order to comply with a valid
+  warrant remains to be seen. Traditional interpretations (including
+  the much maligned Third Party Doctrine~\cite{thompson-thirdparty})
+  hold that if a third party holds the key necessary to decrypt a
+  user's data (or the data itself), then they can be compelled to
+  provide it to the government -- often without requiring a probable
+  cause warrant at all. But what about cases where the third party
+  lacks any ability to decrypt the data? Can they still be forced to
+  aid the government in serving a valid warrant?  The answer to this
+  question probably hinges on the ``reasonableness'' of such a
+  request. The ongoing Apple v. FBI litigation may help shed some
+  light on this question. At its heart, it would seem that
+  cryptography provides the ultimate tool for protecting an
+  individual's 4\textsuperscript{th} Amendment rights - since such
+  technology helps ensure that individuals remain ``secure in their
+  persons, houses, papers, and effects''. But how best to reconcile
+  this protection with a valid ``probable cause'' warrant remains a
+  matter of debate. And ultimately, as in cases where only the end
+  user posses the information necessary to decrypt communication, the
+  answer to this question may have more bearing on the
+  5\textsuperscript{th} Amendment than the 4\textsuperscript{th}.  It
+  also seems unlikely that the need to serve a 4\textsuperscript{th}
+  Amendment warrant would ever justify the potential violations of the
+  1\textsuperscript{st} and 2\textsuperscript{nd} Amendments that any
+  general ban on the use of cryptography would entail.
 \item[5\textsuperscript{th} Amendment] \hfill \\ Assuming the
-  1\textsuperscript{st} and 2\textsuperscript{nd} amendments can
+  1\textsuperscript{st} and 2\textsuperscript{nd} Amendments can
   protects an individuals right to distribute, posses, and use
   cryptography, then it falls on the 5\textsuperscript{th} Amendment
   to protect an individuals right not to be forced to disclose the
@@ -324,19 +403,19 @@ constitutional questions, including:
   to protect individuals against compelled testimony -- which should
   include being forced to provide a memorized pass-code or password
   necessary to decrypt a piece of information.\footnote{If the user
-    has written down there password, however, or locked their phone
-    with a fingerprint, 5\textsuperscript{th} Amendment protections no
-    longer apply since the evidence is then physical, not
-    testimonial.}  Courts, however, are currently split on whether or
-  not the 5\textsuperscript{th} Amendment protects individuals from
-  being forced to provide decryption assistance~\cite{usvboucher,
+    has written down their password or locked their phone with a
+    fingerprint, 5\textsuperscript{th} Amendment protections no longer
+    apply since the evidence is then physical, not testimonial.}
+  Courts, however, are currently split on whether or not the
+  5\textsuperscript{th} Amendment protects individuals from being
+  forced to provide decryption assistance~\cite{usvboucher,
     commonwealthvgelfgatt, usvdoe}. Further complicating matters,
   certain types of cryptography can be designed to decrypt a
   ciphertext to different plaintexts depending on the password or key
   provided. Thus, it is possible that an individual could provide one
   password to decrypt a file to a picture of a cat and another
   password to decrypt a file to a plan for robbing a bank. Additional
-  password could provide yet additional contents. In such an
+  passwords could provide additional alternative contents. In such an
   arrangement, there is no reliable way to know how many different
   plaintexts are hidden within a given ciphertext. Thus, even if the
   government does succeed in compelling an individual to ``decrypt''
@@ -344,9 +423,9 @@ constitutional questions, including:
   with a set of files other than the ones they were seeking. And it
   seems unlikely any court would allow the government to continue
   compelling a suspect to provide new pass-phrases until they happened
-  to get a decrypted set of tiles that factored their case, especially
-  since it's possible no such files exist at all. The
-  5\textsuperscript{th} Amendment has historically protect the
+  to get a decrypted set of files that favored their case, especially
+  since it is possible no such files exist at all. The
+  5\textsuperscript{th} Amendment has historically protected the
   contents of an individuals mind. Cryptography allows an individual
   to expand the contents of their mind by leveraging a small piece of
   memorized information (i.e. a pass-code or praise) to protect much
@@ -357,199 +436,176 @@ constitutional questions, including:
     direct implication on the potential future world where human
     brains are technologically upgradeable. Indeed, there is likely
     little functional difference between using a cryptographically
-    protected hard drive couple with a memorize pass-code to expand
-    one ``memory'' and installing a bio-mimicking computer chip that
-    expands one memory. In a world were you have the technology to
-    upgrade the the amount of data you can store (and potentially
-    where the government has the technology to ``mind-read'' by
-    downloading such data), does the 5\textsuperscript{th} Amendment
-    still protect the contents of one's mind? While such questions
-    remain largely academic today, it may not be long before courts
-    are being asked to decide such questions.}
+    protected hard drive coupled with a memorized pass-code to expand
+    one's ``memory'' and installing a brain-linked computer chip that
+    expands one's memory. In a world were you have the technology to
+    upgrade the the amount of data your mind can store (and
+    potentially where the government has the technology to
+    ``mind-read'' by downloading such data), does the
+    5\textsuperscript{th} Amendment still protect the contents of
+    one's mind? While such questions remain largely academic today, it
+    may not be long before courts are being asked to rule on them.}
 \end{packed_desc}
 
 There are clear policy reasons to avoid curtailing or discouraging the
-use of cryptography, as well as clear legal hurtles to doing
-so. Hopefully cryptography remains widely and freely available to all,
+use of cryptography, as well as clear legal hurtles to doing so. It is
+critical that cryptography remains widely and freely available to all,
 since any reduction in access to cryptography would have severe
 consequence on a range of security enhancing and privacy preserving
-technologies -- including on the ideas proposed in this document.
+technologies. This included on the SSaaS ideas proposed in this
+document.
 
-\subsection{Cryptography Regulation and SSaaS}
-
-The debate surrounding the regulation of cryptography interacts with
-the the secret storage as a service (SSaaS) ideas proposed in this
-document is several ways. First, and most obviously, any general
-restrictions on the use of cryptography would make it difficult or
-impossible to implement SSaaS software such as Custos
-(Chapter~\ref{chap:custos}) and Tutamen
-(Chap~\ref{chap:tutamen}). Indeed, both system rely on the security of
-both the public Certificate Authority (CA) system as well as on the
-ability to leverage a range of strong cryptography algorithms and
-libraries. Any regulation that reduces the security of the CA system
-(e.g. by forcing CAs to escrow copies of their signing keys with the
-government) or that restrictions access to cryptographic libraries
-(e.g. OpenSSL~\cite{openssl}) will reduce the security of the proposes
-SSaaS ideas and implementations. But such harm is not unique to the
-SSaaS ideas and software -- indeed a wide range of products and
-systems will be detrimentally harmed by any restrictions on the use or
-distribution of cryptography.
-
-One of the policy questions underlying the SSaaS ecosystem is that of
-how the system might be treated (or avoid be treated) as a key escrow
-system. As discussed in Chapter~\ref{chap:related}, the SSaaS idea,
-especially when used to store cryptographic keys, looks a bit like
-previously proposed key escrow systems. It is thus tempting to suggest
-that the SSaaS model may in fact provide a potential solution to the
-ongoing encryption debate by providing a standardized mechanism for
-escrowing keys. E.g. in the multi-SSP use case, the government could
-require that a user leverage one or more government-controlled SSPs,
-such that the government could recover any user's encryption key
-should they so require. Clearly, this is not the intended usage of the
-SSaaS ecosystem, but it one that is likely to appeal to those who
-believe in the government's absolute right to access any data
-(encrypted or otherwise) with a warrant.
-
-% Todo: rearrange this chapter/section
+\section{Privacy of SSP-Stored Data}
 
 Secret Storage providers (SSPs) are likely to be appealing targets for
-both legal and extralegal introspection. whether such services are
-storing encryption keys for user data or raw user secrets, it is
-likely they will be the target of a range of government information
-requests. This fact suggests a number of policy-related questions and
-potential solutions. If we start with the premise that in order for
-the SSaaS ecosystem to flourish, users must enjoy at least a modicum
-of privacy protections for the secrets they store with the SSP, then
-the next questions becomes what policy initiatives are necessary to
-maximize a privacy of SSP-stored data.
+both legal and extralegal introspection. Whether such services are
+storing encryption keys for user data or raw user secrets, they will
+be the target of a range of government information requests, criminal
+hacking attempts, and general malfeasance. This fact suggests a number
+of policy-related questions and potential solutions. As stated
+previously, in order for the SSaaS ecosystem to flourish, users must
+enjoy at least a modicum of privacy protections for the secrets they
+store with the SSP. What policy initiatives are necessary to maximize
+the privacy of SSP-stored data?
 
-Since Secret Storage Providers are most likely to be operated by third
-parties (as opposed to operated by the individual requiring secret
-storage services). As such, they are likely to be subject to the third
-party doctrine~\cite{thompson-thirdparty}. This doctrine holds that
+\subsection{Third Party Privacy}
+
+SSP servers are most likely to be operated by third parties (as
+opposed to operated by the individual requiring secret storage
+services). As such, they are likely to be subject to the third party
+doctrine~\cite{thompson-thirdparty}. This doctrine holds that
 individuals who voluntarily store their data with third parties have
 no reasonable expectation of privacy~\cite{scotus-katzvus} for such
-data. While such a decision may have made since in the mid 20th
+data. While such a viewpoint may have made since in the mid 20th
 century when it was established via a series of Supreme Court
 rulings~\cite{scotus-usvmiller-privacy, scotus-smithvmaryland}, it
 does not translate well to a world where storing data online is the
-norm. Before any US-based SSP can be trusted to securing user data, it
-is necessary for the third party doctrine to be abolished. Users
-should have a reasonable expectation of privacy for any data they
-store online, just as they would for any data stored on a hard drive
-at their home. Fortunately there is movement toward the abolition of
-the third party doctrine. On the judicial front, the Supreme Court has
+norm.
+
+Before any US-based SSP can be trusted to securing user data, it is
+necessary for the third party doctrine to be abolished. Users should
+have a reasonable expectation of privacy for any data they store
+online, just as they would for any data stored on a hard drive at
+their home. Fortunately there is movement toward the abolition of the
+third party doctrine. On the judicial front, the Supreme Court has
 suggested that it may be time to reevaluate the
 principle~\cite{scotus-usvjones}. Congress also seems interested in
 reevaluating the statue, making progress toward efforts such as
 reforming the Electronic Communications Privacy Act (ECPA)~\cite{ecpa}
-to include a warrant requirement for digitally stored emails and
-related data~\cite{eff-ecpareform}. The abolition of the third party
-doctrine and the establishment of traditional due process rights for
-digital data, even when stored with third parties, is a necessary step
-toward developing a healthy and trustworthy SSaaS ecosystem.
+to include a warrant requirement for digitally stored
+emails~\cite{eff-ecpareform}.
 
-The next step toward encouraging the trustworthy and secure SSPs is
-the establishment of liability for the loss of digital secrets stored
-with a third party in good faith. If a SSP is breached, causing the
-exposure of stored user secrets, the user should be able to hold the
-SSP liable for the breach and seek relief form the SSP for any damage
-that results due to the leak. That nature of this liability could take
-several forms. The most obvious form would be to impose civil
-liability commensurate with the value of any exposed secrets on the
-party responsible for the secure storage of such secrets. This opens
-up the thorny issue of how to value the loss of a secret since some
-secrets may be worth very little (e.g. an encryption key protecting a
-set of not particularly sensitive family vacation photos) while other
-could be wroth quite a lot (e.g. an encryption key protecting a trade
-secret or other sensitive material). One way to overcome the valuation
-challenge would be to have users declare the value of their secrets
-when they are stored, similar to the manner in which one might declare
-the value of a parcel when shipping it for the purpose of securing
-insurance. Given such a delectation, the SSP could charge a user
-varying amounts: more ``valuable'' secrets should cost more to store,
-while less ``valuable'' secrets cost less. Damages in the event that a
-secret is loss could then be calculated as a multiple of this
-value. In cases where the loss results due to an unforeseeable event
-or otherwise through no fault of the SSP, the user would be reimbursed
-the declared value of the secret (or potentially some fraction of
-it). In the case where a secret is lost due to SSP negligence, the
-user would be reimbursed several multiples of the secret value. As
-mentioned in Chapter~\ref{chap:ssaas}, each SSP would likely be
+The abolition of the third party doctrine and the establishment of
+traditional due process rights for digital data, even when stored with
+third parties, is a necessary step toward developing a healthy and
+trustworthy SSaaS ecosystem. Similar protections must be granted world
+wide. Data stored via an SSP, regardless of jurisdiction, must be
+respected just as data stored on a user themselves or in a safe in
+their home.
+
+\subsection{Privacy Breach Liability}
+
+Beyond the need to treat SSP-stored data with the same privacy
+protections as personally stored data lies the need to hold SSPs
+liable for data breaches. If a SSP is breached and user secrets
+exposed, the user should be able to hold the SSP liable and to seek
+relief from the SSP for any damage that results. Such a liable would
+follow the growing trend toward liability for digital data breaches
+and poor user security practices (e.g.~\cite{ftc-asus}).
+
+The nature of this liability could take several forms. The most
+obvious form would be to impose civil liability commensurate with the
+value of any exposed secrets on the party responsible for the secure
+storage of such secrets. This opens up the thorny issue of how to
+value the loss of a secret since some secrets may be worth very little
+(e.g. an encryption key protecting a set of not particularly sensitive
+family vacation photos) while others could be wroth quite a lot
+(e.g. an encryption key protecting a trade secret or other sensitive
+material). One way to overcome the valuation challenge would be to
+have users declare the value of their secrets when they are stored,
+similar to the manner in which one might declare the value of a parcel
+when shipping it for the purpose of securing insurance. Given such a
+declaration, the SSP could charge a user varying amounts: more
+``valuable'' secrets should cost more to store, while less
+``valuable'' secrets cost less. Damages in the event that a secret is
+loss could then be calculated as a multiple of this value. In cases
+where the loss results due to an unforeseeable event or otherwise
+through no fault of the SSP, the user would be reimbursed the declared
+value of the secret (or potentially some fraction of it). In the case
+where a secret is lost due to SSP negligence, malpractice, or
+malfeasance, the user would be reimbursed several multiples of the
+secret value.
+
+As mentioned in Chapter~\ref{chap:ssaas}, each SSP would likely be
 required to secure insurance to cover the cost of such liability
 payouts in the event that a breach occurs. These insurers, in turn,
 would charge each SSP an insurance fee on the basis of how ``secure''
-(or the inverse: how ``risky'') an SSPs storage practice are. Indeed,
+(or the inverse: how ``risky'') an SSP's storage practice are. Indeed,
 it is even possible that the government itself might act as such an
 insurer (or underwriter), as they currently do with banks via the
-Federal Deposit Insurance Corporation (FDIC)~\cite{fdic}. Establishing
-a standard system and expectation of secret breach liability will help
-to incentive security best practices and will provide users with a
-measure of relief in the event that their secrets are leaked,
-increasing adoption of the SSaaS ecosystem.
+Federal Deposit Insurance Corporation (FDIC)~\cite{fdic}. The need to
+acquire insurance to cover an SSP's liabilities will also impose a
+natural limit on the size of any single SSP. Once an SSP's liability
+grows beyond the size for which it find insurance, it would be forced
+to stop accepting new customers (or more properly, new secrets). Such
+a natural limit of the size and power of any single SSP is a healthy
+property of a SSaaS ecosystem since it would encourage the competition
+of a multitude of SSPs and would encourage users to shard their
+secrets across multiple SSPs to minimize risk. Continuing the FDIC
+analogy, this limit is similar to the \$250,000 per-account FDIC
+liability limit which is designed to encourage user to spread their
+money across multiple accounts held with multiple institutions,
+limiting the trust placed in any single institutions.
+
+The establishment of as civil liability for SSPs might also have
+benefits in the ongoing ``forced decryption'' and key escrow
+debates. The very nature of the SSaaS ecosystem likely makes it an
+appealing model for those wishing to impose key escrow requirements
+(see Key Escrow discussion in Chapter~\ref{chap:background}). Should
+an SSaaS ecosystem become a standard means of storing secrets such as
+user encryption keys, it is not inconceivable that the government
+might wish to pass a requirement that a user escrow a copy of all of
+their secrets with a government-controlled SSP for use in the event
+that the government wishes to access a user's encrypted data. As
+previously discussed, such a practice has a number of flaws and would
+be bad public policy. Nonetheless, should the government wish to
+pursue such a policy, having an established system of civil liability
+for the loss user secret data would be useful. If such a system were
+crafted to avoid exempting government-controlled SSPs from civil
+liability requirements\footnote{Although the government does have a
+  habit of exempting itself from such requirements, so establishing
+  government liability for SSP-related data loss may be challenging.},
+it could help minimize the number of keys the government chooses to
+escrow. Indeed, such a system would impose a huge liability risk on
+the government SSP as a concentrated holder of many secrets. This
+liability risk attaches a real monetary value to the kinds of
+existential escrow-related risks raised by security
+professional~\cite{abelson2015}. Making such fears concrete encourages
+the government to rethink the wisdom of such a system in the first
+place. If the government can not afford to reimburse the range of
+companies and individuals who would suffer damage in the event that a
+government-controlled SSP were breached, they would be unable to
+operate such an SSP in the first place.
 
 Beyond civil liability, its also possible that it would be appropriate
 to establish some degree of criminal liability for malpracticing or
-negligent SSPs. Such liability cold mirror existing criminal
+negligent SSPs. Such liability could mirror existing criminal
 malpractice and negligence laws such as those imposed on doctors,
 contractors, and engineers. Such criminal liability would allow the
 prosecution of particularly bad SSP operators and help to ensure that
 the SSP market remains relatively safe for consumers wishing to
 utilize the SSaaS ecosystem.
 
-The establishment of as least civil liability for SSPs might also have
-benefits in the ongoing ``forced decryption'' and key escrow
-debates. The very nature of the SSaaS ecosystem likely makes it an
-appealing model for those wishing to impose key escrow
-requirements. Should an SSaaS ecosystem become a standard means of
-storing secrets such as user encryption keys, it is not inconceivable
-that the government might wish to pass a requirement that a user
-escrow a copy of all of their secrets with a government-controlled SSP
-for use in th event that the government must serve a valid warrant on
-a user's encrypted data. As previously discussed, such a practice has
-a number of flaws and would be bad public policy. None the less,
-should the government wish to pursue such a policy, having an
-established system of civil liability for the loss user secret data
-would be useful. If such a system were crafted to avoid exempting
-government-controlled SSPs from civil liability
-requirements\footnote{Although the government does have a habit of
-  exempting itself from such requirements, so establishing government
-  liability for SSP-related data loss may be challenging.}, it could
-help minimize the number of keys the government chooses to
-escrow. Indeed, such a system would impose a huge liability risk on
-the government SSP, potentially causing the government to rethink the
-wisdom of such a system in the first place. If the government can not
-afford to reimburse the range of American companies and individuals
-who would suffer damage in the event that a government-controlled SSP
-were breached, they would be unable to operate in the first place. The
-more general form of this argument is that any civil liability remain
-will place strict limits on the size of any single SSP. Once an SSP
-grows beyond the size for which it find an insurer to voter its
-liability risk, it would be forced to stop accepting new
-customers. Such a natural limit of the size and power of any single
-SSP is a healthy property of a SSaaS ecosystem since it would
-encourage the competition of a multitude of SSPs and would force users
-to shard their secrets across multiple SSPs to minimize risk.
+Regardless of mechanism, establishing a standard system and
+expectation of secret breach liability will help to incentive security
+best practices. It will provide users with a measure of relief in the
+event that their secrets are leaked, increasing adoption of the SSaaS
+ecosystem.
 
-% Third Party Doctrine
-% SSP Insurance
-%%% Establish liability
-% Jurisdictional hacks
+\section{Openness and Transparency}
 
-\section{Law Enforcement}
-\label{chap:policy:leo}
-
-+ Exceptional Access
-+ Rights to Privacy
-+ Multi jurisdictional challenges
-
-\section{Secret Storage Providers}
-\label{chap:policy:ssp}
-
-+ Data Sharing
-+ Liability/Insurance
-+ Standards
+\section{Use of Multiple SSPs}
 
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo
-%%  LocalWords:  ECPA
+%%  LocalWords:  ECPA SSP's Custos DIY

@@ -720,6 +720,100 @@ additional SSaaS strains, creating this desirable level of diversity.
 
 \section{Use of Multiple SSPs}
 
+While openness and transparency provide tools for reducing the trust
+that users must place in SSaaS software and the ecosystem in general,
+reducing trust in individual SSPs is best accomplished by sharding
+user data across multiple SSPs. As discussed in
+Chapter~\ref{chap:trust}, such sharding allows the user to distribute
+their secrets in a manner such that no single SSP can derive any
+meaningful information from the shard of the secret they hold. Since
+sharding data across SSPs reduces the risk each individual SSP can
+pose to a user, it is desirable to the healthy of the SSaaS ecosystem
+to have policies which encourage such sharding. In order to accomplish
+this goal, it is useful to consider the concept of secret sharding
+from three main angles: limits regulators might impose on the
+technology underlying and act of sharding, how SSP liability and
+insurance relates sharded secrets, and the jurisdictional issues that
+sharding a secret across multiple SSPs might raise.
+
+\subsection{Limits on Data Sharding}
+
+Similar to the previously discussed issues associated with limiting
+the use of cryptography, any effort to limit or restrict a user's
+ability to shard their secrets across multiple SSPs must be avoided in
+order to ensure a healthy SSaaS ecosystem. There a number of reasons
+regulators might attempt to limit such sharding. Foremost among these
+reasons are that the algorithms underlying data sharding
+(e.g. Shamir's~\cite{shamir1979}) might be interpreted as a form of
+cryptography, with all the regulator baggage that may entail, and that
+sharding data across multiple SSPs might violate various data
+localization laws.
+
+On the first point, whether or not secret sharding schemes would be
+classified as ``cryptography'' for the purpose of cryptography-related
+regulations is an open question. Existing US export control rules
+governing cryptography do not contain a specific definition of what
+consist a ``cryptographic'' system~\cite{bis-encrypted}. And a
+traditional view of cryptography as a means for scrambling information
+via a key doesn't necessarily apply to secret sharding systems since
+such system include no key and aren't really ``scrambling''
+information so much as selectively splitting it into multiple partial
+copies with special properties.\footnote{In fact, secret sharing
+  schemes are in a distinct class of algorithms than traditional
+  cryptography schemes. Whereas traditional cryptography derives its
+  strength from assumptions about the amount of computing power an
+  adversary can bring to bear solving certain kinds of math problems
+  (conditional security), secret sharing system derive their security
+  from fundamental properties of information theory, and remain secure
+  regardless of the amount of computational power an adversary posses
+  (unconditional security).} Thus, it is possible that efforts to
+limit the use of cryptography in general might not actually apply to
+secret sharing schemes. Any effort to limit the use of secret sharding
+schemes, just like any effort to limit the use of other forms of
+``cryptography'', will prove detrimental to the SSaaS ecosystem. As
+stated previously, ideally regulators will avoid trying to limit the
+use of cryptography at all. Short of that, avoiding the classification
+of secret strong schemes as cryptography for the purpose of
+cryptography-related regulations is a desirable outcome science it
+avoids sweeping such schemes into any limits imposed on more
+traditional forms of cryptography.
+
+On the second point, it is likely that laws aimed toward at mandating
+the storage of data in a local jurisdiction will harm a user's ability
+to effectively shard their secrets across multiple providers. Such
+laws are generally presented as privacy-enhancing measures aimed at
+ensuring third parties that store user data are subject to the laws of
+the jurisdiction in which the user resides. In reality, however, such
+laws are often used to maintaining less pure government-access
+capabilities to user data (e.g.~\cite{dergacheva2015}). This is bad
+for the SSaaS ecosystem for two reasons. First, any reduction in the
+number of SSPs available for a user to chose from weakens the
+competition-driven incentives of the SSaaS ecosystem. Limiting a user
+to only storing data with local SSPs, or forcing SSPs to store data
+for a user is a specific jurisdiction, limits the number of SSPs to
+which a user has access.  Access to fewer SSPs means a smaller market
+with less competition and thus a higher likelihood of poorly or
+maliciously operated SSPs. Second, protecting user secrets from overly
+intrusive government intersection is one of the roles of the SSaaS
+model. Thus, any effort to limit a user's access to SSPs outside of
+the jurisdiction in which theory reside will subvert one of the
+potential SSaaS benefits. This idea is discussed further in
+Section~\ref{chap:policy:trust:jurisdiction}.
+
+In all cases, regulators should avoid polices what would decrease a
+user's access secret sharding technology or that would limit the
+number or diversity of secret storage providers to which a user has
+access. Avoiding both regulations aimed at suppressing access to
+secret sharing cryptography schemes and regulations encouraging the
+``Balkanisation'' of the Internet into locally-controlled
+sub-domains~\cite{lee2014} is necessary for encouraging a health SSaaS
+ecosystem.
+
+\subsection{Liability and Insurance}
+
+\subsection{Jurisdictional Issues}
+\label{chap:policy:trust:jurisdiction}
+
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo
-%%  LocalWords:  ECPA SSP's Custos DIY GitHub
+%%  LocalWords:  ECPA SSP's Custos DIY GitHub Shamir's Balkanisation

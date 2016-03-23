@@ -894,6 +894,103 @@ providers, increasing user security while reading SSP trust and cost.
 \subsection{Jurisdictional Issues}
 \label{chap:policy:trust:jurisdiction}
 
+The final policy component implicit to the sharding of secrets across
+multiple SSPs is that of the multi-jurisdictional issues such sharding
+might raise. If a user limits their sharding of secrets to SSPs
+located within a single domain, jurisdictional issue of not
+present. But it is possible (and, as mentioned previously, desirable)
+for a user to shard their secret across a range of multi-national
+SSPs. Such sharding both helps to insulate the user against privacy
+failures implicit to any single jurisdiction (e.g. spying by
+oppressive governments) and ensures the user has access to the widest
+possible diversity of SSPs, increasing the likelihood that market
+forces can help maximize SSP trustworthiness.
+
+How regulators might view the sharding of secrets across multiple
+domains is debatable. On one hand, such sharding is likely to subvert
+legitimate efforts by foments to access stored user data (for example,
+access granted via a probable cause warrant) due to the need to
+enforce such access request across multiple jurisdictions. This is
+likely to frustrate regulators. On the other hand, multi-national
+secret sharding has clear benefits for end user security and the
+availability of user data by minimizing the kind of privacy failure
+risks that tend to be jurisdiction septic (e.g. a countries main
+Internet up-link failing, or the overthrow of a legitimate government
+by an illegitimate one). Such challenges are not necessarily unique to
+multi-jurisdictional secret sharding. Activities such as
+Internet-based gambling have long leveraged conflicts between varying
+jurisdictional laws to operate in a legal gray
+area~\cite{miller2006}. Additional jurisdictional arbitrage efforts
+range from seasteading~\cite{balloun2012} to corporate
+law~\cite{kocaoglu2008}.
+
+Law enforcement organizations (LEOs) wishing to legally reconstitute a
+multinationally sharded secret face an uphill battle. First, such
+actors would have to employ one of the variety of mechanisms designed
+to aid law enforcement in recovering evidence across national
+borders. Such mechanism often consists of mutual legal assistance
+treaties (MLATs) laying out a framework for how LEOs in one country
+can request the assistance of LEOs in another
+country~\cite{stigall2013, walden2011}. Such efforts, however, tend to
+be slow and burdensome. Multiply such effort by the number of shards a
+user might have, each stored with an SSP in a different country, and
+it becomes increasingly difficult to legally obtain the necessary
+shards to reconstitute a secret~\cite{kent2015}. Furthermore, there
+are some countries that may lack MLATs all together, or that even lack
+the kind of centralized government and rule of law necessary to make
+an MLAT enforceable. Thus sharding secrets across multiple
+multinational SSPs imposes a significant burden upon anyone wishing to
+compel such companies to provide their shards of the secret.
+
+While this arrangement may appear as a bug to those wishing to enforce
+lawful data requests, it is probably a feature to those wishing to
+avoid such requests. Indeed, and as mentioned in
+Chapter~\ref{chap:trust}, it is likely that certain SSPs would
+specifically market their resistance to compelled legal orders as a
+reason why users should select them as an SSP. In fact, SSPs might
+even encourage a form of international regulatory competition where
+countries strive to pass more stringent privacy protects in order to
+attract SSPs and the business they might generate. Such an outcome is
+likely good for users on the whole since competition between
+governments is likely to lead to better privacy-related laws for all
+users. And given the range of legal abuses practiced by governments
+around the world, the ability to leverage a multinational network of
+SSPs to gain more favorable privacy protections is a desirable
+capability.
+
+But regardless of benefit, it is likely that the multinational SSP
+sharding will be used to subvert certain wholly legitimate
+infestations. One way to counter this might be pursue efforts to
+streamline and expedite existing MLAT
+processes~\cite{nojeim2015}. Indeed, given the automated nature of the
+SSP ecosystem, it is likely that certain MLAT-related functions could
+be automated for the benefit of those placing lawful data
+requests. But even with such efforts, it is unlikely that all SSPs
+will ever be subject to a single set of legal obligations and
+requirements, ensuring that some degree of jurisdictional arbitrage
+always remains possible. These issues are not unique to the SSaaS
+ecosystem. They effect a wide range of digital services and thus
+likely demand more general solution than the SSaaS ecosystem itself
+can provide. Furthermore, it is useful to provide LEOs with
+satisfactory methods for securing lawful access to user, lest they
+become discouraged and instead seek to enforce even Monroe detrimental
+data localization laws that ban the storage of data aboard all
+together~\cite{whitehouse2013}. Like cryptography, any effort to
+guarantee lawful access to sharded data that reduces a user's ability
+to shard their data in the first place is likely to cause more harm
+than good. For every criminal multinational SSP sharding protects,
+there will be a multitude of everyday users, dissidents, and other
+good faith actors that the inability to leverage such practices would
+harm.
+
+Multinational SSP sharding thus represents yet another level of trust
+mitigation. Sharding secrets between SSPs allows the user to reduce
+trust in any single SSP. Sharding secrets between \emph{multinational}
+SSPs allows the user to reduce trust in any single nation. And given
+many nations' penchant for privacy abuses, that is a useful trust
+mitigation to have.
+
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo
 %%  LocalWords:  ECPA SSP's Custos DIY GitHub Shamir's Balkanisation
+%%  LocalWords:  seasteading MLATs MLAT

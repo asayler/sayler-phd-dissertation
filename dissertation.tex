@@ -98,57 +98,85 @@
   The amount of digital data generated and stored by users increases
   every day. In order to protect this data, modern computing systems
   employ numerous cryptographic and access control solutions. Almost
-  all of such solution, however, require the keeping of certain
+  all of such solutions, however, require the keeping of certain
   secrets as the basis of their security models. How best to store,
-  secure, and control access to such secrets is a significant
-  challenge. Such secrets must be stored in a manner that secures them
+  secure, and control access to these secrets is a significant
+  challenge: such secrets must be stored in a manner that secures them
   from a variety of potentially malicious devices and actors while
   also enabling the kinds of functionality users expect today.
 
-  In order to facilitate such flexible but secure storage of secrets,
-  I propose isolating secrets from the applications that rely on them
-  and storing these secrets via a standardized, service-oriented
-  secret storage system.  This ``Secret Storage as a Service'' (SSaaS)
-  model allows users to reduce the trust they must place in any single
-  device or actor while still providing mechanisms to support the
-  range of cloud-based, multi-user, multi-device use-cases popular
-  today.
+  This dissertation discusses a system for isolating secrets from the
+  applications that rely on them and storing these secrets via a
+  standardized, service-oriented secret storage system.  This ``Secret
+  Storage as a Service'' (SSaaS) model allows users to reduce the
+  trust they must place in any single actor while still providing
+  mechanisms to support the range of cloud-based, multi-user,
+  multi-device use-cases popular today.
 
-  In this document, I begin by presenting an overview of the
-  secret-storage problem and how it relates to the security and
-  privacy of user data today. I continue by introducing a framework
-  for evaluating the degree to which we must trust various systems and
-  parties across a range of popular usage patterns, as well as the
-  mechanisms by which this trust can be violated. I then discuss ways
-  in which the SSaaS model helps avoid such trust and security
-  failures. I go on to discuss the qualities a desirable SSaaS
-  ecosystem would have as well as some of the previously proposed
-  secret storage solutions. I then present both first-generation and
-  next-generation SSaaS prototypes and discuss the improvements they
-  make over previous secret storage systems. Next, I discuss how an
-  SSaaS approach would integrate with a range of applications,
-  including the presentation of several prototype SSaaS-backed
-  applications. Finally I discusses the legal and policy implications
-  of such a system.
+  This document contains the following contributions: an overview of
+  the secret-storage problem and how it relates to the security and
+  privacy of modern computing systems and users, a framework for
+  evaluating the degree by which one must trust various actors across
+  a range of popular use cases and the mechanisms by which this trust
+  can be violated, a description of the SSaaS model and how it helps
+  avoid such trust and security failures, a discussion of how the
+  SSaaS approach can integrate with and improve the security of a
+  range of applications, an overview of Custos -- a first-generation
+  SSaaS prototype, an overview of Tutamen -- a next-generation SSaaS
+  prototypes, and an exploration of the legal and policy implications
+  of the SSaaS ecosystem.
 
 }
 
-\dedication[Dedication]{
-  Todo
-}
+\dedication[Dedication] { Dedicated to Edward Snowden, Chelsea
+  Manning, Bill Binney, Thomas Drake, Perry Fellwock, Russ Tice, Mark
+  Klein, Thomas Tamm, and all those who have risked and who will risk
+  their lives and livelihoods to expose privacy and security abuses by
+  governments around the world.  }
 
 \acknowledgements{
   \OnePageChapter
-  Todo
+
+  This document could not have been completed without the assistance
+  of a variety of individuals. First, thanks to all of my committee
+  members for their oversight, suggestions, and time. Dirk Grunwald,
+  my advisor, provided numerous suggestions and coauthored the Custos
+  and Tutamen papers that predated this document. Erik Keller also
+  provided suggestions and assistance on a variety of topics including
+  the original Custos implementation that was undertaken as project
+  for his course. Blake Reid provided the impetus for me to get more
+  involved in the policy side of technology and was kind enough to
+  have me as a member of the Colorado Technology Law and Policy Clinic
+  (TLPC). John Black and Sangtae Ha have both provided suggestions and
+  answered a variety of technical questions.
+
+  Beyond those that served on my committee, many other individuals
+  also provided technical support and insights. Matt Monaco provided
+  the implementation of the Tutamen dmcrypt FDE client and is a
+  coauthor on the Tutamen paper. Taylor Andrews provided the
+  Tutamen-backed encrypted Dropbox client implementation and is also a
+  coauthor on the Tutamen paper. Joseph Lorenzo Hall and Erik Stallman
+  both provided mentorship and guidance on a variety of security and
+  policy topics during my time in Washington, DC at the Center for
+  Democracy and Technology.
+
+  Finally, a big thanks to my partner Denali Hussin for her continual
+  support throughout my time as a PhD student, as well as her editing
+  support on a range of overly verbose technical documents. Thanks
+  also to my parents Mike and Lori for their $27+$ years of support
+  and assistance. And thanks to all those who assisted and supported
+  these efforts in a variety of way, but who I have incorrectly failed
+  to mention here.
+
 }
 
-%\ToCisShort % use this only for 1-page Table of Contents
+% \ToCisShort % use this only for 1-page Table of Contents
 
-\LoFisShort	% use this only for 1-page Table of Figures
-% \emptyLoF	% use this if there is no List of Figures
+\LoTisShort   % use this only for 1-page Table of Tables
+% \emptyLoT   % use this if there is no List of Tables
 
-\LoTisShort	% use this only for 1-page Table of Tables
-% \emptyLoT	% use this if there is no List of Tables
+% \LoFisShort % use this only for 1-page Table of Figures
+% \emptyLoF	  % use this if there is no List of Figures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%       BEGIN DOCUMENT...         %%%%%%%%%%%%%%%%%
@@ -178,4 +206,5 @@
 
 \end{document}
 
-%%  LocalWords:  SSaaS tex Custos ssaas custos
+%%  LocalWords:  SSaaS tex Custos ssaas custos tutamen Sangtae FDE
+%%  LocalWords:  dmcrypt Hussin TLPC Stallman

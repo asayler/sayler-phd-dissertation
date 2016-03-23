@@ -1,102 +1,101 @@
 \chapter{Challenges to Privacy and Security}
 \label{chap:challenges}
 
-As mentioned in Chapter~\ref{chap:intro}, the last 10+ years have
-heralded the rapid expansion of a range of digital-data-related use
+As mentioned in Chapter~\ref{chap:intro}, the last ten years have
+heralded the rapid expansion of a range of digital data related use
 cases. In order to accommodate these use cases, most modern services
 leverage some form of third-party compute or data storage
 systems. These third-party systems, however, raise questions about the
 privacy and security of user data. In particular, to what degree can
-we trust various third-parties with user data? And as a corollary: are
-there mechanisms that allow us to control or reduce this degree of
-trust?
+users trust various third-parties with user data? And as a corollary:
+are there mechanisms that allow users to control or reduce this degree
+of trust?
 
 \section{Modern Use Cases}
 \label{chap:challenges:usecases}
 
-Before we can answer these questions, it's important to note that any
-proposed solution that fails to support modern use cases is unlikely
-to succeed in a market where users are voluntarily turning to
-third-party services for the features they can provide. Thus, we must
-start by understanding the predominant modern use-cases. We can divide
-these cases into two categories: consumer focused use cases and
-developer focused use-cases. Consumer use cases are those that matter
-to the average lay computer user. Likewise, developer use cases are
-those that matter to back-end developers and service providers.  Both
-set of use cases represent requirements that modern security and
-privacy enhancing solutions must be able to accommodate if they are to
-be widely adopted and used.
+Such questions, however, can not be answered in a vacuum. Any proposed
+data security solution that fails to support modern use cases is
+unlikely to succeed in a market where users are voluntarily turning to
+third-party services for the features they can provide. Understanding
+the predominant modern use cases is thus a prerequisite to proposing
+security enhancing technologies. Modern use cases can be divided into
+two categories: consumer focused use cases and developer focused
+use-cases. Consumer use cases are those that matter to the average lay
+computer user. Likewise, developer use cases are those that matter to
+back-end developers and service providers. Security and privacy
+enhancing solutions must be able to accommodate both sets of use cases
+if they expect to be widely adopted and used.
 
 \subsection{Consumer Use Cases}
 
-Today's end-users expect modern software to support a range of common
+End-users expect modern software to support a range of common
 behaviors. Chief amongst these are the ability to support the use of
 multiple devices per user, the ability to support collaboration and
 sharing with other users, and the ability to provide turn-key data
-processing capabilities or other services which act on user data.
+processing and other services which act on user data.
 
 \subsubsection{Multi-Device}
 
-It's not uncommon for a single user to utilize multiple computing
+It is common for a single user to utilize multiple computing
 devices. For example, a user might have a personal laptop, a work
-desktop, a smart phone, and a tablet. As such, users expect to be able
-access their data from any of their devices. Similarly, many modern
-users treat compute devices as disposable: when a user loses a phone
-or has a laptop stolen, they still expect to be able to continue to
-access their data on a replacement device. The multi-device and
-ephemeral-device nature of the average consumer has lead to the rise
-of a number of solutions that aim to separate a user's data from any
-single device and to ensure that users may access their data
-regardless of device. Such solutions can generally be placed into two
-groups: services that sync user data between devices (i.e. sync
-services) and services that store all user data in a centralized
-location and provide a manner for users to access this date from each
-device (i.e. locker services).
+desktop, a smart phone, and a tablet. Such users expect to be able
+access their data from any of their devices. Similarly, many users
+treat compute devices as disposable: when a user loses a phone or has
+a laptop stolen, they still expect to be able to continue to access
+their data on a replacement device. The plurality and ephemerality of
+modern computing device has lead to the rise of a number of solutions
+that aim to separate a user's data from the devices on which they
+access it, ensuring that users may access their data regardless of
+device. Such solutions can generally be placed into two groups:
+services that sync user data between devices (i.e. sync services) and
+services that store user data on a centralized server and provide a
+manner for users to access this date from each device (i.e. locker
+services).
 
-Sync services operate on the premise that user data will be stored
-locally on each device, but will also be automatically kept in sync
-across multiple devices. They ensure that the users has the same view
-of their data regardless of device, even when each device stores
+Sync services operate on the premise of storing user data locally on
+each device while automatically syncing changes to such data across
+multiple devices. They ensure that the users has the same view of
+their data regardless of device, even when each device stores
 independent, localized copies of this data. Such services generally
 accomplish this by providing either a centralized or a decentralized
-service that tracks user data on each device and updates data across
-all devices when it is added, removed, or modified on any single
-device. Sync services are often a desirable solution to the
-multi-device data access problem for several reasons:
+service that tracks changes to user data on each device and updates
+data across all devices when a change on one device is detected. Sync
+services are often a desirable solution to the multi-device data
+access problem for several reasons:
 
 \begin{packed_desc}
 \item[Bandwidth Efficient:] Sync services only require Internet access
-  to update data between devices. The act of reading data already
+  sync updates between devices. The act of reading data already
   present on a device accesses only the local copy, avoiding the need
   to consume bandwidth communicating with an external server. This is
   a desirable quality in situations where bandwidth would either be
-  cost prohibitive or performance restricting to consume every time
-  data needed to be read. Sync services also tend to be bandwidth
-  efficient even when writing data since they can cache a series of
-  updates locally and sync only the final differential state to other
-  devices.
+  cost prohibitive or performance restricting to consume on every
+  read. Sync services also tend to be bandwidth efficient when writing
+  data since they can cache a series of updates locally and sync only
+  the final differential state to other devices.
 \item[Offline Support:] As an extension to the previous point, sync
   services are capable of operating in situations where no Internet or
   network connection is available. Since all data access is available
-  locally, user may continue to access and modify data even when they
-  can not connect to the sync service. The sync service will simply
-  wait for the network connection to return and then update any local
-  changes on other devices. While this can lead to issues when users
-  make conflicting modifications on multiple devices while offline, in
-  general it represents a more graceful failure model then a system
-  that requires an Internet connection for any form of data
+  locally, a user may continue to access and modify data even when
+  they can not connect to the sync service. The sync service will
+  simply wait for the network connection to return and then update any
+  local changes on other devices. While this can lead to issues when
+  user make conflicting modifications on multiple devices while
+  offline, in general it represents a more graceful failure mode then
+  a system that requires an Internet connection for any form of data
   access. This also acts as a hedge against a sync service provider
   shutting down: even if a sync service goes under, the user will
   still retain local copes of all their data that they could use to
   bootstrap a new sync service.
 \item[No Central Storage:] Since sync services are only concerned with
-  syncing changes between devices, it's not inherently necessary for
+  syncing changes between devices, it is not inherently necessary for
   such services to store a copy of user data in a central
   location. This allows such systems to be built using distributed
   device-to-device designs when desired. In practice, many sync
   systems do store a copy of all user data in order to facilitate the
-  bootstrapping of new devices, but this is not an inherent
-  requirement of the sync service architecture.
+  bootstrapping of new devices and sharing of files, but this is not
+  an inherent requirement of the sync service architecture.
 \end{packed_desc}
 
 One of the main challenges to sync services is their local storage
@@ -111,15 +110,13 @@ offer a more desirable solution.
 
 Locker service operate by storing all user data on a central server
 and then providing mechanisms for users to access and modify this data
-from remote devices. Such services are reminiscent of more traditional
-networked file systems such as NFS~\cite{sandberg1985} or
-SMB~\cite{microsoft-smb2}. Data locker services store all user data in
-a logically-centralized and globally-accessible location where each
-individual user device may access it for the propose of reading,
-modifying, or deleting data. Since such systems only have one logical
-copy of each file, the user is presented with a single view of their
-data regardless of which device they chose to access it from. Such
-services have several desirable qualities:
+from remote devices. Locker services are reminiscent of more
+traditional networked file systems such as NFS~\cite{sandberg1985} or
+SMB~\cite{microsoft-smb2}, but are less tightly coupled to a single
+administrative domain then were such service. Since locker services
+store a logically centralized copy of each file, the user is presented
+with a single view of their data regardless of which device they chose
+to access it from. Such services have several desirable qualities:
 
 \begin{packed_desc}
 \item[No Local Storage:] Locker services store all data in online
@@ -129,10 +126,10 @@ services have several desirable qualities:
   where the user still wishes to have access to a large amount of data
   (e.g. a video collection). Likewise, locker services avoid wasting
   unnecessary local space by creating multiple copies of each file on
-  each device. Additionally, the lack of local copies may be desirable
-  in situations where local devices are prone to theft or may
-  otherwise not pose a reliable and secure platform for the storage of
-  all user data.
+  each device. The lack of local copies may also be desirable in
+  situations where local devices are prone to theft or may otherwise
+  not pose a reliable and secure platform for the storage of all user
+  data.
 \item[Single Source of Truth:] Locker services only store a single
   (logical) copy of the data at any time. This ensures that situations
   where the user makes conflicting modifications to a piece of data
@@ -142,20 +139,18 @@ services have several desirable qualities:
   simultaneously.
 \item[Centralized Control:] Due to the manner in which most locker
   services store their data, such services often provide a more
-  centralized control point then a potentially distributed sync
-  service. Such control may be desirable in corporate environments
-  where a single administrator wishes to track user file access,
-  modifications, etc.
+  centralized control point then a sync service. Such control may be
+  desirable in corporate environments where a single administrator
+  wishes to track user file access, modifications, etc.
 \end{packed_desc}
 
 One of the main downsides to locker services is their requirement for
 always-online access. Thus, in situations where network access is
 impossible or where high-bandwidth usage is not practical, locker
 services can prevent users from access their data. Thus, locker
-services may operate best on local area networks and in other
-situations where network bandwidth is reliable and plentifully. In
-situations where network access is not guaranteed, sync services may
-offer a more desirable solution.
+services operate best in situations where network bandwidth is
+reliable and plentifully. In situations where network access is not
+guaranteed, sync services may offer a more desirable solution.
 
 Today, sync services tend to be the more popular solution for most
 end-users. Such users generally want access to their data across
@@ -175,10 +170,10 @@ Users~\cite{smith-stats}).
 Locker services are also available and tend to be most popular in
 situations where network access is reliable and where centralized
 control is desirable: e.g. business environments. In such situations
-traditional in-house networked file system solution may provide the
-locker service. Alternatively, there are cloud services that provide
-users with online locker-like data access: e.g. systems like
-OwnCloud~\cite{owncloud} implement the WebDAV
+traditional in-house networked file system solutions may provide a
+kind of ``locker service'' functionality. There are also cloud
+services that provide users with online locker-like data access:
+e.g. systems like OwnCloud~\cite{owncloud} implement the WebDAV
 protocol~\cite{goland1999} for remote file access over the
 Internet. Similarly, distributed systems like Least Authority's Simple
 Secure Storage Service~\cite{leastauthority-s4} (S4, built atop
@@ -198,12 +193,12 @@ Time~\cite{popcorntime} allow users to (often illegally) tap into each
 others video libraries to stream content to their own devices.
 
 As shown above, users' ownership of multiple computing devices has
-lead to a strong desire for users to be able to access their data from
-any device. In response to this desire, a number of third-party backed
+lead to a desire for users to be able to access their data from any
+device. In response to this desire, a number of third-party backed
 services have sprung up to provide users with multi-device file
 access. Any technology aimed at enhancing the security or privacy of
-end-user data is going to need to account for and support the
-multi-device nature of modern users.
+end-user data needs to account for and support the multi-device nature
+of modern users.
 
 \subsubsection{Multi-User}
 
@@ -221,45 +216,46 @@ multi-device use case also provide multi-user sharing
 capabilities. This is true of sync service like Dropbox or Drive that
 not only allow users to sync files amongst their devices, but also
 allow them to share files with other users. In many ways, this is just
-an extension of the sync service model with the extension that now
-users may also include devices other then their own in the sync
-set. Similarly, locker-style multi-device solutions often
-include support for multi-user use cases. For example, traditional
-networked file systems like NFS provide both multi-device access and
-multi-user support. Likewise, systems like Least Authority's S4
-provide primitives for sharing files with multiple users.
+an extension of the sync service model allowing users to include
+devices other then their own in the sync set. Similarly, locker-style
+multi-device solutions often include support for multi-user use
+cases. For example, traditional networked file systems like NFS
+provide both multi-device access and multi-user support. Likewise,
+systems like Least Authority's S4 provide primitives for sharing files
+with multiple users.
 
-Unlike the sync use case, however, adding support for multi-user
-sharing requires providing access control primitives in addition to
-basic file syncing primitives. These primitives allow users to control
-the manner in which other users may access and use the shared
-data. Such controls are necessary to allows users to place limits on
-the degree to which they trust other users. Many services provide
-fairly traditional file-like access control schemes were each user may
-be granted read and/or write permissions to a specific piece of
-data. Data owners can use these permission to craft access control
-polices for the group of user with which they wish to share data.
+Unlike the multi-device use case, however, adding support for
+multi-user sharing requires providing access control primitives in
+addition to basic file transfer or access primitives. These primitives
+allow users to control the manner in which other users may access and
+use the shared data. Such controls are necessary to allows users to
+place limits on the degree to which they trust other users. Many
+services provide fairly traditional file-like access control schemes
+were each user is granted read and/or write permissions to a specific
+piece of data. Data owners can use these permission to craft access
+control polices for the group of user with which they wish to share
+data.
 
-It's also common to see support for various forms of multi-user
+It Is also common to see support for various forms of multi-user
 sharing in a range of hosted services, from social networking apps to
 web-based document editors. Social network platforms like
 Facebook~\cite{facebook} have extensive support for sharing photos,
 videos, status messages, and other user-generated continent. Such
-systems also provide the data originator with the ability to place
-limits on how data is shared and who it is shared with (although the
+systems also provide the data owner with the ability to place limits
+on how data is shared and who it is shared with (although the
 effectiveness of such access control settings is often
 questionable~\cite{johnson2012}). Similarly, systems like Google
 Docs~\cite{google-docs} or Microsoft Office
 Online~\cite{microsoft-officeonline} offer users the ability to
-interactively compose and collaborate on document creation and
-editing. Such systems are inherently multi-user, generally giving the
-user the ability to chose who else can view and edit each document.
+interactively compose documents. Such systems are inherently
+multi-user, generally giving the user the ability to chose who else
+can view and edit each document.
 
-Multi-user use cases are a key component of many computing systems
-today. As in the multi-device cases, support for multi-user scenarios
-is an important component of any privacy and security enhancing
+Multi-user use cases are a key component of many computing systems. As
+in the multi-device cases, support for multi-user scenarios is an
+important component of any privacy and security enhancing
 technology. Technologies that lock the user out of such use cases are
-unlikely to be effective solutions for most users today.
+unlikely to be widely adopted by today's users.
 
 \subsubsection{Hosted Services and Processing}
 
@@ -393,7 +389,7 @@ when their configuration must be automated.
 Assumptions about a developer's ability to physically access a
 machine, to interactively provide input to a machine, or to manually
 deploy each machine no longer hold under the current practice of using
-automated, ephemeral cloud-backed infrastructure. As such. it's
+automated, ephemeral cloud-backed infrastructure. As such. it is
 important that any developer-targeted privacy or security enhancing
 technology avoids making such assumptions, ensuring that it can
 operate effectively even atop modern deployment practices.
@@ -544,7 +540,7 @@ providers in the cloud, but also our trust of the governments of the
 jurisdictions in which such providers operate.
 
 Numerous examples of privacy-subverting attacks by government actors
-have come to light over the previous 5 years. It's worth considering
+have come to light over the previous 5 years. It Is worth considering
 several of these examples as we evaluate how to increase the security
 and privacy guarantees available atop third-party services. Notable
 instances of government data introspection include:
@@ -638,7 +634,7 @@ data. This results in an increased physical attack
 surface. Furthermore, many modern compute devices are designed to be
 mobile -- easily carried by the user and moved about. The combination
 of these facts greatly increase the likelihood of a computing device
-storing user data being lost or stolen. As such, it's critical that we
+storing user data being lost or stolen. As such, it is critical that we
 design systems that are resilient to data compromise even when they
 fall into the hands of unauthorized actors. The likelihood of user
 data compromises occurring due to device loss or theft is far higher

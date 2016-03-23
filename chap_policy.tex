@@ -17,24 +17,26 @@ little to convince users that the SSaaS ecosystem does not impose an
 undue burden on their desired use cases\footnote{That's the job of
   previous chapters in this document, as well as of developers and
   marketers building SSaaS-backed solutions.}, policy initiatives can
-help to encourage the development of a security and privacy preserving
-SSaaS ecosystem. Achieving such an outcome relies on three main
-components:
+help to encourage the development of a healthy SSaaS
+ecosystem. Achieving such an outcome relies on three main components:
 
 \begin{packed_desc}
-\item[Validity of the Secret Storage System:] Users must have some
-  degree of faith in the security of the underlying SSaaS technologies
-  and protocols. If such technology is viewed with suspicion, the
-  SSaaS ecosystem is unlikely to thrive.
-\item[Validity of Secret Storage Providers:] Users must also have some
-  degree of faith in the security of individual Secret Storage
-  Providers (SSPs) and the privacy of data stored there. While a user
-  can take steps to minimize how much they must trust each SSP (see
-  next point), if SSPs are viewed as unreliable and untrustworthy in
-  general, the SSaaS ecosystem will suffer.
-\item[Ability to Minimize Trust:] While a degree of trust on both the
+\item[Availability of Cryptography:] Users must have access to the
+  right to use underlying SSaaS technologies before any SSaaS system
+  can be deployed. The SSaaS ideas depends heavily on a range of
+  cryptographic primitives, and these primitives are often the target
+  of regulation. An inability to access or use such primitives will
+  make an SSaaS ecosystem impossible to build
+\item[Maximizing SSP Trustworthiness:] In order for the SSaaS
+  ecosystem to flourish, user must believe that, in general, Secret
+  Storage Providers (SSPs) are trustworthy actors. While a user can
+  take steps to minimize how much they must trust each SSP (see next
+  point), if SSPs are viewed as unreliable and untrustworthy in
+  general, the SSaaS ecosystem will be tainted. In addition, used must
+  have faith in the underlying SSaaS protocols and technologies.
+\item[Minimizing Mandatory Trust:] While a degree of trust on both the
   SSaaS protocols as well as in each SSP is useful to help the SSaaS
-  ecosystem thrive, it's also important that users have tools for
+  ecosystem thrive, it is also important that users have tools for
   minimizing the degree to which they must trust any single part of or
   party in the SSaaS system. This ability acts as the final security
   and privacy backstop for users, ensuring that their data remains
@@ -44,37 +46,19 @@ components:
 
 There are a number of policy initiatives that will help to encourage
 the development of these user views, and by proxy, the growth of a
-health SSaaS ecosystem. These initiatives include:
-
-\begin{packed_desc}
-\item[Access to Strong Cryptography:] In order to ensure the security
-  of the underlying technology and protocols, it is critical that user
-  are allowed to access and utilize strong cryptography.
-\item[SSP Privacy and Security:] In order to instill (at least
-  minimal) trust in individual SSPs, its important that users have an
-  ``expectation of privacy'' for the data they store with each
-  SSP. Furthermore, it is important for users to have the right to
-  seek relief from SSPs who's practices result in the exposure of user
-  secrets.
-\item[Openness and Transparency:] One way of minimizing the trust the
-  user must place in the SSaaS ecosystem is to insure that the core
-  SSaaS software and protocols remain open and auditable. Such an
-  openness can be achieved by making all core code open source and by
-  applying liberal licensing to all core protocols .
-\item[Use of Multiple SSPs:] As discussed, the main mechanism for
-  limiting trust in any single SSP is to shard secrets across multiple
-  SSPs. As such, it is important to both avoid polices that limit the
-  ability of user to leverage a wide range of SSPs while also
-  leveraging policies that encourage the development of an multitude
-  of competing secret storage providers.
-\end{packed_desc}
-
-Each of these policy goals, as well as specific ideas for potential
-achievement of each goal, are discussed through the reminder of this
+health SSaaS ecosystem. These initiatives, as well as specific
+implementation ideas , are discussed throughout the reminder of this
 chapter.
 
-\section{Access to Strong Cryptography}
+\section{Availability of Cryptography}
 \label{chap:policy:crypto}
+
+Before an SSaaS system can thrive, it is critical that user have
+access to the technologies underlying the SSaaS idea. This encompasses
+a wide range of technologies from networking to cryptography. It is
+really only cryptography, however, that tends to incite regulatory
+actions, and thus it is the regulation of cryptography that will be
+the focus of this section.
 
 Many of the ideas proposed in this document rely on the use of a
 variety of cryptographic primitives, including symmetric encryption,
@@ -216,7 +200,8 @@ the efforts to regulate and ban cryptography during the
 
 From a policy perspective, there are a variety arguments against
 efforts to ban or regulate various form of cryptography. They tend to
-fall along a three standard tracks:
+fall along a three standard tracks.
+
 
 \begin{packed_desc}
 \item[More Harm Than Good] \hfill \\ As discussed in this document and
@@ -230,17 +215,17 @@ fall along a three standard tracks:
   severely damage the security of financial, communication, and data
   storage systems. Any backdoor available to the US government is an
   additional point of failure that an attacker may use to compromise
-  and access a system. Furthermore, any policy of providing the US
-  government with special access to cryptographically protected data
-  will likely be mirrored by other countries -- many of which may have
-  far weaker legal protections against the abuse of such
-  powers. E.g. if the US government can demand special access, so can
-  China or North Korea -- weakening the security of US citizens abroad
-  or anyone wishing to secure their selves and systems from
-  potentially repressive regimes. Bans of cryptography thus trade the
-  security of a large number of normal individuals for the insecurity
-  of a small number of potentially bad actors -- and that's not a
-  trade that's worth making.
+  and access a system. Any policy of providing the US government with
+  special access to cryptographically protected data will likely be
+  mirrored by other countries -- many of which may have far weaker
+  legal protections against the abuse of such powers.\footnote{E.g. if
+    the US government can demand special access, so can China or North
+    Korea -- weakening the security of US citizens abroad or anyone
+    wishing to secure their selves and systems from potentially
+    repressive regimes.} Bans of cryptography thus trade the security
+  of a large number of normal individuals for the insecurity of a
+  small number of potentially bad actors -- and that's not a trade
+  that's worth making.
 \item[Ineffectiveness] \hfill \\ Beyond the fact that bans on
   cryptography are likely to cause more harm than good, such bans are
   widely believed to be ineffective. Even if the US manages to ban the
@@ -276,14 +261,14 @@ fall along a three standard tracks:
   criminal than at any prior point in human history. As such, there
   are a multitude of ways to combat crime without weakening
   cryptography. Such mechanisms may require more time and effort than
-  the kind automated digital surveillance the use of cryptography
-  subverts, but such time and effort is a necessary price to pay to
-  ensure a proper balance between privacy and security. Instead of
-  weakening encryption, law enforcement can focus their efforts on
-  targeted investigations of specific individuals, leveraging the
-  large digital footprints even cryptography-employing users leave
-  behind. And even when using cryptography, individuals are still
-  prone to a wide range of targeted attacks, from efforts to
+  the kind large scale automated digital surveillance the use of
+  cryptography subverts, but such time and effort is a necessary price
+  to pay to ensure a proper balance between privacy and
+  security. Instead of weakening encryption, law enforcement can focus
+  their efforts on targeted investigations of specific individuals,
+  leveraging the large digital footprints even cryptography-employing
+  users leave behind. And even when using cryptography, individuals
+  are still prone to a wide range of targeted attacks, from efforts to
   compromise individual systems, and subvert any cryptography they may
   employ, to social engineering attacks that tend to be very effective
   against even cryptography employing adversaries. There are numerous
@@ -294,181 +279,190 @@ fall along a three standard tracks:
 Beyond policy arguments against regulating or banning cryptography,
 there are also a number of legal arguments preventing such efforts. In
 particular, any effort to ban cryptography would raise serious
-constitutional questions, including:
+constitutional questions.
 
-\begin{packed_desc}
-\item[1\textsuperscript{st} Amendment] \hfill \\ As previously
-  mentioned, bans on the publication of source code,
-  cryptography-related or otherwise, raise numerous
-  1\textsuperscript{st} Amendment questions. The free speech
-  guarantees provided by the 1\textsuperscript{st} Amendment have
-  generally been interpreted to apply to source
-  code~\cite{ninthcir-bernstein, sixthcir-junger}.\footnote{Indeed,
-    this ``code as speech'' interpretation is fairly critical to the
-    use of US Copyright Law for the protection of code-related
-    intellectual property.} As such, any ban on cryptography source
-  code is likely an unconstitutional prior restraint on the author's
-  freedom of speech. Traditionally, courts have taken a dim few of
-  laws imposing such prior restraint~\cite{scotus-nearvminnesota},
-  even in cases where national security my be
-  impinged~\cite{scotus-nytvus}. Additionally, efforts to mandate the
-  inclusion of a backdoor in certain software are likely a form of
-  unconstitutional compelled speech. Just as blocking the publication
-  of source code interferes with the author's free speech rights,
-  mandating an author publishes or includes certain components in
-  their code is also a violation of their free speech
-  rights~\cite{scotus-wooleyvmaynard}. While there have been
-  exceptions to such interpretations, it is unlikely the broadness of
-  any general limits of cryptography, coupled with the traditional
-  ineffectiveness of such limits, would meet the kind of ``narrowly
-  tailored speech limits in effective support of a legitimate
-  government interest'' requirements such a law would have to overcome
-  to meet constitutional muster. Still open to debate, however, is
-  whether or not first amendment protections are limited merely to the
-  source code implementing encryption, or whether they apply to
-  executable binaries built form such code as well. If such
-  protections are limited to raw source code, it could effectively
-  prevent the widespread use of cryptography to those capable of
-  acquiring and building source code. Such an outcome would have a
-  detrimental impact on the general populace who often lack the
-  ability to perform such actions.
-\item[2\textsuperscript{nd} Amendment] \hfill \\ One of the more
-  creative constitutional defenses of cryptography~\cite{xkcd-504}
-  comes via the 2\textsuperscript{nd} Amendment granting citizens the
-  right to ``keep and bear arms''~\cite{us-constitution-amend2}. The
-  idea is that since the government already has a history of
-  considering cryptography to be a weapon, then the second amendment
-  should be used to protect the rights of citizens to posses and use
-  cryptography. This theory has never been tested in a court, but it
-  is not entirely unreasonable to believe that cryptography is a
-  necessary component of maintaining a ``well regulated militia''
-  today, and thus should be protected by the 2\textsuperscript{nd}
-  Amendment~\cite{scotus-usvmiller-guns}. It is also not unreasonable
-  to assume that if the Constitution were being written today,
-  cryptography would seem a much more natural fit for protection via
-  something like the second amendment then firearms. Whether or not
-  this argument will pass judicial scrutiny remains to be seen. And
-  even if it does, the 2\textsuperscript{nd} Amendment is likely to
-  guarantee a weaker set of rights than 1\textsuperscript{st}
-  Amendment protections since the 2\textsuperscript{nd} Amendment only
-  protects the right to ``keep and bear'' cryptography, where as the
-  1\textsuperscript{st} Amendment also protects the right to
-  distribute cryptography. It may be possible, however, to take a
-  split approach to protecting cryptography where cryptographic source
-  code and research are protected via the 1\textsuperscript{st}
-  Amendment while binary programs or hardware employing cryptography
-  are protected via the 2\textsuperscript{nd} Amendment -- similar in
-  mechanism to how the 1\textsuperscript{st} Amendment would protect
-  the publication of a design of a firearm while the
-  2\textsuperscript{nd} Amendment would protect the possession of the
-  firearm itself.
-\item[4\textsuperscript{th} Amendment] \hfill \\ Many law enforcement
-  agencies cite the importance of being able to access information for
-  which they have secured probable cause warrant as their reason for
-  wishing to restrict the use of cryptography. Such opponents fear the
-  ability of cryptography to render such lawfully obtained warrants
-  useless. Whether or not the 4\textsuperscript{th}
-  Amendment~\cite{us-constitution-amend4} can be used to compel a
-  service provider to decrypt data in order to comply with a valid
-  warrant remains to be seen. Traditional interpretations (including
-  the much maligned Third Party Doctrine~\cite{thompson-thirdparty})
-  hold that if a third party holds the key necessary to decrypt a
-  user's data (or the data itself), then they can be compelled to
-  provide it to the government -- often without requiring a probable
-  cause warrant at all. But what about cases where the third party
-  lacks any ability to decrypt the data? Can they still be forced to
-  aid the government in serving a valid warrant?  The answer to this
-  question probably hinges on the ``reasonableness'' of such a
-  request. The ongoing Apple v. FBI litigation may help shed some
-  light on this question. At its heart, it would seem that
-  cryptography provides the ultimate tool for protecting an
-  individual's 4\textsuperscript{th} Amendment rights - since such
-  technology helps ensure that individuals remain ``secure in their
-  persons, houses, papers, and effects''. But how best to reconcile
-  this protection with a valid ``probable cause'' warrant remains a
-  matter of debate. And ultimately, as in cases where only the end
-  user posses the information necessary to decrypt communication, the
-  answer to this question may have more bearing on the
-  5\textsuperscript{th} Amendment than the 4\textsuperscript{th}.  It
-  also seems unlikely that the need to serve a 4\textsuperscript{th}
-  Amendment warrant would ever justify the potential violations of the
-  1\textsuperscript{st} and 2\textsuperscript{nd} Amendments that any
-  general ban on the use of cryptography would entail.
-\item[5\textsuperscript{th} Amendment] \hfill \\ Assuming the
-  1\textsuperscript{st} and 2\textsuperscript{nd} Amendments can
-  protects an individuals right to distribute, posses, and use
-  cryptography, then it falls on the 5\textsuperscript{th} Amendment
-  to protect an individuals right not to be forced to disclose the
-  necessary password or encryption key required to decrypt a piece of
-  information. The right against self incrimination has long been held
-  to protect individuals against compelled testimony -- which should
-  include being forced to provide a memorized pass-code or password
-  necessary to decrypt a piece of information.\footnote{If the user
-    has written down their password or locked their phone with a
-    fingerprint, 5\textsuperscript{th} Amendment protections no longer
-    apply since the evidence is then physical, not testimonial.}
-  Courts, however, are currently split on whether or not the
-  5\textsuperscript{th} Amendment protects individuals from being
-  forced to provide decryption assistance~\cite{usvboucher,
-    commonwealthvgelfgatt, usvdoe}. Further complicating matters,
-  certain types of cryptography can be designed to decrypt a
-  ciphertext to different plaintexts depending on the password or key
-  provided. Thus, it is possible that an individual could provide one
-  password to decrypt a file to a picture of a cat and another
-  password to decrypt a file to a plan for robbing a bank. Additional
-  passwords could provide additional alternative contents. In such an
-  arrangement, there is no reliable way to know how many different
-  plaintexts are hidden within a given ciphertext. Thus, even if the
-  government does succeed in compelling an individual to ``decrypt''
-  their documents, it is entirely possible they would still wind up
-  with a set of files other than the ones they were seeking. And it
-  seems unlikely any court would allow the government to continue
-  compelling a suspect to provide new pass-phrases until they happened
-  to get a decrypted set of files that favored their case, especially
-  since it is possible no such files exist at all. The
-  5\textsuperscript{th} Amendment has historically protected the
-  contents of an individuals mind. Cryptography allows an individual
-  to expand the contents of their mind by leveraging a small piece of
-  memorized information (i.e. a pass-code or praise) to protect much
-  larger pieces of offloaded information (e.g. a hard drive). Whether
-  or not such an expansion is accessible to the US legal system
-  remains to be decided.\footnote{Deciding whether or not such
-    expansions are acceptable using cryptography will likely have a
-    direct implication on the potential future world where human
-    brains are technologically upgradeable. Indeed, there is likely
-    little functional difference between using a cryptographically
-    protected hard drive coupled with a memorized pass-code to expand
-    one's ``memory'' and installing a brain-linked computer chip that
-    expands one's memory. In a world were you have the technology to
-    upgrade the the amount of data your mind can store (and
-    potentially where the government has the technology to
-    ``mind-read'' by downloading such data), does the
-    5\textsuperscript{th} Amendment still protect the contents of
-    one's mind? While such questions remain largely academic today, it
-    may not be long before courts are being asked to rule on them.}
-\end{packed_desc}
+\subsubsection{1\textsuperscript{st} Amendment}
+
+As previously mentioned, bans on the publication of source code,
+cryptography-related or otherwise, raise numerous
+1\textsuperscript{st} Amendment questions. The free speech guarantees
+provided by the 1\textsuperscript{st} Amendment have generally been
+interpreted to apply to source code~\cite{ninthcir-bernstein,
+  sixthcir-junger}.\footnote{Indeed, this ``code as speech''
+  interpretation is fairly critical to the use of US Copyright Law for
+  the protection of code-related intellectual property.} As such, any
+ban on cryptography source code is likely an unconstitutional prior
+restraint on the author's freedom of speech. Traditionally, courts
+have taken a dim few of laws imposing such prior
+restraint~\cite{scotus-nearvminnesota}, even in cases where national
+security my be impinged~\cite{scotus-nytvus}.
+
+Additionally, efforts to mandate the inclusion of a backdoor in
+certain software are likely a form of unconstitutional compelled
+speech. Just as blocking the publication of source code interferes
+with the author's free speech rights, mandating an author publishes or
+includes certain components in their code is also a violation of their
+free speech rights~\cite{scotus-wooleyvmaynard}. While there have been
+exceptions to such interpretations, it is unlikely the broadness of
+any general limits of cryptography, coupled with the traditional
+ineffectiveness of such limits, would meet the kind of ``narrowly
+tailored speech limits in effective support of a legitimate government
+interest'' requirements such a law would have to overcome to meet
+constitutional muster.
+
+Still open to debate, however, is whether or not first amendment
+protections are limited merely to the source code implementing
+encryption, or whether they apply to executable binaries built form
+such code as well. If such protections are limited to raw source code,
+it could effectively prevent the widespread use of cryptography to
+those capable of acquiring and building source code. Such an outcome
+would have a detrimental impact on the general populace who often lack
+the ability to perform such actions.
+
+\subsubsection{2\textsuperscript{nd} Amendment}
+
+One of the more creative constitutional defenses of
+cryptography~\cite{xkcd-504} comes via the 2\textsuperscript{nd}
+Amendment's grant to citizens of the right to ``keep and bear
+arms''~\cite{us-constitution-amend2}. The idea is that since the
+government already has a history of considering cryptography to be a
+weapon, then the 2\textsuperscript{nd} Amendment should be used to
+protect the rights of citizens to posses and use cryptography. This
+theory has never been tested in a court, but it is not entirely
+unreasonable to believe that cryptography is a necessary component of
+maintaining a ``well regulated militia'' today, and thus should be
+eligible for 2\textsuperscript{nd}
+Amendment~\cite{scotus-usvmiller-guns} protections. It is also not
+unreasonable to assume that if the Constitution were being written
+today, cryptography would seem a much more natural fit for protection
+via something like the second amendment then firearms.
+
+Whether or not this argument will pass judicial scrutiny remains to be
+seen. And even if it does, the 2\textsuperscript{nd} Amendment is
+likely to guarantee a weaker set of rights than the
+1\textsuperscript{st} Amendment: the 2\textsuperscript{nd} Amendment
+only protects the right to ``keep and bear'' cryptography, where as
+the 1\textsuperscript{st} Amendment also protects the right to
+distribute cryptography. It may be possible, however, to take a split
+approach to protecting cryptography where cryptographic source code
+and research are protected via the 1\textsuperscript{st} Amendment
+while binary programs or hardware employing cryptography are protected
+via the 2\textsuperscript{nd} Amendment -- similar in mechanism to how
+the 1\textsuperscript{st} Amendment would protect the publication of a
+design of a firearm while the 2\textsuperscript{nd} Amendment would
+protect the possession of the firearm itself.
+
+
+\subsubsection{4\textsuperscript{th} Amendment}
+
+Many law enforcement agencies cite the importance of being able to
+access information for which they have secured a probable cause
+warrant as their reason for wishing to restrict the use of
+cryptography. Such opponents fear the ability of cryptography to
+render such lawfully obtained warrants useless. Whether or not the
+4\textsuperscript{th} Amendment~\cite{us-constitution-amend4} can be
+used to compel a service provider to decrypt data in order to comply
+with a valid warrant remains to be seen. Traditional interpretations
+hold that if a third party holds the key necessary to decrypt a user's
+data (or the data itself), then they can be compelled to provide it to
+the government -- often without requiring a probable cause warrant at
+all~\cite{thompson-thirdparty}. But what about cases where the third
+party lacks any ability to decrypt the data? Can they still be forced
+to aid the government in serving a valid warrant?  The answer to this
+question probably hinges on the ``reasonableness'' of such a
+request. The ongoing Apple v. FBI litigation may help shed some light
+on this question.
+
+At its heart, it would seem that cryptography provides the ultimate
+tool for protecting an individual's 4\textsuperscript{th} Amendment
+rights - since such technology helps ensure that individuals remain
+``secure in their persons, houses, papers, and effects''. But how best
+to reconcile this protection with a valid ``probable cause'' warrant
+remains a matter of debate. And ultimately, as in cases where only the
+end user posses the information necessary to decrypt communication,
+the answer to this question may have more bearing on the
+5\textsuperscript{th} Amendment than the 4\textsuperscript{th}.  It
+also seems unlikely that the need to serve a 4\textsuperscript{th}
+Amendment warrant would ever justify the potential violations of the
+1\textsuperscript{st} and 2\textsuperscript{nd} Amendments that any
+general ban on the use of cryptography would entail.
+
+\subsubsection{5\textsuperscript{th} Amendment}
+
+Assuming the 1\textsuperscript{st} and 2\textsuperscript{nd}
+Amendments can protects an individual's right to distribute, posses,
+and use cryptography, then it falls on the 5\textsuperscript{th}
+Amendment to protect an individual's right not to be forced to
+disclose the necessary password or key required to decrypt a file or
+sign a document. The right against self incrimination has long been
+held to protect individuals against compelled testimony -- which
+should include being forced to provide a memorized password or
+key.\footnote{If the user has written down their password or locked
+  their phone with a fingerprint, 5\textsuperscript{th} Amendment
+  protections no longer apply since the evidence is then physical, not
+  testimonial.}  Courts, however, are currently split on whether or
+not the 5\textsuperscript{th} Amendment protects individuals from
+being forced to turn over cryptographic keys or otherwise provide
+decryption assistance~\cite{usvboucher, commonwealthvgelfgatt,
+  usvdoe}.
+
+Further complicating matters: certain types of cryptography can be
+designed to decrypt a ciphertext to different plaintexts depending on
+the key provided. Thus, it is possible that an individual could
+provide one password to decrypt a file to a picture of a cat and
+another password to decrypt a file to a plan for robbing a
+bank. Additional passwords could provide additional alternative
+contents. In such an arrangement, there is no reliable way to know how
+many different plaintexts are hidden within a given ciphertext. Thus,
+even if the government does succeed in compelling an individual to
+``decrypt'' their documents, it is entirely possible they would still
+wind up with a set of files other than the ones they were seeking. And
+it seems unlikely any court would allow the government to continue
+compelling a suspect to provide additional keys until they happened to
+get a decrypted set of files that favored their case, especially since
+it is possible no such files exist at all.
+
+The 5\textsuperscript{th} Amendment has historically protected the
+contents of an individuals mind. Cryptography (via encryption) allows
+an individual to expand the contents of their mind by leveraging a
+small piece of memorized information (i.e. a password or key) to
+protect much larger pieces of offloaded information (e.g. a hard drive
+full of files). Whether or not such an expansion is permissible within
+the US legal system remains to be decided.\footnote{Deciding whether
+  or not such expansions are acceptable using cryptography will likely
+  have a direct implication on the potential future world where human
+  brains are technologically upgradeable. Indeed, there is likely
+  little functional difference between using a cryptographically
+  protected hard drive coupled with a memorized pass-code to expand
+  one's ``memory'' and installing a brain-linked computer chip that
+  expands one's memory. In a world were you have the technology to
+  upgrade the the amount of data your mind can store (and potentially
+  where the government has the technology to ``mind-read'' by
+  downloading such data), does the 5\textsuperscript{th} Amendment
+  still protect the contents of one's mind? While such questions
+  remain largely academic today, it may not be long before courts are
+  being asked to rule on them.}
 
 There are clear policy reasons to avoid curtailing or discouraging the
 use of cryptography, as well as clear legal hurtles to doing so. It is
 critical that cryptography remains widely and freely available to all,
 since any reduction in access to cryptography would have severe
 consequence on a range of security enhancing and privacy preserving
-technologies. This included on the SSaaS ideas proposed in this
+technologies. This includes on the SSaaS ideas proposed in this
 document.
 
-% Maximizing Trustworthiness
-\section{Privacy of SSP-Stored Data}
+\section{Maximizing SSP Trustworthiness}
 
-Secret Storage providers (SSPs) are likely to be appealing targets for
-both legal and extralegal introspection. Whether such services are
-storing encryption keys for user data or raw user secrets, they will
-be the target of a range of government information requests, criminal
-hacking attempts, and general malfeasance. This fact suggests a number
-of policy-related questions and potential solutions. As stated
-previously, in order for the SSaaS ecosystem to flourish, users must
-enjoy at least a modicum of privacy protections for the secrets they
-store with the SSP. What policy initiatives are necessary to maximize
-the privacy of SSP-stored data?
+In order to instill faith in the SSaaS ecosystem, it is important that
+users view Secret Storage providers (SSPs) as trustworthy entities
+worth of storing user data. At the same time, SSPs are likely to be
+appealing targets for both legal and extralegal introspection. Whether
+such services are storing encryption keys for user data or raw user
+secrets, they will be subjected to a range of government information
+requests, criminal hacking attempts, and general malfeasance. It is
+important that SSPs are able to stand up to this barrage of data
+access attempts and keep the data they store secure. This fact
+suggests a number of policy-related questions and potential solutions.
 
 \subsection{Third Party Privacy}
 
@@ -605,23 +599,22 @@ best practices. It will provide users with a measure of relief in the
 event that their secrets are leaked, increasing adoption of the SSaaS
 ecosystem.
 
-% Minimizing Forced Trust
-\section{Openness and Transparency}
+\section{Minimizing Mandatory Trust}
 
 Thus far, this chapter has explored mechanisms to ensuring entities
-within the SSaaS ecosystem remain secure and trustworthy. As
-discussed throughout this document, however, it is also important to
-provide end-users with tools for minimizing the trust they must place
-in the SSaaS system or its actors. One mechanism for minimizing such
-trust is to ensure that the code and protocols underlying the SSaaS
-ecosystem remain open and transparent.
+within the SSaaS ecosystem remain secure and trustworthy. As discussed
+throughout this document, however, it is also important to provide
+end-users with tools for minimizing the trust they must place in the
+SSaaS system or its actors. 
 
 \subsection{Protocol Standardization and Transparency}
 
-It is important that the specifications for any SSaaS protocols
-(e.g. Custos, Tutamen, etc) remain open and encumber IP-related
-restrictions. In such a process, several tenants must be
-upheld:
+One mechanism for minimizing trust is to ensure that the code and
+protocols underlying the SSaaS ecosystem (e.g. Custos, Tutamen, etc)
+remain transparent, open, and unencumbered by IP-related
+restrictions. These properties will ensure that SSaaS protocols and
+software can spread and improve over time. In order to achieve these
+goals, the SSaaS ecosystem must strive for several goals:
 
 \begin{packed_desc}
 \item[Openness of Process:] The standardization process itself must be
@@ -719,7 +712,7 @@ monoculture. Ensuring there at least a few core SSaaS implementation
 strains remain free and open will help to encourage the development of
 additional SSaaS strains, creating this desirable level of diversity.
 
-\section{Use of Multiple SSPs}
+\subsection{Use of Multiple SSPs}
 
 While openness and transparency provide tools for reducing the trust
 that users must place in SSaaS software and the ecosystem in general,
@@ -737,7 +730,7 @@ technology underlying and act of sharding, how SSP liability and
 insurance relates sharded secrets, and the jurisdictional issues that
 sharding a secret across multiple SSPs might raise.
 
-\subsection{Limits on Data Sharding}
+\subsubsection{Limits on Data Sharding}
 
 Similar to the previously discussed issues associated with limiting
 the use of cryptography, any effort to limit or restrict a user's
@@ -810,7 +803,7 @@ secret sharing cryptography schemes and regulations encouraging the
 sub-domains~\cite{lee2014} is necessary for encouraging a health SSaaS
 ecosystem.
 
-\subsection{Liability and Insurance}
+\subsubsection{Liability and Insurance}
 
 Sharding secrets across multiple SSPs also has repercussions for the
 liability and insurance ideas discussed in
@@ -827,7 +820,7 @@ that the exposure of any secret shard is an unacceptable risk since it
 increases the risk of the exposure of the entire secret. On the other
 extreme, values secret shards as worthless makes since if you assume
 that each shard taken by itself provide no information about the
-underlying secret, and is thus ``worthless'', even if leaked. It's
+underlying secret, and is thus ``worthless'', even if leaked. It is
 likely that the best solution lies somewhere in between. Valuing
 secrets shards as equal to th value of an unsharded secret will likely
 make the sharding of secrets cot prohibitive. Assuming that the
@@ -891,7 +884,7 @@ or exponentially with its declared value. Such an ecosystem would
 further encourage user to shard their secrets across multiple
 providers, increasing user security while reading SSP trust and cost.
 
-\subsection{Jurisdictional Issues}
+\subsubsection{Jurisdictional Issues}
 \label{chap:policy:trust:jurisdiction}
 
 The final policy component implicit to the sharding of secrets across
@@ -985,10 +978,10 @@ harm.
 
 Multinational SSP sharding thus represents yet another level of trust
 mitigation. Sharding secrets between SSPs allows the user to reduce
-trust in any single SSP. Sharding secrets between \emph{multinational}
-SSPs allows the user to reduce trust in any single nation. And given
-many nations' penchant for privacy abuses, that is a useful trust
-mitigation to have.
+trust in any single SSP. Sharding secrets between nations allows the
+user to reduce trust in any single nation. And given many nations'
+penchant for privacy abuses, that is a useful trust mitigation to
+have.
 
 %%  LocalWords:  SSaaS DES PGP's backdoored Slipjack Snowden NSA LEOs
 %%  LocalWords:  Wassenaar nd th Tutamen CAs OpenSSL SSP SSPs Todo

@@ -42,33 +42,32 @@ privacy in the age of the cloud to new levels.
 
 The traditional viewpoint holds that users must choose between either
 the conveniences the cloud provides or the privacy and security of
-locally stored and processed data. I do not feel that this is
-true. Instead, I believe that there are mechanisms that can allow
-users to retain a high degree of control over how their data is
-stored, accessed, and used while still allowing them to leverage a
-variety of modern third-party services. The solution lies in
-developing systems that allow users to place limits on the degree to
-which they must trust any single third party while still allowing them
-to leverage the desirable features such parties provide.
+locally stored and processed data. This document aims to refute that
+idea. Instead, the method proposed herein aim to allow users to retain
+a high degree of control over how their data is stored, accessed, and
+used while still allowing them to leverage a variety of modern
+third-party services. The solution lies in developing systems that
+allow users to place limits on the degree to which they must trust any
+single third party while still allowing them to leverage the desirable
+features such parties provide.
 
-To achieve such a solution, I propose a new data storage model called
-``Secret Storage as a Service'' (SSaaS). In an SSaaS ecosystem, a user
-designates one or more trusted secret storage providers (SSPs), either
-self hosted or third party, with storing and regulating access to
-their private secrets (personal information, encryption keys, etc) on
-their behalf. Such secrets can then be used to bootstrap the security
-of other data stores via existing cryptographic and related
-techniques. Existing technologies and services can than interface with
-these SSPs via a standard interface to access user secrets or the data
-they protect as allowed by a user-defined set of access control
-rules. In effect, the SSPs are tasked with regulating access to user
-data by more traditional feature-oriented third-party services
-(e.g. Google or Facebook).
+To achieve such a solution, this document proposes a new data storage
+model called ``Secret Storage as a Service'' (SSaaS). In an SSaaS
+ecosystem, a user designates one or more trusted secret storage
+providers (SSPs) with storing and regulating access to their private
+secrets (personal information, encryption keys, etc) on their
+behalf. Such secrets can then be used to bootstrap the security of
+other data stores via existing cryptographic techniques. Existing
+technologies and services can than interface with these SSPs via a
+standard interface to access user secrets, and by proxy, the data they
+protect as allowed by a user-defined set of access control rules. In
+effect, the SSPs are tasked with regulating access to user data by
+more traditional feature-oriented third-party services (e.g. Google or
+Facebook).
 
 The SSaaS model provides a number of benefits over the existing
-practice of utilizing feature-desirable third-party services, and in
-doing so, granting them unfettered access to user data. Such benefits
-include:
+practice granting feature-rich third-party services unfettered access
+to user data. Such benefits include:
 
 \begin{packed_desc}
 \item[No Single Trusted Third Party] \hfill \\ In an SSaaS ecosystem,
@@ -76,7 +75,7 @@ include:
   end-user cloud service (e.g. Dropbox, Gmail, etc). Furthermore, a
   user may shard their secrets across multiple SSPs, or even host
   their own SSP. This ensures that a user is not giving any single
-  entity control over or unfettered access to their secrets (or by
+  entity control over or unfettered access to their secrets (and by
   proxy, to the data such secrets might protect).
 \item[Separation of Duties] \hfill \\ In an SSaaS ecosystem, a user
   selects a secret storage provider on the basis of their trust in
@@ -84,10 +83,10 @@ include:
   basis of the end-user services they provide. This allows a user to
   optimize each selection individually instead of having to chose a
   single provider on the basis of both trust and feature set, likely
-  having to sacrifice one in favor of the other.
+  sacrificing one in favor of the other.
 \item[Support for Existing Use Cases] \hfill \\ The SSaaS ecosystem is
   capable of supporting many modern use cases such as sharing data
-  with other users, syncing it across a number of personal computing
+  with other users, syncing it across multiple personal computing
   devices, or automating access to such data from a variety of
   services. Thus, SSaaS allows users to gain privacy and security
   benefits without having to forgo common and popular use cases.
@@ -101,9 +100,9 @@ service~\cite{dropbox}. Dropbox provides a service through which users
 may upload arbitrary files in order to sync them between multiple
 devices and to share them with other users. In order to support this
 functionally, Dropbox stores a copy of each user's uploaded files on
-the Dropbox servers. This ensures that Dropbox can provide copies of
-the files to new user devices or to other users when asked to sync or
-share a file on the user's behalf.
+the Dropbox servers. This allows Dropbox to download these files to
+additional user devices or to share them with others on the user's
+behalf.
 
 But how private are a user's files once uploaded to Dropbox? While
 Dropbox does encrypt files while they are stored on the Dropbox
@@ -113,73 +112,71 @@ holds a copy of the associated encryption keys, enabling them to
 decrypt a user's files whenever they desire. This also means that an
 adversary may be able to decrypt user files if they are able to
 compromise both Dropbox's data storage servers as well as their key
-storage servers. The US government could also decrypt user files
+storage servers. Various governments could also decrypt user files
 stored via Dropbox should a court compel Dropbox to provide both the
 files and the associated encryption keys. Furthermore, a rogue actor
 within Dropbox could leverage their access to all of Dropbox's
 infrastructure to access and decrypt user files. Clearly Dropbox's
 practice of storing both a user's encrypted files as well as a copy of
 the associated encryption keys provides only marginally more security
-and privacy of the user data then not using encryption at all. And the
-added security it does provide is wholly dependent on placing a high
-degree of trust in Dropbox to faithfully protect and manage the
-relevant encryption keys.
+and privacy than not using encryption at all. And the added security
+it does provide is wholly dependent on placing a high degree of trust
+in Dropbox to faithfully protect and manage the relevant encryption
+keys.
 
 An alternative approach would be for Dropbox to put the user in charge
 of encrypting/decrypting files and storing all necessary encryption
 keys, ensuring the Dropbox itself never has direct access to
-unencrypted user files. While this form of client-side encryption
-could potentially increase the privacy and security of user data in
-the event that Dropbox's data stores are compromised, searched,
-monitored, or simply misused, is also has some significant downsides:
+unencrypted user files. While such ``client-side: encryption could
+potentially increase the privacy and security of user data in the
+event that Dropbox's data stores are compromised, searched, monitored,
+or misused, is also has some significant downsides:
 
 \begin{packed_enum}
-\item It breaks Dropbox's sharing use case. While user's can still
-  share encrypted versions of their files, they would then have to
-  exchange the associated encryption key out of band in order to
-  effectively decrypt, read, or update any shared file. This
-  essentially nullifies Dropbox's appeal as a simple method for
-  sharing files with other users.
+\item It breaks Dropbox's sharing use case. While user's could still
+  share encrypted versions of their files with other users via
+  Dropbox, they would also have to exchange the associated encryption
+  key out-of-band in order for their college to decrypt and read or
+  update any shared file. This nullifies Dropbox's appeal as a simple
+  method for sharing files with other users.
 \item It complicates Dropbox's syncing use case. Whereas before a
-  Dropbox user can bootstrap a new Dropbox client device simply by
+  Dropbox user could bootstrap a new Dropbox client device simply by
   signing into their Dropbox account, users must now both sign into
-  their Dropbox account and provide a copy of their encryption
-  key/keys in order for the Dropbox client to successfully perform the
-  required client-side encryption operations. This adds an additional
-  step to the Dropbox setup process, potentially driving away novice
-  and lay users.
+  their Dropbox account and manually transfer a copy of their
+  encryption key to the new device to enable the required encryption
+  and decryption operations. This adds an additional step to the
+  Dropbox setup process, potentially driving away users.
 \item If the user ever losses their encryption keys, they will
   effectively lose access to all of their Dropbox-stored
   files. Similarly, if a user mishandles their keys in a manner that
   allows others to access them, they have effectively negated the
-  additional privacy or security client-side encryption provides. A
-  user would have to be diligent about ensuring they maintain access
-  to their keys via backups, etc, while also ensuring their keys do
-  not fall into the wrong hands. Again, such manual management
-  requirements pose a non-trivial burden for many users.
+  additional privacy or security benefits client-side encryption
+  provides. A user would have to be diligent about ensuring they
+  maintain access to their keys via backups, etc, while also ensuring
+  their keys do not fall into the wrong hands. Such manual management
+  requirements pose a non-trivial burden for most users.
 \end{packed_enum}
 
-Thus, we're left in a situation where the user must chose between the
-convenience of using Dropbox as it exists today while also sacrificing
-a significant degree of privacy over the files they upload to Dropbox,
-or the burden of employing traditional client-side encryption models
-where the trust they must place in Dropbox is reduced, but where many
-core Dropbox features (e.g. simple file sharing) are no longer
-feasible to use. Neither of these are ideal solutions. We would like a
-solution that allows the user to leverage the existing convenience and
-benefits of using Dropbox while also reducing the trust they must
-place in the Dropbox corporation.
+Thus, the user must chose between the convenience of using Dropbox as
+it exists today while also sacrificing a significant degree of privacy
+over the data they upload, or the burden of employing traditional
+client-side encryption models where the trust they must place in
+Dropbox is reduced, but where many core Dropbox features (e.g. simple
+file sharing) are no longer feasible to use. Neither of these are
+ideal solutions. AN ideal solution must allow the user to leverage the
+existing convenience and benefits of using Dropbox while also reducing
+the trust they must place in Dropbox itself.
 
 These challenges are not unique to Dropbox. There are many modern
 technologies and services that force the user to chose between
-convenience and feature set vs privacy and control. For example:
+convenience and feature set verse privacy and control. For example:
 
 \begin{packed_desc}
-\item[Mobile Computing Devices] \hfill \\
-  Phones, tablets, and laptops have become ubiquitous modes of modern
-  computing, storing large fractions of our personal data and carrying
-  out computations on our behave. But these devices, while convenient,
-  are also prone to loss, theft, and remote exploitation, exposing the
+\item[Mobile Computing Devices] \hfill \\ Phones, tablets, and laptops
+  have become ubiquitous modes of modern computing, storing large
+  fractions of our personal data and carrying out many everyday
+  computations on our behalf. But these devices, while convenient, are
+  also prone to loss, theft, and remote exploitation, exposing the
   data they store and computations they undertake to a range of
   external actors.
 \item[Cloud Computing Infrastructure] \hfill \\
@@ -190,24 +187,24 @@ convenience and feature set vs privacy and control. For example:
   user to fully trust the backing infrastructure provider and make it
   difficult to deploy security-enhancing systems like full disk
   encryption due to the user's lack of physical server access.
-\item[Datacenter Infrastructure] \hfill \\
-  Modern data centers are highly automated. It is thus not acceptable to
-  assume a trusted user will be available to enter boot-time passwords in
-  order to bootstrap full disk-encryption systems. Thus, using
-  disk encryption systems on highly automated servers in difficult or
-  impossible to do securely.
+\item[Datacenter Infrastructure] \hfill \\ Modern data centers are
+  highly automated. It is thus not acceptable to assume a trusted user
+  will be available to enter boot-time passwords in order to bootstrap
+  full disk-encryption systems. Thus, using disk encryption systems on
+  highly automated servers is difficult, if not impossible, to do
+  securely.
 \end{packed_desc}
 
 All of these examples share a common deficiency: they force the user
 into a position of choosing between desirable feature sets or
-desirable security and privacy qualities. It is this deficiency that I
-seek to quantify and work to resolve via the work presented in this
-proposal.
+desirable security and privacy qualities. This document aims to
+quantify such deficiencies and suggest potential resolutions via the
+Secret Storage as a Service model.
 
 \section{Goals}
 \label{chap:intro:goals}
 
-At the core, the goals of my proposed work are threefold:
+The goals of the work discussed in this document are threefold:
 
 \begin{packed_item}
 \item Quantify and analyze the trust and threat models inherent in
@@ -216,8 +213,8 @@ At the core, the goals of my proposed work are threefold:
   manage, and monitor the degree to which they must trust third party
   devices and services with such data.
 \item Use such secret-storage primitives to create security and
-  privacy enhancing systems well adopted for a range of modern,
-  common, and desirable use cases.
+  privacy enhancing systems well adopted for a range of common and
+  desirable use cases.
 \end{packed_item}
 
 The remainder of this document is structured as follows:
@@ -233,15 +230,17 @@ The remainder of this document is structured as follows:
   analyzing trust and trust violations.
 \item[Chapter~\ref{chap:ssaas} - SSaaS:] Presents the Secret Storage
   as a Service model and its merits.
+\item[Chapter~\ref{chap:apps} - Applications:] Presents a number of
+  potential SSaaS-backed applications and prototypes.
 \item[Chapter~\ref{chap:custos} - Custos:] Presents Custos -- a first
   generation SSaaS prototype, as well as its design and implementation.
 \item[Chapter~\ref{chap:tutamen} - Tutamen:] Presents Tutamen -- a
   next generation SSaaS prototype, as well as its design and
   implementation.
-\item[Chapter~\ref{chap:apps} - Applications:] Presents a number of
-  potential SSaaS-backed applications and prototypes.
-%% \item[Chapter~\ref{chap:planned} - Proposed Work:] Proposes necessary
-%%   work for the completion of this dissertation.
+\item[Chapter~\ref{chap:policy} - Policy:] Discusses the legal and
+  policy implications of the SSaaS model.
+\item[Chapter~\ref{chap:conclusion} - Conclusion:] Overview of
+  contributions and closing thoughts.
 \end{packed_desc}
 
-%%  LocalWords:  SSaaS SSPs SSP IaaS Custos
+%%  LocalWords:  SSaaS SSPs SSP IaaS Custos Tutamen

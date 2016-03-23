@@ -49,7 +49,12 @@ figs/out/%.pdf: figs/src/%.svg
 bibsort: refs.bib
 	bibtool -s -o ./refs.bib -i ./refs.bib
 
-clean:
-	$(RM) figs/out/*.pdf *.eps
+clean-tex:
 	$(RM) *.dvi *.aux *.log *.blg *.bbl *.out *.lof *.lot *.toc
+
+clean-fig:
+	$(RM) figs/out/*.pdf *.eps
+
+clean-all: clean-tex clean-fig	
+	$(RM) $(REPORT).pdf
 	$(RM) *~ .*~

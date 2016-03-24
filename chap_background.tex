@@ -222,13 +222,20 @@ rely on computational complexity as the basis of its
 security. Instead, it is unconditionally secure based on information
 theory principles. Thus, unlike computationally secure systems such as
 RSA, Shamir Secret Sharing can not be broken regardless of the amount
-of computational power one posses. Shamir Secret Sharing functions on
-the basis of defining a polynomial of degree $K-1$ over a finite field
-with the $D$ data encoded as the first order-zero term. $N$ points are
-then selected from this polynomial and distributed to the
-participants. Since $K$ points (but no fewer) will uniquely identify
-the original polynomial, at least $K$ users must combine their pieces
-in order to re-compute $D$.
+of computational power one posses.\footnote{ I.e. computationally
+  secure systems are potentially breakable if an adversary is afforded
+  enough computing power or the ability to solve certain classes of
+  computationally difficult problems quickly (e.g. via new technology
+  such a quantum computers). Unconditionally secure systems remain
+  unbreakable even to an adversary with unlimited computational power
+  or newfangled computing capabilities.}
+
+Shamir Secret Sharing functions on the basis of defining a polynomial
+of degree $K-1$ over a finite field with the $D$ data encoded as the
+first order-zero term. $N$ points are then selected from this
+polynomial and distributed to the participants. Since $K$ points (but
+no fewer) will uniquely identify the original polynomial, at least $K$
+users must combine their pieces in order to re-compute $D$.
 
 Shamir Secret Sharing (and related ``$N$ choose $K$'' systems) are
 useful in a wide range of situations where one needs to distribute

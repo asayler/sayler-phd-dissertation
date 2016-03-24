@@ -3,8 +3,8 @@
 
 There are a number of related efforts that also seek to fulfill one or
 more of the goals of this project as outlined in
-Section~\ref{chap:intro:goals}. I discuss some of the more pertinent
-of these efforts in this Chapter.
+Section~\ref{chap:intro:goals}. This chapter describes some of the
+more pertinent of these efforts.
 
 \section{Trust, Threat, and Security Models}
 \label{chap:related:models}
@@ -24,38 +24,38 @@ cases, such models seek to answer the questions:
 
 Security models are a critical part of designing any security
 system. The security of a given system is only as good as its weakest
-link. Security models provide an analyses if the various links within
-and surrounding any given security or privacy enhancing system --
+link. Security models provide an analyses of the various links within
+and surrounding any given security or privacy enhancing system.  Such
 links that must be considered when determining the overall guarantees
 provided by a given system as well as the exposure the system to
 various threats.
 
-\cite{flowerday2006} provides an analyses if how trust and related
+\cite{flowerday2006}~provides an analyses of how trust and related
 human controls must be considered in the design of any information
 security system. It builds on work outside the traditional computer
 science space related to theories of trust and privacy in government,
-law, and society~\cite{camp2003}. These works lay the foundation for
+law, and society~\cite{camp2003}. Such works lay the foundation for
 trust analysis in computing systems and tie the concept of trust in
 computing systems to wider theories of trust and privacy as
 fundamental concepts.
 
 Beyond trust analyses, there are a number of more general computer
-security models and taxonomies that tend to focus on more traditional
-technical and operational risks and mitigations. \cite{abbas2005}
-discuses security and threat models for Internet-connected
-services. \cite{tsipenyuk2005} focuses on common failures in
-application-level security. \cite{firesmith2005} dives into a more
-abstract analysis of safety and security in computing systems and
-provides a framework for analyzing software security risks, potential
-harms, and security requirements. Finally, \cite{cebula2010} takes a
-comprehensive look at operational cyber-security risks across
-technical, human, process, and external factors.
+security models and taxonomies that focus on traditional technical and
+operational risks and mitigations. \cite{abbas2005}~discuses security
+and threat models for Internet-connected services.
+\cite{tsipenyuk2005}~focuses on common failures in application-level
+security. \cite{firesmith2005}~dives into a more abstract analysis of
+safety and security in computing systems and provides a framework for
+analyzing software security risks, potential harms, and security
+requirements. Finally, \cite{cebula2010}~takes a comprehensive look at
+operational cyber-security risks across technical, human, process, and
+external factors.
 
 While all of these efforts provided a basis for trust, threat, and
 security analysis of computing systems, they do not dive into the
-specific intricacies of the third-party trust requirements inherent in
-cloud computing systems. This is a deficiency I seek to correct in the
-Trust Model presented in Chapter~\ref{chap:trust}.
+specific intricacies of the third party trust requirements inherent in
+cloud computing systems. This is a deficiency Chapter~\ref{chap:trust}
+seeks to correct.
 
 \section{Minimizing Third Party Trust}
 \label{chap:related:minimize}
@@ -73,51 +73,49 @@ try to limit how much damage any single TPP can do. Such efforts
 generally require multiple third parties to collude to accomplish most
 attacks. In many cases, these efforts also explore the trade-offs
 between the convenience and capabilities that trusted third party
-systems can provide and the security risks of requiring one of more
-trusted third parties. Various third-party trust limiting efforts are
-discussed below.
+systems can provide and the security risks of requiring one or more
+trusted third parties.
 
 \subsection{Cryptographic Access Control}
 
 The primary limitation of all of the access control models mentioned
 in Section~\ref{chap:background:ac} is their reliance on a trusted
 arbiter for enforcement: generally this trusted arbiter is the
-operating system or third party system in charge of enforcing the
-access control system. This means that the security of these access
-control systems is only as good as the security of the system or third
-party enforcing them. Thus, if the underlying OS or third party is
-compromised, the access control system falls apart. Likewise, anyone
-in control of the underlying OS or enforcement system (e.g. an
-administrator) automatically gains full control over the access
-control system and the ability to bypass it\footnote{E.g. as in the
-  case of Edward Snowden's collection of large troves of secret NSA
-  data from a facility where he acted as a systems
-  administrator.}. This is an acceptable limitations in many
+operating system or third party underlying a given access control
+scheme. This means that the security of these access control systems
+is only as good as the security of the system or third party enforcing
+them. Thus, if the underlying OS or third party is compromised, the
+access control system fails. Likewise, anyone in control of the
+underlying OS or third party (e.g. an administrator) automatically
+gains full control over the access control system and the ability to
+bypass it\footnote{E.g. as in the case of Edward Snowden's collection
+  of large troves of secret NSA data from a facility where he acted as
+  a systems administrator.}. This is an acceptable limitations in many
 situations, especially those based on centrally managed systems with
-existing physical security and administrative safeguards in place. But
-in distributed systems or the cloud where physical and administrative
-control is not guaranteed, a more robust system that lacks this
-``trusted arbiter'' requirement is desirable.
+existing physical and administrative safeguards in place. But in
+distributed systems or cloud environments where physical and
+administrative control is not guaranteed, a more robust system that
+lacks this ``trusted arbiter'' requirement is desirable.
 
 To overcome the need for a trusted enforcement mechanism in access
 control systems, researchers have turned to cryptographically-based
-access control systems. \cite{goyal2006} and \cite{bethencourt2007}
+access control systems. \cite{goyal2006}~and~\cite{bethencourt2007}
 propose several cryptographically-based access control systems. These
 systems are based on the concept of Attribute-Based Encryption
 (ABE). ABE schemes allow a user to encrypt a document in a manner such
 that the access control rules associated with the document are part of
 the encryption process itself. Thus, in order to decrypt/access a
 document, a user must satisfy one or more cryptographically guaranteed
-access control attributes. \cite{goyal2006} allows user to encrypt
+access control attributes. \cite{goyal2006}~allows users to encrypt
 documents that can only be decrypted by users possessing specific
-attribute polices encoded in their keys. \cite{bethencourt2007}
-extends this concept to allow documents to be encrypted with a full
-access control policy embedded in the encryption itself, allowing only
-users who's private keys meet a generalized set of requirements to
-access the documents. Both these systems allow the construction of
-access control systems that do not require any trusted arbiter to
-regulate access to objects. Instead, the access control policy is
-enforced by the underlying cryptography itself.
+attribute polices encoded in their keys.
+\cite{bethencourt2007}~extends this concept to allow documents to be
+encrypted with a full access control policy embedded in the encryption
+itself, allowing only users who's private keys meet a generalized set
+of requirements to access the documents. Both these systems allow the
+construction of access control systems that do not require any trusted
+arbiter to regulate access to objects. Instead, the access control
+policy is enforced by the underlying cryptography itself.
 
 Such concepts have not yet been widely deployed in day-to-day use,
 possibly because of the complexity and computational overhead of
@@ -128,15 +126,15 @@ discussed in Section~\ref{chap:challenges:solutions}.
 
 \subsection{Homomorphic Encryption}
 
-The rise of the cloud as the home to many modern data processing
-systems has led to questions about the degree to which third-party
+The rise of the cloud as the host to many modern data processing
+systems has led to questions about the degree to which third party
 cloud providers should be trusted with access to the data processed on
 their infrastructure. Homomorphic encryption systems are designed to
 help mitigate this trust. Such systems are designed to perform data
 processing operations on encrypted data directly, avoiding the need to
 decrypt it and expose the unencrypted data to a third party.
 
-The previous few years have heralded the arrival of numerous
+The previous ten years have heralded the arrival of numerous
 partially-homomorphic encryption systems capable of performing certain
 classes of data processing and manipulation operations directly on
 encrypted data. System like CryptDB~\cite{popa2011} allow users to
@@ -152,11 +150,11 @@ Beyond partially homomorphic encryption schemes, fully homomorphic
 encryption schemes allow for unrestricted classes of operations to be
 performed on encrypted data~\cite{gentry2009}. A number of such
 systems have been proposed -- some of which go so far as to propose
-the possibility for encrypting computer programs themselves that will
-be executed by a fully homomorphic processor~\cite{Breuer2013,
+the possibility of encrypting entire computer programs that will be
+executed by fully homomorphic processors~\cite{Breuer2013,
   Brenner2011}. Such system are certainly appealing, but thus far,
-building one with suitably low overhead so as to be practical today
-has proven elusive.
+building one with low enough overhead to be practical for general
+purpose usage has proven elusive.
 
 While homomorphic solutions will likely prove to be part of the
 solution to the problem of third party trust, they don't inherently
@@ -169,26 +167,25 @@ other users or otherwise leverage an application that inherently
 requires data to be decrypted. Homomorphic encryption systems also
 risk leaking certain classes of data as a side effect of the
 computation they perform. E.g. a homomorphic system may be able to
-sort data without know its contents, but in doing so, it might still
-elan something about the relative ordering of elements. As in other
-cases, such systems also fail to provide a general solution for the
-management of the associated cryptographic keys protecting such
+sort data without knowing its contents, but in doing so, it might
+still learn something about the relative ordering of elements. As in
+other cases, such systems also fail to provide a general solution for
+the management of the associated cryptographic keys protecting such
 operations.
 
 \subsection{Secure Storage}
 
-Beyond data processing, the ability to securely store data atop third
-party infrastructure while also minimizing the degree of third party
-is a desirable goal. As such, a number of projects have undertaken
-efforts aimed at achieving such protections. Secure data storage is
-one of the most common class of security and privacy enhancing
-systems. And for good reason -- the ability to securely store data is
-a critical primitive for maintaining the security and privacy of our
-computing systems.
+Beyond data processing, minimizing the degree of third party trust
+required to securely store data atop cloud infrastructure is a
+desirable goal. As such, a number of projects have undertaken efforts
+aimed at achieving such protections. Secure data storage is one of the
+most common class of security and privacy enhancing systems. And for
+good reason -- the ability to securely store data is a critical
+primitive for maintaining the security and privacy of computing
+systems.
 
-A number of traditional client-server encrypted file systems exist
-with the design goal of avoiding server-side
-trust~\cite{kher2005}. File systems like
+A number of traditional encrypted file systems exist with the design
+goal of avoiding server-side trust~\cite{kher2005}. File systems like
 CryptoCache~\cite{jensen2000}, RFS~\cite{dong2011}, and
 Plutus~\cite{kallahalla2003} are all designed to allow users to store
 files on servers without trusting the server itself. Other systems
@@ -197,12 +194,11 @@ at securing data atop user devices and protecting that data when a
 device is lost or stolen. All of these systems employ various forms of
 cryptography to obtain their goals.
  
-Beyond traditional client-server secure storage systems, distributed
-storage systems like Depot~\cite{mahajan2011},
+Distributed storage systems like Depot~\cite{mahajan2011},
 OceanStore~\cite{kubiatowicz2000}, and Tahoe~\cite{wilcox-o'hearn2008}
 are all designed to minimize trust in the underlying storage
 infrastructure. Such systems allow users to distribute and store files
-across many third-party nodes while also ensuring that the failure,
+across many third party nodes while also ensuring that the failure,
 either accidental or intentional, of a subset of nodes does not result
 in the loss, corruption, or exposure of user data. Depot focuses on
 data integrity and availability in the presence of untrusted
@@ -213,111 +209,111 @@ to enhance performance.
 
 In many of these systems, however, key management primitives are still
 ignored or pushed down to the user, leading to usability issues and
-use-case mismatches. My proposed work could be used to extend such
-designs to better account for the key management challenges limiting
-the use of such systems today.
+use-case mismatches. The SSaaS ideas proposed in this document could
+be used to extend such designs to better account for the key
+management challenges limiting the use of such systems today.
 
-\section{Enhancing End-User Security}
+\section{Enhancing End User Security}
 \label{chap:related:enduser}
 
-The Edward Snowden leaks, as well as the numerous highly publicized
-privacy failures of a range of companies from Facebook to Target, have
+The Edward Snowden leaks, as well as numerous highly publicized
+privacy failures by companies ranging from Facebook to Target, have
 fueled renewed calls for improved security and privacy enhancing
-technologies aimed at end-users. In response to these calls, a number
-of organizations have begun offering new classes of security and privacy
-enhancing tools. Many of these tools share the goals proposed in this
-work -- namely the creation of easy-to-use security and privacy enhancing
-tools well adapted for modern usage demands.
+technologies aimed at end users. In response to these calls, a number
+of organizations have begun offering new classes of security and
+privacy enhancing tools. Many of these tools share the goals proposed
+in this work -- namely, the creation of easy-to-use security and
+privacy enhancing tools well adapted for modern user requirements.
 
 \subsection{Communication Tools}
 
 Many of the recent security and privacy enhancing tools have focused
-on securing user-to-user communication. Both the contents of and
+on securing inter-user communication. Both the contents of and
 meta-data associated with such communication has been the focus of
-many of the recent NSA leaks~\cite{schneier-metadata}. In reaction,
-we've seen the creation of new tools as well as advocacy for the
-expanded use of existing secure communion tools.
+many of the recent NSA leaks~\cite{schneier-metadata}. The reaction to
+such reports has spurred both the creation of new tools as well as the
+expansion of the use of existing secure communion tools.
 
-Email is one of the primary communication mediums today. The
+Email has long been the bedrock of digital communication mediums. The
 traditional tools of for securing email, OpenPGP~\cite{openpgp} and
 its various implementation (e.g. GnuPG~\cite{gnupg} and Symantec
 PGP~\cite{pgp}), are not new. But they have seen renewed levels of
-interest after Edward Snowden revealed his use of such tools and
-advocated for them as effective mass-surveillance counter
-measures. Unfortunately these tools remain no more usable today then
-they were 20 years ago, leading to the multitude of usability issues
-discussed in Section~\ref{chap:background:usability}. In response,
-tools like Mailpile~\cite{mailpile} and Mailvelope!\cite{mailvelope}
-have been created with the aim of making PGP-based email security more
-friendly for the average user. Similarly, Google and Yahoo are both
-engaging in efforts aimed and making PGP-like encryption and
-authentication systems available to their webmail
+interest as effective mass-surveillance countermeasures. Unfortunately
+these tools remain no more usable today then they were twenty years
+ago, leading to the multitude of usability issues discussed in
+Section~\ref{chap:background:usability}. In response, developer have
+created tools like Mailpile~\cite{mailpile} and
+Mailvelope~\cite{mailvelope} with the aim of making PGP-based email
+security more friendly for the average user. Similarly, Google and
+Yahoo are both engaging in efforts aimed and making PGP-like
+encryption and authentication systems available to their webmail
 users~\cite{google-endtoend, yahoo-endtoend}. Other systems such as
 STEED aim to adapt traditional PGP principles to make the primitives
-simpler for the average end-user to deal with~\cite{koch2011}.
+simpler for the average end user to deal with~\cite{koch2011}.
 
 But even these recent pushes to re-skin PGP and make it more user
 friendly can't overcome many of the fundamental issues with the
 system~\cite{green-pgp}. Nor are they well suited for securing another
 major form of modern communion: real-time chat. To overcome these
-deficiencies, systems like Open Whisper's
-TextSecure~\cite{openwhisper} and ChatSecure~\cite{chatsecure} have
-been created. Both systems rely on the Off-the-Record secure messaging
+deficiencies, companies have released programs such as
+TextSecure~\cite{openwhisper} and ChatSecure~\cite{chatsecure}. Both
+systems rely on variants of the Off-the-Record (OTR) secure messaging
 protocol to achieve encrypted, authenticated, and forward-secure
 real-time communication between two or more parties~\cite{otr-v3,
-  borisov2004, goldberg2009}. Such systems aim to make secure
+  borisov2004, goldberg2009}. These systems aim to make secure
 real-time communication as simple as possible, and have shown promise
 in terms of popularity and usability. But these systems are not
-necessarily well suited to replace PGP since they rely on the
+necessarily direct replacements for PGP since they rely on the
 real-time nature of chat communication to attain forward
 secrecy. Similarly usable and forward-secure solutions for
-non-real-time systems like email systems remain elusive.
+non-real-time systems like email remain elusive.
 
 While secure communication systems are seeing a lot of development and
 showing promise, all of the solutions discussed above are
 communication-specific solutions. As such, they are complimentary to
-the work presented in this proposal related to general methods for
+the work presented in this dissertation related to general methods for
 reducing third party trust and managing secrets such as cryptographic
 keys.
 
 \subsection{Password Managers}
 
 One of the most common classes of third party secret storage available
-today is that of password storage by end-user password managers. The
-well-documented failure of user-chosen passwords as a reliable
-security mechanisms~\cite{goodin-bible, goodin-passwords} has led
-experts to recommend that users rely instead on a single strong
-password that unlocks a password management service capable of storing
-unique and random passwords for each website or service they
-use~\cite{schneier-passwords, krebs-passwords, brodkin-passman}.
+today is that of password storage by end user password managers. Due
+to the well-documented failure of user-chosen
+passwords~\cite{goodin-bible, goodin-passwords}, experts now recommend
+that users leverage password management services. Such services rely
+on a single strong password to protect a collection of unique and
+random passwords for each website or service a user must
+access~\cite{schneier-passwords, krebs-passwords, brodkin-passman}.
 
 Systems such as LastPass~\cite{lastpass} and
-OnePassword~\cite{onepassword} provide users with a hosted platform on
+1Password~\cite{onepassword} provide users with a hosted platform on
 which to manage and store their passwords. These systems utilize a
 single third party for data storage in order to accommodate the
 multi-device sync and multi-user sharing use cases presented in
 Section~\ref{chap:challenges:usecases}. But in doing so, they require
-the user to place a fair amount of trust in the third-party
+the user to place a fair amount of trust in the third party
 provider. Such systems do tend to perform client-side encryption and
 generally are designed to avoid storing the user's master password in
 a recoverable form, mitigating some of the potential for third party
 abuse. But at the end of the day, such systems still require the user
 to trust a single third party with their credentials, and by proxy,
 access to their online services and accounts. Nor are such service
-infallible. There have been several noted flaws and breaches of such
-systems over the previous few years\footnote{Fortunately the deign of
-  such systems was able to largely mitigate the worst damages from
-  these breaches.}\cite{blackhat-lastpass, changedmy-lastpass,
-  lastpass-blog-breach}.
+infallible. There have been several noted flaws and breaches of
+password management systems over the previous few
+years\footnote{Fortunately the deign of such systems has largely
+  mitigated the worst damages from these
+  breaches~\cite{ducklin2015}.}\cite{blackhat-lastpass,
+  changedmy-lastpass, lastpass-blog-breach}.
 
-Password management systems share some of the same goals I propose in
-this document -- namely, the storage of end-user secrets in a secure
+Password management systems share some of the same goals proposed in
+this document -- namely, the storage of end user secrets in a secure
 and easy-to-use manner. Thus, password storage can be viewed as a
 special case of the more generic Secret Storage as a Service (SSaaS)
-model. In this work, I'll present more versatile and generalized
-solutions to the secret storage problem. Such solution could be used
-to implement the password manger concept while also decoupling such
-implementation from needing to trust any single third party.
+model. This work presents more versatile and generalized solutions to
+the secret storage problem. Such solution could be used to implement
+the password manger concept while also decoupling such implementation
+from needing to trust any single third party.
 
 \subsection{Storage Tools}
 
@@ -326,24 +322,24 @@ problem of arbitrary secure data storage. As mentioned in
 Section~\ref{chap:challenges:usecases}, most users expect such storage
 to provide multi-user and multi-device support in addition to raw
 secure storage, disqualifying many of the traditional encrypted file
-system solutions from the running. Popular storage services like
-Dropbox~\cite{dropbox} or Google Drive~\cite{google-drive} are common
-today, but these solutions provide the associated third parties with
+system solutions from the running. Storage services like
+Dropbox~\cite{dropbox} or Google Drive~\cite{google-drive} are
+popular, but these solutions provide the associated third parties with
 unfettered access to user data, making them unsuitable for users who
 wish their data to remain private.
 
 To overcome issues with systems like Dropbox while still affording
-users access to modern file-store amenities, systems such as
-SpiderOak~\cite{spideroak}, Tresorit~\cite{tresorit}, and
-Wuala~\cite{wuala} have been built with the aim of providing users
-with a Dropbox-like alternative that does not require trusting the
-storage provider. Such services shift the encryption of data into the
-client, helping to ensure the server only ever holds an encrypted copy
-of said data. None the less, the confidentially and privacy claims
-made by such services have been shown to be dubious~\cite{wilson2014},
-largely due to the fact the a user must still place a large degree of
-trust in the backing third party in order to facilitate file sharing
-with other users.
+users access to modern file storage amenities, developers have creates
+systems such as SpiderOak~\cite{spideroak}, Tresorit~\cite{tresorit},
+and Wuala~\cite{wuala}. Such services aim to provide users with a
+Dropbox-like alternative that does not require trusting the storage
+provider. These services shift the encryption of data into the client,
+helping to ensure the server only ever holds an encrypted copy of said
+data. None the less, the confidentially and privacy claims made by
+such services have been shown to be dubious~\cite{wilson2014}, largely
+due to the fact the a user must still place a large degree of trust in
+the backing third party in order to facilitate file sharing with other
+users.
 
 As in previous cases, however, these solutions are purpose built for
 secure storage, and fail to provide a more general solution for
@@ -357,31 +353,30 @@ further suppressing reliance on a single trusted third party.
 \label{chap:related:keymgmt}
 
 As mentioned in Section~\ref{chap:challenges:solutions}, one of the
-main hindrances to bootstrapping secure systems today is the lack of
+main hindrances to bootstrapping secure systems is the lack of
 versatile key-management systems capable of supporting modern use
-cases while also minimizing third-party trust. Such key management
+cases while also minimizing third party trust. Such key management
 systems are subsets of the larger secret storage problem discussed in
-this proposal. I am not, however, the first to recognize key
+this proposal. This work, however, is not the first to recognize key
 management as one of the critical components to building flexible and
-secure privacy and security enhancing systems. Several related efforts
-are discussed in this section.
+secure privacy and security enhancing systems.
 
 \subsection{Key Management in Storage Systems}
 
 As discussed previously, many existing secure storage systems fail to
 meet the needs of today's users due to the fact that their restrictive
-and tightly coupled key management systems can't accommodate a range
-of modern use cases. A number of existing secure file systems have
-acknowledged the issues created by tightly coupling key management
-with a specific storage solution (or of ignoring key management all
-together and forcing the user to deal with securing their keys
-themselves). These systems represent a step toward more flexible key
-management, and by proxy, more usable secure file storage.
+and tightly coupled key management systems can't accommodate modern
+use cases. A number of existing secure file systems have acknowledged
+the issues created by tightly coupling key management with a specific
+storage solution (or of ignoring key management all together and
+forcing the user to deal with securing their keys themselves). These
+systems represent a step toward more flexible key management, and by
+proxy, more usable secure file storage.
 
 Systems like Plutus~\cite{kallahalla2003} are designed to isolate key
 management as a dedicated system component. While this is the first
 step toward solving many of the key management problems, Plutus simply
-shifts key management into the client, providing some degree of
+shifts key management onto the client, providing some degree of
 user-facing key management flexibility, but failing to provide a
 standardized and general key management
 system. SFS~\cite{mazieres1999} takes this separation a step further
@@ -399,10 +394,10 @@ further in Chapter~\ref{chap:apps}.
 \subsection{Key Escrow}
 
 Key escrow systems represent on common form of key management system.
-key escrow systems exist with the aim of fitting client-side key
-management into hierarchical organizational frameworks where upper
-level members may need access to subordinate's keys. Such systems have
-also been proposed in regulatory environments where law enforcement or
+Key escrow systems aim to fit client-side key management into
+hierarchical organizational frameworks where upper level members may
+need access to subordinate's keys. Such systems have also been
+proposed in regulatory environments where law enforcement or
 regulatory personal must be able to access certain forms of otherwise
 secure data. Escrow systems also prove beneficial in situations where
 a key holder would like to hedge against the loss of their copy of the
@@ -410,47 +405,48 @@ key without having to fully trust any other single party with a backup
 copy. Such systems often leverage secret-sharing schemes such as
 Shamir~\cite{shamir1979} to accomplish their goals.
 
-Early key escrow systems merely provided a trusted third party with a
+Early key escrow systems provided a trusted third party with a
 secondary copy of a given data encryption key (and/or generated data
 encryption keys in a manner such that two separate keys could be used
 to decrypt any given piece of data)~\cite{denning1996}; e.g. the
-infamous NSA-backed Clipper chip. These systems, however, fail the
-single-trusted-third-party test, requiring a high degree of user trust
-in one external entity. To overcome such trust concentrations, Matt
-Blaze proposes a distributed key escrow system that makes key escrow
-requests transparent and leverages a distributed consensuses to avoid
-any single rogue actor using such a system to steal a key or gain
-unauthorized access to end-user data~\cite{blaze1996}.
+infamous NSA-backed Clipper chip~\cite{whitehouse-clipper}. These
+systems, however, fail the single-trusted-third party test, requiring
+a high degree of user trust in one external entity. To overcome such
+trust concentrations, researchers proposed distributed key escrow
+systems that make key escrow requests transparent and leverages a
+distributed consensuses to avoid any single rogue actor using such a
+system to steal a key or gain unauthorized access to end user
+data~\cite{blaze1996}.
 
-While distributed key management systems such as those proposed by
-Blaze succeed in avoiding trust in any single third-party, they fail
-to provide for a more general key management system that moves beyond
-traditional escrow-based use cases (e.g. key sharing for multi-device
-sync or key sharing for document collaboration). Furthermore, the
-existing scholarship around key escrow systems fail to explore the
-benefits and possibilities of the general purpose secret storage
-systems described in this document. The secret storage systems
-described herein can, however, fulfill many of the traditional roles
-of a distributed key-escrow system.
+While such distributed key management systems succeed in avoiding
+trust in any single third party, they fail to provide for a more
+general key management system that moves beyond traditional
+escrow-based use cases (e.g. key sharing for multi-device sync or key
+sharing for document collaboration). Furthermore, the existing
+scholarship around key escrow systems fails to explore the benefits
+and possibilities of the general purpose secret storage systems
+described in this document. The secret storage systems described
+herein could, however, be leveraged to fulfill many of the traditional
+roles of a distributed key-escrow system.
 
-\subsection{Automated and Cloud Key and Secret Management}
+\subsection{Automated and Cloud-based Secret Management}
 
 The most closely related work to that proposed here is the various
-automation and cloud oriented key and secret management systems
+automation and cloud-oriented key and secret management systems
 introduced over the previous five years. These systems are a reaction
 to many of the developer-facing use cases discussed in
 Section~\ref{chap:challenges:usecases}. They aim to make key
 management and secret storage primitives available to developers
-leveraging automated configuration management systems and/or
-third-party cloud platforms.
+leveraging automated configuration management systems and/or third
+party cloud platforms.
 
-Rackspace's CloudKeep\cite{cloudkeep-presentation, cloudkeep} (now
+Rackspace's CloudKeep~\cite{cloudkeep-presentation, cloudkeep} (now
 OpenStack Barbican~\cite{openstack-barbican}) aims to create a
 standardized key management system for use across multiple
 applications, avoiding the need to re-implement such systems in each
 application. Similar to the SSaaS system proposed in this document,
 CloudKeep aims to ease developer burden while increasing the security
-of end-user applications by focusing security code in a centralized,
+of end user applications by focusing security code in a centralized,
 carefully curated system. CloudKeep/Barbican integrates with the
 OpenStack~\cite{openstack} cloud infrastructure management platform to
 provide secret storage services to OpenStack users. Such a system,
@@ -462,42 +458,43 @@ providing other cloud services.
 Similarly, various IaaS platforms have begun offering cloud-based
 Hardware Security Module (HSM) solutions. HSMs traditionally refer to
 dedicated hardware co-processors capable of storing user cryptographic
-keys in a manner that prevents them from ever being extracted. Such
-processors are then tasked with performing all necessary cryptographic
-operations requiring such keys on the user's behalf. Standardized
-interfaces such as PKCS11~\cite{pcks11-standard} exist to allow
-programs to communicate and utilize such hardware. The benefits of
-such chips lie in their ability to securely store cryptographic keys
-and to perform cryptographic operations without exposing such keys to
-the shared computer memory space, potentially leaking them in the
-process (e.g. as in Heartbleed~\cite{heartbleed}). Amazon has recently
-begun offering a cloud-backed HSM service that aims to make the
-benefits of dedicated HSM hardware available in the virtualized world
-of the cloud~\cite{amazon-hsm}. Such systems, while helpful for
-developers who wish to build HSM-dependent systems that operate on
-local or cloud hardware, still require placing a high degree to trust
-in a single third party to faithfully operate such virtual HSMs. The
-SSaaS work discussed in this proposal could potentially be used to
-build similar ``soft'' HSM systems without requiring single
-third-party trust~\cite{lorier-pkcs11}.
+keys in a manner that prevents them from ever being extracted. HSMs
+are then tasked with performing all necessary cryptographic operations
+requiring such keys on the user's behalf. Standardized interfaces such
+as PKCS11~\cite{pcks11-standard} exist to allow programs to
+communicate and utilize such hardware. The benefits of such chips lie
+in their ability to securely store cryptographic keys and to perform
+cryptographic operations without exposing such keys to shared computer
+memory space (and potentially leaking them in the process, as occurred
+in Heartbleed~\cite{heartbleed}). Amazon has recently begun offering a
+cloud-backed HSM service that aims to make the benefits of dedicated
+HSM hardware available in the virtualized world of the
+cloud~\cite{amazon-hsm}. Such systems, while helpful for developers
+who wish to build HSM-dependent systems that operate on local or cloud
+hardware, still require placing a high degree to trust in a single
+third party to faithfully operate virtual HSMs. The SSaaS work
+discussed in this proposal could potentially be used to build similar
+``soft'' HSM systems without requiring single third party
+trust~\cite{lorier-pkcs11}.
 
 Beyond infrastructure-tied services, a number of open source secret
-storage systems have been recently developed by industry, including
-HashiCorp's Vault~\cite{vault}, Lyft's Confidant~\cite{confidant}, and
-Square's Keywhiz~\cite{keywhiz}. Similar commercial systems also exist
-with the aim of providing developers with turnkey key-management
-systems~\cite{gazzang, porticor, rosen2012}. Such systems, however,
-still generally require placing trust in a single third party, or in
-the case of self-hosted solutions, a single server -- although this
-party may now differ from the party providing the underlying cloud
-compute or data storage servers. They also lack the cross-platform
-standardization necessary to incentive some of market-driven forms of
-trust-preserving behavior discussed in Chapters~\ref{chap:trust}
-and~\ref{chap:ssaas}.
+storage systems have been developed by industry, including HashiCorp's
+Vault~\cite{vault}, Lyft's Confidant~\cite{confidant}, and Square's
+Keywhiz~\cite{keywhiz}. Similar commercial systems also exist with the
+aim of providing developers with turnkey key-management
+systems~\cite{gazzang, porticor, rosen2012}. The development of and
+demand for such systems demonstrate the clear challenges industry
+faces managing secrets. Such systems, however, still generally require
+placing trust in a single third party, or in the case of self-hosted
+solutions, a single server.\footnote{Although this party may now
+  differ from the party providing the underlying cloud compute or data
+  storage servers.} They also lack the cross-platform standardization
+necessary to incentive some of market-driven forms of trust-preserving
+behavior discussed in Chapters~\ref{chap:trust} and~\ref{chap:ssaas}.
 
 %%  LocalWords:  CryptoCache OceanStore SFS Plutus Custos SSaaS TPP
 %%  LocalWords:  Rackspace's CloudKeep Custos's CryptDB CleanOS NSA
 %%  LocalWords:  Snowden Mailpile TextSecure ChatSecure LastPass IaaS
 %%  LocalWords:  OnePassword Diffie SpiderOak Tresorit Wuala Shamir
 %%  LocalWords:  HSMs PKCS Heartbleed Snowden's OpenStack Barbican
-%%  LocalWords:  Mailvelope HashiCorp's Lyft's Keywhiz
+%%  LocalWords:  Mailvelope HashiCorp's Lyft's Keywhiz OTR

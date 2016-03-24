@@ -4,8 +4,8 @@
 As mentioned in Chapter~\ref{chap:intro}, the last ten years have
 heralded the rapid expansion of a range of digital data related use
 cases. In order to accommodate these use cases, most modern services
-leverage some form of third-party compute or data storage
-systems. These third-party systems, however, raise questions about the
+leverage some form of third party compute or data storage
+systems. These third party systems, however, raise questions about the
 privacy and security of user data. In particular, to what degree can
 users trust various third-parties with user data? And as a corollary:
 are there mechanisms that allow users to control or reduce this degree
@@ -17,7 +17,7 @@ of trust?
 Such questions, however, can not be answered in a vacuum. Any proposed
 data security solution that fails to support modern use cases is
 unlikely to succeed in a market where users are voluntarily turning to
-third-party services for the features they can provide. Understanding
+third party services for the features they can provide. Understanding
 the predominant modern use cases is thus a prerequisite to proposing
 security enhancing technologies. Modern use cases can be divided into
 two categories: consumer focused use cases and developer focused
@@ -194,7 +194,7 @@ others video libraries to stream content to their own devices.
 
 As shown above, users' ownership of multiple computing devices has
 lead to a desire for users to be able to access their data from any
-device. In response to this desire, a number of third-party backed
+device. In response to this desire, a number of third party backed
 services have sprung up to provide users with multi-device file
 access. Any technology aimed at enhancing the security or privacy of
 end-user data needs to account for and support the multi-device nature
@@ -260,14 +260,14 @@ unlikely to be widely adopted by today's users.
 \subsubsection{Hosted Services and Processing}
 
 In addition to the multi-device and multi-user scenarios discussed
-above, many user also expect support for various hosted services and
+above, many users also expect support for various hosted services and
 data processing solution. In many ways, this expectation follows from
 users' multi-device and multi-user expectations: whereas the
 traditional computing model involves users running locally installed
 applications for the purpose of processing or interacting with data,
 such a model fails to properly account for the multi-device and
 multi-user requirements of many modern applications. Thus, data
-processing services that would have traditionally been installed
+processing services that would have traditionally been executed
 locally, are now run as hosted services atop third party
 infrastructure. Using such services requires users to be able to share
 data with third parties for the purpose of leveraging such
@@ -280,11 +280,11 @@ data include the social networking and document editing solutions
 mentioned previously. In both cases, these services take user data and
 leverage it to provide an additional benefit to the user: e.g. the
 ability to interact and communicate with one's friends or the ability
-to create and expand written documents with a colleague. Other
-examples of hosted services include various ``Big Data'' systems that
+to create and compose written documents with a colleague. Other
+examples of hosted services include various ``big data'' systems that
 leverage vast swaths of user data to provide insights into user
 behavior or patterns in user actions. For example, ``Internet of
-Things'' (IoT) devices that enable a user to track things like their
+Things'' (IoT) devices that enable a user to track stats like their
 day-to-day power consumption~\cite{neurio} or record their exercise
 habits~\cite{fitbit} are becoming increasingly popular. The data from
 such devices in generally passed back to third party processing
@@ -315,12 +315,11 @@ better protect cloud-backed systems allows them to build more secure
 end-user services. Furthermore, developers are often some of the
 heaviest users of cloud services, so ensuring that they can adequately
 protect their data and services hosted atop third party infrastructure
-significantly expands the total number of computing systems
-protected. I discuss several common back-end use cases here.
+significantly expands the total number of computing systems protected.
 
 \subsubsection{IaaS and PaaS Infrastructure}
 
-Many production-level systems deployed today run atop third-party
+Many production-level systems deployed today run atop third party
 cloud IaaS (Infrastructure as a Service) and PaaS (Platform as a
 Service) systems. This fact leads to two main consequences that must
 be considered when designing security or privacy enhancing
@@ -329,7 +328,7 @@ dynamically.
 
 Traditional security and privacy enhancing technologies often rely on
 full control of the entire deployment stack, from the raw hardware all
-the way through the user-facing software, in order to guarantee any
+the way up to the user-facing software, in order to guarantee any
 level of security. In a world where most developers rely on IaaS and
 PaaS systems for production deployment, such full stack control is
 generally not possible. The less trust a developer must place in their
@@ -397,27 +396,27 @@ operate effectively even atop modern deployment practices.
 \section{Threats to Security and Privacy}
 \label{chap:challenges:threats}
 
-The current cloud-computing and third-party solution trends raise a
-number of security and privacy related questions. To what degree must
-we trust each service provider to protect our data? How good our
+The current third party provided cloud-computing trends raise a number
+of security and privacy related questions. To what degree must users
+trust each service provider to protect their data? How good are
 service providers at protecting data? What other threats do modern
 usage models expose?
 
 Almost all of the use cases discussed in
 \S~\ref{chap:challenges:usecases} involve ceding some degree of trust
 to one or more third parties. This often comes in the form of storing
-data or executing computations on third-party servers. But to what
+data or executing computations on third party servers. But to what
 degree is this trust well placed? How likely is such trust to lead to
 an unintended disclosure or manipulation of private data or a related
 security failure? Chapter~\ref{chap:trust} discusses these concepts in
-more detail. Here I'll present examples of some of the security
+more detail. This section presents examples of some of the security
 failures that can occur related to third party trust.
 
 \subsection{Misuse of Data}
 
-One of the main forms of trust we place in third parties is not to
-intentionally misuse the data we store with them. E.g. Are third
-parties using our data in unexpected and undesirable ways?
+One of the main forms of trust users place in third parties is to not
+intentionally misuse the data stored with them. E.g. Are third parties
+leveraging user data in unexpected and undesirable ways?
 Unfortunately, there are a number of examples of such breaches
 occurring:
 
@@ -426,7 +425,7 @@ occurring:
   that Facebook had engaged in research that involved manipulating
   what users saw in their news feeds in order to study the effects of
   one user's emotions on other users~\cite{goel2014}. The study was
-  performed on $\approx700$ users without their explicit knowledge or
+  performed on $\approx700$ users without their knowledge or
   consent. Facebook misused the trust placed in it by its users by
   leveraging and manipulating their data in unforeseen ways.
 \item[Uber User Travel History:] In 2014, ride-share app Uber made
@@ -442,10 +441,10 @@ occurring:
   shoppers were pregnant based on the kind of items they
   bought. Target would then leverage this data to send customers
   coupons optimized for pregnant individuals. In one case, this
-  practice even lead to the outing of a pregnant teenager to her
-  previously unaware father~\cite{hill2012}. Clearly such outcomes are
-  not within the realm of what most shoppers expect when purchasing
-  items at Target.
+  practice lead to the outing of a pregnant teenager to her previously
+  unaware father~\cite{hill2012}. Clearly such outcomes are not within
+  the realm of what most shoppers expect when purchasing items at
+  Target.
 \end{packed_desc}
 
 While not all of these examples are directly related to a user's use
@@ -458,18 +457,18 @@ in them by their users.
 
 Beyond direct third party misuse of user data, there is also the risk
 of unintentional leaks of data stored with third parties. This may
-occur due to a direct attack on third party or through a mistake or
-oversight on the part of the third party. Thus, even if we trust that
-a third party won't intentionally misuse our data, we must still
-question whether or not they are capable of providing adequate
-protection for our data. Today we are generally reliant on third
+occur due to a direct attack on third party or through an oversight on
+the part of the third party. Thus, even if users trust that a third
+party won't intentionally misuse their data, they must still question
+whether or not third parties are capable of providing adequate
+protection for user data. Today users are generally reliant on third
 parties to protect the data they store and to faithfully enforce any
-access control or sharing restrictions we specify.
+access control or sharing restrictions a user specifies.
 
 Unfortunately, there are many examples of third party data breaches
 resulting in the unintended release of user data. 2014 alone saw the
 release of almost 350 million user identities and associated data
-online, representing over 10\% of internet users
+online, representing the data of over 10\% of internet users
 globally~\cite{symanteccorporation2015}. While not intentional, such
 breaches still call into question the degree to which we should trust
 third parties with our data. Examples include:
@@ -478,15 +477,14 @@ third parties with our data. Examples include:
 \item[Apple iCloud Celebrity Photo Leak:] In 2014, a number of
   celebrity users of Apple's iCloud data storage
   service~\cite{apple-icloud} were subject to a public release of
-  personal photos they had stored with the service, often in various
-  stats on undress. This leak was the result of a targeted attack on
-  the corresponding users' passwords and iCloud
-  accounts~\cite{apple-icloudleak}. These attacks appear to have been
-  propagated over several months prior to the public release. While
-  this leak was not a result of an overt flaw in Apple's iCloud
-  system, the weak default security requirements for iCloud accounts
-  made it relatively simple for attackers to compromise such accounts
-  and steal data.
+  personal photos they had stored with the service. This leak was the
+  result of a targeted attack on the corresponding users' passwords
+  and iCloud accounts~\cite{apple-icloudleak}. These attacks appear to
+  have been propagated over several months prior to the public
+  release. While this leak was not a result of an overt flaw in
+  Apple's iCloud system, the weak default security requirements for
+  iCloud accounts made it relatively simple for attackers to
+  compromise such accounts and steal data.
 \item[Office of Personnel Management Breach:] In 2015, The US Office
   of Personnel Management (OPM) announced that their systems had been
   breached, exposing the personal data of pretty much anyone who has
@@ -501,14 +499,14 @@ third parties with our data. Examples include:
   US health insurance companies were subject to attacks that breached
   their user records, allowing the release of personal, financial, and
   medical information on millions of users~\cite{krebs-anthem,
-    krebs-premera}. While the details of the breaches are not yet
+    krebs-premera}. While the details of the breaches were not made
   public, such attacks demonstrate the risk of trusting a third party
   with the storage of large quantities of sensitive data.
 \item[Heartbleed, Shellshock, Etc:] In addition to targeted attacks,
-  third parties are also susceptible to software failures. Prominent
-  examples of such failures include Heartbleed~\cite{heartbleed}, a
-  flaw in OpenSSL~\cite{openssl} that allowed attackers to steal
-  private data from many secure servers, and
+  third parties are also susceptible to software flaws. Prominent
+  examples of such flaws include Heartbleed~\cite{heartbleed}, a flaw
+  in OpenSSL~\cite{openssl} that allowed attackers to steal private
+  data from many secure servers, and
   Shellshock~\cite{symantec-shellshock}, a GNU bash~\cite{gnu-bash}
   flaw that allowed user to execute arbitrary code on many web
   servers. Both flaws were widespread and effected large swaths of
@@ -523,56 +521,58 @@ risk for exposure through attack or oversight.
 \subsection{Government Intrusion}
 
 Recent events have revealed yet another threat vector that must be
-considered when leveraging third-party cloud services: the targeting
+considered when leveraging third party cloud services: the targeting
 of such services by various governments for the propose of wide-spread
-surveillance. In particular, the NSA leaks revealed by Mr. Edward
-Snowden demonstrate the US government's widespread data surveillance
-programs targeting popular cloud data
+surveillance. In particular, the U.S. National Security Agency (NSA)
+leaks revealed by Mr. Edward Snowden demonstrate the US government's
+widespread data surveillance programs targeting popular cloud data
 providers~\cite{greenwald-prism}.  Outside the Unites States,
-government-compelled surveillance and user data access are equally, of
-not more, pervasive~\cite{netfreedom2015}.  While such
-actions, at least in the US, raise numerous questions of
-constitutional legality under the 4th
-Amendment~\cite{us-constitution-amend4}, that does not at present
-change the fact that such searches are known to be occurring. Thus, we
-are forced to not only consider our trust of the various third party
-providers in the cloud, but also our trust of the governments of the
-jurisdictions in which such providers operate.
+government-compelled surveillance and user data access are equally, if
+not more, pervasive~\cite{netfreedom2015}.  While such actions, at
+least in the US, raise numerous questions of constitutional legality
+under the 4th Amendment~\cite{us-constitution-amend4} (see
+Chapter~\ref{chap:policy}), that does not at present change the fact
+that such searches are known to be occurring. Thus, we are forced to
+not only consider our trust of the various third party providers in
+the cloud, but also our trust of the governments of the jurisdictions
+in which such providers operate.
 
 Numerous examples of privacy-subverting attacks by government actors
-have come to light over the previous 5 years. It Is worth considering
-several of these examples as we evaluate how to increase the security
-and privacy guarantees available atop third-party services. Notable
-instances of government data introspection include:
+have come to light over the previous five years. It Is worth
+considering several of these examples in order to evaluate how to
+increase the security and privacy guarantees available atop third
+party services. Notable instances of government data introspection
+include:
 
 \begin{packed_desc}
-\item[PRISM and MUSCULAR:] The NSA PRISM program was/is a
-  FISC-approved~\cite{fisc} system for compelling service providers to
-  provide user data to the government~\cite{greenwald-prism}. It is
-  believed to be one of the largest mechanisms for the government
-  extraction of user data from various cloud-based services
-  (e.g. Google, Yahoo, Microsoft, etc). Similarly, MUSCULAR was/is a
-  joint NSA and British GCHQ effort to intercept and monitor traffic
-  within Google's and Yahoo's data center to data center
+\item[PRISM and MUSCULAR:] The NSA PRISM program was/is a Foreign
+  Intelligence Surveillance Court (FISC)~\cite{fisc} approved system
+  for compelling service providers to provide user data to the
+  government~\cite{greenwald-prism}. It is believed to be one of the
+  largest programs used by the government to extract user data from
+  various cloud-based services (e.g. Google, Yahoo, Microsoft,
+  etc). Similarly, MUSCULAR was/is a joint NSA and U.K. Government
+  Communication Headquarters (GCHQ) effort to intercept and monitor
+  traffic traversing Google's and Yahoo's data center to data center
   networks~\cite{gellman-muscular}. Prior to MUSCULAR's disclosure,
   this intra-datacenter traffic was not generally encrypted, and thus
-  was an ideal point for another entity to intercept and monitor user
-  data. Both cases demonstrate a concerted government effort to access
-  and monitor user data atop popular cloud services.
-\item[Lavabit:] Lavabit was a private email service with 400,000+
-  users premised on the idea that poplar free email services such as
-  Gmail lacked adequate security and privacy guarantees (in part due
-  to the lesser legal protections such communications receive under
-  the US Third-party doctrine~\cite{scotus-usvmiller-privacy,
-    scotus-smithvmaryland}). In August 2013 Lavabit shuttered its
-  service in response to a US government subpoena requiring Lavabit to
-  turn over all of its encrypted user traffic as well as the
-  associated SSL encryption keys necessary to decrypt
-  it~\cite{lavabit, levsion-lavabit}. After a legal fight, Lavabit
-  founder Ladar Levison was forced to disclose the encryption keys
-  protecting his service. The Lavabit example shows the government's
-  willingness to compel service operators to aid in the monitoring and
-  collection of user data.
+  was an ideal point for a third party (e.g. the government) to
+  intercept and monitor user data. Both cases demonstrate a concerted
+  government effort to access and monitor user data atop popular cloud
+  services.
+\item[Lavabit:] Lavabit was a private email service with 400,000 users
+  premised on the idea that poplar free email services such as Gmail
+  lacked adequate security and privacy guarantees (in part due to the
+  lesser legal protections such communications receive under the US
+  third party doctrine~\cite{thompson-thirdparty}). In August 2013
+  Lavabit shuttered its service in response to a US government
+  subpoena requiring Lavabit to turn over all of its encrypted user
+  traffic as well as the associated SSL encryption keys necessary to
+  decrypt it~\cite{lavabit, levsion-lavabit}. After a legal fight,
+  Lavabit founder Ladar Levison was forced to disclose the encryption
+  keys protecting his service. The Lavabit example shows the
+  government's willingness to compel service operators to aid in the
+  monitoring and collection of user data.
 \item[Apple v. FBI:] In response to the 2015 San Bernardino shootings,
   the FBI is seeking to compel Apple to help it decrypt the shooter's
   iPhone~\cite{ars-cookvfbi}. The form of encryption Apple uses to
@@ -585,20 +585,20 @@ instances of government data introspection include:
   the iPhone in question so that they may try to guess an unlimited
   number of passcodes at a high rate of speed\footnote{Due to Apple's
     use of signature-verified code, it is not possible for the FBI (or
-    anyone else) to update the Apple's software themselves - instead
+    anyone else) to update the Apple's software themselves. Instead
     Apple (or the holder of Apple's cryptographic code signing key)
     must approve and sign any updated code before the iPhone will run
-    it.}\cite{eff-applecrypto}. Apple has declined to honor this
-  request~\cite{apple-fbiletter}. The case is currently being fought
-  in the courts. As in the Lavabit case, this case demonstrates
-  government willingness and interest in compelling companies to
-  assist them in accessing private user data, even going so far as to
-  potentially require companies to avoid the use of certain forms of
-  encryption or security-enhancing features that would make such
-  assistance difficult or impossible to provide.
-\item[The Great Firewall:] Moving beyond US-based government digital
-  surveillance, China has long been known to employ one of the most
-  sophisticated web monitoring and content control systems in
+    it.}\cite{eff-applecrypto}. Apple seems disinclined to acquiesce
+  to this request~\cite{apple-fbiletter}. The case is currently being
+  fought in the courts. As in the Lavabit case, this case demonstrates
+  the government's interest in compelling companies to assist them in
+  accessing private user data, even going so far as to potentially
+  require companies to avoid the use of certain forms of encryption or
+  security-enhancing features that would make such assistance
+  difficult or impossible to provide.
+\item[The Great Firewall:] Moving beyond U.S. government surveillance,
+  China has long been known to employ one of the most sophisticated
+  web monitoring and content control systems in
   existence~\cite{rsf-china}. The so called ``Great Firewall''
   effectively monitors all Internet traffic traveling in and out of
   China, blocking a range of encrypted services that might be capable
@@ -609,81 +609,81 @@ instances of government data introspection include:
 \end{packed_desc}
 
 These examples demonstrate the willingness of governments to ensure
-they can access and monitor user data in the cloud. When designing
-security and privacy enhancing systems, we must account for the fact
-that services providers may find themselves in positions where they
-are compelled to turn over data (or even collude in its collection) or
-where they face large scale surveillance of all internal and external
-network traffic.
+they can access and monitor user data in the cloud. Security and
+privacy enhancing systems must thus account for the fact that services
+providers may find themselves in positions where they are compelled to
+turn over data (or even collude in its collection) or where they face
+large scale surveillance of both internal and external network
+traffic.
 
 \subsection{Physical Security}
 
-The modern usage practices discussed in
-\S\ref{chap:challenges:usecases} introduce security issues beyond just
-those related to the trust and exploitation of third-party
-services. One of the key areas where such issues manifest is in the
-physical security of modern computing devices. Traditionally the
-security of a computing device or any data stored there was rooted on
-the premise that the device itself could be kept physically secure:
-e.g. an attacker would not posses unrestricted physical access to a
-device. Modern usage patterns break this assumption in several ways.
+The usage practices discussed in \S\ref{chap:challenges:usecases}
+introduce security issues beyond just those related to the trust and
+exploitation of third party services. One of the key areas where such
+issues manifest is in the physical security of modern computing
+devices. Traditionally the security of a computing device or any data
+stored on it was rooted on the premise that the device itself could be
+kept physically secure: e.g. an attacker would not posses unrestricted
+physical access to a device. Modern usage patterns break this
+assumption in several ways.
 
 First, the multi-device nature of most users increases the number of
 computing devices potentially storing copies of sensitive user
-data. This results in an increased physical attack
-surface. Furthermore, many modern compute devices are designed to be
-mobile -- easily carried by the user and moved about. The combination
-of these facts greatly increase the likelihood of a computing device
-storing user data being lost or stolen. As such, it is critical that we
+data. This results in an increased physical attack surface.
+Furthermore, many modern compute devices are designed to be mobile --
+easily carried by the user and moved about. The combination of these
+facts significantly increase the likelihood of a computing device
+storing user data being lost or stolen. As such, it is critical to
 design systems that are resilient to data compromise even when they
 fall into the hands of unauthorized actors. The likelihood of user
 data compromises occurring due to device loss or theft is far higher
 today then ever before, and privacy enhancing solutions must account
 for this fact.
 
-As mentioned previously, physical control over IaaS-based services is
-also not generally possible. We are thus forced to run many of our
-modern services atop hardware under another party's control. This lack
-of physical hardware access has repercussions for modern threat
+As mentioned previously, physical control over cloud-based services is
+also not generally possible. Developers are thus forced to run many of
+our modern services atop hardware under another party's control. This
+lack of physical hardware access has repercussions for modern threat
 models. To what extent can the hardware provider interfere with or
 bypass the security of software that runs on their systems? What
 abilities do they have to introspect data stored on their servers? How
-much can we trust computations performed on such systems?  Thus,
-modern security and privacy enhancing systems must be designed with
-the knowledge that the underlying hardware itself may be
+much can users trust computations performed on such systems?  Modern
+security and privacy enhancing systems must be designed with the
+knowledge that the underlying hardware itself may be
 untrustworthy. This is a significant departure from the more
 traditional physically-secure-hardware threat model.
 
 Both these cases demonstrate that any security and privacy enhancing
-systems designed to protect data in either the cloud or atop modern
-user devices must contend with the fact that the physical security of
-the devices on which they operate is not guaranteed. We must design
-such systems with the trustworthiness (or lack there of) of such
-systems in mind.
+systems designed to protect data in either the cloud or atop user
+devices must contend with the fact that the physical security of the
+devices on which they operate is not guaranteed. Such systems must be
+designed with the trustworthiness (or lack there of) of the physical
+infrastructure in mind.
 
 \section{Need for New Solutions}
 \label{chap:challenges:solutions}
 
 The confluence of modern use cases and modern security concerns place
-restrictions on the manner in which we must design and build
-successful privacy and security enhancing systems. These security
-concerns form the basis for the threat model against which our systems
-must be able to defend. The need to support modern use cases place
-limitations on the manners in which we may defend against these
-threats. These limitations disqualify many existing security solutions
-and underline the need for new approaches.
+restrictions on the manner in which researchers and developers must
+design and build successful privacy and security enhancing
+systems. These security concerns form the basis for the threat model
+against which our systems must be able to defend. The need to support
+modern use cases places further limitations on the manners in which
+systems may defend against these threats. These limitations disqualify
+many existing security solutions and underline the need for new
+approaches.
 
 Traditionally the solution to many of the threats discussed in
 \S~\ref{chap:challenges:threats} involve the use of
-encryption. Encryption is a desirable security primitive since it
-allows us to protect user data in a manner that is mathematically
-secure: e.g. encryption does not rely on any system or authority for
-the enforcement of its security guarantees, it is instead the
-intrinsic properties of the underlying math itself that give rise to
-its security claims. Thus encryption and related cryptographic
-primitives (e.g. authentication, etc) can serve as the basis for
-systems that are designed to operate securely atop untrusted hardware
-or services.
+cryptography. Cryptography is a desirable security primitive since it
+allows user to protect their data in a manner that is mathematically
+secure. Cryptography does not rely on a trusted arbiter for the
+enforcement of its security guarantees. Instead, it is the intrinsic
+properties of the underlying math itself that give rise to
+cryptographic security claims. Thus cryptography can serve as the basis
+for systems that are designed to operate securely atop untrusted
+hardware or services.
 
 A number of existing encryption systems have been designed and
 deployed with an aim towards protecting user data in the scenarios
@@ -692,84 +692,83 @@ as dm-crypt/LUKS~\cite{dm-crypt, luks} protect user data at rest and
 can help guard against data leaks if a storage device is lost, stolen,
 or otherwise acquired by an adversary. Unfortunately, such systems
 fail to account for many modern use cases. In particular, full disk
-encryption systems generally require the user to interactively supply
-a pass phrase at boot time in order to bootstrap the decryption of the
-data on the system. Such requirements are not generally possible to
-fulfill when using cloud-based infrastructure such as IaaS-backed
-virtual machines. Simply doing away with such pass-phrases isn't a
-viable solution either since the security of the entire system rests
-upon the intended user, and only that user, being able to provide such
-information. I.e. a full disk encryption system that stores a copy of
-the user pass-phrase locally to avoid the need for the user to type it
-in is no more secure then a system without encryption at all. You're
-either giving an adversary a unlocked box or you're giving an
-adversary a locked box as well as the key required to unlock it;
-neither scenario results in a security benefit for the owner of the
-box.
+encryption (FDE) systems generally require the user to interactively
+supply a pass phrase at boot time in order to bootstrap the decryption
+of the data on the system. Such requirements are not generally
+possible to fulfill when using cloud-based infrastructure such as
+IaaS-backed virtual machines. Simply doing away with such pass-phrases
+isn't a viable solution either since the security of the entire system
+rests upon the intended user, and only that user, being able to
+provide such information. A full disk encryption system that stores a
+copy of the user pass-phrase locally to avoid the need for the user to
+supply it is no more secure then a system without encryption at
+all. Either an adversary has an unlocked box or they have both a
+locked box and the key required to unlock it. Neither scenario results
+in a security benefit for the owner of the box.
 
-There also exist various run-time encryption systems that avoid many
-of the issues associated with using full disk encryption systems in
-the cloud. In particular, file-level encryption systems like
-eCryptfs~\cite{ecryptfs} could conceivably be used to locally encrypt
-user data before uploading it to a cloud service such as Dropbox or
-Apple's iCloud. Such an action would serve to greatly reduce the
-degree to which the user must trust either Dropbox or
-Apple. Unfortunately such actions do not mesh well with many of the
-desired multi-device and multi-user use cases mentioned
-previously. For example, encrypting data on one's laptop, storing it
-on Dropbox, and then trying to access it from another device such as a
-phone or tablet will fail. This is due to the fact that the keys used
-to encrypt the data, and that are thus required to decrypt and access
-the data, only exist on the original laptop, making it impossible to
-access the data from another device -- the very propose behind putting
-it on Dropbox in the first place. The user could manually move their
-keys between devices to overcome this issue, but doing so likely
-presents an unachievable challenge for most lay users. Furthermore, if
-the user is capable of easily transferring keys between devices via
-machines other then Dropbox, why can't they just do that with files as
-well and avoid Dropbox all together? Likewise, if a user wishes to
-share data with another iCloud or Dropbox user, they are now also
-required to exchange the necessary decryption key information
-out-of-band in addition to enabling the normal sharing
-mechanisms. Such exchanges are challenging for most users to perform
-in a practical and secure manner, and requiring them greatly increases
-the overhead to multi-user sharing, making it unlikely that most users
-would employ such tactics in the first place.
+Beyond full-disk encryption schemes, various client-side encryption
+systems also exist with an aim toward minimizing the need to trust the
+data storage system. In particular, file-level encryption systems like
+eCryptfs~\cite{ecryptfs} could conceivably be used to encrypt user
+data locally before uploading it to a cloud service such as
+Dropbox. Such an action would serve to greatly reduce the degree to
+which the user must trust third party providers like Dropbox, and does
+not impinge the same ``human-in-the-loop'' issues as FDE system due to
+the differentiated nature of the client-side encryption use
+case. Unfortunately such designs have a new set of flaw. Most notably,
+they do not mesh well with many of the desired multi-device and
+multi-user use cases mentioned previously. For example, encrypting
+data on one's laptop, storing it on Dropbox, and then trying to access
+it from another device such as a phone or tablet will fail. In such a
+scenario the keys used to encrypt the data, and that are thus required
+to decrypt and access the data, only exist on the original laptop,
+making it impossible to access the data from another device -- the
+very purpose behind putting it on Dropbox in the first place. The user
+could manually move their keys between devices to overcome this issue,
+but doing so likely presents an unachievable challenge for most lay
+users. Furthermore, if the user is capable of easily transferring keys
+between devices via mechanisms other then Dropbox, why can't they just
+use the same mechanism for their files as well and avoid Dropbox all
+together? Likewise, if a user wishes to share data with another
+Dropbox user, they are now also required to exchange the necessary
+decryption key information out-of-band in addition to enabling the
+normal sharing mechanisms. Such exchanges are challenging for most
+users to perform in a practical and secure manner, and requiring such
+an exchange increases the overhead to multi-user sharing, making it
+unlikely that most users would employ such tactics in the first place.
 
-Thus, I assert that most traditional encryption systems are not good
-fits for the poplar third-party backed use cases today. Fortunately,
-in these situations it is not the cryptography itself that is
-flawed. This is fortunate: modern state-of-the-art crypto is quite a
-powerful tool and it would be a major loss to be unable to leverage it
-in pursuit of privacy and security enhancing systems. Cryptography is
-a viable tool for helping us reduce the trust we must place in various
-third parties.
+Due to these and related issues, most traditional encryption systems
+are not good fits for popular cloud-based use cases. There is a silver
+lining to this predicament, however. In these situations it is not the
+cryptography itself that is flawed. This is fortunate:
+state-of-the-art cryptography is a powerful tool and it would be a
+major loss to be unable to leverage it in pursuit of privacy and
+security enhancing systems. Instead, the issue breaking common use
+cases today is the lack of secure, usable, and flexible key management
+systems. Such systems would work in conjunction with traditional
+cryptographic solution to allow users to deploy secure systems while
+also ensuring that they have access to the associated keys when and
+where they need them. Likewise, such systems would be tasked with
+controlling access to such keys to ensure only authorized devices and
+users may leverage them.
 
-Instead, the issue breaking common use cases today is the lack of
-secure, usable, and flexible key management systems. Such systems
-would work in conjunction with traditional encryption solution to
-allow users to deploy encryption systems while also ensuring that they
-have access to the associated keys when and where they need
-them. Likewise, such systems would be tasked with controlling access
-to such keys to ensure only authorized devices and users may leverage
-them to decrypt user data. In fact, encryption key storage represents
-just a subset of the larger secret storage problem: How can a a user
-securely store various secrets (encryption keys, passwords, personal
-data, etc) in a manner that allows them to access them when and where
-they desire while also ensuring that no unauthorized access to these
-secrets is allowed?\footnote{This question is merely a variant of the
+Such cryptographic key storage represents just a subset of the larger
+secret storage problem: How can a user securely store secrets
+(encryption keys, passwords, personal data, etc) in a manner that
+allows them to access them when and where they desire while also
+ensuring that no unauthorized access to these secrets is
+allowed?\footnote{This question is merely a variant of the
   Always/Never paradox often encountered when attempting to build
-  secure systems. The problem was probably most famously encountered
-  during the Cold War in the design of nuclear weapons: How can you
-  ensure a nuclear weapon always detonates when its use is
-  intentional, but never detonates when its use is
-  not?~\cite{schlosser2013}} And once securely stored, how can a user
-use these secrets to bootstrap modern security and privacy enhancing
-solution in a manner that support a range of desirable use cases?
-These questions and my proposed solutions form the basis of the work
-presented in this thesis.
+  secure systems. The problem was most famously encountered during the
+  Cold War in the design of nuclear weapons: How can you ensure a
+  nuclear weapon always detonates when its use is intentional, but
+  never detonates when its use is not?~\cite{schlosser2013}} And once
+securely stored, how can a user use these secrets to bootstrap
+security and privacy enhancing solution in a manner that supports a
+range of desirable use cases?  These questions and their proposed
+solutions form the basis of the work presented in this dissertation.
 
 %%  LocalWords:  OneDrive IoT SMB OwnCloud WebDAV LAFS IaaS PaaS Uber
 %%  LocalWords:  iCloud Premera Heartbleed Shellshock OpenSSL NSA OPM
-%%  LocalWords:  Snowden th FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS
-%%  LocalWords:  Levison Bernardino passcode passcodes dm
+%%  LocalWords:  Snowden FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS
+%%  LocalWords:  Levison Bernardino passcode passcodes dm FDE

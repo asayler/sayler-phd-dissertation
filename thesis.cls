@@ -60,6 +60,7 @@
 \DeclareOption{10pt}{ \PassOptionsToClass{10pt}{report} }
 \DeclareOption{11pt}{ \PassOptionsToClass{11pt}{report} }
 \DeclareOption{12pt}{ \PassOptionsToClass{12pt}{report} }
+\DeclareOption{twoside}{ \PassOptionsToClass{twoside}{report} }
 
 % Invalid options - normally used in report.cls and others, but not here:
 
@@ -67,8 +68,8 @@
    {\ClassWarning{thesis}{Title page always generated. Option ignored.}}
 \DeclareOption{notitlepage}
    {\ClassWarning{thesis}{Option 'notitlepage' not available for thesis.}}
-\DeclareOption{twoside}
-   {\ClassWarning{thesis}{Option 'twoside' not available for thesis.}}
+%\DeclareOption{twoside}
+%   {\ClassWarning{thesis}{Option 'twoside' not available for thesis.}}
 \DeclareOption{twocolumn}
    {\ClassWarning{thesis}{Option 'twocolumn' not available for thesis.}}
 \DeclareOption{landscape}

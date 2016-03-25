@@ -5,8 +5,8 @@ Custos\footnote{Custos is Latin for ``guard''.} is a prototype SSP
 server, SSaaS protocol, and SSaaS client ecosystem used to demonstrate
 and explore SSaaS concepts. Custos is optimized for cryptographic key
 storage, making it primarily a Key Storage as a Service (KSaaS)
-implementation. I provide an overview of Custos and some of its design
-insights here. Additional information is available at
+implementation. The chapter provides an overview of Custos and some of
+its design insights. Additional information is available at
 \cite{custos-masters} and \cite{custos-trios}.
 
 \section{Architecture}
@@ -42,7 +42,7 @@ Custos SSP server implements the following components:
   requests.
 \item[Management:] Handles management requests (e.g. the
   manipulating access control parameters).
-\item[Key-Value Secret Store:] Stores persistent data such as end-user
+\item[Key-Value Secret Store:] Stores persistent data such as end user
   secrets (e.g. encryption keys) as well as internal state
   (e.g. access control requirements).
 \end{packed_desc}
@@ -70,9 +70,9 @@ variety of applications.
   \label{fig:custos-ou}
 \end{figure}
 
-In order to discuss the Custos access control system, I must first
-explain the Custos \emph{organizational units} (OUs): the core Custos
-data structures. The Custos architecture specifies three
+In order to discuss the Custos access control system, it is necessary
+to explain the Custos \emph{organizational units} (OUs): the core
+Custos data structures. The Custos architecture specifies three
 organizational units (Figure~\ref{fig:custos-ou}): a server, a group,
 and a key:value object. The server unit is used to specify server-wide
 configuration. A server has one or more groups associated with it. A
@@ -217,7 +217,7 @@ hold via explicit permissioning. Custos permissions are initially set
 when the associated OU is created. After creation, each ACS can be
 updated by anyone granted the necessary \texttt{acs\_set} permission
 for the specific OU instance. Custos group and server ACSs also
-include an ``override'' permission. This permission can be used to
+includes an ``override'' permission. This permission can be used to
 override the permissions of a lower-level OU's ACS. For example,
 anyone gaining the \texttt{srv\_grp\_override} permission can use it
 to gain any of the rights normally granted via a group-level
@@ -253,23 +253,23 @@ permission. For example, consider a key:value object whose
   (psk = Swordfish) ]
 \end{Verbatim}
 
-In order for our read request for the associated key:value object to
-succeed, we would have to make sure that our request contained all the
-authentication attributes in at least one of the lists above. In the
-case of the first ACC, that would mean attaching the 'user\_id'
-attribute with a value of 'Andy', as well as attaching the 'psk'
-attribute with a value of '12345'. The 'ip\_src' attribute is an
+In order for a read request for the associated key:value object to
+succeed, the user would have to make sure that their request contained
+all the authentication attributes in at least one of the lists
+above. In the case of the first ACC, that would mean attaching the
+'user\_id' attribute with a value of 'Andy', as well as attaching the
+'psk' attribute with a value of '12345'. The 'ip\_src' attribute is an
 implicit attribute (see \S~\ref{chap:custos:arch:ac:aa}) and will be
 automatically appended to our request when received by the Custos
-server. In order to satisfy it, we would have to send the request from
-the 192.168.1.0 subnet. In the case of the second ACC, we still need
-the 'Andy' username and must satisfy the IP restriction, but this time
-we must prove that we have access to the private key associated with
-the specified authentication certificate instead of providing a
-password. In the third ACC, we have granted access to an additional
-user, John, with his own password. As long as we can satisfy at least
-one ACC in a set of ACCs for a given permission, we are granted the
-right to perform actions associated with the permission.
+server. In order to satisfy it, the user must send their request from
+the 192.168.1.0 subnet. In the case of the second ACC, the user still
+needs the 'Andy' username and must satisfy the IP restriction, but
+this time they must also prove that they have access to the private
+key associated with the specified authentication certificate instead
+of providing a password. The third ACC grants access to an additional
+user, John, with his own password. As long as a user can satisfy at
+least one ACC in a set of ACCs for a given permission, they are
+granted the right to perform actions associated with the permission.
 
 This system is highly flexible. Take, for example, the lack of
 explicit username support anywhere in the Custos specification. As was
@@ -277,11 +277,11 @@ done above, usernames simply become another authentication
 attribute. Often a username will be the first attribute in a ACC to
 allow for all following attributes to be specified relative to a given
 username (as shown in the example above). But there's nothing special
-about usernames. We could just have easily started each ACC with an IP
-attribute, requiring a separate password based upon the location a
-user is making their request from. The combination of simple ordered
-attribute lists and a wide range of flexible attributes makes for
-powerful access control semantics.
+about usernames. An administrator could just have easily started each
+ACC with an IP attribute, requiring a separate password based upon the
+location a user is making their request from. The combination of
+simple ordered attribute lists and a wide range of flexible attributes
+makes for powerful access control semantics.
 
 Another point worth noting is that sets of ACCs can be converted into
 ACC trees, often simplifying the understanding or verification of
@@ -399,8 +399,8 @@ removing, and modifying access control rules), and auditing
 arbitrary cryptographic key data to be associated with each ID for
 secret storage purposes. Each ID:secret pair in Custos is associated
 with a specific group. These groups can be used to allow multiple
-users to administrator a set of secrets and to control who can create
-new secrets within a group.
+users to administer a set of secrets and to control who can create new
+secrets within a group.
 
 The Custos API is secured via TLS/HTTPS. Custos servers are
 authenticated over TLS via the standard public key infrastructure
@@ -435,34 +435,33 @@ discussed in Chapter~\ref{chap:tutamen}.
 
 \section{Implementation}
 
-I've created prototype implementations of both a Custos server and a
-sample Custos client. These implementations exist to test and
-demonstrate the basic SSaaS concepts proposed here.
+Prototype implementations of both a Custos server and a sample Custos
+client were created to to test and demonstrate the basic SSaaS
+concepts proposed in this document. These implementation are described
+below.
 
 \subsection{SSP Server}
 
 The Custos SSP server~\cite{custos-repo-server} is implemented in
-Python. It is designed to use off-the-shelf key-value stores for
-backing secret storage. The bulk of the Custos server code base is
-involved with implementing the verification process for Access Control
-Chains and the associated Access Attribute modules. The server
-leverages the Flask~\cite{python-flask} web framework to implement the
-Custos API, and provides HTTPS support via the Apache~\cite{apache}
-web server. The server is capable of handling a few hundreds key
-requests per second, depending on the complexity of the associated
-ACCs.
+Python. It is designed to use file-system backed key-value stores for
+secret storage. The bulk of the Custos server code base is involved
+with implementing the verification process for Access Control Chains
+and the associated Access Attribute modules. The server leverages the
+Flask~\cite{python-flask} web framework to implement the Custos API,
+and provides HTTPS support via the Apache~\cite{apache} web server.
+The server is capable of handling a few hundreds key requests per
+second, depending on the complexity of the associated ACCs.
 
 \subsection{EncFS}
 
-To test the Custos SSP server and demonstrate an SSaaS-aware
-application, I created \texttt{EncFS}, a sample SSaaS
-client~\cite{custos-repo-encfs}. \texttt{EncFS} is a simple
-FUSE-based~\cite{fuse} layered file system that provides transparent
-client side-encryption atop an underlying file store. \texttt{EncFS}
-offloads its key storage duties to the the Custos SSP Server using the
-Custos SSaaS protocol. It accomplishes this via \texttt{libcustos}, a
-C-library implementation of the Custos
-protocol~\cite{custos-repo-libcustos}.
+\texttt{EncFS} is a sample SSaaS client~\cite{custos-repo-encfs}
+created test the Custos SSP server and demonstrate an SSaaS-aware
+application. \texttt{EncFS} implements a FUSE-based~\cite{fuse}
+layered file system that provides transparent client side-encryption
+atop an underlying file store. \texttt{EncFS} offloads its key storage
+duties to the Custos SSP Server using the Custos SSaaS protocol. It
+accomplishes this via \texttt{libcustos}, a C-library implementation
+of the Custos protocol~\cite{custos-repo-libcustos}.
 
 \texttt{EncFS}'s utilization of the SSaaS model allows it to support
 many cloud-based use cases not readily supported by traditional
@@ -482,17 +481,17 @@ stores operate.
 Adding the SSP encryption key request operation to the file read
 process does incur an additional ~10 to ~100 milliseconds of latency
 on file reads, primarily dependent on the network latency between the
-client and the SSP~\cite{custos-trios}. None the less, I don't believe
+client and the SSP~\cite{custos-trios}. None the less, it's unlikely
 that most users will notice this additional latency in normal
 day-to-day use (e.g. editing a text file, playing a media file,
-viewing a photo, etc). I also don't feel this latency is any worse
-then most existing distributed or networked file system protocols
-would incur, and in situations where an SSaaS client like
-\texttt{EncFS} is used in conjunction with a distributed or networked
-file system, secret-access operations can be performed in parallel
-with encrypted data-access operations, ensuring that the SSP latency
-is not incurred in addition to existing networked file system latency.
+viewing a photo, etc). This latency is also no worse then most
+existing distributed or networked file system protocols would incur,
+and in situations where an SSaaS client like \texttt{EncFS} is used in
+conjunction with a distributed or networked file system, secret-access
+operations can be performed in parallel with encrypted data-access
+operations, ensuring that the SSP latency is not incurred in addition
+to existing networked file system latency.
 
 %%  LocalWords:  Custos SSaaS SSP Custos's ACCs AAs OUs OU ACS ACC ip
 %%  LocalWords:  srv grp acs ACSs OU's src psk subnet utc HTTPS SSPs
-%%  LocalWords:  EncFS libcustos
+%%  LocalWords:  EncFS libcustos KSaaS Tutamen

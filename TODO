@@ -2,6 +2,7 @@ third-party -> third party
 end-user -> end user
 it's -> it is
 US -> U.S.
+pass-phrase -> passphrase
 
 * New trust capability - code modification (?)
 * Tutamen Secret Versioning (?)

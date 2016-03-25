@@ -4,8 +4,225 @@
 As mentioned in previous chapters, the SSaaS model can be utilized
 across a range of applications. In each case, the model allows users
 to reduce the trust they must place in any single third-party while
-also supporting popular use cases. I present several potential SSaaS
-applications in this chapter.
+also supporting popular use cases. This chapter presents a discussions
+of common SSaaS application patterns as well as several specific SSaaS
+applications.
+
+\section{Common Patterns and Challenges}
+
+There are a number of common patterns and challenges that occur across
+SSaaS applications. The section discusses some of the more prominent
+issues faced by SSaaS applications and proposed solutions to each.
+
+\subsection{SSaaS Metadata Storage}
+
+Many SSaaS applications will need to store additional metadata related
+to their SSaaS-based operations. Most notably, ``key storage as a
+service'' (KSaaS) applications (e.g. client-side encryption, etc)
+require a mechanism for mapping encrypted data to the key required to
+decrypt it. Similarly, pretty much all SSaaS applications will need
+the ability to store the identity of the SSP (or SSPs) the user has
+selected for the storage of their secrets.
+
+How best to store such metadata is left up to each application.
+Applications that use only an SSP (e.g. a SSaaS-backed password
+manager) can likely maintain such metadata in an internal database or
+via a dedicated metadata storage service. Such solution are well
+understood and rarely complex. Applications that use split data/secret
+storage techniques (e.g. a client-side encryption application that
+encrypts data for storage on Dropbox via a key stored with one or more
+SSPs) require a more nuanced metadata storage approach.
+
+Split data/key applications require the ability to map encrypted data
+to encryption keys in a manner that allows the required key to be
+identified during the decryption process.\footnote{This description
+  uses encryption as an example of a split data/key use case, but
+  these ideas are similar applicable to data authentication use cases
+  and other SSaaS-backed cryptographic primitives.} This mapping thus
+represents an additional layer of persistent state that an application
+must maintain. Indeed, if such a mapping were to be lost it would
+render any data stored by the application useless since the
+application would no longer be able to decrypt the data. The need to
+maintain such mappings is further complicated by the desire to support
+sharing and syncing use cases. Both sharing and syncing operations
+require the ability to share or sync the associated key mapping
+metadata. This requirement restricts the options for maintaining such
+mappings to designs supporting the sharing or syncing of metadata as
+well.
+
+Thus, applications must decide how to best to store SSaaS-related
+metadata such as key mappings in a manner that allows it to be quickly
+retrieved in both local and sharing/syncing use cases. In the common
+case of needing to store key mapping metadata, it is worth noting that
+such key-mapping lookups are predominately unidirectional:
+applications needing to lookup the key corresponding to a known piece
+of data are far more common than applications needing to lookup the
+data encrypted with a known key. This is due to the fact that most
+applications (and their users), operate in terms of data objects
+(e.g. files, photos, etc) natively, hiding the encryption from the
+user all together to increase usability. It is thus far more natural
+for a user to request access to a piece of data for which the
+application must lookup the corresponding key than it is for a user to
+specify a key and need the applications to lookup the corresponding
+piece of data. The main exception to this rule is potential SSaaS
+management applications where a user may in fact wish to lookup a
+specific key and wish to ascertain which data it is used to protect.
+
+There are basically three options for storing the metadata necessary
+to map keys to data (or vice versa). Each has pros and cons. It is
+possible that applications may wish to combine several technique for
+the purpose of leveraging the strengths of each while avoiding the
+flaws.
+
+\begin{packed_desc}
+\item[Out-of-Band Metadata:] An application may maintain an
+  out-of-band mechanism for storing metadata. For example, an
+  application could maintain a local database of data, key pairs. The
+  advantages of such a solution lies in its simplicity and ability to
+  access metadata without needing to perform any form of remote API
+  call to retrieve the corresponding secret or data. The ability to
+  perform such local lookups may have performance benefits for certain
+  applications. The biggest downside of this approach is that it
+  requires the use of additional out-of-band mechanism to exchange
+  metadata with other users or application instances in order to
+  support sharing or syncing. E.g. an application using out-of-band
+  metadata storage would require a dedicated mechanism for sharing
+  such metadata with other users anytime a user shared a file. The
+  need to implement such mechanisms increases the complexity of such
+  applications. This approach also has the downside of increasing the
+  risk of metadata loss. Storing the metadata via a separate mechanism
+  unrelated to either the data or secret storage mechanism to which
+  the metadata relates introduces an additional point of failure.  The
+  loss of metadata such as data, key mappings will render both the
+  corresponding data and keys meaningless.
+\item[Key-Tied Metadata:] An alternative to maintaining out-of-band
+  metadata storage is to store all required metadata via the SSP
+  secret storage system. Such storage could be accomplished by
+  allowing the application to provided arbitrary metadata fields
+  associated with each secret it stores or by allowing the application
+  to encode metadata into the secret ID itself. For example, an
+  application could store the identity of the data to which a given
+  key corresponds as a metadata attribute of the key itself. This has
+  the benefit avoiding the need for an out-of-band database, and has a
+  graceful failure mode in which the only way metadata is lost is if
+  the secret to which it corresponds is also lost, in which case the
+  metadata would be useless anyway. The main downside to this approach
+  is that it is not well optimized for computing data-to-metadata
+  lookups, such as those required to discover the ID of the decryption
+  key for a piece of encrypted data. Such lookups would require an
+  exhaustive search of all secrets until the one with the required
+  metadata value is found.
+\item[Data-Tied Metadata:] An application can also invert the idea of
+  a key-tied metadata by storing all SSaaS metadata with the data
+  itself. This might be accomplished either by leveraging data-linked
+  metadata fields (e.g. the extended attributes offered by many file
+  systems) or by writing additional data to the storage medium itself
+  (e.g. using a ``header'' structure that proceeds each chunk of
+  encrypted data and identifies the key required to decrypt the
+  data). Like key-tied metadata, data-tied metadata avoids creating an
+  additional point of failure by linking metadata storage to the data
+  that depends on it. Furthermore, data-tied metadata can perform
+  constant-time data-to-metadata lookups. This make such techniques
+  well optimized for encryption systems requiring data-to-key
+  lookups. Furthermore, such metadata storage adapts well to sharing
+  and syncing use case since any mechanisms already in place to share
+  or sync the underlying data (e.g. Dropbox) will also share and sync
+  the associated metadata. The main downside to data-tied metadata
+  storage is the need to perform an exhaustive search to compute
+  key-to-metadata lookups. But since such lookups tend to be rare in
+  most use cases, this deficiency may not be widely noticed.
+\end{packed_desc}
+
+In real applications, it is likely prudent to use a combination of
+these techniques. For example, an application could use both key-tied
+and data-tied metadata storage to ensure both constant time
+data-to-key as well as constant time and key-to-data
+lookups. Furthermore, an application could also use a metadata
+database as a high speed cache for common metadata lookups, avoiding
+the need to query the data storage medium or SSP to access metadata in
+many instances. The downside to a combined approach is the additional
+complexity required keep the multiple metadata stores internally
+consistent. Such challenges, however, are common in data storage
+applications and have well understood solution.
+
+\subsection{Data Granularity}
+
+In addition to metadata storage and maintaining data-to-key mappings,
+encryption and authentication based SSaaS applications must also
+tackle the decision of at what granularity they wish to encrypt or
+authenticate data. Traditionally this decision is driven by
+complexity, performance, and access control requirements, and
+SSaaS-backed applications are no exception.
+
+As an example, consider a disk encryption system. This system could
+encrypt data in a variety of ways: it could encrypt individual disk
+blocks, it could encrypt individual files, or it could encrypt
+individual directories and all the files they contain. Encrypting
+individual disk blocks using a single key tends to be fast and simple,
+but makes controlling access to specific files, vs the entire disk,
+difficult. The higher-level file and directory encryption provides
+finer grain control over access (e.g. by using separate encryption
+keys for each file), but incurs additional file system-level
+overhead. In general, lower level mappings are going to be faster, but
+lack support for finer grained access control. Higher level systems
+are slower, but with more flexible access control options.
+
+The SSaaS model complicates this further by adding additional overhead
+to the key retrieval phase of any encryption operation. Thus, a
+block-level disk encryption system that uses a single key to protect
+an entire disk incurs minimal SSaaS overhead since it requires only a
+single SSP key lookup when the disk is first accessed. But such a
+setup would limit the user to a single set of SSP-enforced access
+control rules for the entire disk. Per-file encryption, on the other
+hand, incurs significantly more (but still manageable) overhead by
+required an SSP key lookup for each file open operation. File
+mappings, however, allow the user to set individual access control
+rules for each file.
+
+There exist additional encryption granularity options. For example the
+SSaaS model could be used to store a separate key for each individual
+hard disk sector. Such a setup would allow potentially interesting
+methods of per-sector access control, but would also significantly
+increase disk latency by requiring a round trip SSP key lookup for
+each individual sector, potentially incurring thousands of lookups to
+access a single file. It is thus necessary to consider the additional
+SSP-overhead the SSaaS model entails when deciding on the level of
+granularity required for a given encryption application.
+
+\section{Use of SSaaS Libraries and Utility Programs}
+
+One of the benefits of the SSaaS model is the use of a standardized
+protocol providing access to secret storage functionality. As
+mentioned in Chapter~\ref{chap:ssaas}, this standardization has
+numerous benefits -- most notably the encouragement of SSP
+competition. An additional benefit of standardization is the ability
+to use standard SSaaS libraries and utility applications. Such systems
+reduce the complexity of each individual SSaaS application by
+allowing common SSaaS tasks to be abstracted into dedicated libraries
+or utilities.
+
+It is possible that the implementation of SSaaS client functionally
+will often be non trivial, especially when considering the need for
+such applications to support the ability to shard secrets across
+multiple SSPs, etc. The potential complexity of such solutions likely
+calls for the creation of a standardized SSaaS client libraries that
+can be utilized by multiple applications. Such a library avoids the
+need for each SSaaS client to reimplement SSaaS API communication
+primitives directly. Similar to the manner in which most applications
+use common cryptography libraries to avoid needing to reimplement
+cryptographic code, SSaaS applications can use common SSaaS protocol
+libraries to simplify their integration with the SSaaS ecosystem.
+
+Furthermore, it may also be desirable to create common SSaaS
+management utilities. Many of the SSaaS-related management features,
+e.g. setting up access control requirements, checking audit logs, etc,
+are common across all SSaaS applications. It is thus desirable to
+offload such functions to a general SSaaS management utility in cases
+where such functions need not be tightly coupled with a given
+SSaaS-backed applications. Such offloading allows most SSaaS-backed
+applications to focus purely on the secret storage and retrieval side
+of the SSaaS API while dedicated management utilities handle the
+access control and auditing side of the SSaaS API.
 
 \section{Storage}
 
@@ -453,4 +670,4 @@ combination allows for high speed cryptographic processing without
 placing a high degree of trust in any single system or party.
 
 %%  LocalWords:  SSaaS CMAC SSPs SSP's SSP FDE iOS Repo Snowden IaaS
-%%  LocalWords:  JumpCloud Heartbleed PKCS softHSM
+%%  LocalWords:  JumpCloud Heartbleed PKCS softHSM KSaaS FP ToFU

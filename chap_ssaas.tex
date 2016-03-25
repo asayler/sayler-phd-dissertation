@@ -248,22 +248,6 @@ How does the client keep multiple SSPs in sync? Potential answers to
 these questions are provided by the Tutamen work presented in
 Chapter~\ref{chap:tutamen}.
 
-The potential complexity of such solutions likely calls for the
-creation of a standardized SSaaS client library that can be utilized
-by multiple applications. Such a library avoids the need for each
-SSaaS client to reimplement SSaaS communication and management
-primitives directly. Furthermore, it may also be desirable to create a
-common SSaaS management application. Many of the SSaaS-related
-management features, e.g. setting up access control requirements,
-checking audit logs, etc, are common across all SSaaS client
-applications. It is thus desirable to offload such functions to a
-general SSaaS management applications in cases where such functions
-need not be tightly coupled with a given SSaaS-backed
-applications. Such offloading allows most SSaaS-backed applications to
-focus purely on the secret storage and retrieval side of the SSaaS API
-while dedicated management applications handle the access control and
-auditing side of the SSaaS API.
-
 \section{Economics}
 \label{chap:ssaas:economics}
 

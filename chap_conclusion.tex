@@ -1,39 +1,38 @@
 \chapter{Conclusion}
 \label{chap:conclusion}
 
-The sheer magnitude of user data generated and stored on computing
-devices and with third party providers increases ever day. So to
-increases the range of threats to which such data is subjected.
-Building systems that increase the privacy and security of such user
-data is thus of critical importance.
+The magnitude of user data generated and stored on computing devices
+and with third party providers increases ever day. So to increases the
+range of threats to which such data is subjected.  Building systems
+that improve the privacy and security of such user data is thus of
+critical importance.
 
-Unfortunately, many such traditional privacy and security enhancing
-systems are not well adapted to modern usage practices, leading to
-users to forego the use of such systems all together. Privacy and
-security enhancing systems must not merely protect user data, they
-must do so in a manner that preserves a user's ability to use the
-devices and services they wish in the manner to which they are
-accustomed. Failure to do so leads to the creation of technologies
-that go underutilized or unused.
+Unfortunately, many traditional privacy and security enhancing systems
+are not well adapted to modern usage practices, leading users to
+forego the use of such systems all together. Privacy and security
+enhancing systems must not merely protect user data, they must do so
+in a manner that preserves a user's ability to use the devices and
+services they wish in the manner to which they are accustomed. Failure
+to do so leads to the creation of systems that go underutilized or
+unused.
 
 One of the major hurtles to building privacy and security enhancing
 technologies lies in the challenges associated with securing the
-secrets necessary to bootstrap secure operation of such
+secrets necessary to bootstrap the secure operation of such
 technologies. Such secrets range from the encryption keys necessary to
-encrypt user data to the password necessary to access online
-services. Coupled with the need to support desirable use cases, the
-secret storage challenge makes it difficult to build effective
+encrypt user data to the passwords necessary to access online
+services. Coupled with the need to support desirable use cases, this
+``secret storage challenge'' makes it difficult to build effective
 security and privacy enhancing systems.
 
 The Secret Storage as a Service (SSaaS) model provides a mechanism for
 securely storing user secrets in a manner that supports a wide range
 of use cases. The SSaaS system also provides mechanisms for reducing
 the trust users must place in third parties: making such trust a
-severable and tradable commodity on a market favoring increased third
-party trustworthiness. The SSaaS model also maximizes a user's
-flexibility to control the manner in which their secrets are used (and
-by proxy, the manner in which any data such secrets are used to
-protect is used).
+severable and tradable commodity on a market favoring increased
+trustworthiness. The SSaaS model maximizes a user's flexibility to
+control the manner in which their secrets are used (and by proxy, the
+manner in which any data such secrets protect is used).
 
 This dissertation makes several key contributions to the state of the
 are. These include:
@@ -49,18 +48,17 @@ are. These include:
 \item Custos -- a first generation SSaaS prototype
   (Chapter~\ref{chap:custos}).
 \item Tutamen -- a next generation SSaaS prototype with robust support
-  for multi-secret storage provider use cases and autonomous operation
-  (Chapter~\ref{chap:tutamen}).
+  for sharding secrets across multiple storage providers and
+  autonomous operation (Chapter~\ref{chap:tutamen}).
 \item A discussion of the policy implications necessary to build and
-  support a healthy SSaaS ecosystem
+  support a healthy SSaaS ecosystem.
 \end{packed_item}
 
-The SSaaS model and related work presented in this document can be
-used to increase the security and privacy of user data across a range
-of use cases. Such a security increase benefits the public at large,
-and helps to ensure that the computing services and capabilities that
-have provided so many benefits over the previous 20 years continue to
-do so for the next 20 years. Such solutions are a critical component
-of future computing systems.
+The SSaaS model can improve the security and privacy of computing
+systems across a range of use cases. These improvements will help to
+ensure that the computing services that have provided so many benefits
+over the previous 20 years continue to provide benefits for the next
+20 years. Flexible secret storage systems such as those proposed
+herein are a critical component of future secure computing systems.
 
 %%  LocalWords:  SSaaS Custos Tutamen

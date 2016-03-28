@@ -40,6 +40,7 @@ pdf: $(SRCS) $(CLS) figs
 	$(BIBTEX) $(REPORT)
 	$(LATEX) $(REPORT)
 	$(LATEX) $(REPORT)
+	$(LATEX) $(REPORT)
 
 figs/out/%.pdf: figs/src/%.svg
 	inkscape --export-area-drawing --export-eps="$(FIG_TMP)" --file="$<"

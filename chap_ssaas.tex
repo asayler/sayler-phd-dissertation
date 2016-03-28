@@ -206,9 +206,14 @@ network~\cite{Nakamoto2008}. Such public audit logs might provide more
 robust variants of the ``warrant cannery'' concept that has recently
 become popular amongst a range of third party services providers as a
 counter measure against secret compelled data
-requests~\cite{eff-canary}. The semi-centralized nature of SSPs make
-them a desirable point at which to audit and detect unauthorized
-access requests for user data via such mechanisms.
+requests~\cite{eff-canary}.
+
+SSP audit logs could also be interfaced with third-party analysis
+engines (e.g.~\cite{logrythm} or~\cite{splunk}) in order to spot
+abnormal access patterns or other security-related anomalies. The
+logically-centralized nature of SSPs make them a desirable point at
+which to audit and detect unauthorized access requests for user data
+via such mechanisms.
 
 \subsection{Clients}
 
@@ -261,11 +266,11 @@ harvest user data is the basis of the service provider's business
 model. As discussed in Section~\ref{chap:trust:survey}, these
 situations create a number of perverse incentives in terms of a
 traditional feature provider's goals with respect to user security and
-privacy. In the first case, the feature provider simply does not
-prioritize user security since that is not the primary basis on which
-users are choosing to pay for a service. In the second case, a feature
-provider actively works to subvert user security and privacy in order
-to further leverage user data to generate income.
+privacy~\cite{anderson2001}. In the first case, the feature provider
+simply does not prioritize user security since that is not the primary
+basis on which users are choosing to pay for a service. In the second
+case, a feature provider actively works to subvert user security and
+privacy in order to further leverage user data to generate income.
 
 The SSaaS model aims to rectify these issues by introducing SSP actors
 whose primary goal is the protection of user secrets and from whom

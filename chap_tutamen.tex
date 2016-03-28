@@ -269,7 +269,7 @@ Access control servers control access related to both internal (i.e.,
 access control server) and external (i.e., storage server) objects by
 providing signed authorization tokens in response to valid
 requests. Similar to previously proposed distributed and federated
-access control systems~\cite{Calero2010, Leandro2012}, each
+access control systems~\cite{calero2010, leandro2012}, each
 authorization token grants the bearer a specific permission related to
 a specific object. Unlike previous systems, however, Tutamen is
 designed to avoid needing to trust any single access control provider
@@ -525,7 +525,9 @@ authenticated tokens between Tutamen applications, access control
 servers, and storage servers. The implementation leverages the
 pyjwt~\cite{pyjwt} library for JWS and JWT support. These tokens are
 attached to subsequent requests using a \texttt{tutamen-tokens} header
-field.
+field. The \texttt{pytutamen-server} library relies on the Python
+Cryptography~\cite{python-cryptography} library for CA-related
+certificate provisioning duties.
 
 The access control servers expose a pluggable authenticator interface
 through which end users and other developers may add custom

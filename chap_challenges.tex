@@ -373,17 +373,17 @@ of limited usefulness in such scenarios.
 
 Furthermore, the trend toward headless, ephemeral infrastructure
 capable of rapidly scaling up or down is driving the adoption of
-configuration management systems such as Puppet~\cite{puppet} or
-Chef~\cite{chef}. Such systems are necessary to help developers
-automate the otherwise monotonous process of configuring cloud compute
-resources manually. Indeed, the sheer number of cloud servers involved
-in most larger scale production deployments makes manual management
-impossible.~\footnote{This fact has given rise to the sentiment that
-  ``servers are cattle, not pets'' -- meaning developers should focus
-  on automatically managing large numbers of systems instead of
-  carefully curating individual systems.}  Thus, new security and
-privacy enhancing technologies must be able to operate securely even
-when their configuration must be automated.
+configuration management systems such as Chef~\cite{chef},
+Salt~\cite{salt}, or Puppet~\cite{puppet}. Such systems are necessary
+to help developers automate the otherwise monotonous process of
+configuring cloud compute resources manually. Indeed, the sheer number
+of cloud servers involved in most larger scale production deployments
+makes manual management impossible.~\footnote{This fact has given rise
+  to the sentiment that ``servers are cattle, not pets'' -- meaning
+  developers should focus on automatically managing large numbers of
+  systems instead of carefully curating individual systems.}  Thus,
+new security and privacy enhancing technologies must be able to
+operate securely even when their configuration must be automated.
 
 Assumptions about a developer's ability to physically access a
 machine, to interactively provide input to a machine, or to manually
@@ -428,12 +428,12 @@ occurring:
   performed on $\approx700$ users without their knowledge or
   consent. Facebook misused the trust placed in it by its users by
   leveraging and manipulating their data in unforeseen ways.
-\item[Uber User Travel History:] In 2014, ride-share app Uber made
-  headlines when it used the travel-history of a number of its more
-  prominent users to display a live user-location map at a launch
-  party~\cite{sims2014}. Similarly, the company also used stored user
-  travel history to compose a blog post detailing its ability to
-  detect a given user's proclivity for ``one night
+\item[Uber User Travel History:] In 2014, ride-share app
+  Uber~\cite{uber} made headlines when it used the travel-history of a
+  number of its more prominent users to display a live user-location
+  map at a launch party~\cite{sims2014}. Similarly, the company also
+  used stored user travel history to compose a blog post detailing its
+  ability to detect a given user's proclivity for ``one night
   stands''~\cite{pagliery2014}. In both cases, Uber leveraged data it
   had about users in manners users did not approve of or intend.
 \item[Target Pregnancy Prediction:] In 2012, it became public that

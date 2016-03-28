@@ -144,8 +144,9 @@ In addition to metadata storage for maintaining data-to-key mappings,
 encryption and authentication based SSaaS applications must also
 tackle the decision of at what granularity they wish to encrypt or
 authenticate data. Traditionally this decision is driven by
-complexity, performance, and access control requirements.
-SSaaS-backed applications are no exception.
+complexity, performance, and access control
+requirements~\cite{li2013}.  SSaaS-backed applications are no
+exception.
 
 As an example, consider a disk encryption system. This system could
 encrypt data in a variety of ways: it could encrypt individual disk
@@ -599,10 +600,10 @@ Both of these setups illustrate the benefits an SSaaS system can
 provide to common authentication and user management problems in cloud
 servers. In many ways, SSaaS represents a more secure variant of
 traditional configuration management solutions such as
-Chef~\cite{chef} or Puppet~\cite{puppet}. But unlike such solutions,
-the SSaaS model is deigned with the security and privacy of the
-configuration data it stores as a first principle, not a secondary
-concern.
+Chef~\cite{chef}, Salt~\cite{salt}, or Puppet~\cite{puppet}. But
+unlike such solutions, the SSaaS model is deigned with the security
+and privacy of the configuration data it stores as a first principle,
+not a secondary concern.
 
 \section{Dedicated Crypto Processor}
 

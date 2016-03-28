@@ -215,7 +215,9 @@ value of $D$ than a user with no pieces. Such ``$N$ choose $K$''
 threshold systems provide a useful method for distributing information
 amongst multiple parties in situations where no single party can be
 fully trusted. Such systems can also be used to provide redundancy by
-selecting $N$ to be greater than $K$.
+selecting $N$ to be greater than $K$.\footnote{Not unlike RAID systems
+  can be used to provide redundancy across multiple
+  disks~\cite{patterson1988}.}
 
 Shamir Secret Sharing, unlike other cryptography techniques, does not
 rely on computational complexity as the basis of its
@@ -249,8 +251,11 @@ control systems like that described in~\cite{goyal2006}.
 Strong cryptography provides the basis for many of the secure systems
 we build today. Unfortunately, strong cryptography has a rather
 checkered history when it comes to the usability of secure
-cryptographic systems. Since most cryptographic systems merely reduce
-the security of a system to the security of the cryptographic keys
+cryptographic systems.\footnote{Usability issues are not limited
+  merely to cryptographic systems. Many computing systems struggle
+  with balancing security and usability~\cite{furnell2006,
+    ibrahim2010}.} Since most cryptographic systems merely reduce the
+security of a system to the security of the cryptographic keys
 protecting a system, how one manages such keys is of the utmost
 importance. Manual key management, the de-facto key management
 standard for most cryptographic systems, tends to be extremely
@@ -512,6 +517,28 @@ removing users does not require any modification to permission
 mappings, only role mappings. Likewise, adding or removing permissions
 does not require modifying user mappings, only role mappings.
 
+Many authentication systems strive to provide mechanisms to allow a
+user to authenticate to multiple system using a single account.
+``Single-sign-on'' (SSO) systems such as Kerberos~\cite{neuman1994,
+  kohl1994} aim to unburden users by allowing the use of a single
+account across multiple machines. Similarly, SSO systems aim to
+unburden administrators by allowing the centralized management of user
+accounts. A more recent variant of this idea has been toward the use
+of dedicated ``identify providers'' who provide federated
+authentication to a suite of third party services. This ``federated
+identity management'' (FIM) arrangement allows one entity to delegate
+the authentication of users to a separate entity, often for the
+purpose of allowing a user to leverage their existing account with one
+service provider to authenticate to a separate service
+provider. System such as Shibboleth~\cite{leandro2012},
+SAML~\cite{SAML}, and OAuth~\cite{oauth} provide frameworks for
+performing delegation. Other systems leverage these frameworks to
+provide additional security guarantees~\cite{bhargava2011}. Like more
+traditional SSO system, FIM systems aim to increase usability and
+security by reducing the number of accounts a user must maintain,
+encouraging the use of stronger passwords (or non-password based
+authentication mechanism) in the process.
+
 \section{The Cloud}
 \label{chap:background:cloud}
 
@@ -698,7 +725,7 @@ consume and interact with the available computing systems of the
 
 %%  LocalWords: SSaaS SSP Lenovo SSPs IaaS Diffie Hellman's Adi VFS
 %%  LocalWords: Shamir NTFS AFS CIFS SMB SFS OceanStore CFS SiRiUS
-%%  LocalWords: Plutus ACL LAFS Rackspace CAPEX OPEX PUE de
+%%  LocalWords: Plutus ACL LAFS Rackspace CAPEX OPEX PUE de colocate
 %%  LocalWords: PaaS Heroku SaaS aaS FOSS TwoFish OFB HMAC SHA CMAC
 %%  LocalWords: GCHQ cepheus DAC SELinux RBAC eCryptFS Ceph ECC CA's
-%%  LocalWords: CAs HTTPS et al
+%%  LocalWords: CAs HTTPS et al SSO FIM

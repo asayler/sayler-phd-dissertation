@@ -734,26 +734,27 @@ breach.
 The OpenPGP protocol~\cite{callas2007} is one of the traditional
 mechanisms for securing digital communications. It is most widely used
 with email and is implemented via a variety of applications from
-desktop apps such as GnuPG (GPG)~\cite{gnupg} to browser-based plugins
-such as Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes
-public-key cryptography to end-to-end encrypt and authenticate
-messages traveling across untrusted mediums. It can be applied atop
-mail traversing traditional email systems such as Gmail as well as to
-messages traversing chat applications such as Google Hangouts. When
-used with such service, PGP provides an additional level of trust
-mitigation above and beyond what is possible to achieve via the native
-services themselves. In terms of trusted capabilities, a user
-employing PGP atop a traditional third party cloud service such as
-Gmail minimizes both the third party's access (via encryption) and
-manipulation (via authentication) capabilities. In such a scenario
-only the end users involved in a given communication, and not any
-third party through which that communication might pass, have access
-to the necessary cryptographic keys required to read or alter the
-message. The third party, however, can still capture metadata about
-the communication since such metadata is outside of the scope of the
-message content that PGP is capable of securing. The third party is
-also still capable of dropping or deleting the communication all
-together, and thus still poses the ``storage'' capability.
+desktop apps such as Enigmail~\cite{enigmail} (powered by GnuPG
+(GPG)~\cite{gnupg}) to browser-based plugins such as
+Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes public-key
+cryptography to end-to-end encrypt and authenticate messages traveling
+across untrusted mediums. It can be applied atop mail traversing
+traditional email systems such as Gmail as well as to messages
+traversing chat applications such as Google Hangouts. When used with
+such service, PGP provides an additional level of trust mitigation
+above and beyond what is possible to achieve via the native services
+themselves. In terms of trusted capabilities, a user employing PGP
+atop a traditional third party cloud service such as Gmail minimizes
+both the third party's access (via encryption) and manipulation (via
+authentication) capabilities. In such a scenario only the end users
+involved in a given communication, and not any third party through
+which that communication might pass, have access to the necessary
+cryptographic keys required to read or alter the message. The third
+party, however, can still capture metadata about the communication
+since such metadata is outside of the scope of the message content
+that PGP is capable of securing. The third party is also still capable
+of dropping or deleting the communication all together, and thus still
+poses the ``storage'' capability.
 
 Since the OpenPGP protocol and associated implementations are not
 controlled by any single third party, there is no straightforward

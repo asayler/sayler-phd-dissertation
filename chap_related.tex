@@ -249,7 +249,14 @@ Yahoo are both engaging in efforts aimed and making PGP-like
 encryption and authentication systems available to their webmail
 users~\cite{google-endtoend, yahoo-endtoend}. Other systems such as
 STEED aim to adapt traditional PGP principles to make the primitives
-simpler for the average end user to deal with~\cite{koch2011}.
+simpler for the average end user to deal
+with~\cite{koch2011}. Finally, systems such as KeyBase~\cite{keybase}
+aim to help users identify the public PGP keys of people with whom
+they wish to communicate.\footnote{In some ways, KeyBase can be seen
+  as the compliantly opposite of the SSaaS model discussed in this
+  document. Whereas KeyBase aims to make it easy for users to discover
+  and verify the public keys or other users, SSaaS aims to make it
+  easy for users to protect their corresponding private keys.}
 
 But even these recent pushes to re-skin PGP and make it more user
 friendly can't overcome many of the fundamental issues with the
@@ -266,7 +273,11 @@ in terms of popularity and usability. But these systems are not
 necessarily direct replacements for PGP since they rely on the
 real-time nature of chat communication to attain forward
 secrecy. Similarly usable and forward-secure solutions for
-non-real-time systems like email remain elusive.
+non-real-time systems like email remain elusive.\footnote{Although,
+  that has not stopped researcher from proposing some creative
+  solutions to work around the forward secrecy problem, such as
+  systems that force email to ``self-destruct'' after a certain
+  age~\cite{geambasu2009}.}
 
 While secure communication systems are seeing a lot of development and
 showing promise, all of the solutions discussed above are
@@ -280,11 +291,12 @@ keys.
 One of the most common classes of third party secret storage available
 today is that of password storage by end user password managers. Due
 to the well-documented failure of user-chosen
-passwords~\cite{goodin-bible, goodin-passwords}, experts now recommend
-that users leverage password management services. Such services rely
-on a single strong password to protect a collection of unique and
-random passwords for each website or service a user must
-access~\cite{schneier-passwords, krebs-passwords, brodkin-passman}.
+passwords~\cite{mazurek2013, goodin-bible, goodin-passwords,
+  singer2013}, experts now recommend that users leverage password
+management services. Such services rely on a single strong password to
+protect a collection of unique and random passwords for each website
+or service a user must access~\cite{schneier-passwords,
+  krebs-passwords, brodkin-passman}.
 
 Systems such as LastPass~\cite{lastpass} and
 1Password~\cite{onepassword} provide users with a hosted platform on
@@ -349,7 +361,7 @@ party in order to facilitate sharing use cases. The work proposed in
 this document could be leveraged to re-implement such systems while
 further suppressing reliance on a single trusted third party.
 
-\section{Key Management Systems}
+\section{Key and Secret Management Systems}
 \label{chap:related:keymgmt}
 
 As mentioned in Section~\ref{chap:challenges:solutions}, one of the
@@ -497,4 +509,5 @@ behavior discussed in Chapters~\ref{chap:trust} and~\ref{chap:ssaas}.
 %%  LocalWords:  Snowden Mailpile TextSecure ChatSecure LastPass IaaS
 %%  LocalWords:  OnePassword Diffie SpiderOak Tresorit Wuala Shamir
 %%  LocalWords:  HSMs PKCS Heartbleed Snowden's OpenStack Barbican
-%%  LocalWords:  Mailvelope HashiCorp's Lyft's Keywhiz OTR
+%%  LocalWords:  Mailvelope HashiCorp's Lyft's Keywhiz OTR KeyBase
+%%  LocalWords:  keybase

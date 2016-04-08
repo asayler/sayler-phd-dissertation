@@ -12,16 +12,16 @@ Over the last decade, computing has undergone a monumental shift from
 locally stored data on a single personal computer to cloud-based data
 stored on a multitude of third party servers. This shift has generated
 many benefits: sharing data with other users is trivial, multi-modal
-communication between users is easy, and compute devices are largely
+communication between users is easy, and computing devices are largely
 ephemeral, easily replaced or transitioned between without any
 significant overhead or loss of user data. This transition, however,
 has a significant side effect: user data is now largely stored in a
 manner where it is easily accessible to third parties beyond the
 user's immediate control. The shift from locally stored and controlled
-data to third-party stored and controlled data has a number of
+data to third party stored and controlled data has a number of
 consequences, from increased risk of data compromise by hackers
-targeting centralized third-party data stores, to reduced legal
-protections from government introspection, to its use in ``big-data''
+targeting centralized third party data stores, to reduced legal
+protections from government surveillance, to its use in ``big-data''
 systems capable of ascertaining more private information than most
 users likely intend to share.
 
@@ -36,20 +36,20 @@ manner is which the government might access their data in the
 cloud~\cite{pew-privsec14}. Furthermore, the myriad of recently
 publicized data leaks at large companies
 (e.g.~\cite{apple-icloudleak}) as well as ongoing government
-intrusions into third-party user data stores
+intrusions into third party user data stores
 (e.g.~\cite{greenwald-prism}) has propelled the debate over user
 privacy in the age of the cloud to new levels.
 
 The traditional viewpoint holds that users must choose between either
 the conveniences the cloud provides or the privacy and security of
 locally stored and processed data. This document aims to refute that
-idea. Instead, the method proposed herein aim to allow users to retain
-a high degree of control over how their data is stored, accessed, and
-used while still allowing them to leverage a variety of modern
-third-party services. The solution lies in developing systems that
-allow users to place limits on the degree to which they must trust any
-single third party while still allowing them to leverage the desirable
-features such parties provide.
+idea. Instead, the methods proposed herein aim to allow users to
+retain a high degree of control over how their data is stored,
+accessed, and used while still allowing them to leverage a variety of
+modern third party services. The solution lies in developing systems
+that allow users to place limits on the degree to which they must
+trust any single third party while still allowing them to leverage the
+desirable features such parties provide.
 
 To achieve such a solution, this document proposes a new data storage
 model called ``Secret Storage as a Service'' (SSaaS). In an SSaaS
@@ -62,17 +62,17 @@ technologies and services can than interface with these SSPs via a
 standard interface to access user secrets, and by proxy, the data they
 protect as allowed by a user-defined set of access control rules. In
 effect, the SSPs are tasked with regulating access to user data by
-more traditional feature-oriented third-party services (e.g. Google or
+more traditional, feature-oriented third party services (e.g. Google or
 Facebook).
 
 The SSaaS model provides a number of benefits over the existing
-practice granting feature-rich third-party services unfettered access
+practice granting feature-rich third party services unfettered access
 to user data. Such benefits include:
 
 \begin{packed_desc}
 \item[No Single Trusted Third Party] \hfill \\ In an SSaaS ecosystem,
   the secret storage provider is separate from the provider of the
-  end-user cloud service (e.g. Dropbox, Gmail, etc). Furthermore, a
+  end user cloud service (e.g. Dropbox, Gmail, etc). Furthermore, a
   user may shard their secrets across multiple SSPs, or even host
   their own SSP. This ensures that a user is not giving any single
   entity control over or unfettered access to their secrets (and by
@@ -80,7 +80,7 @@ to user data. Such benefits include:
 \item[Separation of Duties] \hfill \\ In an SSaaS ecosystem, a user
   selects a secret storage provider on the basis of their trust in
   that provider while selecting a feature service provider on the
-  basis of the end-user services they provide. This allows a user to
+  basis of the end user services they provide. This allows a user to
   optimize each selection individually instead of having to chose a
   single provider on the basis of both trust and feature set, likely
   sacrificing one in favor of the other.
@@ -127,16 +127,16 @@ keys.
 An alternative approach would be for Dropbox to put the user in charge
 of encrypting/decrypting files and storing all necessary encryption
 keys, ensuring the Dropbox itself never has direct access to
-unencrypted user files. While such ``client-side: encryption could
+unencrypted user files. While such ``client-side'' encryption could
 potentially increase the privacy and security of user data in the
 event that Dropbox's data stores are compromised, searched, monitored,
-or misused, is also has some significant downsides:
+or misused, it also has some significant downsides:
 
 \begin{packed_enum}
-\item It breaks Dropbox's sharing use case. While user's could still
+\item It breaks Dropbox's sharing use case. While users could still
   share encrypted versions of their files with other users via
   Dropbox, they would also have to exchange the associated encryption
-  key out-of-band in order for their college to decrypt and read or
+  key out-of-band in order for their colleague to decrypt and read or
   update any shared file. This nullifies Dropbox's appeal as a simple
   method for sharing files with other users.
 \item It complicates Dropbox's syncing use case. Whereas before a
@@ -146,7 +146,7 @@ or misused, is also has some significant downsides:
   encryption key to the new device to enable the required encryption
   and decryption operations. This adds an additional step to the
   Dropbox setup process, potentially driving away users.
-\item If the user ever losses their encryption keys, they will
+\item If the user ever loses their encryption keys, they will
   effectively lose access to all of their Dropbox-stored
   files. Similarly, if a user mishandles their keys in a manner that
   allows others to access them, they have effectively negated the
@@ -157,15 +157,13 @@ or misused, is also has some significant downsides:
   requirements pose a non-trivial burden for most users.
 \end{packed_enum}
 
-Thus, the user must chose between the convenience of using Dropbox as
-it exists today while also sacrificing a significant degree of privacy
-over the data they upload, or the burden of employing traditional
-client-side encryption models where the trust they must place in
-Dropbox is reduced, but where many core Dropbox features (e.g. simple
-file sharing) are no longer feasible to use. Neither of these are
-ideal solutions. AN ideal solution must allow the user to leverage the
-existing convenience and benefits of using Dropbox while also reducing
-the trust they must place in Dropbox itself.
+Thus, the user must chose between the convenient, but potentially
+privacy-sacrificing, nature of using Dropbox as it exists today, or
+the secure, but feature-breaking, nature of using Dropbox with ad-hoc
+client-side encryption. Neither of these are ideal solutions. An ideal
+solution must allow the user to leverage the existing convenience and
+benefits of using Dropbox while also reducing the amount of trust they
+must place in, or privacy they must sacrifice to, Dropbox itself.
 
 These challenges are not unique to Dropbox. There are many modern
 technologies and services that force the user to chose between
@@ -174,7 +172,7 @@ convenience and feature set verse privacy and control. For example:
 \begin{packed_desc}
 \item[Mobile Computing Devices] \hfill \\ Phones, tablets, and laptops
   have become ubiquitous modes of modern computing, storing large
-  fractions of our personal data and carrying out many everyday
+  amounts of our personal data and carrying out many everyday
   computations on our behalf. But these devices, while convenient, are
   also prone to loss, theft, and remote exploitation, exposing the
   data they store and computations they undertake to a range of

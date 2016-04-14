@@ -378,13 +378,13 @@ permissions or Windows NT ACLs. Many system combine more than one of
 these approaches to build a fully featured next-generation storage
 system.
 
-\cite{kher2005} presents a survey of the security models of various
-data storage systems, sorting such systems into basic networked file
-systems, single-user cryptographic file systems, and multi-user
-cryptographic file systems. As previously mentioned, basic networked
-file systems rely on trusted systems and administrators for the
-enforcement of security rules. Examples of such systems include the
-Sun Network File System (NFS)~\cite{sandberg1985}, the Andrew File
+Kher~\cite{kher2005} presents a survey of the security models of
+various data storage systems, sorting such systems into basic
+networked file systems, single-user cryptographic file systems, and
+multi-user cryptographic file systems. As previously mentioned, basic
+networked file systems rely on trusted systems and administrators for
+the enforcement of security rules. Examples of such systems include
+the Sun Network File System (NFS)~\cite{sandberg1985}, the Andrew File
 Systems (AFS)~\cite{howard1988}, and the Common Internet File System
 (CIFS/SMB)~\cite{microsoft-smb2}. All of these systems are designed
 for use within local administrative domains and do not scale well to
@@ -465,20 +465,21 @@ things. This model is flexible enough to support many use cases, and
 continues to be used today as the core access control model in many
 Unix-like operating systems (e.g. BSD, Linux, OSX, etc).
 
-Access Control List (ACL) based schemes gained prominence in 1990s and
-were popularized by the Windows NT family of operating systems. ACLs
-extend the permission model beyond the basic Unix file permissions to
-include a wider range of file (e.g. read, write, delete, create, etc)
-and system-level (e.g. shutdown, connect to network, etc)
-permissions. ACLs are associated with specific system objects
-(e.g. files, folders, OS subsystems, etc) and map a user or group to a
-list of permission that user or group possess. They generalize the
-Unix access control model to accommodate a wider range of permissions
-and mappings between permissions and actors. ACL-based systems have
-been integrated into many modern Unix-like operating systems as an
-optional extension beyond the tradition Unix permissioning scheme.
+Access Control List (ACL) schemes were originally proposed in systems
+such as Multics~\cite{saltzer1974} and later popularized by systems
+such as VMS and Windows NT. ACLs extend the permission model beyond
+the basic Unix file permissions to include a wider range of file
+(e.g. read, write, delete, create, etc) and system-level
+(e.g. shutdown, connect to network, etc) permissions. ACLs are
+associated with specific system objects (e.g. files, folders, OS
+subsystems, etc) and map a user or group to a list of permission that
+user or group possess. They generalize the Unix access control model
+to accommodate a wider range of permissions and mappings between
+permissions and actors. ACL-based systems have been integrated into
+many modern Unix-like operating systems as an optional extension
+beyond the tradition Unix permissioning scheme.
 
-Exiting access control schemes are often grouped into one of two
+Existing access control schemes are often grouped into one of two
 classes: Mandatory Access Control (MAC) systems or Discretionary
 Access Control (DAC) Systems. While the lines between these two
 approaches are occasionally blurred, the basic difference between the
@@ -544,7 +545,7 @@ authentication mechanism) in the process.
 
 The previous ten years have seen a major shift in the manner in which
 users and developers obtain various computing resources. Gone are the
-days where one must purchase there own hardware or operate their own
+days where one must purchase their own hardware or operate their own
 computing systems. Instead, numerous companies are more then happy to
 sell you any computing service you require for a pre-established
 time-metered rate. This ``Cloud'' computing model significantly lowers
@@ -565,7 +566,7 @@ systems. Namely:
 \begin{packed_desc}
 \item[OPEX vs CAPEX] \hfill \\ Using cloud-based compute services
   allows companies to shift what are traditionally one-time up-front
-  capitol expenditures (CAPEX, e.g. large arrays of servers) to
+  capital expenditures (CAPEX, e.g. large arrays of servers) to
   regular operational expenditures (OPEX, e.g. a monthly subscription
   fee). This fact gives rise to a number of potential
   benefits. Whereas spinning up traditional compute infrastructure

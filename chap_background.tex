@@ -1,7 +1,7 @@
 \chapter{Background}
 \label{chap:background}
 
-This work discussed in this document builds on a number of established
+The work presented in this document builds on a number of established
 topics related to computing, privacy, and security. This chapter
 touches on the fundamentals of such work. Chapter~\ref{chap:related}
 touches on more directly related work.
@@ -11,7 +11,7 @@ touches on more directly related work.
 
 Many of the topics discussed in this dissertation leverage
 cryptographic primitives as the basis of various security and privacy
-guarantees. Cryptography represent a security primitive that does not
+guarantees. Cryptography represents a security primitive that does not
 rely on trusting specific people, platforms, or systems in order to
 securely function. Instead, it requires trust in only one thing: the
 underlying math. This has led to the proliferation of cryptography as
@@ -36,9 +36,9 @@ securely stored, or if shared, securely exchanged between
 parties. Anyone with the key can decrypt the corresponding ciphertext
 the key was used to create; anyone without can not. The security of a
 symmetric encryption cipher tends to be proportional to the length of
-the encryption key: the longer the key, the more secure the data
+the encryption key; the longer the key, the more secure the data
 encrypted with it is. Common symmetric encryption algorithms include
-block-ciphers such as AES~\cite{nist2001} and
+block ciphers such as AES~\cite{nist2001} and
 TwoFish~\cite{schneier1998} as well as stream ciphers such as (the now
 deprecated) RC4~\cite{rc4-source}. Many block ciphers can also be used
 as stream ciphers by leveraging operation modes such as CTR and
@@ -91,7 +91,7 @@ including a system for multiple parties to negotiate a symmetric
 encryption key across an insecure
 channel~\cite{diffie1976}\footnote{Such methods were actually
   independently developed by the GCHQ (the British signal-intelligence
-  counterpart to the US National Security Agency) in the early 1970s
+  counterpart to the U.S. National Security Agency) in the early 1970s
   prior to the publication of Diffie and Hellman's research, but this
   work was classified and remained a secret until the late
   1990s.~\cite{singh1999}}. These concepts paved the way for the
@@ -111,21 +111,21 @@ in-person meeting or similar out-of-band secure communication channel.
 Asymmetric cryptography relies on the existence of ``trapdoor''
 functions. These functions can be quickly solved in one direction, but
 are computationally difficult to reverse without knowledge of a secret
-piece of information (e.g. the 'key'). Factoring large numbers is a
+piece of information (e.g. the key). Factoring large numbers is a
 classic example of a trapdoor function (and the method on which many
 modern public key encryption systems are based). Factoring large
 numbers is computationally difficult in cases where some piece of
 secret information (e.g. one of the factors) is not known. Other
-systems rely on the computation of discreet logarithms across elliptic
+systems rely on the computation of discrete logarithms across elliptic
 curves (ECC cryptography)~\cite{koblitz1987, miller1986}, computations
 across lattices\footnote{Lattice-based encryption schemes are believed
   to be resistant to (currently theoretical) quantum-based attacks
   that are successful at breaking more traditional factoring and
   ECC-based schemes.}~\cite{ajtai1996}, and beyond.
 
-While, Diffie and Hellman proposed a theoretical implementation of a
+While Diffie and Hellman proposed a theoretical implementation of a
 public key cryptography system, the first practical public key crypto
-system came a few years latter with the publication of the
+system came a few years later with the publication of the
 RSA~\cite{rivest1978} algorithm. Diffie and Hellman's joint key
 negotiation scheme, however, remains a critical component of
 asymmetric cryptography systems today -- especially those that employ
@@ -153,7 +153,7 @@ Asymmetric encryption can be used to build the two additional core
 cryptography primitives: cryptographic verification and cryptographic
 authentication. Cryptographic verification (also called a
 cryptographic ``signature'') is essentially the reverse of asymmetric
-encryption: instead of a member of the public using another party's
+encryption; instead of a member of the public using another party's
 public key to encrypt a message that only the target party can read,
 they instead use their own private key to encrypt a message that the
 public can then decrypt using the signers public key. Since only the
@@ -178,35 +178,36 @@ capable of generating a signed message from that user, as the basis of
 user authentication.
 
 Such systems can be further layered and generalized to build
-cryptographically-secure hierarchical assertion systems attesting to
+cryptographically secure hierarchical assertion systems attesting to
 the veracity of a range of data. Such public-key infrastructure (PKI)
-systems allow the public to extrapolate their trust of a core set
+systems allow the public to extrapolate their trust of a core set of
 actors (i.e. Certificate Authorities, or CAs) to the any party for
 which such actors are willing to certify specific facts. For example,
 a server can trust a specific CA to manually verify the identities of
 various users (e.g. by having them visit their office and present a
 photo ID). This CA can then cryptographically sign a combination of
 their declaration attesting to the identity of each user and a copy of
-the user's public key. Such signed combination forms a user
-``certificate'' that can be presented to various parties. These
-parties can then use their knowledge of the trusted CA's public key to
-verify the identity attestation attached to the user certificate --
-allowing them trust that the user is who they claim to be. This user
-can then use their ability to prove they (and only they) control a
-private key corresponding to their certificate to authenticate to a
-service. The x509 PKI standard is an example of such a PKI
-system~\cite{rfc5280}. The x509 system is widely used to prove the
-validity of domain name ownership on the Internet via \texttt{HTTPS}).
+the user's public key. This signed combination of metadata and public
+key forms a user ``certificate'' that can be presented to various
+parties. These parties can then use their knowledge of the trusted
+CA's public key to verify the identity attestation attached to the
+user certificate -- allowing them trust that the user is who they
+claim to be. This user can then use their ability to prove they (and
+only they) control a private key corresponding to their certificate to
+authenticate to a service. The x509 PKI standard is an example of such
+a PKI system~\cite{rfc5280}. The x509 system is widely used to prove
+the validity of domain name ownership on the Internet via
+\texttt{HTTPS}).
 
 \subsection{Secret Sharing}
 
 Beyond the creation of public key cryptography, one of the other major
 cryptographic breakthroughs of the last fifty years was the invention
 of unconditionally secure secret sharing schemes. In particular, Adi
-Shamir (the 'S' from ``RSA'') proposed a practical and robust secret
+Shamir (the `S' from ``RSA'') proposed a practical and robust secret
 sharing scheme in 1979~\cite{shamir1979}. Secret sharing is a method
 for splitting a block of information up into two or more pieces such
-that holders of any subset of the pieces cannot infer any information
+that holders of any subset of the pieces can not infer any information
 about the original block as a whole. Shamir Secret Sharing allows a
 user to divide a block of $d$ data into $n$ pieces of which $k$ or
 more pieces can be used to recompute the original value of $d$. A user
@@ -214,7 +215,7 @@ with fewer than $k$ pieces, however, has no more information about the
 value of $d$ than a user with no pieces. Such ``$n$ choose $k$''
 threshold systems provide a useful method for distributing information
 amongst multiple parties in situations where no single party can be
-fully trusted. Such systems can also be used to provide redundancy by
+fully trusted. These systems can also be used to provide redundancy by
 selecting $n$ to be greater than $k$.\footnote{Not unlike RAID systems
   can be used to provide redundancy across multiple
   disks~\cite{patterson1988}.}
@@ -224,7 +225,7 @@ rely on computational complexity as the basis of its
 security. Instead, it is unconditionally secure based on information
 theory principles. Thus, unlike computationally secure systems such as
 RSA, Shamir Secret Sharing can not be broken regardless of the amount
-of computational power one posses.\footnote{ I.e. computationally
+of computational power one posses.\footnote{ I.e., computationally
   secure systems are potentially breakable if an adversary is afforded
   enough computing power or the ability to solve certain classes of
   computationally difficult problems quickly (e.g. via new technology
@@ -234,7 +235,7 @@ of computational power one posses.\footnote{ I.e. computationally
 
 Shamir Secret Sharing functions on the basis of defining a polynomial
 of degree $k-1$ over a finite field with the $d$ data encoded as the
-first order-zero term. $n$ ypoints are then selected from this
+first order-zero term. $n$ points are then selected from this
 polynomial and distributed to the participants. Since $k$ points (but
 no fewer) will uniquely identify the original polynomial, at least $k$
 users must combine their pieces in order to re-compute $d$.
@@ -257,19 +258,19 @@ cryptographic systems.\footnote{Usability issues are not limited
     ibrahim2010}.} Since most cryptographic systems merely reduce the
 security of a system to the security of the cryptographic keys
 protecting a system, how one manages such keys is of the utmost
-importance. Manual key management, the de-facto key management
+importance. Manual key management, the defacto key management
 standard for most cryptographic systems, tends to be extremely
-challenging for the average user to execute properly: often leading to
-security failures that have little to do with the quality of the
-cryptography itself.
+challenging for the average user to execute properly. These usability
+challenges often lead to security failures that have little to do with
+the quality of the cryptography itself.
 
 The poster child of the ``cryptographic system are largely unusable''
 school of thought is a system for encrypting and cryptographically
 signing email messages known as PGP~\cite{callas2007}. PGP (and its
 open-source implementation - GnuPG/GPG~\cite{gnupg}) is one of the
-longest-running cryptographic security projects. It is also known to
+longest running cryptographic security projects. It is also known to
 have major usability issues, making it largely incomprehensible to all
-but the most highly-trained users~\cite{whitten1999}. These challenge
+but the most highly trained users~\cite{whitten1999}. These challenge
 are largely related to the average user's inability to properly manage
 the various cryptographic keys required for the proper use of
 PGP~\cite{green-challenge}. This has led multiple parties to call for
@@ -280,7 +281,7 @@ alternatives will be able to provide (or improve upon) the level of
 security offered by PGP while avoiding the usability pitfalls
 leveraging PGP traditionally entails.
 
-Similar challenges have been observed with other end-user
+Similar challenges have been observed with other end user
 cryptographic systems, ranging from secure storage devices to various
 communication mediums~\cite{sweikata2009}. In all cases, properly
 obtaining, storing, and controlling access to cryptographic keys and
@@ -293,7 +294,7 @@ users.
 
 Even cryptographic systems that largely avoid burdening the user with
 key-management responsibilities are subject to numerous usability
-challenges. Take, for example, systems such as
+challenges. For example, take systems such as
 Tor~\cite{dingledine2004} which are designed to allow users to
 anonymously browse the Internet or otherwise utilize network resources
 without leaking their identity. Securely using these systems, while
@@ -315,8 +316,8 @@ self-identification that occurs when they enter their username on such
 a site~\cite{goodin-dreadpirate}.
 
 How best to build systems that are both cryptographically secure and
-easy to use remains an open and pressing question: a question to which
-that this document attempts to provide an answer.
+easy to use remains an open and pressing question; a question to which
+this document attempts to provide an answer.
 
 \section{Storage}
 \label{chap:background:storage}
@@ -324,7 +325,7 @@ that this document attempts to provide an answer.
 Data storage has long been one of the core use cases of the digital
 age. And the amount of data we generate, process, and store is greater
 now than ever before. The need to store large amounts of data has also
-entailed the need t control access to such data. Digital data storage
+entailed the need to control access to such data. Digital data storage
 and access control techniques have morphed and changed over the last
 50 years, and many of these changes have bearing on the work presented
 in this document.
@@ -349,7 +350,7 @@ The Windows NT file system access control model (implemented via the
 NTFS file system) extends the flexibility of the traditional Unix
 model by adding support for more expressive access control lists
 (ACLs). ACLs allow the control of additional permissions (e.g. delete,
-create directory, etc) as well as more expressive user to permission
+create directory, etc) as well as more expressive user-to-permission
 mappings beyond the basic owner/group/other Unix model. Furthermore,
 the Windows NT model has the ability to delegate user authentication
 to a local Domain Controller (DC) capable of centrally managing all
@@ -361,22 +362,22 @@ for a trusted system for enforcement and the tight coupling to the
 local administrative domain.
 
 The rise of the Internet as a reliable and high speed system for
-connecting multiple machines across the world as well as the move
+connecting multiple machines across the world, as well as the move
 toward cloud computing models where computational resources are
-outsourced to dedicated providers has increased the demand for secure
-storage systems capable of spanning multiple systems and domains. In
-order to overcome the limitations posed by traditional file system
-security models and accommodate modern multi-user, multi-system use
-cases, researchers have proposed a number of newer file storage
-systems. These systems try to address one or more of the limitations
-mentioned above. Some of them employ cryptographic security models to
-overcome the need for a trusted enforcement system. Others are
-designed to extend access control semantics beyond the local machine
-to large networks or even the global internet. Still others explore
-the use of novel access control models more expressive then Unix
-permissions or Windows NT ACLs. Many system combine more than one of
-these approaches to build a fully featured next-generation storage
-system.
+outsourced to dedicated providers, have increased the demand for
+secure storage systems capable of spanning multiple systems and
+domains. In order to overcome the limitations posed by traditional
+file system security models and accommodate modern multi-user,
+multi-system use cases, researchers have proposed a number of newer
+file storage systems. These systems try to address one or more of the
+limitations mentioned above. Some of them employ cryptographic
+security models to overcome the need for a trusted enforcement
+system. Others are designed to extend access control semantics beyond
+the local machine to large networks or even the global internet. Still
+others explore the use of novel access control models more expressive
+then Unix permissions or Windows NT ACLs. Many systems combine more
+than one of these approaches to build a fully featured next-generation
+storage system.
 
 Kher~\cite{kher2005} presents a survey of the security models of
 various data storage systems, sorting such systems into basic
@@ -389,65 +390,65 @@ Systems (AFS)~\cite{howard1988}, and the Common Internet File System
 (CIFS/SMB)~\cite{microsoft-smb2}. All of these systems are designed
 for use within local administrative domains and do not scale well to
 global, loosely-coupled distributed systems. To deal with the
-scalability issues, researchers have built system like
+scalability issues, researchers have built systems like
 SFS~\cite{mazieres1999} or OceanStore~\cite{kubiatowicz2000} which aim
 to reduce the administrative burden of large scale distributed file
 systems.
 
 All of these systems, however, rely on some degree of system,
-administrative or third-party trust. In order to accommodate
+administrative, or third party trust. In order to accommodate
 situations where users do not wish to place trust on the underlying
-system or remote servers, there exist a handful of
-cryptographically-secure file systems. The best of these systems offer
-end-to-end cryptography, meaning that data is encrypted and decrypted
-on the client side and the server never has access to the unencrypted
-data.  Systems like the Cryptographic File Systems
-(CFS)~\cite{blaze1993} or eCryptFS~\cite{ecryptfs} provide basic
-single-user end-to-end file encryption when coupled with traditional
-network file systems such as NFS. While end-to-end encryption is a
-powerful security model for enabling secure storage atop untrusted
-systems, it does pose challenges with respect to multi-user,
-multi-device use cases~\cite{miltchev2008}. These challenges arise
-from the requirement that all clients have access to private
-cryptographic credentials in order to effectively read or write
-files. In order to support both end-to-end encryption and multi-user
-scenarios, researchers have proposed multi-user cryptographic storage
-systems like SiRiUS~\cite{goh2003}, cepheus~\cite{fu1998}, and
+system or remote servers, there exist a handful of cryptographically
+secure file systems. The best of these systems offer end-to-end
+cryptography, meaning that data is encrypted and decrypted on the
+client side and the server never has access to the unencrypted data.
+Systems like the Cryptographic File Systems (CFS)~\cite{blaze1993} or
+eCryptFS~\cite{ecryptfs} provide basic single-user end-to-end file
+encryption when coupled with traditional network file systems such as
+NFS. While end-to-end encryption is a powerful security model for
+enabling secure storage atop untrusted systems, it does pose
+challenges with respect to multi-user, multi-device use
+cases~\cite{miltchev2008}. These challenges arise from the requirement
+that all clients have access to private cryptographic credentials in
+order to effectively read or write files. In order to support both
+end-to-end encryption and multi-user scenarios, researchers have
+proposed multi-user cryptographic storage systems like
+SiRiUS~\cite{goh2003}, cepheus~\cite{fu1998}, and
 Plutus~\cite{kallahalla2003}.
 
 Beyond traditional local and networked file systems, many users have
 turned to cloud-backed storage technologies. System like
 Dropbox~\cite{dropbox} or Google Drive~\cite{google-drive} offer
-mechanism for storing arbitrary files on third-party cloud
+mechanisms for storing arbitrary files on third party cloud
 servers. Such files can either be accessed via a web browser or synced
 to a local machine via various client-side utilities. Other cloud
 services forgo the traditional file storage model all together in
-favor of various object storage abstractions: Amazon's
+favor of various object storage abstractions. Amazon's
 S3~\cite{amazon-s3} and Ceph~\cite{ceph} are examples of such
 systems. These systems can either be used for raw key:object data
 storage or as a block-oriented backing store for higher level file
-storage abstractions such as Dropbox or Google Drive. System like
+storage abstractions such as Dropbox or Google Drive. Systems like
 Dropbox, Google Drive, or Amazon S3 all rely on a centralized, trusted
-third party storage provider for ``secure'' operation. To overcome
-this requirement distributed systems such as
+third-party storage provider for ``secure'' operation. To overcome
+this requirement, distributed systems such as
 Tahoe-LAFS~\cite{wilcox-o'hearn2008} propose an alternate model where
 trust in any single system is reduced and storage is spread across a
-variety of third-party providers.
+variety of third party providers.
 
 \section{Access Control}
 \label{chap:background:ac}
 
 Over the years, computing systems have deployed a range of access
-control techniques. All of these techniques share a common goal:
+control techniques. All of these techniques share a common goal --
 controlling access to a specific system, resource, or piece of
-data. Must access control models have two key components:
+data. Most access control models have two key components:
 authentication and authorization.  Authentication is used to establish
 the identity of an actor. Authorization then leverages this
 identification as the basis of granting or denying specific
 permissions to the actor.
 
 Computer-based access control systems have been with us since the
-earliest multi-user (e.g. time sharing) operating systems became
+earliest multi-user (e.g. time-sharing) operating systems became
 popular in the 1970s and 1980s~\cite{saltzer1974}. Early access
 control systems were primarily focused around the Unix model of access
 control: users, groups, and read/write/execute file-level
@@ -456,10 +457,10 @@ limited to username:password combinations, the mechanisms of which
 were hard coded into the \texttt{login} program. Later, more flexible
 pluggable authentication systems such as PAM were
 created~\cite{samar1996, linux-pam, openpam}. In such Unix-like access
-control systems each user is a member of one or more groups and each
+control systems, each user is a member of one or more groups and each
 file has an owner and a group. The three file permissions (read,
 write, and execute) are granted on the basis of a user's relationship
-to a given file: either the user is the file's owner, the user is a
+to a given file. Either the user is the file's owner, the user is a
 member of the file's group, or the user is neither of these
 things. This model is flexible enough to support many use cases, and
 continues to be used today as the core access control model in many
@@ -472,7 +473,7 @@ the basic Unix file permissions to include a wider range of file
 (e.g. read, write, delete, create, etc) and system-level
 (e.g. shutdown, connect to network, etc) permissions. ACLs are
 associated with specific system objects (e.g. files, folders, OS
-subsystems, etc) and map a user or group to a list of permission that
+subsystems, etc) and map a user or group to a list of permissions that
 user or group possess. They generalize the Unix access control model
 to accommodate a wider range of permissions and mappings between
 permissions and actors. ACL-based systems have been integrated into
@@ -482,21 +483,21 @@ beyond the tradition Unix permissioning scheme.
 Existing access control schemes are often grouped into one of two
 classes: Mandatory Access Control (MAC) systems or Discretionary
 Access Control (DAC) Systems. While the lines between these two
-approaches are occasionally blurred, the basic difference between the
-two lies in which actors within a system have the ability to
-grant/extend permissions to other actors. In MAC system, all
-permissions are set by the system administrator and users have no
-ability to change these permissions themselves or transfer permissions
-to other users. DAC systems, in contrast, give users the ability to
-set their own permissions on objects they own or create, and to
-transfer these permissions to other users. Traditional Unix access
-control systems as well as ACL access control systems can generally be
-used in either MAC or DAC based systems. MAC systems are generally
-preferred in high security environments where centralized management
-models are common and to tighter control over data is desirable. DAC
-systems are more common in general purpose systems where the extra
-flexibility they offer reduces the administrative burden. Most
-Unix-like systems are DAC systems by design, but extensions
+approaches are occasionally blurred, the basic difference between them
+lies in which actors within a system have the ability to grant/extend
+permissions to other actors. In MAC systems, all permissions are set
+by the system administrator and users have no ability to change these
+permissions themselves or to transfer permissions to other users. DAC
+systems, in contrast, give users the ability to set their own
+permissions on objects they own or create, and to transfer these
+permissions to other users. Traditional Unix access control systems as
+well as ACL access control systems can generally be used in either MAC
+or DAC based systems. MAC systems are generally preferred in high
+security environments where centralized management models are common
+and to tighter control over data is desirable. DAC systems are more
+common in general purpose systems where the extra flexibility they
+offer reduces the administrative burden. Most Unix-like systems are
+DAC systems by design, but extensions
 (e.g. SELinux~\cite{loscocco2001}) can be used to add MAC properties
 to these systems.
 
@@ -547,7 +548,7 @@ The previous ten years have seen a major shift in the manner in which
 users and developers obtain various computing resources. Gone are the
 days where one must purchase their own hardware or operate their own
 computing systems. Instead, numerous companies are more then happy to
-sell you any computing service you require for a pre-established
+sell you any computing service you require for a pre-established,
 time-metered rate. This ``Cloud'' computing model significantly lowers
 the barrier to entry to those needing to leverage compute resources,
 increasing the availability of such services and driving a vast shift
@@ -556,7 +557,7 @@ entertainment, interact with our friends, and more.
 
 \subsection{Benefits}
 
-Cloud-services providers like Amazon, Google, Microsoft, Rackspace,
+Cloud service providers like Amazon, Google, Microsoft, Rackspace,
 and IBM sell over \$150 billion in cloud services
 annually~\cite{flood2013}. The rapid rise of the cloud computing model
 is supported by a number of desirable qualities the cloud can provide
@@ -565,7 +566,7 @@ systems. Namely:
 
 \begin{packed_desc}
 \item[OPEX vs CAPEX] \hfill \\ Using cloud-based compute services
-  allows companies to shift what are traditionally one-time up-front
+  allows companies to shift what are traditionally one-time, up-front
   capital expenditures (CAPEX, e.g. large arrays of servers) to
   regular operational expenditures (OPEX, e.g. a monthly subscription
   fee). This fact gives rise to a number of potential
@@ -593,52 +594,53 @@ systems. Namely:
   small project and grow it into a larger project without requiring
   any large up-front cost or guesswork. Likewise, if a project fails
   to gain traction, it can be efficiently spun down and no one is left
-  holding a bunch of expensive, but no-longer-useful, hardware.
+  holding a bunch of expensive, but no longer useful, hardware.
 \item[Efficiency] \hfill \\ The cloud models offers efficiencies of
   scale not available to traditional in-house compute users. At the
-  macro-level, it is rare for end-user facing systems to require
-  constant load throughout the day. Instead, services tend to see peek
+  macro-level, it is rare for end user facing systems to require
+  constant load throughout the day. Instead, services tend to see peak
   usage at certain times each day related to the diurnal cycles of
-  their users. Large, international cloud service providers can
+  their users. Large international cloud service providers can
   leverage this fact in ways individual hardware operators can not. In
   particular, such providers can ensure their underlying hardware is
   uniformly loaded 24/7/365 by spreading the workloads of a diversity
-  of global tenants across their infrastructure. After all, it's
+  of global tenants across their infrastructure. After all, it is
   always 5:00 PM somewhere. This allows large cloud services providers
   to operate their systems at a steady capacity, avoiding the need to
-  oversize systems to account for short-lived peak loads. At the micro
-  level, cloud providers are generally able to colocate a large number
-  of compute systems in a single data center, allowing them to
+  oversize systems to account for short-lived peak loads. At the
+  micro-level, cloud providers are generally able to colocate a large
+  number of compute systems in a single data center, allowing them to
   optimize cooling, power, network, and other resources in manners not
   available to smaller in-house server farms. On the power and cooling
   front, it is not uncommon to see cloud data centers that are over
   $90\%$ efficient -- a PUE\footnote{Power Usage Effectiveness: The
     ratio of total consumed power to useful IT power.} of
   $\approx1.1$~\cite{google-efficiency}. On the networking front, such
-  co-location allows for higher speed, lower energy, data transfers
+  colocation allows for higher speed, lower energy, data transfers
   between machines. The net result of all these efficiency gains is
-  that cloud providers can generally offer compute resources with more
-  performance and for less cost then in-house data center deployments.
+  that cloud providers can generally offer compute resources with
+  better performance and lower costs than in-house data center
+  deployments.
 \end{packed_desc}
 
 \subsection{Service Classes}
 
 Modern cloud systems come in a range of classes. These classes
-generally divide cloud-services up based on the level of abstraction
+generally divide up cloud services based on the level of abstraction
 they provide. The common cloud service classes include:
 
 \begin{packed_desc}
 \item[IaaS:] ``Infrastructure as a Service'' systems are the lowest
   level of cloud services. In an IaaS environment, the user is
   provided with remote access to a raw ``computer'' -- generally a
-  virtual machine with a pre-installed operating system -- atop which
+  virtual machine with a pre-installed operating system -- atop of which
   they may build and implement their own services. This class of cloud
   services represents the most direct replacement for the traditional
   in-house compute model where a user would start with a raw physical
   machine and build up from there. Amazon EC2~\cite{amazon-ec2} and
   Google Compute Engine~\cite{google-compute} are both examples of IaaS
   services.
-\item[PaaS:] One step up the stack exist ``Platform as a Service''
+\item[PaaS:] One step up the stack are ``Platform as a Service''
   offerings. PaaS systems provide the end user with an environment
   capable of running their code, but abstract away a lot of the lower
   level details of setting up and managing a full OS and virtual
@@ -647,7 +649,7 @@ they provide. The common cloud service classes include:
   Heroku~\cite{heroku} are examples of PaaS offerings.
 \item[SaaS:] ``Software as a Service'' sits at the top of the cloud
   service stack. This class of service is most generally what consumer
-  end-users are referring to when they talk about the ``cloud''. SaaS
+  end users are referring to when they talk about the ``cloud''. SaaS
   offerings represent fully-fledged services that provide some form of
   functionality directly to an end user. Examples of SaaS systems
   include Dropbox~\cite{dropbox}, Gmail~\cite{google-gmail}, and
@@ -655,18 +657,19 @@ they provide. The common cloud service classes include:
 \end{packed_desc}
 
 It is not uncommon for one layer of cloud services to be built atop a
-lower layer. E.g. an SaaS system might be built atop a PaaS system,
+lower layer. E.g., an SaaS system might be built atop a PaaS system,
 itself built atop an IaaS system. Furthermore, the ``...aaS'' inherent
 in the names of each of these layers reflects another cloud trend: the
-popularity of service oriented architectures~\cite{valipour2009}. Such
-architectures abstract a set of useful actions into a service that can
-be consumed by users. Such systems encourage the standardization and
-commoditization of a wide range of useful computing tasks. This allows
-developers of new services to lean heavily on existing services --
-adding only the specific new functionality they need without having to
-build the supporting infrastructure from scratch. The end result is
-yet another mechanisms for accelerating the rate of advancement when
-building systems and services atop the cloud.
+popularity of service oriented architectures
+(SOA)~\cite{valipour2009}. Service oriented architectures abstract a
+set of useful actions into a service that can be consumed by users.
+SOA systems encourage the standardization and commoditization of a
+wide range of useful computing tasks. This allows developers of new
+services to lean heavily on existing services -- adding only the
+specific new functionality they need without having to build the
+supporting infrastructure from scratch. The end result is yet another
+mechanisms for accelerating the rate of advancement when building
+systems and services atop the cloud.
 
 \subsection{Enabling Technologies}
 
@@ -684,20 +687,20 @@ include:
   much larger numbers. Cloud providers have discovered that it is more
   cost effective to utilize cheap consumer parts and simply design
   systems to cope with the higher rates of failure such parts exhibit
-  then it is to buy high-end parts with lower failures rates but
+  then it is to buy high-end parts with lower failure rates but
   disproportionately larger costs~\cite{atwood2007}. This shift has
   made hardware an easily replaceable and interchangeable commodity in
   modern data center design, lowering the cost and barriers to entry
-  involved in constructing and maintaining such data centers.
+  involved in constructing and maintaining data centers.
 \item[Virtualization] \hfill \\ Virtualization, the ability to
   simulate one or more ``virtual computers'' running atop a single
   physical computer, is not a new concept~\cite{goldberg1974}. But the
   previous 10 to 20 years have seen the use of virtualization become a
   commonplace occurrence, well supported by commodity hardware and
   software alike. Virtualization has made it simple and cost effective
-  for cloud-providers to offer their services, slicing discreet
+  for cloud-providers to offer their services, slicing discrete
   physical systems between many paying users. Virtualization also
-  allows providers to separate tenants from any singular piece of
+  allows providers to separate tenants from any single piece of
   hardware, allowing providers to migrate tenants between physical
   systems in order to meet up-time and load balancing goals without
   the user ever being aware of a change.
@@ -708,19 +711,19 @@ include:
   a range of applications without having to worry about licensing
   specialty high-cost software, vendor lock-in, or any number of other
   barriers to deployment mobility. While the cloud provided cheap,
-  commodity (often virtual) hardware resources, FOSS provides cheap,
-  commodity software to make such resources do useful
-  things. Furthermore, many cloud providers have combined the ubiquity
-  of commodity hardware with the ethos of FOSS to create open-hardware
-  ecosystems -- making it a lot simpler for service providers to build
-  and deploy cloud-optimized computing hardware~\cite{opencompute}.
+  commodity (often virtual) hardware, FOSS provides cheap, commodity
+  software to make such hardware do useful things. Furthermore, many
+  cloud providers have combined the ubiquity of commodity hardware
+  with the ethos of FOSS to create open-hardware ecosystems -- making
+  it a lot simpler for service providers to build and deploy
+  cloud-optimized computing hardware~\cite{opencompute}.
 \end{packed_desc}
 
-The success of the ``cloud'' is not due to any singular new idea or
+The success of the cloud is not due to any singular new idea or
 major breakthrough in computing. Instead, it represents the confluence
-of a number of discreet technologies, business cases, and user demands
+of a number of discrete technologies, business cases, and user demands
 at a mutually beneficial moment in time. In doing so, these events
-have fundamentally shifted the way developers and end-users alike
+have fundamentally shifted the way developers and end users alike
 consume and interact with the available computing systems of the
 21\textsuperscript{st} century.
 
@@ -729,4 +732,4 @@ consume and interact with the available computing systems of the
 %%  LocalWords: Plutus ACL LAFS Rackspace CAPEX OPEX PUE de colocate
 %%  LocalWords: PaaS Heroku SaaS aaS FOSS TwoFish OFB HMAC SHA CMAC
 %%  LocalWords: GCHQ cepheus DAC SELinux RBAC eCryptFS Ceph ECC CA's
-%%  LocalWords: CAs HTTPS et al SSO FIM
+%%  LocalWords: CAs HTTPS et al SSO FIM Kher

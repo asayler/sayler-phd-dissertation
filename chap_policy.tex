@@ -862,10 +862,10 @@ should be equal to $c/n$ where $c$ is the cost to store the unsharded
 secret and $n$ is the number of total SSPs in use. As in the liability
 valuation, such a split will ensure the user pays the same for a
 sharded secret as an unsharded secret, at least in cases where
-$k=n$. Since $k$ choose $n$ secret sharding schemes allow for the user
-to specify a $k$ greater than $n$ for the purpose of adding redundancy
+$n=k$. Since $n$ choose $k$ secret sharding schemes allow for the user
+to specify an $n$ greater than $k$ for the purpose of adding redundancy
 to the system, a user may still end up paying more to store a sharded
-secret than an unsharded secret in any case where $k>n$. In such
+secret than an unsharded secret in any case where $n>k$. In such
 situations, however, the user is gaining an additional degree of
 redundancy that they did not have before, justifying the additional
 cost. Thus, valuing secret shards at $v/k$ for the purpose of

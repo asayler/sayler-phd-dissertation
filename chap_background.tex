@@ -208,14 +208,14 @@ sharing scheme in 1979~\cite{shamir1979}. Secret sharing is a method
 for splitting a block of information up into two or more pieces such
 that holders of any subset of the pieces cannot infer any information
 about the original block as a whole. Shamir Secret Sharing allows a
-user to divide a block of $D$ data into $N$ pieces of which $K$ or
-more pieces can be used to recompute the original value of $D$. A user
-with fewer than $K$ pieces, however, has no more information about the
-value of $D$ than a user with no pieces. Such ``$N$ choose $K$''
+user to divide a block of $d$ data into $n$ pieces of which $k$ or
+more pieces can be used to recompute the original value of $d$. A user
+with fewer than $k$ pieces, however, has no more information about the
+value of $d$ than a user with no pieces. Such ``$n$ choose $k$''
 threshold systems provide a useful method for distributing information
 amongst multiple parties in situations where no single party can be
 fully trusted. Such systems can also be used to provide redundancy by
-selecting $N$ to be greater than $K$.\footnote{Not unlike RAID systems
+selecting $n$ to be greater than $k$.\footnote{Not unlike RAID systems
   can be used to provide redundancy across multiple
   disks~\cite{patterson1988}.}
 
@@ -233,13 +233,13 @@ of computational power one posses.\footnote{ I.e. computationally
   or newfangled computing capabilities.}
 
 Shamir Secret Sharing functions on the basis of defining a polynomial
-of degree $K-1$ over a finite field with the $D$ data encoded as the
-first order-zero term. $N$ points are then selected from this
-polynomial and distributed to the participants. Since $K$ points (but
-no fewer) will uniquely identify the original polynomial, at least $K$
-users must combine their pieces in order to re-compute $D$.
+of degree $k-1$ over a finite field with the $d$ data encoded as the
+first order-zero term. $n$ ypoints are then selected from this
+polynomial and distributed to the participants. Since $k$ points (but
+no fewer) will uniquely identify the original polynomial, at least $k$
+users must combine their pieces in order to re-compute $d$.
 
-Shamir Secret Sharing (and related ``$N$ choose $K$'' systems) are
+Shamir Secret Sharing (and related ``$n$ choose $k$'' systems) are
 useful in a wide range of situations where one needs to distribute
 trust across multiple entities. In particular, secret sharing
 techniques are leveraged in some cryptographically-based access

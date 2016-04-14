@@ -398,13 +398,13 @@ specification of two pieces of access control metadata corresponding
 to each stored collection: a list of AC servers approved to provide
 access control tokens for the collection and a minimum number of
 servers from which valid tokens must be received. These parameters
-form the basis of an additional $(k, n)$ threshold scheme for access
-control servers -- e.g., a collection may delegate a list of $n$
-access control servers from which an application must acquire at least
-$k$ valid tokens in order to gain access. Thus, if the user does not
-wish to trust a single access control server, they may require tokens
-from at least $k$ different AC servers in order to access the data
-stored in a given collection. As in the storage case, if the
+form the basis of a novel, yet simple $(k, n)$ threshold scheme for
+access control servers -- e.g., a collection may delegate a list of
+$n$ access control servers from which an application must acquire at
+least $k$ valid tokens in order to gain access. Thus, if the user does
+not wish to trust a single access control server, they may require
+tokens from at least $k$ different AC servers in order to access the
+data stored in a given collection. As in the storage case, if the
 application wishes to withstand the failure of one or more AC servers,
 it can specify $n$ possible AC servers where $n > k$.
 
@@ -794,16 +794,19 @@ storage server in order to keep an application's secrets secure. As
 described in Section~\ref{chap:tutamen:arch:distributed}, each
 application can distribute both secret storage and access control
 delegations using $n$ choose $k$ schemes. In such setups, the
-difference between $n$ and $k$ represents the degree to which a
-Tutamen applications can withstand security failures of the associated
-AC and storage servers. For example, an application which chooses to
-shard its secrets across five storage servers where any three shards
-are sufficient to recreate the secret ($n=5$, $k=3$) will continue to
-remain secure even if two of the storage servers fail to meet their
-security obligations. Similarly, if each secret shard delegates five
-possible AC servers, tokens from three of which are required to grant
-secret access, the applications can withstand the failure of two AC
-servers to uphold their security guarantees.
+difference between $n$ and $k$ dictates the degree of redundancy
+inherent in the system while the value of $k$ dictates the degree by
+which a Tutamen application can withstand security failures. For
+example, an application which chooses to shard its secrets across six
+storage servers where any three shards are sufficient to recreate the
+secret ($n=6$, $k=3$) will continue to remain secure even if two
+(i.e. $k-1$) of the storage servers fail to meet their security
+obligations. The system will also remain available even if three
+(i.e. $n-k$) of the servers fail to return secret shards. Similarly,
+if each secret shard delegates six possible AC servers, tokens from
+three of which are required to grant secret access, the application
+can withstand the failure of two AC servers to uphold their security
+guarantees and the failure of three AC servers to return tokens.
 
 \subsection{Trust Model}
 

@@ -15,7 +15,9 @@ for multi-provider secret sharding and automated secret access.
 Tutamen aims to correct flaws in previous SSaaS systems such a Custos
 and relates first generation secret storage systems such as
 Vault~\cite{vault}. In particular, Tutamen aims to provide better
-support for multi-SSP sharding and for autonomous use cases.
+support for multi-SSP sharding, for autonomous use cases, and for
+global-scale scenarios that extended beyond a single administrative
+domain.
 
 \subsection{Flaws in Custos}
 
@@ -89,14 +91,17 @@ several key limitations. First, they generally require at least one
 highly trusted server as the basis of their security model, making
 them unsuitable for operation atop untrusted infrastructure. Second,
 they tend to lack support for use cases requiring autonomous or remote
-access to secret material in a secure manner. These deficiencies give
-rise to two more secret storage requirements:
+access to secret material in a secure manner. And finally, they do not
+scale well beyond a single administrative domain. These deficiencies
+give rise to two more secret storage requirements:
 
 \begin{packed_item}
 \item Avoidance of the need to place a high degree of trust in any
   single system outside the application that wishes to store a secret.
 \item Ability to support a range of secret access use cases, including
-  use cases where automatic or remote access to secrets is required.
+  use cases where automatic or remote access to secrets is required,
+  or where data must be accessible beyond a single administrative
+  domain.
 \end{packed_item}
 
 It is toward these final two requirements that Tutamen attempts to
@@ -114,7 +119,10 @@ a human in the authentication loop without actually requiring that the
 human be physically present. For example, Tutamen can be used to store
 the disk encryption keys required to boot a headless server, and only
 release these keys to the server requesting them when a human responds
-to a text message confirming the boot request.
+to a text message confirming the boot request. Finally, Tutamen is
+designed to support collaboration between loosely-organized users and
+does not aim to limit its scope to within a single administrative
+domain.
 
 \section{Tutamen Architecture}
 \label{chap:tutamen:arch}

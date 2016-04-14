@@ -469,7 +469,7 @@ encrypted file-systems, all while minimizing the trust placed in
 cloud-based storage providers and Custos SSPs. For example, when
 mounted atop a Dropbox-backed directory, \texttt{EncFS} allows a user
 to ensure that Dropbox has no access to the plain-text contents of a
-user's files. None the less, users can still use Dropbox to sync a
+user's files. Nonetheless, users can still use Dropbox to sync a
 file across multiple devices or share it with other users. The user
 must simply update the access control attributes for a given file's
 encryption key stored via their Custos SSP to allow access from other
@@ -481,7 +481,7 @@ stores operate.
 Adding the SSP encryption key request operation to the file read
 process does incur an additional ~10 to ~100 milliseconds of latency
 on file reads, primarily dependent on the network latency between the
-client and the SSP~\cite{custos-trios}. None the less, it's unlikely
+client and the SSP~\cite{custos-trios}. Nonetheless, it's unlikely
 that most users will notice this additional latency in normal
 day-to-day use (e.g. editing a text file, playing a media file,
 viewing a photo, etc). This latency is also no worse then most

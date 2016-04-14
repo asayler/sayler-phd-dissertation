@@ -614,7 +614,7 @@ of the \texttt{systemd} Password Agent
 Specification~\cite{systemd-passwordagents}.\footnote{Matt Monaco is
   primarily responsible for the Tutamen dm-crypt integration.}  This
 specification is used by the LUKS/dm-crypt \texttt{cryptsetup} utility
-to request the necessary decryption secret. At boot time,
+to request the necessary decryption secret. At boot-time,
 \texttt{cryptsetup} will send out a request for this secret. Normally
 this triggers a ``human-at-keyboard'' prompt for a boot pass-phrase. A
 Tutamen-aware password agent can instead respond to such requests by

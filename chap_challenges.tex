@@ -2,12 +2,12 @@
 \label{chap:challenges}
 
 As mentioned in Chapter~\ref{chap:intro}, the last ten years have
-heralded the rapid expansion of a range of digital data related use
+heralded the rapid expansion of a range of digital data-related use
 cases. In order to accommodate these use cases, most modern services
 leverage some form of third party compute or data storage
 systems. These third party systems, however, raise questions about the
 privacy and security of user data. In particular, to what degree can
-users trust various third-parties with user data? And as a corollary:
+users trust various third parties with user data? And, as a corollary,
 are there mechanisms that allow users to control or reduce this degree
 of trust?
 
@@ -20,8 +20,8 @@ unlikely to succeed in a market where users are voluntarily turning to
 third party services for the features they can provide. Understanding
 the predominant modern use cases is thus a prerequisite to proposing
 security enhancing technologies. Modern use cases can be divided into
-two categories: consumer focused use cases and developer focused
-use-cases. Consumer use cases are those that matter to the average lay
+two categories: consumer-focused use cases and developer-focused
+use-cases. Consumer use cases are those that matter to the average, lay
 computer user. Likewise, developer use cases are those that matter to
 back-end developers and service providers. Security and privacy
 enhancing solutions must be able to accommodate both sets of use cases
@@ -29,7 +29,7 @@ if they expect to be widely adopted and used.
 
 \subsection{Consumer Use Cases}
 
-End-users expect modern software to support a range of common
+end users expect modern software to support a range of common
 behaviors. Chief amongst these are the ability to support the use of
 multiple devices per user, the ability to support collaboration and
 sharing with other users, and the ability to provide turn-key data
@@ -41,10 +41,10 @@ It is common for a single user to utilize multiple computing
 devices. For example, a user might have a personal laptop, a work
 desktop, a smart phone, and a tablet. Such users expect to be able
 access their data from any of their devices. Similarly, many users
-treat compute devices as disposable: when a user loses a phone or has
+treat compute devices as disposable. When a user loses a phone or has
 a laptop stolen, they still expect to be able to continue to access
 their data on a replacement device. The plurality and ephemerality of
-modern computing device has lead to the rise of a number of solutions
+modern computing devices has lead to the rise of a number of solutions
 that aim to separate a user's data from the devices on which they
 access it, ensuring that users may access their data regardless of
 device. Such solutions can generally be placed into two groups:
@@ -55,7 +55,7 @@ services).
 
 Sync services operate on the premise of storing user data locally on
 each device while automatically syncing changes to such data across
-multiple devices. They ensure that the users has the same view of
+multiple devices. They ensure that the user has the same view of
 their data regardless of device, even when each device stores
 independent, localized copies of this data. Such services generally
 accomplish this by providing either a centralized or a decentralized
@@ -81,12 +81,12 @@ access problem for several reasons:
   they can not connect to the sync service. The sync service will
   simply wait for the network connection to return and then update any
   local changes on other devices. While this can lead to issues when
-  user make conflicting modifications on multiple devices while
+  users make conflicting modifications on multiple devices while
   offline, in general it represents a more graceful failure mode then
   a system that requires an Internet connection for any form of data
   access. This also acts as a hedge against a sync service provider
-  shutting down: even if a sync service goes under, the user will
-  still retain local copes of all their data that they could use to
+  shutting down; even if a sync service goes under, the user will
+  still retain local copies of all their data that they could use to
   bootstrap a new sync service.
 \item[No Central Storage:] Since sync services are only concerned with
   syncing changes between devices, it is not inherently necessary for
@@ -113,14 +113,14 @@ and then providing mechanisms for users to access and modify this data
 from remote devices. Locker services are reminiscent of more
 traditional networked file systems such as NFS~\cite{sandberg1985} or
 SMB~\cite{microsoft-smb2}, but are less tightly coupled to a single
-administrative domain then were such service. Since locker services
+administrative domain then were such services. Since locker services
 store a logically centralized copy of each file, the user is presented
-with a single view of their data regardless of which device they chose
-to access it from. Such services have several desirable qualities:
+with a single view of their data regardless of from which device they
+chose to access it. Such services have several desirable qualities:
 
 \begin{packed_desc}
 \item[No Local Storage:] Locker services store all data in online
-  locations, generally atop data-center-based servers. Thus, unlike
+  locations, generally atop datacenter-based servers. Thus, unlike
   sync services, they require no local storage. This is useful in
   situations where local storage is limited (e.g. on phones), but
   where the user still wishes to have access to a large amount of data
@@ -133,9 +133,9 @@ to access it from. Such services have several desirable qualities:
 \item[Single Source of Truth:] Locker services only store a single
   (logical) copy of the data at any time. This ensures that situations
   where the user makes conflicting modifications to a piece of data
-  are far less likely then in sync-based solutions. This property can
+  are far less likely than in sync-based solutions. This property can
   increase the usefulness of such systems in multi-user scenarios
-  where more then one person might be accessing and modifying data
+  where more than one person might be accessing and modifying data
   simultaneously.
 \item[Centralized Control:] Due to the manner in which most locker
   services store their data, such services often provide a more
@@ -147,57 +147,57 @@ to access it from. Such services have several desirable qualities:
 One of the main downsides to locker services is their requirement for
 always-online access. Thus, in situations where network access is
 impossible or where high-bandwidth usage is not practical, locker
-services can prevent users from access their data. Thus, locker
+services can prevent users from accessing their data. Thus, locker
 services operate best in situations where network bandwidth is
-reliable and plentifully. In situations where network access is not
+reliable and plentiful. In situations where network access is not
 guaranteed, sync services may offer a more desirable solution.
 
-Today, sync services tend to be the more popular solution for most
-end-users. Such users generally want access to their data across
-multiple devices and in multiple locations (home, work, public,
-etc) -- requiring the data to be available in locations where a
-reliable network is not always available. Thus, sync service dominate
+Today, sync services tend to be the more popular solution for most end
+users. Such users generally want access to their data across multiple
+devices and in multiple locations (home, work, public, etc) --
+requiring the data to be available in locations where a reliable
+network is not always available. Thus, sync services dominate the
 multi-device data access solution landscape. Examples of popular
 centralized sync services today include Dropbox~\cite{dropbox}
 ($\approx300$ Million Users~\cite{smith-stats}), Google
 Drive~\cite{google-drive} ($\approx240$ Million
 Users~\cite{smith-stats}), and Microsoft
 OneDrive~\cite{microsoft-onedrive} ($\approx250$ Million
-Users~\cite{smith-stats}).  An examples of a decentralized sync
-service is BitTorrent Sync~\cite{bittorrent-sync} ($\approx2$ Million
+Users~\cite{smith-stats}).  An example of a decentralized sync service
+is BitTorrent Sync~\cite{bittorrent-sync} ($\approx2$ Million
 Users~\cite{smith-stats}).
 
 Locker services are also available and tend to be most popular in
 situations where network access is reliable and where centralized
-control is desirable: e.g. business environments. In such situations
+control is desirable, e.g. business environments. In such situations
 traditional in-house networked file system solutions may provide a
-kind of ``locker service'' functionality. There are also cloud
-services that provide users with online locker-like data access:
-e.g. systems like OwnCloud~\cite{owncloud} implement the WebDAV
+kind of locker service functionality. There are also cloud services
+that provide users with online locker-like data access, e.g. systems
+like OwnCloud~\cite{owncloud} implement the WebDAV
 protocol~\cite{goland1999} for remote file access over the
 Internet. Similarly, distributed systems like Least Authority's Simple
 Secure Storage Service~\cite{leastauthority-s4} (S4, built atop
-Tahoe-LAFS~\cite{wilcox-o'hearn2008}) offer Internet-wide multi-device
-access to a distributed data store. Furthermore, some sync services
-are also capable of operating more like locker services. Systems like
-Microsoft OneDrive allow users to specify which files are copied
-locally (and thus available for offline access) and which are stored
-only on the server and streamed to the user as
+Tahoe-LAFS~\cite{wilcox-o'hearn2008}) offer Internet-wide,
+multi-device access to a distributed data store. Furthermore, some
+sync services are also capable of operating more like locker
+services. Systems like Microsoft OneDrive allow users to specify which
+files are copied locally (and thus available for offline access) and
+which are stored only on the server and streamed to the user as
 required~\cite{microsoft-onedrive-online}. There have also been a
-number of popular special-purpose locker services designed to promote
+number of popular special purpose locker services designed to promote
 multi-device access to specific classes of data. In the media space,
 systems like Google Music~\cite{google-music} allow users to upload
 music files which they can then access and stream to multiple
 devices. Similarly, distributed systems like Popcorn
 Time~\cite{popcorntime} allow users to (often illegally) tap into each
-others video libraries to stream content to their own devices.
+others' video libraries to stream content to their own devices.
 
 As shown above, users' ownership of multiple computing devices has
 lead to a desire for users to be able to access their data from any
 device. In response to this desire, a number of third party backed
 services have sprung up to provide users with multi-device file
 access. Any technology aimed at enhancing the security or privacy of
-end-user data needs to account for and support the multi-device nature
+end user data needs to account for and support the multi-device nature
 of modern users.
 
 \subsubsection{Multi-User}
@@ -207,8 +207,8 @@ the ability to share and collaborate with other users. In response to
 these desires, many cloud services offer various mechanisms for
 multi-user sharing and collaboration. Similar to the multi-device use
 case, the solutions in this space can be roughly grouped into two
-categories: distributed services that allows users to share copies of
-data with other users and centralized services that allow multiple
+categories: distributed services that allow users to share copies of
+data with other users, and centralized services that allow multiple
 users access to a central copy of the data.
 
 In many cases the same solutions discussed previously that enable the
@@ -228,22 +228,22 @@ Unlike the multi-device use case, however, adding support for
 multi-user sharing requires providing access control primitives in
 addition to basic file transfer or access primitives. These primitives
 allow users to control the manner in which other users may access and
-use the shared data. Such controls are necessary to allows users to
+use the shared data. Such controls are necessary to allow users to
 place limits on the degree to which they trust other users. Many
 services provide fairly traditional file-like access control schemes
-were each user is granted read and/or write permissions to a specific
+where each user is granted read and/or write permissions to a specific
 piece of data. Data owners can use these permission to craft access
 control polices for the group of user with which they wish to share
 data.
 
-It Is also common to see support for various forms of multi-user
+It is also common to see support for various forms of multi-user
 sharing in a range of hosted services, from social networking apps to
 web-based document editors. Social network platforms like
 Facebook~\cite{facebook} have extensive support for sharing photos,
-videos, status messages, and other user-generated continent. Such
+videos, status messages, and other user-generated content. Such
 systems also provide the data owner with the ability to place limits
-on how data is shared and who it is shared with (although the
-effectiveness of such access control settings is often
+on how and with whom data is shared (although the effectiveness of
+such access control settings is often
 questionable~\cite{johnson2012}). Similarly, systems like Google
 Docs~\cite{google-docs} or Microsoft Office
 Online~\cite{microsoft-officeonline} offer users the ability to
@@ -268,17 +268,17 @@ applications for the purpose of processing or interacting with data,
 such a model fails to properly account for the multi-device and
 multi-user requirements of many modern applications. Thus, data
 processing services that would have traditionally been executed
-locally, are now run as hosted services atop third party
+locally are now run as hosted services atop third party
 infrastructure. Using such services requires users to be able to share
 data with third parties for the purpose of leveraging such
 services. Unlike pure multi-device syncing or multi-user sharing
-services, data processing service provide some benefit to the user
+services, data processing services provide some benefit to the user
 above and beyond the mere storage, transfer, or sharing of data.
 
 Examples of popular hosted services that interact with user-generated
 data include the social networking and document editing solutions
 mentioned previously. In both cases, these services take user data and
-leverage it to provide an additional benefit to the user: e.g. the
+leverage it to provide an additional benefit to the user, e.g. the
 ability to interact and communicate with one's friends or the ability
 to create and compose written documents with a colleague. Other
 examples of hosted services include various ``big data'' systems that
@@ -307,12 +307,12 @@ across many current and future use cases.
 
 \subsection{Developer Use Cases}
 
-Beyond end-user use cases, developers are also heavy users of modern
+Beyond end user use cases, developers are also heavy users of modern
 third party cloud services. As such, there are a number of backend use
 cases that would also benefit from privacy and security enhancements
 with respect to third party trust. Giving developers the tools to
 better protect cloud-backed systems allows them to build more secure
-end-user services. Furthermore, developers are often some of the
+end user services. Furthermore, developers are often some of the
 heaviest users of cloud services, so ensuring that they can adequately
 protect their data and services hosted atop third party infrastructure
 significantly expands the total number of computing systems protected.
@@ -357,7 +357,7 @@ user's ability to physically access a machine. Such physical access is
 sometimes required by security enhancing technologies for the purpose
 of bootstrapping various encryption systems using SmartCards, USB
 drives, etc. Unfortunately the remote, cloud-based nature of many
-modern systems do not allow for such physical-access dependent
+modern systems do not allow for such physical access dependent
 mechanisms.
 
 Similarly, most IaaS-backed servers or PaaS-backed services are
@@ -387,8 +387,8 @@ operate securely even when their configuration must be automated.
 
 Assumptions about a developer's ability to physically access a
 machine, to interactively provide input to a machine, or to manually
-deploy each machine no longer hold under the current practice of using
-automated, ephemeral cloud-backed infrastructure. As such. it is
+deploy a machine no longer hold under the current practice of using
+automated, ephemeral cloud-backed infrastructure. As such, it is
 important that any developer-targeted privacy or security enhancing
 technology avoids making such assumptions, ensuring that it can
 operate effectively even atop modern deployment practices.
@@ -415,7 +415,7 @@ failures that can occur related to third party trust.
 \subsection{Misuse of Data}
 
 One of the main forms of trust users place in third parties is to not
-intentionally misuse the data stored with them. E.g. Are third parties
+intentionally misuse the data stored with them, e.g. are third parties
 leveraging user data in unexpected and undesirable ways?
 Unfortunately, there are a number of examples of such breaches
 occurring:
@@ -423,13 +423,13 @@ occurring:
 \begin{packed_desc}
 \item[Facebook Emotional Contagion Study:] In 2014, it came to light
   that Facebook had engaged in research that involved manipulating
-  what users saw in their news feeds in order to study the effects of
+  what users saw in their newsfeeds in order to study the effects of
   one user's emotions on other users~\cite{goel2014}. The study was
   performed on $\approx700$ users without their knowledge or
   consent. Facebook misused the trust placed in it by its users by
   leveraging and manipulating their data in unforeseen ways.
 \item[Uber User Travel History:] In 2014, ride-share app
-  Uber~\cite{uber} made headlines when it used the travel-history of a
+  Uber~\cite{uber} made headlines when it used the travel history of a
   number of its more prominent users to display a live user-location
   map at a launch party~\cite{sims2014}. Similarly, the company also
   used stored user travel history to compose a blog post detailing its
@@ -461,7 +461,7 @@ occur due to a direct attack on third party or through an oversight on
 the part of the third party. Thus, even if users trust that a third
 party won't intentionally misuse their data, they must still question
 whether or not third parties are capable of providing adequate
-protection for user data. Today users are generally reliant on third
+protection for user data. Today's users are generally reliant on third
 parties to protect the data they store and to faithfully enforce any
 access control or sharing restrictions a user specifies.
 
@@ -485,24 +485,24 @@ third parties with our data. Examples include:
   Apple's iCloud system, the weak default security requirements for
   iCloud accounts made it relatively simple for attackers to
   compromise such accounts and steal data.
-\item[Office of Personnel Management Breach:] In 2015, The US Office
+\item[Office of Personnel Management Breach:] In 2015, the U.S. Office
   of Personnel Management (OPM) announced that their systems had been
-  breached, exposing the personal data of pretty much anyone who has
-  held or currently holds a US Government security
+  breached, exposing the personal data of essentially anyone who had
+  held or currently holds a U.S. Government security
   clearance~\cite{ars-opmhack, opm-cybersecurityincidents}. This
   breach, in addition to having high strategic value to foreign
-  attackers, reveled sensitive personnel data of a huge number of US
+  attackers, reveled sensitive personnel data of a huge number of U.S.
   government employees and contractors. This leak was largely due to
   the use of old and outdated storage and security systems employed by
   the OPM.
 \item[Anthem and Premera Blue Cross Breaches:] In early 2015 two major
-  US health insurance companies were subject to attacks that breached
+  U.S. health insurance companies were subject to attacks that breached
   their user records, allowing the release of personal, financial, and
   medical information on millions of users~\cite{krebs-anthem,
     krebs-premera}. While the details of the breaches were not made
   public, such attacks demonstrate the risk of trusting a third party
   with the storage of large quantities of sensitive data.
-\item[Heartbleed, Shellshock, Etc:] In addition to targeted attacks,
+\item[Heartbleed, Shellshock, etc:] In addition to targeted attacks,
   third parties are also susceptible to software flaws. Prominent
   examples of such flaws include Heartbleed~\cite{heartbleed}, a flaw
   in OpenSSL~\cite{openssl} that allowed attackers to steal private
@@ -522,14 +522,14 @@ risk for exposure through attack or oversight.
 
 Recent events have revealed yet another threat vector that must be
 considered when leveraging third party cloud services: the targeting
-of such services by various governments for the propose of wide-spread
+of such services by various governments for the purpose of wide-spread
 surveillance. In particular, the U.S. National Security Agency (NSA)
-leaks revealed by Mr. Edward Snowden demonstrate the US government's
+leaks revealed by Mr. Edward Snowden demonstrate the U.S. government's
 widespread data surveillance programs targeting popular cloud data
 providers~\cite{greenwald-prism}.  Outside the Unites States,
 government-compelled surveillance and user data access are equally, if
 not more, pervasive~\cite{netfreedom2015}.  While such actions, at
-least in the US, raise numerous questions of constitutional legality
+least in the U.S., raise numerous questions of constitutional legality
 under the 4th Amendment~\cite{us-constitution-amend4} (see
 Chapter~\ref{chap:policy}), that does not at present change the fact
 that such searches are known to be occurring. Thus, we are forced to
@@ -541,8 +541,7 @@ Numerous examples of privacy-subverting attacks by government actors
 have come to light over the previous five years. It is worth
 considering several of these examples in order to evaluate how to
 increase the security and privacy guarantees available atop third
-party services. Notable instances of government data introspection
-include:
+party services. Notable instances of government surveillance include:
 
 \begin{packed_desc}
 \item[PRISM and MUSCULAR:] The NSA PRISM program was/is a Foreign
@@ -561,11 +560,11 @@ include:
   government effort to access and monitor user data atop popular cloud
   services.
 \item[Lavabit:] Lavabit was a private email service with 400,000 users
-  premised on the idea that poplar free email services such as Gmail
+  premised on the idea that popular free email services such as Gmail
   lacked adequate security and privacy guarantees (in part due to the
-  lesser legal protections such communications receive under the US
+  lesser legal protections such communications receive under the U.S.
   third party doctrine~\cite{thompson-thirdparty}). In August 2013
-  Lavabit shuttered its service in response to a US government
+  Lavabit shuttered its service in response to a U.S. government
   subpoena requiring Lavabit to turn over all of its encrypted user
   traffic as well as the associated SSL encryption keys necessary to
   decrypt it~\cite{lavabit, levsion-lavabit}. After a legal fight,
@@ -574,28 +573,31 @@ include:
   government's willingness to compel service operators to aid in the
   monitoring and collection of user data.
 \item[Apple v. FBI:] In response to the 2015 San Bernardino shootings,
-  the FBI is seeking to compel Apple to help it decrypt the shooter's
-  iPhone~\cite{ars-cookvfbi}. The form of encryption Apple uses to
-  protect the iPhone involves the use of a hardware-linked encryption
-  key that can not be extracted from the phone. Furthermore, this key
-  can not be used on the phone without a user-provided passcode. By
-  default, Apple limits the number of guesses a user may make at this
-  passcode and throttles the speed at which a user may guess
-  passcodes. The FBI wishes to compel Apple to update the software on
-  the iPhone in question so that they may try to guess an unlimited
-  number of passcodes at a high rate of speed\footnote{Due to Apple's
-    use of signature-verified code, it is not possible for the FBI (or
-    anyone else) to update the Apple's software themselves. Instead
-    Apple (or the holder of Apple's cryptographic code signing key)
-    must approve and sign any updated code before the iPhone will run
-    it.}\cite{eff-applecrypto}. Apple seems disinclined to acquiesce
-  to this request~\cite{apple-fbiletter}. The case is currently being
-  fought in the courts. As in the Lavabit case, this case demonstrates
-  the government's interest in compelling companies to assist them in
-  accessing private user data, even going so far as to potentially
-  require companies to avoid the use of certain forms of encryption or
-  security-enhancing features that would make such assistance
-  difficult or impossible to provide.
+  the FBI attempted to compel Apple to help it decrypt one of the
+  shooters' iPhone~\cite{ars-cookvfbi}. The form of encryption Apple
+  uses to protect the iPhone involves a hardware-linked encryption key
+  that can not be easily extracted from the phone, limiting
+  out-of-band cracking opportunities. Furthermore, this key can not be
+  used on the phone without a user-provided passcode. By default,
+  Apple limits the number of guesses a user may make at this passcode
+  and throttles the speed at which a user may guess passcodes. The FBI
+  wished to compel Apple to update the software on the iPhone so that
+  they could try to guess an unlimited number of passcodes at a high
+  rate of speed\footnote{Due to Apple's use of signature-verified
+    code, it is not possible for the FBI (or anyone else) to update
+    the Apple's software themselves. Instead, Apple (or the holder of
+    Apple's cryptographic code signing key) must approve and sign any
+    updated code before the iPhone will run
+    it.}\cite{eff-applecrypto}. Apple was disinclined to acquiesce to
+  this request~\cite{apple-fbiletter}. The case wound up being dropped
+  by the FBI after they were able to leverage an undisclosed security
+  vulnerability to bypass Apple's passcode guessing limits
+  directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
+  Lavabit case, this case demonstrates the government's interest in
+  compelling companies to assist them in accessing private user data,
+  even going so far as to potentially require companies to avoid the
+  use of certain forms of encryption or security-enhancing features
+  that would make such assistance difficult or impossible to provide.
 \item[The Great Firewall:] Moving beyond U.S. government surveillance,
   China has long been known to employ one of the most sophisticated
   web monitoring and content control systems in
@@ -610,11 +612,11 @@ include:
 
 These examples demonstrate the willingness of governments to ensure
 they can access and monitor user data in the cloud. Security and
-privacy enhancing systems must thus account for the fact that services
-providers may find themselves in positions where they are compelled to
-turn over data (or even collude in its collection) or where they face
-large scale surveillance of both internal and external network
-traffic.
+privacy enhancing systems must therefore account for the fact that
+service providers may find themselves in positions where they are
+compelled to turn over data (or even collude in its collection), or
+where they face large scale surveillance of both internal and external
+network traffic.
 
 \subsection{Physical Security}
 
@@ -624,9 +626,9 @@ exploitation of third party services. One of the key areas where such
 issues manifest is in the physical security of modern computing
 devices. Traditionally the security of a computing device or any data
 stored on it was rooted on the premise that the device itself could be
-kept physically secure: e.g. an attacker would not posses unrestricted
-physical access to a device. Modern usage patterns break this
-assumption in several ways.
+kept physically secure (i.e. that an attacker would not posses
+unrestricted physical access to a device). Modern usage patterns break
+this assumption in several ways.
 
 First, the multi-device nature of most users increases the number of
 computing devices potentially storing copies of sensitive user
@@ -647,19 +649,19 @@ our modern services atop hardware under another party's control. This
 lack of physical hardware access has repercussions for modern threat
 models. To what extent can the hardware provider interfere with or
 bypass the security of software that runs on their systems? What
-abilities do they have to introspect data stored on their servers? How
+abilities do they have to inspect data stored on their servers? How
 much can users trust computations performed on such systems?  Modern
 security and privacy enhancing systems must be designed with the
 knowledge that the underlying hardware itself may be
 untrustworthy. This is a significant departure from the more
 traditional physically-secure-hardware threat model.
 
-Both these cases demonstrate that any security and privacy enhancing
-systems designed to protect data in either the cloud or atop user
-devices must contend with the fact that the physical security of the
-devices on which they operate is not guaranteed. Such systems must be
-designed with the trustworthiness (or lack there of) of the physical
-infrastructure in mind.
+Both these challenges demonstrate that any security and privacy
+enhancing systems designed to protect data in either the cloud or atop
+user devices must contend with the fact that the physical security of
+the devices on which they operate is not guaranteed. Such systems must
+be designed with the trustworthiness (or lack there of) of the
+physical infrastructure in mind.
 
 \section{Need for New Solutions}
 \label{chap:challenges:solutions}
@@ -674,15 +676,15 @@ systems may defend against these threats. These limitations disqualify
 many existing security solutions and underline the need for new
 approaches.
 
-Traditionally the solution to many of the threats discussed in
+Traditionally, the solution to many of the threats discussed in
 \S~\ref{chap:challenges:threats} involve the use of
 cryptography. Cryptography is a desirable security primitive since it
-allows user to protect their data in a manner that is mathematically
+allows users to protect their data in a manner that is mathematically
 secure. Cryptography does not rely on a trusted arbiter for the
 enforcement of its security guarantees. Instead, it is the intrinsic
 properties of the underlying math itself that give rise to
-cryptographic security claims. Thus cryptography can serve as the basis
-for systems that are designed to operate securely atop untrusted
+cryptographic security claims. Cryptography can therefore serve as the
+basis for systems that are designed to operate securely atop untrusted
 hardware or services.
 
 A number of existing encryption systems have been designed and
@@ -693,16 +695,16 @@ can help guard against data leaks if a storage device is lost, stolen,
 or otherwise acquired by an adversary. Unfortunately, such systems
 fail to account for many modern use cases. In particular, full disk
 encryption (FDE) systems generally require the user to interactively
-supply a pass phrase at boot time in order to bootstrap the decryption
+supply a passphrase at boot-time in order to bootstrap the decryption
 of the data on the system. Such requirements are not generally
 possible to fulfill when using cloud-based infrastructure such as
-IaaS-backed virtual machines. Simply doing away with such pass-phrases
+IaaS-backed virtual machines. Simply doing away with such passphrases
 isn't a viable solution either since the security of the entire system
 rests upon the intended user, and only that user, being able to
 provide such information. A full disk encryption system that stores a
-copy of the user pass-phrase locally to avoid the need for the user to
+copy of the user passphrase locally to avoid the need for the user to
 supply it is no more secure then a system without encryption at
-all. Either an adversary has an unlocked box or they have both a
+all. Either an adversary has an unlocked box, or they have both a
 locked box and the key required to unlock it. Neither scenario results
 in a security benefit for the owner of the box.
 
@@ -715,33 +717,34 @@ Dropbox. Such an action would serve to greatly reduce the degree to
 which the user must trust third party providers like Dropbox, and does
 not impinge the same ``human-in-the-loop'' issues as FDE system due to
 the differentiated nature of the client-side encryption use
-case. Unfortunately such designs have a new set of flaw. Most notably,
-they do not mesh well with many of the desired multi-device and
-multi-user use cases mentioned previously. For example, encrypting
-data on one's laptop, storing it on Dropbox, and then trying to access
-it from another device such as a phone or tablet will fail. In such a
-scenario the keys used to encrypt the data, and that are thus required
-to decrypt and access the data, only exist on the original laptop,
-making it impossible to access the data from another device -- the
-very purpose behind putting it on Dropbox in the first place. The user
-could manually move their keys between devices to overcome this issue,
-but doing so likely presents an unachievable challenge for most lay
-users. Furthermore, if the user is capable of easily transferring keys
-between devices via mechanisms other then Dropbox, why can't they just
-use the same mechanism for their files as well and avoid Dropbox all
-together? Likewise, if a user wishes to share data with another
-Dropbox user, they are now also required to exchange the necessary
-decryption key information out-of-band in addition to enabling the
-normal sharing mechanisms. Such exchanges are challenging for most
-users to perform in a practical and secure manner, and requiring such
-an exchange increases the overhead to multi-user sharing, making it
-unlikely that most users would employ such tactics in the first place.
+case. Unfortunately, such designs have a new set of flaws. Most
+notably, they do not mesh well with many of the desired multi-device
+and multi-user use cases mentioned previously. For example, a user
+encrypting data on their laptop and storing the ciphertext on Dropbox
+will be unable to decrypt and access their data from another device
+such as a phone or tablet. In this scenario, the keys used to encrypt
+the data, and that are thus required to decrypt and access the data,
+only exist on the original laptop, making it impossible to access the
+data from another device -- the very purpose behind putting it on
+Dropbox in the first place. The user could manually move their keys
+between devices to overcome this issue, but doing so likely presents
+an unachievable challenge for most lay users. Furthermore, if the user
+is capable of easily transferring keys between devices via mechanisms
+other then Dropbox, why can't they just use the same mechanism for
+their files as well and avoid Dropbox all together? Likewise, if a
+user wishes to share data with another Dropbox user, they are now also
+required to exchange the necessary decryption key information
+out-of-band in addition to enabling the normal sharing
+mechanisms. Such exchanges are challenging for most users to perform
+in a practical and secure manner, and requiring such an exchange
+increases the overhead to multi-user sharing, making it unlikely that
+most users would employ such tactics in the first place.
 
 Due to these and related issues, most traditional encryption systems
 are not good fits for popular cloud-based use cases. There is a silver
 lining to this predicament, however. In these situations it is not the
-cryptography itself that is flawed. This is fortunate:
-state-of-the-art cryptography is a powerful tool and it would be a
+cryptography itself that is flawed. This is fortunate!
+State-of-the-art cryptography is a powerful tool and it would be a
 major loss to be unable to leverage it in pursuit of privacy and
 security enhancing systems. Instead, the issue breaking common use
 cases today is the lack of secure, usable, and flexible key management
@@ -753,7 +756,7 @@ controlling access to such keys to ensure only authorized devices and
 users may leverage them.
 
 Such cryptographic key storage represents just a subset of the larger
-secret storage problem: How can a user securely store secrets
+secret storage problem. How can a user securely store secrets
 (encryption keys, passwords, personal data, etc) in a manner that
 allows them to access them when and where they desire while also
 ensuring that no unauthorized access to these secrets is
@@ -770,5 +773,6 @@ solutions form the basis of the work presented in this dissertation.
 
 %%  LocalWords:  OneDrive IoT SMB OwnCloud WebDAV LAFS IaaS PaaS Uber
 %%  LocalWords:  iCloud Premera Heartbleed Shellshock OpenSSL NSA OPM
-%%  LocalWords:  Snowden FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS
+%%  LocalWords:  Snowden FISC GCHQ MUSCULAR's Lavabit Ladar SSaaS th
 %%  LocalWords:  Levison Bernardino passcode passcodes dm FDE
+%%  LocalWords:  newsfeeds

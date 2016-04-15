@@ -5,10 +5,10 @@ As discussed in Chapter~\ref{chap:challenges}, the reliance on third
 parties inherent to many popular use cases poses a number of privacy
 and security related challenges. Fortunately, cryptographic techniques
 including encryption and authentication provide the necessary
-primitives for building a systems that increases the security and
+primitives for building a system that increases the security and
 privacy of users by reducing their exposure to third party trust
 abuses. Such mechanisms also provide additional security beyond third
-party risk: e.g. by ensuring that systems such as mobile devices remain
+party risk, e.g. by ensuring that systems such as mobile devices remain
 secure even if lost or stolen. Unfortunately, cryptography is not
 merely ``magic fairy dust'' that developers can sprinkle on any
 security or privacy problem to make it
@@ -43,14 +43,14 @@ Dropbox, Gmail, or Facebook. An SSP is tasked with the storage of and
 access control to a variety of user secrets from cryptographic keys to
 personal data. FPs, on the other hand are limited to storing less
 sensitive information such as cryptographically protected
-data\footnote{At least in the normative case. There are also SSP use
-  cases that involve no FP at all: e.g. storing user passwords.}, the
+data,\footnote{At least in the normative case. There are also SSP use
+  cases that involve no FP at all, e.g. storing user passwords.}, the
 keys for which reside with one or more SSPs. This allows SSPs to be
 selected on the basis of their trustworthiness while traditional
 feature providers can be selected on the basis of their feature
 sets. The SSaaS model differs from the traditional cloud model by
 allowing users to distribute trust across multiple third parties (or
-no third parties at all), ensuring that no single entity need be fully
+no third parties at all) ensuring that no single entity need be fully
 trusted, while still enabling many popular use cases.
 
 \subsection{Stored Secrets}
@@ -58,15 +58,15 @@ trusted, while still enabling many popular use cases.
 In the SSaaS model, what kind of secrets does a user store with an
 SSP? Users should be able to store arbitrary data with any SSP,
 allowing open-ended secret storage based applications. That said, the
-SSP model works best when secrets stored are not themselves inherently
-sensitive or revealing. This property helps to mitigate the amount a
-user must trust each SSP. Thus, storing secrets like cryptographic
-keys that alone reveal no private user data is generally preferable to
-storing privacy revealing secrets like social security numbers,
-etc. The decision of what to store with each SSP, however, is left up
-to each user and application to maximize the flexibility of the SSaaS
-model. Chapter~\ref{chap:apps} explores various types of secret
-storage applications.
+SSP model works best when the secrets stored are not themselves
+inherently sensitive or revealing. This property helps to mitigate the
+amount a user must trust each SSP. Thus, storing secrets like
+cryptographic keys that alone reveal no private user data is generally
+preferable to storing privacy revealing secrets like social security
+numbers, etc. The decision of what to store with each SSP, however, is
+left up to each user and application to maximize the flexibility of
+the SSaaS model. Chapter~\ref{chap:apps} explores various types of
+secret storage applications.
 
 Another consideration related to what secrets to store with an SSP is
 size. It is reasonable to predict that SSP-based storage will sell at
@@ -76,13 +76,13 @@ between Secret Storage and generic cloud storage. An SSP is primarily
 concerned with safeguarding user secrets and faithfully implementing a
 user's access control specifications for each secret. These priorities
 may very well incur additional costs not present in more traditional
-cloud storage environments: e.g. the need to locate data centers in
-specific legal jurisdictions, a greater emphasis of resistance to
-compelled violations via legal representation, etc. Thus, it may be
+cloud storage environments, e.g. the need to locate data centers in
+specific legal jurisdictions or a greater emphasis of resistance to
+compelled violations via legal representation. Thus, it may be
 desirable for the user to minimize the amount of data stored with an
-SSP as a cost optimization: again making use cases such as storing
-relatively small cryptographic keys with an SSP while storing the
-marge larger encrypted data with a more traditional provider
+SSP as a cost optimization. Such optimizations make use cases such as
+storing small cryptographic keys with an SSP while storing larger
+encrypted data with a more traditional provider
 desirable.\footnote{For these reasons, storing cryptographic keys with
   an SSP is a common enough use case that some SSPs may specifically
   optimize for it. Such ``Key Storage as a Service'' (KSaaS) SSPs
@@ -98,14 +98,15 @@ building privacy-preserving SSaaS-backed applications.
 \subsubsection{Secret Storage}
 
 At its core, an SSP provider is offering a key:value data storage
-model. Each secret is tagged with a key: a unique identifier,
-potentially a UUID~\cite{leach2005} or similar unique ID standard. The
-value associated with each ID is then the user's secret itself, be it
-a cryptographic key, personal user data, or arbitrary secret
+model. Each secret (i.e. the ``value'') is tagged with a unique
+identifier (i.e. the ``key'').\footnote{Most likely a
+  UUID~\cite{leach2005} or similar unique ID standard.} The value
+associated with each ID is then the user's secret itself, be it a
+cryptographic key, personal user data, or arbitrary secret
 value. Users are able to query each SSP for the value associated with
 a given ID.
 
-Optionally, SSPs may provide versioning of each id:secret pair. This
+Optionally, SSPs may provide versioning of each ID:secret pair. This
 may be desirable for use cases where the user wishes to share data
 with other users while maintaining the ability to revoke shared access
 to future versions of a data set. Such ``lazy
@@ -150,7 +151,7 @@ support of a range of use cases, the access control model must be
 expressive enough to avoid artificially limiting the user to specific
 use cases or secrets. For example, one use case might require a single
 user to satisfy multiple challenges in order to gain access to a
-highly sensitive secret while another might require autonomous access
+highly sensitive secret, while another might require autonomous access
 to a secret used by an automated processes (e.g. a secure backup
 system), potentially limited to systems possessing a special token or
 to specific times of day.
@@ -160,7 +161,7 @@ previously, an SSP will also expose API endpoints for manipulating the
 access control parameters associated with each secret as part if the
 standard API. This interface will allow users to update access control
 information to allow data sharing with other users, revoke prior
-shared access, etc. This interface will, in turn, require it is own
+shared access, etc. This interface will, in turn, require its own
 access control specification to ensure that only approved
 modifications can be made to any secret's access control rules.
 
@@ -183,10 +184,10 @@ in allowing users to understand the semantics of access revocations:
 since it is unfeasible to revoke access to data another user has
 already read (and potentially copied out-of-band), audit information
 provides a user with the scope of potentially revocable outstanding
-authorization allowances. E.g. if User A shares a secret with User B
-by granting them read access via their SSP, but then decides they'd
-rather revoke that access, User A can check the audit logs to
-determine if User B has already accessed the shared secret and thus
+authorization allowances. For example, if User A shares a secret with
+User B by granting them read access via their SSP, but then decides
+they would rather revoke that access, User A can check the audit logs
+to determine if User B has already accessed the shared secret and thus
 whether or not guaranteed revocation is even possible.
 
 As with the other SSP core functions, an SSP's auditing capabilities
@@ -220,8 +221,8 @@ via such mechanisms.
 While SSPs form one half of the SSaaS architecture, the other half is
 formed by clients connecting to and leveraging data from
 SSPs. Chapter~\ref{chap:apps} discusses potential SSaaS use cases and
-applications in detail. This section outline some of the basics of
-SSaaS client deign and operation.
+applications in detail. This section outlines some of the basics of
+SSaaS client design and operation.
 
 An SSaaS client is any system designed to connect to and utilize a
 Secret Storage Provider. Clients communicate with one or more SSPs via
@@ -279,10 +280,10 @@ privacy guarantees. Thus, SSaaS's ability to separate secret storage
 duties from feature provider duties allows users to purchase each
 service on the basis of its associated merits, avoiding the issues
 associated with putting features in direct competition with security
-and privacy: a competition that security and privacy have historically
-lost. Given such separation, independent markets can form around
-feature provision and secret protection, optimized for the respective
-priorities of each field.
+and privacy -- a competition that security and privacy have
+historically lost. Given such separation, independent markets can form
+around feature provision and secret protection, optimized for the
+respective priorities of each field.
 
 Beyond the removal of perverse incentives brought about by the
 separation of SSPs and FPs, it is also desirable to encourage a
@@ -337,18 +338,18 @@ need to perform independent audits\footnote{Potentially similar to the
   audit model used by Certificate Authorities in the PKI system,
   e.g.~\cite{hall-caaudit, mozilla-capolicy}.} of SSP infrastructure
 and polices in order to evaluate trust violation risk. Such audits
-further incentivizes SSPs to design their services specifically for
-the avoidance of such trust violations. Such ``cyber'' insurance
-benefits are not as readily available in the mixed trust + feature
-cloud ecosystem of today since it is far harder to evaluate the
-privacy violation risk of a company whose primary objectives are more
-complex then secret storage alone~\cite{ciab2015}. The increasing
-regulation of user privacy rights and the penalties associated with
-violating user privacy further incentive a system where privacy and
-security are severable properties that can be independently regulated,
-evaluated, and indemnified -- unconnected to the user-facing feature
-set of a given third party service. These ideas are discussed in more
-depth in Chapter~\ref{chap:policy}
+further incentivize SSPs to design their services specifically for the
+avoidance of such trust violations. Such ``cyber'' insurance benefits
+are not as readily available in a mixed trust + feature cloud
+ecosystem since it is far harder to evaluate the privacy violation
+risk of a company whose primary objectives are more complex then
+secret storage alone~\cite{ciab2015}. The increasing regulation of
+user privacy rights and the penalties associated with violating these
+rights further incentivize a system where privacy and security are
+severable properties that can be independently regulated, evaluated,
+and indemnified -- unconnected to the user-facing feature set of a
+given third party service. These ideas are discussed in more depth in
+Chapter~\ref{chap:policy}.
 
 Likewise, SSaaS provides compliance benefits to users storing highly
 regulated data by shifting compliance burdens from FPs to
@@ -361,7 +362,7 @@ verification. SSPs might even proactively obtain specific compliance
 certifications to make it easy for their users to comply with specific
 regulations, regardless of which feature-providing cloud service a
 user wishes to store encrypted data with. Such practices would likely
-prove beneficial in highly-regulated fields such as health care
+prove beneficial in highly regulated fields such as health care
 (e.g. requiring HIPPA~\cite{hippa} compliance), education
 (e.g. requiring FERPA~\cite{ferpa} compliance), and online payment
 processing (e.g. requiring PCI DSS~\cite{pcidss} compliance).
@@ -409,7 +410,7 @@ trust in any single third party, FP or SSP. Fortunately, there is a
 viable alternative for avoiding placing a high degree of trust in an
 single SSP, even in the raw-secret storage SSP use case: sharding a
 single user secret across multiple SSPs. As shown in
-Figure~\ref{fig:ssaas-sharded} secure secret sharing systems such as
+Figure~\ref{fig:ssaas-sharded}, secure secret sharing systems such as
 Shamir's $(k, n)$ threshold scheme~\cite{shamir1979} ensure that a
 secret split into $n$ shares can not be reassembled using fewer than
 $k$ shares in an unconditionally secure manner. Such schemes can be
@@ -428,10 +429,10 @@ increased reliability such a practice provides.
 
 Even with secret sharding, users are still at risk of a successful
 trust violation should multiple SSPs collude to betray a user's trust
-(\emph{L}-type violation) or should multiple SSPs be compelled to turn
-over shares of user secretes to a single entity (\emph{C}-type
-violation). As such, user should select a set of SSPs across which to
-shard our secrets that minimize \emph{L} and \emph{C} type violation
+(\emph{L}-type violation), or should multiple SSPs be compelled to
+turn over shares of user secretes to a single entity (\emph{C}-type
+violation). As such, users should select a set of SSPs across which to
+shard their secrets that minimize \emph{L} and \emph{C} type violation
 risk. Thus, in addition to the reputation-based selection criteria
 outlined in \S~\ref{chap:ssaas:economics}, SSaaS user's should
 consider several additional SSP selection criteria:
@@ -452,8 +453,8 @@ consider several additional SSP selection criteria:
 
 If the user shards their secrets across a diverse set of SSPs, all
 with strong privacy-preserving reputations, they have a reasonable
-likelihood of avoiding a successfully series of trust violations
-resulting in the compromise of user privacy or security.
+likelihood of avoiding a series of trust violations resulting in the
+compromise of their privacy or security.
 
 %%  LocalWords:  SSaaS SSPs FPs SSP HTTPS TBD SSaaS's SSP's FP HIPPA
 %%  LocalWords:  Shamir's BitCoin FERPA PCI DSS Tutamen KSaaS

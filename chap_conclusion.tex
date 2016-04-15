@@ -2,10 +2,10 @@
 \label{chap:conclusion}
 
 The magnitude of user data generated and stored on computing devices
-and with third party providers increases ever day. So to increases the
-range of threats to which such data is subjected.  Building systems
-that improve the privacy and security of such user data is thus of
-critical importance.
+and with third party providers increases ever day. So too increases
+the range of threats to which such data is subjected.  Building
+systems that improve the privacy and security of such user data is
+therefore of critical importance.
 
 Unfortunately, many traditional privacy and security enhancing systems
 are not well adapted to modern usage practices, leading users to
@@ -16,9 +16,9 @@ services they wish in the manner to which they are accustomed. Failure
 to do so leads to the creation of systems that go underutilized or
 unused.
 
-One of the major hurtles to building privacy and security enhancing
+One of the major hurdles to building privacy and security enhancing
 technologies lies in the challenges associated with securing the
-secrets necessary to bootstrap the secure operation of such
+secrets needed to bootstrap the secure operation of such
 technologies. Such secrets range from the encryption keys necessary to
 encrypt user data to the passwords necessary to access online
 services. Coupled with the need to support desirable use cases, this
@@ -28,14 +28,14 @@ security and privacy enhancing systems.
 The Secret Storage as a Service (SSaaS) model provides a mechanism for
 securely storing user secrets in a manner that supports a wide range
 of use cases. The SSaaS system also provides mechanisms for reducing
-the trust users must place in third parties: making such trust a
-severable and tradable commodity on a market favoring increased
-trustworthiness. The SSaaS model maximizes a user's flexibility to
-control the manner in which their secrets are used (and by proxy, the
-manner in which any data such secrets protect is used).
+the trust users must place in third parties, making such trust a
+severable and tradable commodity in a market favoring increased
+trustworthiness. The SSaaS model maximizes a user's ability to
+flexibly control the manner in which their secrets are used (and by
+proxy, the manner in which any data such secrets protect is used).
 
 This dissertation makes several key contributions to the state of the
-are. These include:
+art. These include:
 
 \begin{packed_item}
 \item A model for and analysis of third party trust
@@ -43,7 +43,7 @@ are. These include:
 \item An overview of the SSaaS model and the privacy and security
   enhancing benefits it can provide (Chapter~\ref{chap:ssaas}).
 \item A discussion of how the SSaaS model can be integrated to improve
-  the security and privacy of a range of user and developer facing
+  the security and privacy of a range of user- and developer-facing
   applications (Chapter~\ref{chap:apps}).
 \item Custos -- a first generation SSaaS prototype
   (Chapter~\ref{chap:custos}).
@@ -51,8 +51,21 @@ are. These include:
   for sharding secrets across multiple storage providers and
   autonomous operation (Chapter~\ref{chap:tutamen}).
 \item A discussion of the policy implications necessary to build and
-  support a healthy SSaaS ecosystem.
+  support a healthy SSaaS ecosystem (Chapter~\ref{chap:policy}).
 \end{packed_item}
+
+While this work represents a notable exploration of the SSaaS idea, it
+is neither exhaustive nor complete. Future work related to this topic
+might include the study of how the auditing components for the SSaaS
+model can be leveraged to automate various components of SSaaS
+security. Such automation could serve to further decrease usage
+burdens will increasing user security. The Tutamen work presented
+herein would also benefit from further development to increase its
+performance capabilities and make it a fully production-ready
+reference platform. Finally, there is much additional policy work to
+be done, from efforts aimed at standardizing and encouraging the
+adoption of an SSaaS protocol to ongoing defenses of cryptography and
+other core security-enhancing technologies.
 
 The SSaaS model can improve the security and privacy of computing
 systems across a range of use cases. These improvements will help to

@@ -100,11 +100,10 @@ building privacy-preserving SSaaS-backed applications.
 At its core, an SSP provider is offering a key:value data storage
 model. Each secret (i.e. the ``value'') is tagged with a unique
 identifier (i.e. the ``key'').\footnote{Most likely a
-  UUID~\cite{leach2005} or similar unique ID standard.} The value
-associated with each ID is then the user's secret itself, be it a
-cryptographic key, personal user data, or arbitrary secret
-value. Users are able to query each SSP for the value associated with
-a given ID.
+  UUID~\cite{leach2005} or similar unique ID standard.} The secret
+associated with each ID could be a cryptographic key, personal user
+data, or any other arbitrary secret value. Users are able to query
+each SSP for the secret associated with a given ID.
 
 Optionally, SSPs may provide versioning of each ID:secret pair. This
 may be desirable for use cases where the user wishes to share data
@@ -390,7 +389,7 @@ trust than a traditional FP?
 Even in such a ``heightened degree of trust'' scenario, SSPs would
 appear less likely to violate user trust than traditional FPs. As
 outlined in \S~\ref{chap:ssaas:economics}, SSPs have economic
-incentives well aligned with upholding a user's trust where as
+incentives well aligned with upholding a user's trust, whereas
 traditional FPs often have economic incentives in direct conflict with
 upholding user trust. This fact alone decreases an SSP's likelihood of
 trust violation by disincentivizing implicit violations

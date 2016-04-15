@@ -105,7 +105,7 @@ each user to the size of their smallest device. Most sync services
 offer selective-sync options to help mitigate such issues, but these
 tend to be burdensome to configure and are often relegated to the
 purview of advanced users. In situations where a user wishes to store
-more data then can be fit on any single device, locker services may
+more data than can be fit on any single device, locker services may
 offer a more desirable solution.
 
 Locker service operate by storing all user data on a central server
@@ -113,7 +113,7 @@ and then providing mechanisms for users to access and modify this data
 from remote devices. Locker services are reminiscent of more
 traditional networked file systems such as NFS~\cite{sandberg1985} or
 SMB~\cite{microsoft-smb2}, but are less tightly coupled to a single
-administrative domain then were such services. Since locker services
+administrative domain than were such services. Since locker services
 store a logically centralized copy of each file, the user is presented
 with a single view of their data regardless of from which device they
 chose to access it. Such services have several desirable qualities:
@@ -139,7 +139,7 @@ chose to access it. Such services have several desirable qualities:
   simultaneously.
 \item[Centralized Control:] Due to the manner in which most locker
   services store their data, such services often provide a more
-  centralized control point then a sync service. Such control may be
+  centralized control point than a sync service. Such control may be
   desirable in corporate environments where a single administrator
   wishes to track user file access, modifications, etc.
 \end{packed_desc}
@@ -217,7 +217,7 @@ capabilities. This is true of sync service like Dropbox or Drive that
 not only allow users to sync files amongst their devices, but also
 allow them to share files with other users. In many ways, this is just
 an extension of the sync service model allowing users to include
-devices other then their own in the sync set. Similarly, locker-style
+devices other than their own in the sync set. Similarly, locker-style
 multi-device solutions often include support for multi-user use
 cases. For example, traditional networked file systems like NFS
 provide both multi-device access and multi-user support. Likewise,
@@ -290,7 +290,7 @@ habits~\cite{fitbit} are becoming increasingly popular. The data from
 such devices in generally passed back to third party processing
 platforms where useful insights are drawn from it and returned to the
 user. Often such systems leverage their access to data from a
-multitude of users to return more useful information then the data
+multitude of users to return more useful information than the data
 from any single user could provide. It seems likely that such services
 will continue to increase in popularity as the cost of deploying IoT
 devices drops and the collective benefits of access to large data sets
@@ -640,7 +640,7 @@ storing user data being lost or stolen. As such, it is critical to
 design systems that are resilient to data compromise even when they
 fall into the hands of unauthorized actors. The likelihood of user
 data compromises occurring due to device loss or theft is far higher
-today then ever before, and privacy-enhancing solutions must account
+today than ever before, and privacy-enhancing solutions must account
 for this fact.
 
 As mentioned previously, physical control over cloud-based services is
@@ -703,7 +703,7 @@ isn't a viable solution either since the security of the entire system
 rests upon the intended user, and only that user, being able to
 provide such information. A full disk encryption system that stores a
 copy of the user passphrase locally to avoid the need for the user to
-supply it is no more secure then a system without encryption at
+supply it is no more secure than a system without encryption at
 all. Either an adversary has an unlocked box, or they have both a
 locked box and the key required to unlock it. Neither scenario results
 in a security benefit for the owner of the box.
@@ -730,7 +730,7 @@ Dropbox in the first place. The user could manually move their keys
 between devices to overcome this issue, but doing so likely presents
 an unachievable challenge for most lay users. Furthermore, if the user
 is capable of easily transferring keys between devices via mechanisms
-other then Dropbox, why can't they just use the same mechanism for
+other than Dropbox, why can't they just use the same mechanism for
 their files as well and avoid Dropbox all together? Likewise, if a
 user wishes to share data with another Dropbox user, they are now also
 required to exchange the necessary decryption key information

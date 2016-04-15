@@ -1,13 +1,13 @@
 \chapter{Custos: A First-Generation SSaaS Prototype}
 \label{chap:custos}
 
-Custos\footnote{Custos is Latin for ``guard''.} is a prototype SSP
-server, SSaaS protocol, and SSaaS client ecosystem used to demonstrate
-and explore SSaaS concepts. Custos is optimized for cryptographic key
-storage, making it primarily a Key Storage as a Service (KSaaS)
-implementation. The chapter provides an overview of Custos and some of
-its design insights. Additional information is available at
-\cite{custos-masters} and \cite{custos-trios}.
+Custos\footnote{`Custos' is Latin for ``a guard or warden''.}is a
+prototype SSP server, SSaaS protocol, and SSaaS client ecosystem used
+to demonstrate and explore SSaaS concepts. Custos is optimized for
+cryptographic key storage, making it primarily a Key Storage as a
+Service (KSaaS) implementation. The chapter provides an overview of
+Custos and some of its design insights. Additional information is
+available at \cite{custos-masters} and \cite{custos-trios}.
 
 \section{Architecture}
 \label{chap:custos:arch}
@@ -25,7 +25,7 @@ Custos SSP server implements the following components:
 
 \begin{packed_desc}
 \item[API:] Handles all Custos requests, including requests for
-  key:value objects, requests for audit data, and requests to modify
+  ID:value objects, requests for audit data, and requests to modify
   access control parameters. The API is designed to promote a variety
   of Custos-compliant server implementations.
 \item[Access Control:] Compares the set of provided authentication
@@ -37,7 +37,7 @@ Custos SSP server implements the following components:
   authentication module interface capable of supporting a variety of
   authentication primitives.
 \item[Data:] Handles data requests (e.g. get, set, create, and
-  delete of key:value objects).
+  delete of ID:value objects).
 \item[Auditing:] Handles audit requests and logs all Custos
   requests.
 \item[Management:] Handles management requests (e.g. the
@@ -74,12 +74,12 @@ In order to discuss the Custos access control system, it is necessary
 to explain the Custos \emph{organizational units} (OUs): the core
 Custos data structures. The Custos architecture specifies three
 organizational units (Figure~\ref{fig:custos-ou}): a server, a group,
-and a key:value object. The server unit is used to specify server-wide
+and an ID:value object. The server unit is used to specify server-wide
 configuration. A server has one or more groups associated with it. A
 group is used to slice a server between a variety of administrative
 domains (e.g. separate customers). A group, in turn, has an arbitrary
-number of key:value objects associated with it. Each OU is responsible
-for the creation of OU instances beneath it: i.e. servers create
+number of ID:value objects associated with it. Each OU is responsible
+for the creation of OU instances beneath it, i.e. servers create
 groups and groups create objects.
 
 \begin{figure}[t]
@@ -144,11 +144,11 @@ ACC consists of an ordered list of \emph{authentication attributes}.
     \\ \hline
     \texttt{grp\_obj\_create}
     & Group
-    & create a key:value objects within the given group
+    & create an ID:value objects within the given group
     \\ \hline
     \texttt{grp\_obj\_list}
     & Group
-    & list key:value objects within the given group
+    & list ID:value objects within the given group
     \\ \hline
     \texttt{grp\_obj\_override}
     & Group
@@ -176,15 +176,15 @@ ACC consists of an ordered list of \emph{authentication attributes}.
     \\ \hline
     \texttt{obj\_delete}
     & Object
-    & delete the given key:value object within the given group
+    & delete the given ID:value object within the given group
     \\ \hline
     \texttt{obj\_read}
     & Object
-    & read the given key:value object within the given group
+    & read the given ID:value object within the given group
     \\ \hline
     \texttt{obj\_update}
     & Object
-    & create a new version of the given key:value object within the given group
+    & create a new version of the given ID:value object within the given group
     \\ \hline
     \texttt{obj\_audit}
     & Object
@@ -208,8 +208,8 @@ ACC consists of an ordered list of \emph{authentication attributes}.
 \end{table}
 
 Each Custos ACS contains a list of permissions: rights to perform
-specific Custos actions. Custos defines permissions for each OU:
-i.e. per-server permissions, per-group permissions, and per-object
+specific Custos actions. Custos defines permissions for each OU,
+e.g. per-server permissions, per-group permissions, and per-object
 permissions (Table~\ref{tab:custos-permissions}).  Unlike many access
 control systems, Custos has no notion of object ownership. Instead, it
 relies on explicitly granting each right an owner would traditionally
@@ -239,7 +239,7 @@ associated with that permission. If a user wishes to disable access to
 a permission, they can do so by associating the null ACC with that
 permission. If the user wants to provide unrestricted access to a
 permission, they may do so by associating an empty ACC with the
-permission. For example, consider a key:value object whose
+permission. For example, consider an ID:value object whose
 \texttt{obj\_read} permission has the following ACC set:
 
 \begin{Verbatim}[samepage=true, fontsize=\footnotesize]
@@ -253,17 +253,17 @@ permission. For example, consider a key:value object whose
   (psk = Swordfish) ]
 \end{Verbatim}
 
-In order for a read request for the associated key:value object to
+In order for a read request for the associated ID:value object to
 succeed, the user would have to make sure that their request contained
 all the authentication attributes in at least one of the lists
 above. In the case of the first ACC, that would mean attaching the
-'user\_id' attribute with a value of 'Andy', as well as attaching the
-'psk' attribute with a value of '12345'. The 'ip\_src' attribute is an
+`user\_id' attribute with a value of `Andy', as well as attaching the
+`psk' attribute with a value of `12345'. The `ip\_src' attribute is an
 implicit attribute (see \S~\ref{chap:custos:arch:ac:aa}) and will be
 automatically appended to our request when received by the Custos
 server. In order to satisfy it, the user must send their request from
 the 192.168.1.0 subnet. In the case of the second ACC, the user still
-needs the 'Andy' username and must satisfy the IP restriction, but
+needs the `Andy' username and must satisfy the IP restriction, but
 this time they must also prove that they have access to the private
 key associated with the specified authentication certificate instead
 of providing a password. The third ACC grants access to an additional
@@ -305,11 +305,11 @@ set of ACCs could also be represented as:
   \end{tikzpicture}
 \end{center}
 
-Finally, where desired~\footnote{Custos's attribute prompting feature
+Finally, where desired,\footnote{Custos's attribute prompting feature
   is a form of information leakage, so its use, and the associated
-  trade-offs, are optional.}, the Custos API can continue to prompt
-the user for the next N missing attribute types in a chain. When in
-use, this feature allows a Custos server to engage in a back-and-forth
+  trade-offs, are optional.}the Custos API can continue to prompt the
+user for the next N missing attribute types in a chain. When in use,
+this feature allows a Custos server to engage in a back-and-forth
 message exchange with a client to prompt the client through all
 required attribute types in an ACC. For example, in the case where N
 is equal to 1 and the previously mentioned ACCs are in effect, the
@@ -319,10 +319,10 @@ following set of transactions would occur:
 \item The user sends a read request with no attributes
 \item The server respond that a username is required
 \item The user resubmits the request with an attached username
-  attribute equal to 'Andy'
+  attribute equal to `Andy'
 \item The server responds that a password or a certificate is required
   (the IP attribute is implicit and is thus not prompted for)
-\item The user resubmits the response with a password equal to '12345'
+\item The user resubmits the response with a password equal to `12345'
 \item As long as the user's request originates from the specified IP
   range, the server will grant the request.
 \end{packed_enum}
@@ -391,35 +391,35 @@ shown in Table~\ref{tab:custos-attributes}.
 
 \subsection{Protocol}
 
-Custos employs a JSON-based RESTful HTTPS protocol for client-server
-communication. The protocol exposes endpoints for secret management
-(e.g. create, list, read, delete), access control (e.g. adding,
-removing, and modifying access control rules), and auditing
-(e.g. reading or clearing secret access history). Custos allows
-arbitrary cryptographic key data to be associated with each ID for
-secret storage purposes. Each ID:secret pair in Custos is associated
-with a specific group. These groups can be used to allow multiple
-users to administer a set of secrets and to control who can create new
-secrets within a group.
+Custos employs a JSON-based RESTful~\cite{fielding2000} HTTPS protocol
+for client-server communication. The protocol exposes endpoints for
+secret management (e.g. create, list, read, delete), access control
+(e.g. adding, removing, and modifying access control rules), and
+auditing (e.g. reading or clearing secret access history). Custos
+allows arbitrary cryptographic key data to be associated with each ID
+for secret storage purposes. Each ID:secret pair in Custos is
+associated with a specific group. These groups can be used to allow
+multiple users to administer a set of secrets and to control who can
+create new secrets within a group.
 
-The Custos API is secured via TLS/HTTPS. Custos servers are
-authenticated over TLS via the standard public key infrastructure
-(PKI) mechanisms (e.g. certificate authorities, etc)\footnote{In
-  situations were the traditional PKI mechanisms are deemed
-  undesirable, it may be possible to authenticate Custos servers via
-  self-certifying mechanisms~\cite{ellison1996, mazieres1999}.}. API
-requests are made to specific server HTTPS endpoints. The standard
-HTTP verbs (\texttt{GET}, \texttt{PUT}, \texttt{POST}, and
-\texttt{DELETE}) are used to multiplex related operations atop a
-specific endpoint. Each combination of endpoint and verb defines a
-specific API method. Each method requires a specific permission to
-complete. All API message formats are composed in JSON. Binary data is
-encoded as Base64 ASCII text. Authentication attributes are passed via
-query string as URL-encoded JSON. Custos uses UUIDs~\cite{leach2005}
-as keys, each associated with an arbitrary object for values. The full
-API specification, including detailed message formats, example
-messages, and a list of API methods and endpoints
-see~\cite{custos-masters}.
+The Custos API is secured via TLS/HTTPS~\cite{dierks2008}. Custos
+servers are authenticated over TLS via the standard public key
+infrastructure (PKI) mechanisms (i.e. certificate
+authorities).\footnote{In situations were the traditional PKI
+  mechanisms are deemed undesirable, it may be possible to
+  authenticate Custos servers via self-certifying
+  mechanisms~\cite{ellison1996, mazieres1999}.}API requests are made
+to specific server HTTPS endpoints. The standard HTTP verbs
+(\texttt{GET}, \texttt{PUT}, \texttt{POST}, and \texttt{DELETE}) are
+used to multiplex related operations atop a specific endpoint. Each
+combination of endpoint and verb defines a specific API method. Each
+method requires a specific permission to complete. All API message
+formats are composed in JSON. Binary data is encoded as Base64 ASCII
+text. Authentication attributes are passed via query string as
+URL-encoded JSON. Custos uses UUIDs~\cite{leach2005} as keys, each
+associated with an arbitrary object for values. The full API
+specification, including detailed message formats, example messages,
+and a list of API methods and endpoints see~\cite{custos-masters}.
 
 In the Custos protocol, the server is completely agnostic to the
 secret cryptographic keys it stores. Thus, a user may shard their

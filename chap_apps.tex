@@ -479,10 +479,10 @@ authentication -- far better than more commonly deployed shared-secret
 authentication relies on both the user and the verifier (e.g. server)
 knowing a common secret such as a passphrase, certificate-based
 authentication systems rely on a user to be able to cryptographically
-prove they posses the private key corresponding to a specific public
-key. Such systems have a range of applications, from websites to
-servers and workstations. For example, SSH~\cite{ylonen1996}, one of
-the more common remote-access protocols for Unix-like computing
+prove they possesses the private key corresponding to a specific
+public key. Such systems have a range of applications, from websites
+to servers and workstations. For example, SSH~\cite{ylonen1996}, one
+of the more common remote-access protocols for Unix-like computing
 systems, uses key-based authentication on both the server (where keys
 provide server verification) as well as on the client (where keys
 authenticate users instead of passwords). SSH is thus a useful example
@@ -604,12 +604,12 @@ unlike such solutions, the SSaaS model is designed with the security
 and privacy of the configuration data it stores as a first principle,
 not a secondary concern.
 
-\section{Dedicated Crypto Processor}
+\section{Dedicated Crypto-Processor}
 
 \begin{figure}[t]
   \centering
   \includegraphics[height=200px]{./figs/out/App-PKCS11.pdf}
-  \caption{SSaaS-Backed Dedicated Crypto Processor}
+  \caption{SSaaS-Backed Dedicated Crypto-Processor}
   \label{fig:app-pkcs11}
 \end{figure}
 
@@ -621,7 +621,7 @@ the same memory segments. The Heartbleed fallout has forced developers
 to reevaluate whether or not giving public-facing services direct
 access to cryptographic keys is a good idea. There has long existed an
 alternative: using a hardware security module (HSM) to perform
-dedicated crypto processing and key storage on behalf of other
+dedicated crypto-processing and key storage on behalf of other
 services. Such systems ensure that cryptographic keys are never
 exposed outside of the secure hardware module. Programs communicate
 with the HSM via a standard protocol like
@@ -634,23 +634,24 @@ model~\cite{lorier-pkcs11}. Such ``softHSM'' systems would ensure
 cryptographic keys remain stored in separate isolated memory spaces
 while also out-performing traditional HSM systems.
 
-A software-based dedicated crypto processing system is an ideal use
+A software-based dedicated crypto-processing system is an ideal use
 case for an SSaaS-backed system. Figure~\ref{fig:app-pkcs11} shows the
 potential design of such a system. Here, a Secret Storage Provider
-supplies the back-end key storage for a dedicated crypto processing
+supplies the back-end key storage for a dedicated crypto-processing
 server which performs cryptographic operations (e.g. SSL encryption
 and authentication) on behalf of a web-server. In this setup, the
 web-server never accesses any private cryptographic keys directly,
 mitigating one of the major risks Heartbleed exposed. Furthermore, the
-logically centralized nature of an SSaaS SSP allows dedicated crypto
-processing servers to scale horizontally (e.g. multiple load-balancing
-instances) as demand requires: storing all keys via one or more SSPs
-allows new crypto processing instances to immediately access these
-keys without the need to utilize ad-hoc key-syncing or configuration
-management interfaces. Finally, the SSP's auditing functionality
-ensures that one always knows which keys have been accessed by which
-systems, placing hard bounds on what an attacker may or may not have
-had access too: a luxury that Heartbleed-prone servers did not have.
+logically centralized nature of an SSaaS SSP allows dedicated
+crypto-processing servers to scale horizontally (e.g. multiple
+load-balancing instances) as demand requires: storing all keys via one
+or more SSPs allows new crypto-processing instances to immediately
+access these keys without the need to utilize ad-hoc key-syncing or
+configuration management interfaces. Finally, the SSP's auditing
+functionality ensures that one always knows which keys have been
+accessed by which systems, placing hard bounds on what an attacker may
+or may not have had access too: a luxury that Heartbleed-prone servers
+did not have.
 
 An SSaaS-backed crypto-processor design combines the benefits of a
 dedicated crypto-processor with the third party trust limiting nature

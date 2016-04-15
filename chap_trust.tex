@@ -981,10 +981,10 @@ failure of either the SSP or the traditional cloud provider will
 result in a loss of user data. In such a scenario, however, the end
 user is granting a more limited set of ``access'' and ``manipulation''
 capabilities since no single third party has access to both a user's
-data and the secrets necessary to decrypt or alter it. As
-described in Section~\ref{chap:trust:ssaas}, the user can store
-encrypted and cryptographically authenticated data atop Dropbox and
-store the associated crypto keys with their SSP, ensuring that neither
+data and the secrets necessary to decrypt or alter it. As described in
+Section~\ref{chap:trust:ssaas}, the user can store encrypted and
+cryptographically authenticated data atop Dropbox and store the
+associated cryptographic keys with their SSP, ensuring that neither
 the SSP nor Dropbox can easily read or manipulate their data. The SSP
 can, however, modify and read the user's secrets themselves, which,
 depending on the use case, may still allow them to access a variety of

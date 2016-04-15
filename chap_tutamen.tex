@@ -943,8 +943,8 @@ AC API operation with client certificates tops out around 90 rps, and
 the null operation without client certificates tops out at about 110
 rps. Raw HTTPS tops out around 120 rps. HTTP topped out around 5000
 rps (curve truncated for viewability). The current server setup is
-thus primarily limited by the crypto overhead required to serve the
-application and verify client certificates using TLS. Token
+thus primarily limited by the cryptography overhead required to serve
+the application and verify client certificates using TLS. Token
 verification itself also incurs additional computational requirements,
 including cryptographic signing operations, but is well within the
 order of magnitude of the underlying server limits. Secret retrieval

@@ -616,7 +616,7 @@ Specification~\cite{systemd-passwordagents}.\footnote{Matt Monaco is
 specification is used by the LUKS/dm-crypt \texttt{cryptsetup} utility
 to request the necessary decryption secret. At boot-time,
 \texttt{cryptsetup} will send out a request for this secret. Normally
-this triggers a ``human-at-keyboard'' prompt for a boot pass-phrase. A
+this triggers a ``human-at-keyboard'' prompt for a boot passphrase. A
 Tutamen-aware password agent can instead respond to such requests by
 retrieving the necessary decryption secret from a Tutamen storage
 server (after first retrieving the necessary tokens from the
@@ -634,7 +634,7 @@ normally requires the user to provide the encryption key via the QEMU
 console when a VM launches. A SSaaS-backed QEMU encryption system
 replaces this ``human-at-keyboard'' process with Tutamen-based secret
 retrieval. In addition, QEMU currently requires the user to provide
-the full encryption key, not just a pass-phrase to unlock a pre-stored
+the full encryption key, not just a passphrase to unlock a pre-stored
 key~\cite{berrange-qemucrypto}. This has negative security
 repercussions in the common case where users pick short password-like
 keys. Using Tutamen, users can overcome this barrier since Tutamen

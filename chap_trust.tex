@@ -284,10 +284,21 @@ discusses SSP trust and violation mitigation strategies.
 \section{Trust Survey of Existing Systems}
 \label{chap:trust:survey}
 
-In order to evaluate the trust and security of the SSaaS ecosystem,
-it is useful to apply this trust model to a number of existing
-scenarios. Each of these applications is discussed in more depth
-below.
+In order to evaluate the trust and security of the SSaaS ecosystem, it
+is useful to apply this trust model to a number of existing
+scenarios. Each of these applications is discussed in more depth below
+and summarized in Figure~\ref{fig:trust:degvrisk}.
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./figs/pre/Trust-Chart-DegreeRisk-Traditional_Security_SSaaS.png}
+  \caption{Degree of Trust vs Risk of Violation\\
+    \textit{
+      {\color{blue}Traditional Services},
+      {\color{orange}Security-Enhanced Services},
+      {\color{ForestGreen}SSaaS Services}}}
+  \label{fig:trust:degvrisk}
+\end{figure}
 
 Table~\ref{tab:trust:app:cap} shows a summary of the capabilities
 granted to third parties across a number of common applications. Each
@@ -326,6 +337,7 @@ trust.
     & \textbf{Meta-analysis}
     & \textbf{Score}
     \\ \hline
+    \rowfont{\color{blue}}
     Dropbox
     & Full
     & Full
@@ -333,6 +345,7 @@ trust.
     & Full
     & 12
     \\ \hline
+    \rowfont{\color{orange}}
     Tresorit
     & Full
     & Partial
@@ -340,6 +353,7 @@ trust.
     & Full
     & 10
     \\ \hline
+    \rowfont{\color{blue}}
     Facebook
     & Full
     & Full
@@ -347,6 +361,7 @@ trust.
     & Full
     & 12
     \\ \hline
+    \rowfont{\color{blue}}
     Gmail
     & Full
     & Full
@@ -354,6 +369,7 @@ trust.
     & Full
     & 12
     \\ \hline
+    \rowfont{\color{orange}}
     PGP/GPG
     & Full
     & None
@@ -361,6 +377,7 @@ trust.
     & Full
     & 6
     \\ \hline
+    \rowfont{\color{blue}}
     Hangouts
     & Full
     & Full
@@ -368,6 +385,7 @@ trust.
     & Full
     & 12
     \\ \hline
+    \rowfont{\color{orange}}
     TextSecure
     & Full
     & None
@@ -375,6 +393,7 @@ trust.
     & Minimal
     & 4
     \\ \hline 
+    \rowfont{\color{orange}}
     LastPass
     & Full
     & Minimal
@@ -382,6 +401,7 @@ trust.
     & Full
     & 10
     \\ \hline 
+    \rowfont{\color{blue}}
     Amazon EC2
     & Full
     & Full
@@ -389,6 +409,7 @@ trust.
     & Full
     & 12
     \\ \hline 
+    \rowfont{\color{ForestGreen}}
     Single SSP
     & Full
     & Partial
@@ -396,6 +417,7 @@ trust.
     & Full
     & 10
     \\ \hline 
+    \rowfont{\color{ForestGreen}}
     Multiple SSPs
     & Partial
     & Minimal
@@ -454,6 +476,7 @@ violations.
     & \textbf{Colluding}
     & \textbf{Score}
     \\ \hline
+    \rowfont{\color{blue}}
     Dropbox
     & Disincent.
     & Known
@@ -461,6 +484,7 @@ violations.
     & N/A
     & 5
     \\ \hline
+    \rowfont{\color{orange}}
     Tresorit
     & Disincent.
     & Vulnerable
@@ -468,6 +492,7 @@ violations.
     & N/A
     & 4
     \\ \hline
+    \rowfont{\color{blue}}
     Facebook
     & Known
     & Known
@@ -475,6 +500,7 @@ violations.
     & N/A
     & 7
     \\ \hline
+    \rowfont{\color{blue}}
     Gmail
     & Vulnerable
     & Known
@@ -482,6 +508,7 @@ violations.
     & N/A
     & 6
     \\ \hline
+    \rowfont{\color{orange}}
     PGP/GPG
     & Disincent.
     & Disincent.
@@ -489,6 +516,7 @@ violations.
     & N/A
     & 2
     \\ \hline
+    \rowfont{\color{blue}}
     Hangouts
     & Vulnerable
     & Known
@@ -496,6 +524,7 @@ violations.
     & N/A
     & 6
     \\ \hline
+    \rowfont{\color{orange}}
     TextSecure
     & Disincent.
     & Disincent.
@@ -503,6 +532,7 @@ violations.
     & N/A
     & 2
     \\ \hline
+    \rowfont{\color{orange}}
     LastPass
     & Disincent.
     & Vulnerable
@@ -510,6 +540,7 @@ violations.
     & N/A
     & 4
     \\ \hline
+    \rowfont{\color{blue}}
     Amazon EC2
     & Disincent.
     & Known
@@ -517,6 +548,7 @@ violations.
     & N/A
     & 5
     \\ \hline
+    \rowfont{\color{ForestGreen}}
     Single SSP
     & Disincent.
     & Disincent.
@@ -524,6 +556,7 @@ violations.
     & Disincent.
     & 3
     \\ \hline
+    \rowfont{\color{ForestGreen}}
     Multiple SSPs
     & Disincent.
     & Minimized

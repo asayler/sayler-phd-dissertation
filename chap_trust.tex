@@ -18,26 +18,25 @@ number of parties users must trust. But what does it mean to trust a
 third party in the cloud? Before discussing the details of the SSaaS
 ecosystem, it is helpful to further define ``trust''. This chapter
 defines a model for analyzing trust and applies this model to compare
-a range of both traditional and privacy enhancing software and
+a range of both traditional and privacy-enhancing software and
 systems.
 
 \section{Analyses Framework}
 \label{chap:trust:framework}
 
 Generally, when users leverage modern computing devices and services,
-they must trust third party manufactures and service providers with
-their data. The manner in which this third party trust relates to the
-privacy of user data has two main factors: how much trust does a user
-place in third parties (e.g. how much of their personal data do they
-grant the third party access to), and in what manner can the third
-party violate this trust (e.g. how can the third party abuse the
-access they have been granted). A model of third party trust must thus
-evaluate trust across two main axes: the \emph{degree} of trust users
-must place in third parties, and the manner in which this trust might
-be \emph{violated}. The ideal privacy and security enhancing trust
-model for a given use case will minimize the degree of third party
-trust while also minimizing the likelihood that such trust will be
-violated.
+they must trust third party manufacturers and service providers with
+their data. The privacy of user data relies on this trust via has two
+main factor: how much trust must a user place in third parties
+(e.g. how much of their personal data do they grant the third party
+access to), and in what manners can the third party violate this trust
+(e.g. how can the third party abuse the access they have been
+granted). A model of third party trust must therefore evaluate trust
+across two axes: the \emph{degree} of trust users must place in third
+parties, and the manner in which this trust might be
+\emph{violated}. The ideal privacy and security enhancing trust model
+for a given use case will minimize the degree of third party trust
+while also minimizing the likelihood that such trust will be violated.
 
 In terms of degree of trust, third parties can be trusted with the
 following data-related capabilities:
@@ -55,12 +54,13 @@ following data-related capabilities:
   capability may result in the ability to manipulate a user
   (e.g. changing appointments on a user's calendar, etc).
 \item[Meta-analysis (M):] \hfill \\ Can a third party gather user
-  metadata related to any stored private user data? Misuse of this
-  capability may result in the ability to infer private user data
-  (e.g. who a user is friends with based on data sharing patterns).
+  metadata related to any stored user data or user behavior
+  interacting with this data? Misuse of this capability may result in
+  the ability to infer private user data (e.g. who a user's friends
+  are based on data sharing patterns).
 \end{packed_desc}
 
-Trust violation occur when a third party exercises any of the above
+Trust violation occurs when a third party exercises any of the above
 capabilities without explicit user knowledge and permission. Put
 another way, a trust violation occurs whenever a third party leverages
 a capability with which they are entrusted in a manner in which the
@@ -83,7 +83,9 @@ manner in which the violation occurs and the motivations behind it:
   when a third party is compelled by another actor to violate a user's
   trust. The most common example would be a third party being forced
   to turn over user data or records in response to a request from the
-  government with jurisdiction over the party.
+  government with jurisdiction over the party. Another example might
+  include a company going bankrupt and being forced to sell its user
+  data to another entity~\cite{solove2015}.
 \item[Unintentional (U):] \hfill \\ This form of violation occurs when
   a third party unintentionally discloses or manipulates user data. An
   example would be a coding error that allows either the loss of or
@@ -115,7 +117,7 @@ manner in which the violation occurs and the motivations behind it:
 Existing cloud services are not generally well optimized for
 minimizing either the degree of third party trust or the likelihood of
 third party trust violations. Such services tend to apply an
-all-or-nothing trust model where a user must seed a high degree of
+all-or-nothing trust model wherein a user must cede a high degree of
 trust to a service in order to reap the benefits the service
 provides. Figure~\ref{fig:trust-traditional} shows the basic
 trust-for-features relationship between a user, their private data,
@@ -125,17 +127,17 @@ Dropbox (as described in \S~\ref{chap:intro:example}) provides a more
 concrete example of third party trust analysis under this
 framework. To begin, what capabilities is a normal Dropbox user
 entrusting to Dropbox? Clearly, users must trust Dropbox to faithfully
-store their data since that is Dropbox's core purpose. User thus grant
-Dropbox the \emph{S} capability. Furthermore users must also grant
-Dropbox the ability to read and access their data (i.e. the \emph{R}
-capability) in order to support Dropbox's sharing and syncing
+store their data since that is Dropbox's core purpose. Users therefore
+grant Dropbox the \emph{S} capability. Furthermore, users must also
+grant Dropbox the ability to read and access their data (i.e. the
+\emph{R} capability) in order to support Dropbox's sharing and syncing
 features. While Dropbox doesn't generally utilize it, users are also
 effectively granting Dropbox the manipulation (\emph{W}) capability as
 well since the user has no mechanisms for ensuring that Dropbox can't
 manipulate their data. Finally, Dropbox has full access to user
 metadata related to their usage of the service, granting them the
-\emph{M} capability. Thus, Dropbox users must trust Dropbox with all
-possible capabilities.
+\emph{M} capability. Therefore, Dropbox users must trust Dropbox with
+all possible capabilities.
 
 But how likely is it that Dropbox might misuse any of these
 capabilities, thus violating the user's trust? In terms of implicit
@@ -143,12 +145,9 @@ violations (\emph{I}), Dropbox charges users for storage, and thus
 shouldn't generally rely on reading or sharing user data for
 advertising purposes. Furthermore, such a business model relies on
 Dropbox remaining in its paying users' good graces, disincentivizing
-potentially questionable behavior. Nonetheless, there is evidence of
-Dropbox opening user files for unknown
-reasons~\cite{vintsurf-dropbox}, which might indicate a possible
-\emph{I} violation. The user has no way to prevent an \emph{I}
-violation when using Dropbox, so users can do no more than give
-Dropbox the benefit of the doubt in this area.
+potentially questionable behavior. Nonetheless, the user has no way to
+prevent an \emph{I} violation when using Dropbox, so users can do no
+more than give Dropbox the benefit of the doubt in this area.
 
 In terms of compelled (\emph{C}) violations, Dropbox is a U.S.-based
 company, and is thus susceptible to a variety of government-sponsored
@@ -166,7 +165,7 @@ Unintentional (\emph{U}), Insider (\emph{I}), or Outsider (\emph{O})
 violations are all possibilities when using Dropbox. On the \emph{U}
 front, Dropbox had an incident in 2011 that allowed anyone to log into
 the service using any password for a five hour
-period~\cite{dropbox-authbug}. Thus far, Dropbox appears to have
+period~\cite{dropbox-authbug}. So far, Dropbox appears to have
 avoided any \emph{I}-type violations, but it has been the target of
 various \emph{O}-type attempted violations, primarily built around
 advisories who obtain common user
@@ -174,14 +173,14 @@ passwords~\cite{dropbox-passwords}. Needless to say, while Dropbox
 works to avoid these kinds of violations, they are certainly still
 possible, have occurred in the past, and may well occur in the future.
 
-Thus, a traditional cloud service like Dropbox requires a full degree
-of user trust (i.e. \emph{S}, \emph{R}, \emph{W}, and \emph{M}
-capabilities) while also being susceptible to a full range of trust
-violations (e.g. \emph{P}, \emph{C}, \emph{U}, \emph{I}, and \emph{O}
-type violations). Dropbox is not unique. Other modern computing
-services from social media sites, to file lockers, to communication
-systems all suffer from the same high-trust, high potential for
-violations paradigm.
+As demonstrated, a traditional cloud service like Dropbox requires a
+full degree of user trust (i.e. \emph{S}, \emph{R}, \emph{W}, and
+\emph{M} capabilities) while also being susceptible to a full range of
+trust violations (e.g. \emph{P}, \emph{C}, \emph{U}, \emph{I}, and
+\emph{O} type violations). Dropbox is not unique. Other modern
+computing services, from social media sites to file lockers to
+communication systems, all suffer from the same full trust,
+high violation potential paradigm.
 
 \section{SSaaS Model}
 \label{chap:trust:ssaas}
@@ -194,14 +193,14 @@ violations paradigm.
 \end{figure}
 
 In order to enhance user privacy in the cloud, applications must move
-beyond the traditional ``full-trust, easily-violated'' model presented
-in \S~\ref{chap:trust:traditional}. Between degree of trust and
-potential for violation, degree is the easier to control quality: what
-capabilities to trust a cloud provider with is largely within the
-user's control, where as the method in which trust might be violated
-is largely outside of a user's control. The SSaaS model thus focuses
-on mitigating degree of trust first while disincentivizing methods of
-violation second.
+beyond the traditional full trust, high violation potential model
+presented in \S~\ref{chap:trust:traditional}. Between degree of trust
+and potential for violation, degree of trust is the easier to control
+quality -- what capabilities to trust a cloud provider with is largely
+within the user's control, whereas the method in which trust might be
+violated is largely outside of a user's control. As such, the SSaaS
+model focuses on mitigating degree of trust first while
+disincentivizing methods of violation second.
 
 The ideal trust model begins with the principle of least
 privilege~\cite{saltzer1975}: users should only afford a cloud
@@ -209,34 +208,34 @@ provider the minimal degree of trust necessary to provide the intended
 features. Furthermore, in order to monitor cloud providers for
 potential trust violations, users must also maintain some degree of
 auditing over any capability they entrust to a provider. Minimal,
-audited trust thus forms the basis of the ideal privacy and security
+audited trust forms the basis of the ideal privacy and security
 enhancing trust model.
 
-Applying this ideal trust model to the previous Dropbox example,
+If one applies this ideal trust model to the previous Dropbox example,
 Dropbox should really only be afforded the storage (\emph{S})
-capability. After all, there is no real need for Dropbox to ever be
-able to access (\emph{R}) or manipulate (\emph{W}) user data in order
-to blindly sync files across device or share them with other
-users. While Dropbox does not need the metadata (\emph{M}) capability
-to simply support the desired user case, it is far more difficult for
-the user to limit this capability then the \emph{R} or \emph{W}
-capabilities. The user might thus concede this capability to Dropbox
-as well. Dropbox's capabilities are thus reduced from four (full
+capability. After all, there is no real need for Dropbox to be able to
+access (\emph{R}) or manipulate (\emph{W}) user data in order to
+blindly sync files across device or share them with other users. While
+Dropbox does not need the metadata (\emph{M}) capability to support
+the desired use case, it is far more difficult for the user to limit
+this capability than the \emph{R} or \emph{W} capabilities. The user
+might thus concede this capability to Dropbox as well. In this
+analysis, Dropbox's required capabilities are reduced from four (full
 trust) to two (minimal trust).
 
 But how can the user enforce this limited trust profile when using
 Dropbox?  Figure~\ref{fig:trust-ssaas} shows the proposed SSaaS
-solution to this problem. The SSaaS model introduce a new actor: the
-Secret Storage Provider (SSP) into the mix. Using an SSaaS-backed
+solution to this problem. The SSaaS model introduce a new actor, the
+Secret Storage Provider (SSP), into the mix. Using an SSaaS-backed
 Dropbox application, the user is restricted to only storing encrypted
 and authenticated data with Dropbox. Such an application then stores
 the associated encryption and verification keys with the SSP. Assuming
 the application utilized strong encryption and integrity systems like
 AES~\cite{nist2001} and CMAC~\cite{dworkin2005}, Dropbox can neither
-feasibly decrypt and read user data nor can they manipulate user data
+feasibly decrypt and read user data, nor can they manipulate user data
 without detection. Storing the keys with an SSP, as opposed to simply
-forcing the user to maintain them manually, has a number of benefits:
-namely, it affords users continued support for simple sharing and
+forcing the user to maintain them manually, has a number of benefits.
+Namely, it affords users continued support for simple sharing and
 syncing use cases. As long as the SSaaS-backed Dropbox application can
 communicate with the SSP from any location where it can also
 communicate with Dropbox, the user can continue to utilize Dropbox as
@@ -246,8 +245,8 @@ itself.
 But does the SSaaS model simply replace one trusted third party with
 another? Why is the SSP any more trustworthy than Dropbox itself?
 There are several reason why the user might expect an SSP to be less
-prone to trust violations then a feature provider like Dropbox. These
-reasons are discussed in Chapter~\ref{chap:ssaas}. But in terms of
+prone to trust violations then a feature provider like Dropbox. (These
+reasons are discussed in Chapter~\ref{chap:ssaas}.) But in terms of
 degrees of trust, the user really isn't affording the SSP any greater
 degree of trust then Dropbox. Both are entrusted with the \emph{S} and
 \emph{M} capabilities, but neither has the \emph{R} or \emph{W}
@@ -255,13 +254,12 @@ capability: Dropbox has limited capabilities because it only holds
 encrypted and authenticated user data, and the SSP has limited
 capabilities because it holds no raw user data at all, only the
 cryptographic keys used to protect such data. As long as the SSP
-faithfully guards the secret keys they store, the trust model
-holds.
+faithfully guards the secret keys they store, the trust model holds.
 
 There are a few new risks in the SSaaS model, however. If both the
 feature provider (e.g. Dropbox) and the SSP are located in the same
 regulatory jurisdiction, it may still be possible for a single entity
-to compel (\emph{C}-type violation) them both to provide the data
+to compel both of them (\emph{C}-type violation) to provide the data
 necessary to allow an adversary to elevate their capabilities to
 include \emph{R} and \emph{W}. Likewise, if Dropbox and the SSP
 collude to violate a user's trust, a similar capability elevation will
@@ -270,10 +268,11 @@ trust model:
 
 \begin{packed_desc}
 \item[Colluding (L):] \hfill \\ This class of violation occurs when
-  multiple partially-trusted parties collude to gain capabilities over
-  user data beyond what the user intended each individually to
-  have. An example would be an SSP sharing the user's encryption keys
-  with the feature provider storing the corresponding encrypted data.
+  multiple partially trusted parties collude to gain capabilities over
+  user data beyond what the user intended each to have
+  individually. (An example would be an SSP sharing the user's
+  encryption keys with the feature provider storing the corresponding
+  encrypted data.)
 \end{packed_desc}
 
 This framework provides a basis for analyzing third party trust as
@@ -302,7 +301,7 @@ and summarized in Figure~\ref{fig:trust:degvrisk}.
 
 Table~\ref{tab:trust:app:cap} shows a summary of the capabilities
 granted to third parties across a number of common applications. Each
-application is rated on a four point scale based on the degree of
+application is rated on a four-point scale based on the degree of
 trust the application requires the user to place in a third party with
 respect to a given capability. ``None'' (0 points) indicates that the
 application requires no third party trust for the given
@@ -337,13 +336,29 @@ trust.
     & \textbf{Meta-analysis}
     & \textbf{Score}
     \\ \hline
-    \rowfont{\color{blue}}
-    Dropbox
+    \rowfont{\color{orange}}
+    TextSecure
     & Full
+    & None
+    & None
+    & Minimal
+    & 4
+    \\ \hline
+    \rowfont{\color{orange}}
+    PGP/GPG
     & Full
+    & None
+    & None
     & Full
-    & Full
-    & 12
+    & 6
+    \\ \hline 
+    \rowfont{\color{ForestGreen}}
+    Multiple SSPs
+    & Partial
+    & Minimal
+    & Minimal
+    & Partial
+    & 6
     \\ \hline
     \rowfont{\color{orange}}
     Tresorit
@@ -352,6 +367,30 @@ trust.
     & Partial
     & Full
     & 10
+    \\ \hline 
+    \rowfont{\color{orange}}
+    LastPass
+    & Full
+    & Minimal
+    & Full
+    & Full
+    & 10
+    \\ \hline 
+    \rowfont{\color{ForestGreen}}
+    Single SSP
+    & Full
+    & Partial
+    & Partial
+    & Full
+    & 10
+    \\ \hline
+    \rowfont{\color{blue}}
+    Dropbox
+    & Full
+    & Full
+    & Full
+    & Full
+    & 12
     \\ \hline
     \rowfont{\color{blue}}
     Facebook
@@ -369,14 +408,6 @@ trust.
     & Full
     & 12
     \\ \hline
-    \rowfont{\color{orange}}
-    PGP/GPG
-    & Full
-    & None
-    & None
-    & Full
-    & 6
-    \\ \hline
     \rowfont{\color{blue}}
     Hangouts
     & Full
@@ -384,22 +415,6 @@ trust.
     & Full
     & Full
     & 12
-    \\ \hline
-    \rowfont{\color{orange}}
-    TextSecure
-    & Full
-    & None
-    & None
-    & Minimal
-    & 4
-    \\ \hline 
-    \rowfont{\color{orange}}
-    LastPass
-    & Full
-    & Minimal
-    & Full
-    & Full
-    & 10
     \\ \hline 
     \rowfont{\color{blue}}
     Amazon EC2
@@ -408,22 +423,6 @@ trust.
     & Full
     & Full
     & 12
-    \\ \hline 
-    \rowfont{\color{ForestGreen}}
-    Single SSP
-    & Full
-    & Partial
-    & Partial
-    & Full
-    & 10
-    \\ \hline 
-    \rowfont{\color{ForestGreen}}
-    Multiple SSPs
-    & Partial
-    & Minimal
-    & Minimal
-    & Partial
-    & 6
     \\ \hline 
  \end{tabu}
   \caption[Degree of Third Party Trust Across Capabilities]{
@@ -435,7 +434,7 @@ trust.
 
 Table~\ref{tab:trust:app:threats} shows known and likely trust
 violation risk posed by third parties across the same range of
-applications. Each application is again rated on a four point scale
+applications. Each application is again rated on a four-point scale
 based on how likely the third party (or parties) providing a specific
 application are to commit various types of trust
 violations. ``Insider'' and ``Outsider'' type violations are not
@@ -476,37 +475,13 @@ violations.
     & \textbf{Colluding}
     & \textbf{Score}
     \\ \hline
-    \rowfont{\color{blue}}
-    Dropbox
+    \rowfont{\color{ForestGreen}}
+    Multiple SSPs
     & Disincent.
-    & Known
-    & Disincent.
-    & N/A
-    & 5
-    \\ \hline
-    \rowfont{\color{orange}}
-    Tresorit
-    & Disincent.
-    & Vulnerable
-    & Disincent.
-    & N/A
-    & 4
-    \\ \hline
-    \rowfont{\color{blue}}
-    Facebook
-    & Known
-    & Known
-    & Disincent.
-    & N/A
-    & 7
-    \\ \hline
-    \rowfont{\color{blue}}
-    Gmail
-    & Vulnerable
-    & Known
-    & Disincent.
-    & N/A
-    & 6
+    & Minimized
+    & Minimized
+    & Minimized
+    & 1
     \\ \hline
     \rowfont{\color{orange}}
     PGP/GPG
@@ -516,14 +491,6 @@ violations.
     & N/A
     & 2
     \\ \hline
-    \rowfont{\color{blue}}
-    Hangouts
-    & Vulnerable
-    & Known
-    & Disincent.
-    & N/A
-    & 6
-    \\ \hline
     \rowfont{\color{orange}}
     TextSecure
     & Disincent.
@@ -531,6 +498,22 @@ violations.
     & Minimized
     & N/A
     & 2
+    \\ \hline
+    \rowfont{\color{ForestGreen}}
+    Single SSP
+    & Disincent.
+    & Disincent.
+    & Minimized
+    & Disincent.
+    & 3
+    \\ \hline
+    \rowfont{\color{orange}}
+    Tresorit
+    & Disincent.
+    & Vulnerable
+    & Disincent.
+    & N/A
+    & 4
     \\ \hline
     \rowfont{\color{orange}}
     LastPass
@@ -541,6 +524,14 @@ violations.
     & 4
     \\ \hline
     \rowfont{\color{blue}}
+    Dropbox
+    & Disincent.
+    & Known
+    & Disincent.
+    & N/A
+    & 5
+    \\ \hline
+    \rowfont{\color{blue}}
     Amazon EC2
     & Disincent.
     & Known
@@ -548,21 +539,29 @@ violations.
     & N/A
     & 5
     \\ \hline
-    \rowfont{\color{ForestGreen}}
-    Single SSP
+    \rowfont{\color{blue}}
+    Gmail
+    & Vulnerable
+    & Known
     & Disincent.
-    & Disincent.
-    & Minimized
-    & Disincent.
-    & 3
+    & N/A
+    & 6
     \\ \hline
-    \rowfont{\color{ForestGreen}}
-    Multiple SSPs
+    \rowfont{\color{blue}}
+    Hangouts
+    & Vulnerable
+    & Known
     & Disincent.
-    & Minimized
-    & Minimized
-    & Minimized
-    & 1
+    & N/A
+    & 6
+    \\ \hline
+    \rowfont{\color{blue}}
+    Facebook
+    & Known
+    & Known
+    & Disincent.
+    & N/A
+    & 7
     \\ \hline
   \end{tabu}
   \caption[Risk of Third Party Trust Violations]{
@@ -578,7 +577,7 @@ violations.
 As mentioned, cloud file storage is a popular third party use
 case. Section~\ref{chap:trust:traditional} already modeled the trust
 of Dropbox~\cite{dropbox} as an example cloud storage provider. A
-summery of the Dropbox trust model results are shown the
+summary of the Dropbox trust model results are shown the
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. As
 previously concluded, Dropbox both requires a full range of trusted
 capabilities and is susceptible to (although often disincentivized
@@ -638,7 +637,7 @@ trust requirements that exists in such services' sharing
 implementations, however, it is possible that such a service could be
 compelled to mount a MitM attack on one of their users in order to
 provide such data to the compelling party (similar to government
-efforts to compel Apple to create a flawed version of OSX that would
+efforts to compel Apple to create a flawed version of iOS that would
 be vulnerable to brute force attacks~\cite{ars-cookvfbi}). Similarly,
 such a service could be compelled to surrender their CA private key,
 allowing the compelling party to take over the trusted CA role and
@@ -656,8 +655,8 @@ really applicable since Tresorit is a single-party actor.
 
 Furthermore, since services such as Tresorit are not open source or
 widely audited by independent parties, the user must trust that the
-code they are running to access such services is faithfully
-implementing the security guarantees such services claim to
+code they are running to access these services is faithfully
+implementing the security guarantees the services claim to
 support. It is possible that such a service could ship a flawed
 version of their code due to a wide range of trust violations
 (e.g. they could be compelled to ship such code, or it could be an
@@ -680,11 +679,11 @@ of pictures, events, and other data between users. Such sites are
 generally ``free'' to users -- monetizing user data and interactions
 for the purpose of selling targeted advertising. Given their ubiquity
 in the modern Internet landscape, as well as their position as
-ad-suppurated services, it is useful to evaluate the trust profile of
-modern Social Media sites. Facebook is the largest social media site
+ad-supported services, it is useful to evaluate the trust profile of
+modern social media sites. Facebook is the largest social media site
 today, serving over 1.5 billion users as of 2015~\cite{foster2014}. As
 such, Facebook serves as an example of the variety of social media
-site available today.
+sites available today.
 
 In terms of capabilities, Facebook, like Dropbox and other traditional
 cloud services, must be trusted with a full range of
@@ -700,7 +699,7 @@ system. This increases the likelihood of implicit trust failures due
 to Facebook's business model being based around the sale of user
 data. Indeed, and as mentioned in Chapter~\ref{chap:challenges},
 Facebook has a record of implicit trust violations ranging from the
-Emotional Contagion Study~\cite{goel2014} to its use of user's photos
+Emotional Contagion Study~\cite{goel2014} to its use of users' photos
 in the ads it serves~\cite{mashable-socialads}. Beyond implicit trust
 violations, Facebook's trust violation profile is again similar to
 other traditional cloud services such as Dropbox. Like
@@ -711,8 +710,8 @@ interest in avoiding them. Collusion violations aren't really
 applicable since Facebook is a single-party actor.
 
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} show a
-summery of the Facebook trust model analysis. Google
-Plus~\cite{google-plus} and related social-media services have similar
+summary of the Facebook trust model analysis. Google
+Plus~\cite{google-plus} and related social media services have similar
 trust profiles to Facebook.
 
 \subsection{Communications}
@@ -723,12 +722,12 @@ these systems are a matter of great public concern, and indeed many of
 the current privacy and security related legal battles revolve around
 the ability to communicates in a private and secure manner
 (e.g.~\cite{apple-fbiletter, greenwald-prism, levsion-lavabit}). It is
-thus useful to analyze the trust of several such services. To
-illustrate a range of profiles, it is useful to analyze both
-traditional (Gmail) and secure (GPG/PGP) email services as well as
-traditional (Google Hangouts) and secure (TextSecure) chat/messaging
+useful to analyze the trust of several such services. To illustrate a
+range of profiles, it is useful to analyze both traditional (Gmail)
+and secure (GPG/PGP) email services, as well as traditional (Google
+Hangouts) and secure (TextSecure) chat/messaging
 applications. Tables~\ref{tab:trust:app:cap}
-and~\ref{tab:trust:app:threats} show a summery of these profiles.
+and~\ref{tab:trust:app:threats} show a summary of these profiles.
 
 Gmail~\cite{google-gmail} and Hangouts~\cite{google-hangouts} are both
 Google-hosted communication services, placing them fairly soundly in
@@ -736,17 +735,17 @@ the ``traditional cloud services'' camp. As such, their profiles are
 similar to those of Dropbox and Facebook. Both services require
 granting Google a full range of capabilities over user data.
 
-Like Facebook, both services are ad-supported - increasing the
+Like Facebook, both services are ad-supported, increasing the
 likelihood of implicit trust violations (although unlike Facebook,
 Google seems to have a better track record of not committing such
 violations). Similarly, both services are known to be subject to
-compelled violations~\cite{google-transparency}\footnote{It is
+compelled violations~\cite{google-transparency},\footnote{It is
   possible such cloud communication services are actually at an
   increased risk of compelled violations relative to other cloud
   services due to the existence of laws such as the Communications
   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
     calea-fcc} specifically designed to aid the government in
-  obtaining a user's communications.}, and are disincentivized,
+  obtaining a user's communications.} and are disincentivized,
 although by no means immune, from committing unintentional, insider,
 and outsider violations\footnote{Google has taken steps to ensure
   communication between all of its data centers and between mail
@@ -758,10 +757,10 @@ and outsider violations\footnote{Google has taken steps to ensure
   In both cases however, third parties, not end users, remain in full
   control of all the necessary cryptographic keys, limiting this
   protection to the mitigation of outsider violations, and doing
-  little to mitigate implicit, compelled, unintentional, or insider
+  little to mitigate Implicit, Compelled, Unintentional, or Insider
   violations.}. Thus, Google is able to analyze, alter, and expose any
 data that travels across its network using either service -- either of
-it is own volition or due to a compelled order or unauthorized data
+it's own volition or due to a compelled order or unauthorized data
 breach.
 
 The OpenPGP protocol~\cite{callas2007} is one of the traditional
@@ -772,14 +771,14 @@ desktop apps such as Enigmail~\cite{enigmail} (powered by GnuPG
 Mailvelope\cite{mailvelope}. The OpenPGP protocol utilizes public-key
 cryptography to end-to-end encrypt and authenticate messages traveling
 across untrusted mediums. It can be applied atop mail traversing
-traditional email systems such as Gmail as well as to messages
+traditional email systems such as Gmail, as well as to messages
 traversing chat applications such as Google Hangouts. When used with
 such service, PGP provides an additional level of trust mitigation
 above and beyond what is possible to achieve via the native services
 themselves. In terms of trusted capabilities, a user employing PGP
 atop a traditional third party cloud service such as Gmail minimizes
 both the third party's access (via encryption) and manipulation (via
-authentication) capabilities. In such a scenario only the end users
+authentication) capabilities. In such a scenario, only the end users
 involved in a given communication, and not any third party through
 which that communication might pass, have access to the necessary
 cryptographic keys required to read or alter the message. The third
@@ -787,22 +786,21 @@ party, however, can still capture metadata about the communication
 since such metadata is outside of the scope of the message content
 that PGP is capable of securing. The third party is also still capable
 of dropping or deleting the communication all together, and thus still
-poses the ``storage'' capability.
+possesses the ``storage'' capability.
 
 Since the OpenPGP protocol and associated implementations are not
 controlled by any single third party, there is no straightforward
 analysis of its likelihood of PGP-related trust violations. In
 general, however, PGP implementations are controlled by parties with a
-vested interest in maintaining user security and privacy. Thus such
-parties are strongly disincentivized from committing implicit or
-compelled violations. Most OpenPGP implementations are also open
-source. This helps to mitigate\footnote{Although it does not
-  necessarily prevent such violations.  E.g. as in
-  Heartbleed~\cite{heartbleed} or a Ken Thompson style
-  attack~\cite{thompson1984}.} unintentional, insider, and outsider
-violations by maximizing the number of eyes on the code and reducing
-the likelihood of mistakes or intentionally coded vulnerabilities and
-back doors.
+vested interest in maintaining user security and privacy. Such parties
+are strongly disincentivized from committing implicit or compelled
+violations. Most OpenPGP implementations are also open source. This
+helps to mitigate\footnote{Although it does not necessarily prevent
+  such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
+  Thompson style attack~\cite{thompson1984}.} unintentional, insider,
+and outsider violations by maximizing the number of eyes on the code
+and reducing the likelihood of mistakes or intentionally coded
+vulnerabilities and back doors.
 
 Due to the numerous challenges and deficiencies associated with using
 OpenPGP-based systems~\cite{green-pgp}, developers have created a
@@ -813,15 +811,15 @@ authentication, and message encryption and authentication for
 systems. Examples of such protocol include OTR~\cite{otr-v3} and
 OTR-derived protocols like TextSecure~\cite{otr-advanced-ratchet}. The
 TextSecure protocol is used by several apps such Open Whisper System's
-Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. TextSecure is
-thus a useful target fro trust profile analysis.
+Signal~\cite{openwhisper} and WhatsApp~\cite{whatsapp}. As such,
+TextSecure is thus a useful target for trust profile analysis.
 
 TextSecure uses various forms of asymmetric cryptography to provide
 users with end-to-end encrypted and authenticated individual and group
 messaging capabilities. TextSecure has been formally analyzed and
 proven to provide secure encryption and message
-authentication~\cite{frosch2014}. Use of TextSecure thus denies any
-third party through which TextSecure message might pass (including the
+authentication~\cite{frosch2014}. Use of TextSecure denies any third
+party through which TextSecure messages might pass (including the
 TextSecure server itself) the access or manipulation
 capabilities. Furthermore, TextSecure makes efforts to secure all
 metadata from third party actors, including the server itself. This
@@ -841,7 +839,7 @@ grants no other capabilities to any third party.
 Like OpenPGP, TextSecure is a protocol implemented by several
 different apps. Such application providers (e.g. Open Whisper Systems)
 specifically market their products as being a secure alternative to
-more traditional chat systems, and thus are strongly dissuaded from
+more traditional chat systems, and are thus strongly dissuaded from
 committing any kind of implicit or compelled trust
 violation. Furthermore, most TextSecure implementations are open
 source, which mitigates the likelihood of
@@ -851,9 +849,9 @@ outsider violations. TextSecure has also undergone external audits and
 reviews, further decreasing the likelihood of an unintentional or
 insider violation~\cite{frosch2014}. As in OpenPGP, even if a
 violation occurred, the capability restrictions discussed above
-severely limit what data the violation would expose. TextSecure thus
-represents a successful effort to reduce third party trust exposure
-and secure user communications.
+severely limit what data the violation would expose. Therefore,
+TextSecure represents a successful effort to reduce third party trust
+exposure and secure user communications.
 
 \subsection{Password Managers}
 
@@ -863,12 +861,12 @@ access web-based resources. Such programs are useful for helping end
 users remember passwords, and by extension, for encouraging users to
 use stronger (i.e. longer and/or more random)
 passwords~\cite{brodkin-passman, krebs-passwords,
-  schneier-passwords}. It is thus useful to evaluate the trust profile
+  schneier-passwords}. It is useful to evaluate the trust profile
 surrounding such programs. LastPass~\cite{lastpass} is one of the most
 popular cloud-based password managers. The results of evaluating
 LastPass's trust profile are summarized in
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats}. Other
-could-based password mangers (e.g. 1Password~\cite{onepassword}) have
+cloud-based password managers (e.g. 1Password~\cite{onepassword}) have
 similar profiles.
 
 LastPass operates by storing encrypted user passwords on a
@@ -894,8 +892,8 @@ all user metadata associated with any stored password.
 In terms of likelihood of trust violations, LastPass has a very
 similar profile to a service like Tresorit. LastPass is a ``freemium''
 service that generates its income off its ability to faithfully store
-and protect user passwords, thus encouraging users to pay for higher
-level service tiers. This disincentivizes implicit trust
+and protect user passwords, encouraging users to pay for higher level
+service tiers. This disincentivizes implicit trust
 violations. LastPass also has a strong incentive to minimize (at least
 public) compelled violations, although it is still subject to such
 violations. Unintentional, insider, and outsider violations are
@@ -910,13 +908,13 @@ Like Tresorit, LastPass is neither open source\footnote{Although parts
   associated with ``open source'' code.} nor subject to public code
 audits. As such, the user is required to trust that LastPass has
 faithfully coded its software not to expose additional capabilities
-via hidden back doors. It is thus possible that LastPass could be
-compelled to modify the LastPass client program to do something like
-send copies of a user's master password back to LastPass where it
-could be used to decrypt all of the user's data. It is also possible
-that the lack of cryptographic authentication on user data would allow
-LastPass to mount a range of attacks on a user - potentially revealing
-one or more of the passwords they store with LastPass in the process.
+via hidden back doors. It is possible that LastPass could be compelled
+to modify the LastPass client program to do something like send copies
+of a user's master password back to LastPass where it could be used to
+decrypt all of the user's data. It is also possible that the lack of
+cryptographic authentication on user data would allow LastPass to
+mount a range of attacks on a user - potentially revealing one or more
+of the passwords they store with LastPass in the process.
 
 \subsection{Cloud Infrastructure Services}
 
@@ -927,23 +925,23 @@ Section~\ref{chap:background:cloud}. Given that cloud infrastructure
 is the primary method of deploying most modern software, it is useful
 to analyze the trust a user of such a service must place in their
 provider. Amazon's Elastic Cloud Compute (EC2) service is a typical
-Infrastructure-as-a-Service (IaaS) example. A summery of EC2 trust
+Infrastructure-as-a-Service (IaaS) example. A summary of EC2 trust
 profile results appears in Tables~\ref{tab:trust:app:cap}
 and~\ref{tab:trust:app:threats}.
 
 Amazon EC2~\cite{amazon-ec2} allows a user to spin up user-controlled
 virtual machines (VMs) running atop Amazon-owner servers. In such a
-situation, a user can control the specification of their VM, but are
+situation, a user can control the specification of their VM, but is
 entirely reliant on Amazon to faithfully provide the underlying
 hardware. The traditional wisdom in computer security is that anyone
 who controls the hardware has the ability to subvert any
 software-level security control implemented atop it. Since Amazon
 controls the hardware underlying EC2, they effectively have full
-control over any data end users store atop EC2. Amazon could
-(theoretically) read all a VMs memory or disks, or even alter the
+control over any data that end users store atop EC2. Amazon could
+(theoretically) read all a VM's memory or disks, or even alter the
 behavior of the processor in such a system to control the execution
-flow of any software running atop it. EC2 thus requires the end user
-to grant Amazon full capabilities to store, read, modify, or
+flow of any software running atop it. As such, EC2 requires the end
+user to grant Amazon full capabilities to store, read, modify, or
 meta-analyze any the data stored or processed via an EC2-backed
 VM\footnote{It is potentially possible to use encryption system that
   don't require ever storing the encryption key itself atop
@@ -960,7 +958,7 @@ space. Thus, Amazon is strongly disincentivized from committing any
 form of implicit trust violations. Amazon, like other third parties,
 is subject to a range of compelled
 violations~\cite{amazon-transparency}. Likewise, Amazon is
-disincentivized, but not immune ti, unintentional insider or outsider
+disincentivized, but not immune to, unintentional insider or outsider
 violations.
 
 \subsection{SSaaS Alternatives}
@@ -982,12 +980,12 @@ failure of either the SSP or the traditional cloud provider will
 result in a loss of user data. In such a scenario, however, the end
 user is granting a more limited set of ``access'' and ``manipulation''
 capabilities since no single third party has access to both a user's
-data and the secrets necessary to decrypt or alter it. E.g. As
-described in Section~\ref{chap:trust:ssaas} the user can store
+data and the secrets necessary to decrypt or alter it. As
+described in Section~\ref{chap:trust:ssaas}, the user can store
 encrypted and cryptographically authenticated data atop Dropbox and
 store the associated crypto keys with their SSP, ensuring that neither
 the SSP nor Dropbox can easily read or manipulate their data. The SSP
-can, however, modify and read the user's secrets themselves, which
+can, however, modify and read the user's secrets themselves, which,
 depending on the use case, may still allow them to access a variety of
 user data depending on the nature of the SSP-backed application in
 question. Similar to previously discussed systems, the single-SSP
@@ -1013,26 +1011,26 @@ the user's data and regaining the ``access'' and ``manipulation''
 capabilities they claim to avoid.
 
 In order to improve upon the trust profiles inherent in the single-SSP
-model, it is possible for user to move to a multi SSP SSaaS model. In
+model, it is possible for user to move to a multi-SSP SSaaS model. In
 such a model, the user shards their secrets across multiple SSPs using
 a $n$ choose $k$ scheme that provides both privacy and redundancy
 (details of such schemes are discussed in more depth in
-Section~\ref{chap:ssaas:trust}). The multi SSP model requires reduced
-degree of trust compared to the single SSP model. In the multi SSP
-model, the user can mitigate the need to trust any single third party
-with the ``storage'' capability. Instead, a user can redundantly
-spread their data across multiple SSPs. Thus (assuming a user selects
-$n > K$) the failure of one or more SSPs will not result in data
-loss. Furthermore, using multiple SSPs further reduces each SSP's
+Section~\ref{chap:ssaas:trust}). The multi-SSP model requires a
+reduced degree of trust compared to the single SSP model. In the
+multi-SSP model, the user can mitigate the need to trust any single
+third party with the ``storage'' capability. Instead, a user can
+redundantly spread their data across multiple SSPs. Assuming a user
+selects $n > K$, the failure of one or more SSPs will not result in
+data loss. Using multiple SSPs also further reduces each SSP's
 ``access'' and ``manipulation'' capabilities since no single SSP has
-access to the user's complete secret. Furthermore, the use of multiple
+access to the user's complete secret. Finally, the use of multiple
 SSPs may even reduce the user's metadata exposure by allowing the user
 to avoid having any single SSP hold all of their secrets or see all of
 their secret access patterns.
 
 The multi-SSP model also reduces the risk profile associated with SSP
 trust violations. As in the single SSP case, implicit violations are
-disincentivized by nature of the SSP business model. In the multi SSP
+disincentivized by nature of the SSP business model. In the multi-SSP
 use case, however, compelled violations are further minimized since no
 single SSP can be compelled to provide all of the required data to
 access a user's secrets. As such, a compelling entity would be forced
@@ -1047,7 +1045,7 @@ the number of required colluding parties, the less likely such
 collusion is to occur.
 
 Tables~\ref{tab:trust:app:cap} and~\ref{tab:trust:app:threats} provide
-a summary of both the single SSP and multi SSP SSaaS models. As these
+a summary of both the single SSP and multi-SSP SSaaS models. As these
 tables show, the trust profiles of such models score on par or better
 than existing privacy-enhancing systems such as PGP and Tresorit. As
 discussed in later chapters, however, such models offer additional
@@ -1055,6 +1053,7 @@ functionality above and beyond that achievable using other security
 and privacy enhancing solutions.
 
 %%  LocalWords:  SSaaS FISC SSP CMAC OneDrive Tresorit Disincent MitM
-%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA SSP's
+%%  LocalWords:  SpiderOak Wuala Lavabit LastPass CALEA SSP's iOS
 %%  LocalWords:  Mailvelope TextSecure OTR WhatsApp LastPass's IaaS
-%%  LocalWords:  freemium SSPs Heartbleed Custos Hachicorp's
+%%  LocalWords:  freemium SSPs Heartbleed Custos Hachicorp's Enigmail
+%%  LocalWords:  ForestGreen VM's

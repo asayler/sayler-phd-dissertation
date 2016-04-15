@@ -16,7 +16,7 @@ to utilize such devices and services). While policy initiatives can do
 little to convince users that the SSaaS ecosystem does not impose an
 undue burden on their desired use cases,\footnote{That's the job of
   previous chapters in this document, as well as of developers and
-  marketers building SSaaS-backed solutions.} policy initiatives can
+  marketers building SSaaS-backed solutions.}policy initiatives can
 help to encourage the development of a healthy SSaaS
 ecosystem. Establishing and maintaining a healthy SSaaS ecosystem
 relies on three main components:
@@ -66,10 +66,10 @@ variety of cryptographic primitives, including symmetric encryption,
 message authentication codes (MAC), asymmetric encryption, asymmetric
 signatures, etc. Such cryptographic primitives, however, have a
 checkered legal and policy history, at least in the United
-States\footnote{The bulk of this chapter will focus on U.S. policy and
+States.\footnote{The bulk of this chapter will focus on U.S. policy and
   laws since that is the jurisdiction in which the author resides and
   is most intimately familiar. Similar ideas are applicable to other
-  jurisdictions.}. This section provides an overview of
+  jurisdictions.}This section provides an overview of
 cryptography-related policy concerns.
 
 \subsection{A Brief History of Cryptography Regulation}
@@ -110,7 +110,7 @@ distributed outside of the United States.\footnote{The U.S. did allow
   vulnerable to ``downgrade'' attacks that trick the software into
   using this weak crypto. Recent vulnerabilities such as
   FREAK~\cite{beurdouche2015} and Logjam~\cite{adrian2015} are based
-  on such attacks.} During this time, cryptographically secure systems
+  on such attacks.}During this time, cryptographically secure systems
 were not widely used by individuals not associated with the
 aforementioned institutions.
 
@@ -121,7 +121,7 @@ distributed encryption software designed for use by ordinary
 individuals.\footnote{Although, as mentioned in
   Chapter~\ref{chap:challenges}, the ability of ``ordinary''
   individuals to actually use PGP is highly
-  questionable\cite{whitten1999}.}  PGP's Internet-based distribution
+  questionable\cite{whitten1999}.}PGP's Internet-based distribution
 also quickly drew the attention of U.S. authorities who viewed such
 publication as a violation of the export control laws banning the
 export of cryptographic technologies with key lengths exceeding
@@ -224,13 +224,13 @@ fall along a three standard tracks.
   with special access to cryptographically protected data will likely
   be mirrored by other countries -- many of which have far weaker
   legal protections against the abuse of such powers than does the
-  U.S.\footnote{E.g. if the U.S. government can demand special access,
-    so can China or North Korea -- weakening the security of
-    U.S. citizens abroad or anyone wishing to secure their selves and
-    systems from potentially repressive regimes.} Bans of cryptography
-  thus trade the security of a large number of normal individuals for
-  the insecurity of a small number of potentially bad actors -- and
-  that's not a trade that's worth making.
+  Unites States.\footnote{E.g. if the U.S. government can demand
+    special access, so can China or North Korea -- weakening the
+    security of U.S. citizens abroad or anyone wishing to secure their
+    selves and systems from potentially repressive regimes.}Bans of
+  cryptography thus trade the security of a large number of normal
+  individuals for the insecurity of a small number of potentially bad
+  actors -- and that's not a trade that's worth making.
 \item[Ineffectiveness] \hfill \\ Beyond the fact that bans on
   cryptography are likely to cause more harm than good, such bans are
   widely believed to be ineffective. Even if the U.S. manages to ban
@@ -248,10 +248,10 @@ fall along a three standard tracks.
     for most individuals to attempt to ``roll their own'' cryptography
     if they can avoid needing to do so. Such DIY low-level
     cryptographic systems have a historically high likelihood of
-    mistakes due to the lack of formal vetting and widespread review.}
-  Thus, it would not be difficult for organizations or individuals
-  wishing to employ banned cryptography concepts to find someone to
-  build such systems for them.
+    mistakes due to the lack of formal vetting and widespread
+    review.}Thus, it would not be difficult for organizations or
+  individuals wishing to employ banned cryptography concepts to find
+  someone to build such systems for them.
 \item[Better Options] \hfill \\ Law enforcement organizations (LEOs)
   often cite the ``going dark'' problem as the reason why
   cryptographic restrictions are necessary. ``Going dark'' refers to
@@ -296,7 +296,7 @@ interpreted to apply to source code~\cite{ninthcir-bernstein,
   sixthcir-junger}.\footnote{Beyond cryptography, this ``code as
   speech'' interpretation is fairly critical to the use of
   U.S. Copyright Law for the protection of code-related intellectual
-  property.} As such, any ban on cryptography source code is likely an
+  property.}As such, any ban on cryptography source code is likely an
 unconstitutional prior restraint on the author's freedom of
 speech. Traditionally, courts have taken a dim few of laws imposing
 such prior restraint~\cite{scotus-nearvminnesota}, even in cases where
@@ -406,11 +406,11 @@ compelled testimony -- which should include being forced to provide a
 memorized password or key.\footnote{If the user has written down their
   password or locked their phone with a fingerprint,
   5\textsuperscript{th} Amendment protections no longer apply since
-  the evidence is then physical, not testimonial.}  Courts, however,
-are currently split on whether or not the 5\textsuperscript{th}
-Amendment protects individuals from being forced to turn over
-cryptographic keys or otherwise provide decryption
-assistance~\cite{usvboucher, commonwealthvgelfgatt, usvdoe}.
+  the evidence is then physical, not testimonial.}Courts, however, are
+currently split on whether or not the 5\textsuperscript{th} Amendment
+protects individuals from being forced to turn over cryptographic keys
+or otherwise provide decryption assistance~\cite{usvboucher,
+  commonwealthvgelfgatt, usvdoe}.
 
 Further complicating matters: certain types of cryptography can be
 designed to decrypt a ciphertext to different plaintexts depending on
@@ -478,7 +478,7 @@ they are likely to be subject to the third party
 doctrine~\cite{thompson-thirdparty}. This doctrine holds that
 individuals who voluntarily store their data with third parties have
 no ``reasonable expectation of privacy''~\cite{scotus-katzvus} for
-such data. While such a viewpoint may have made since in the mid 20th
+such data. While such a viewpoint may have made sense in the mid 20th
 century when it was established via a series of Supreme Court
 rulings~\cite{scotus-usvmiller-privacy, scotus-smithvmaryland}, it
 does not translate well to a world where storing data with third
@@ -576,10 +576,10 @@ be bad public policy. Nonetheless, should the government wish to
 pursue such a policy, having an established system of civil liability
 for the loss of user secret data would be useful. If such a system
 were crafted to avoid exempting government-controlled SSPs from civil
-liability requirements\footnote{Although the government does have a
+liability requirements,\footnote{Although the government does have a
   habit of exempting itself from such requirements~\cite{sisk2011}, so
   establishing government liability for SSP-related data loss may be
-  challenging.}, it could help minimize the number of keys the
+  challenging.}it could help minimize the number of keys the
 government chooses to escrow. Indeed, such a system would impose a
 huge liability risk on the government SSP as a concentrated holder of
 many secrets. This liability risk attaches a real monetary value to
@@ -693,12 +693,12 @@ implementation of the SSaaS protocols themselves, reducing their need
 to trust the software itself.
 
 Beyond mere openness, it is also important that the software be
-Free.\footnote{``Free'' as in freedom, not ``free'' as in beer.}  In
-the open source community, such freedom is generally premised on four
-core ``rights'': the right of the user to run the software as they
-wish, the right of the user to review and modify the software, the
-right of the user to redistribute unmodified copies of the software,
-and the right of the user to redistribute modified copies of the
+Free.\footnote{``Free'' as in freedom, not ``free'' as in beer.}In the
+open source community, such freedom is generally premised on four core
+``rights'': the right of the user to run the software as they wish,
+the right of the user to review and modify the software, the right of
+the user to redistribute unmodified copies of the software, and the
+right of the user to redistribute modified copies of the
 software~\cite{fsf-freedoms}. Cloud-based software such as that
 employed by SSPs also benefits from a fifth right: the right of users
 of the software to obtain a copy of the source code powering the
@@ -769,16 +769,16 @@ copies with special properties.\footnote{As discussed in
   security), secret sharing system derive their security from
   fundamental properties of information theory, and remain secure
   regardless of the amount of computational power an adversary posses
-  (unconditional security).} Thus, it is possible that efforts to
-limit the use of cryptography in general might not actually apply to
-secret sharing schemes. Nonetheless, any effort to limit the use of
-secret sharding schemes, just like any effort to limit the use of
-other forms of ``cryptography'', will prove detrimental to the SSaaS
-ecosystem. As stated previously, ideally regulators will avoid trying
-to limit the use of cryptography at all. Short of that, avoiding the
-classification of secret strong schemes as cryptography for the
-purpose of cryptography-related regulations is a desirable outcome
-since it avoids sweeping such schemes into any limits imposed on more
+  (unconditional security).}Thus, it is possible that efforts to limit
+the use of cryptography in general might not actually apply to secret
+sharing schemes. Nonetheless, any effort to limit the use of secret
+sharding schemes, just like any effort to limit the use of other forms
+of ``cryptography'', will prove detrimental to the SSaaS ecosystem. As
+stated previously, ideally regulators will avoid trying to limit the
+use of cryptography at all. Short of that, avoiding the classification
+of secret strong schemes as cryptography for the purpose of
+cryptography-related regulations is a desirable outcome since it
+avoids sweeping such schemes into any limits imposed on more
 traditional forms of cryptography.
 
 On the second point, it is likely that laws aimed at mandating the
@@ -824,10 +824,10 @@ shard of a secret?
 
 Values for secret shards could range from being equal to the value of
 the unsharded secret to being worth nothing at all. Making secret
-shards worth as much as the secret itself makes since if you assume
+shards worth as much as the secret itself makes sense if you assume
 that the exposure of any secret shard is an unacceptable risk since it
 increases the risk of the exposure of the entire secret. On the other
-extreme, valuing secret shards as worthless makes since if you assume
+extreme, valuing secret shards as worthless makes sense if you assume
 that each shard taken by itself provides no information about the
 underlying secret, and is thus ``worthless'', even if leaked. It is
 likely that the best solution lies somewhere in between. Valuing

@@ -608,9 +608,9 @@ The place where these systems falter at mitigating third party trust
 is via their support for multi-user sharing and collaboration. Such
 services tend to accomplish multi-user sharing by acting as a trusted
 certificate authority (CA) in charge of issuing user
-certificates\footnote{A certificate is a combination of a user's
+certificates.\footnote{A certificate is a combination of a user's
   public key and certain metadata signed by a trusted issuer. See
-  Section~\ref{chap:background:crypto} for more information.} These
+  Section~\ref{chap:background:crypto} for more information.}These
 certificates are then used with various asymmetric cryptographic
 primitives (e.g. RSA~\cite{rivest1978}) to exchange the necessary
 secrets for bootstrapping sharing between users. Unfortunately, as a
@@ -745,9 +745,9 @@ compelled violations~\cite{google-transparency},\footnote{It is
   services due to the existence of laws such as the Communications
   Assistance for Law Enforcement Act (CALEA)~\cite{calea-usc,
     calea-fcc} specifically designed to aid the government in
-  obtaining a user's communications.} and are disincentivized,
-although by no means immune, from committing unintentional, insider,
-and outsider violations\footnote{Google has taken steps to ensure
+  obtaining a user's communications.}and are disincentivized, although
+by no means immune, from committing unintentional, insider, and
+outsider violations.\footnote{Google has taken steps to ensure
   communication between all of its data centers and between mail
   servers are encrypted in transit, helping to minimize outsider
   violations~\cite{gmail-blog-encryption}. Similarly, it has recently
@@ -758,7 +758,7 @@ and outsider violations\footnote{Google has taken steps to ensure
   control of all the necessary cryptographic keys, limiting this
   protection to the mitigation of outsider violations, and doing
   little to mitigate Implicit, Compelled, Unintentional, or Insider
-  violations.}. Thus, Google is able to analyze, alter, and expose any
+  violations.}Thus, Google is able to analyze, alter, and expose any
 data that travels across its network using either service -- either of
 its own volition or due to a compelled order or unauthorized data
 breach.
@@ -797,7 +797,7 @@ are strongly disincentivized from committing implicit or compelled
 violations. Most OpenPGP implementations are also open source. This
 helps to mitigate\footnote{Although it does not necessarily prevent
   such violations, e.g. as in Heartbleed~\cite{heartbleed} or a Ken
-  Thompson style attack~\cite{thompson1984}.} unintentional, insider,
+  Thompson style attack~\cite{thompson1984}.}unintentional, insider,
 and outsider violations by maximizing the number of eyes on the code
 and reducing the likelihood of mistakes or intentionally coded
 vulnerabilities and back doors.
@@ -843,15 +843,16 @@ more traditional chat systems, and are thus strongly dissuaded from
 committing any kind of implicit or compelled trust
 violation. Furthermore, most TextSecure implementations are open
 source, which mitigates the likelihood of
-unintentional\footnote{Researchers have discovered bugs in TextSecure,
-  but these bugs were quickly patched~\cite{frosch2014}.}, insider, or
-outsider violations. TextSecure has also undergone external audits and
-reviews, further decreasing the likelihood of an unintentional or
-insider violation~\cite{frosch2014}. As in OpenPGP, even if a
-violation occurred, the capability restrictions discussed above
-severely limit what data the violation would expose. Therefore,
-TextSecure represents a successful effort to reduce third party trust
-exposure and secure user communications.
+unintentional,\footnote{Researchers have discovered bugs in
+  TextSecure, but these bugs were quickly
+  patched~\cite{frosch2014}.}insider, or outsider
+violations. TextSecure has also undergone external audits and reviews,
+further decreasing the likelihood of an unintentional or insider
+violation~\cite{frosch2014}. As in OpenPGP, even if a violation
+occurred, the capability restrictions discussed above severely limit
+what data the violation would expose. Therefore, TextSecure represents
+a successful effort to reduce third party trust exposure and secure
+user communications.
 
 \subsection{Password Managers}
 
@@ -885,7 +886,7 @@ capability.\footnote{In realty, it is somewhat difficult for LastPass
   client-side cryptographic protections against modification leaves
   the door open to a range of potential attack on LastPass's client
   side encryption as per the ``cryptographic doom''
-  principle~\cite{marlinspike-doom}.}  Similarly, LastPass is fully
+  principle~\cite{marlinspike-doom}.}Similarly, LastPass is fully
 responsible for faithfully storing user data and has full access to
 all user metadata associated with any stored password.
 
@@ -905,7 +906,7 @@ Like Tresorit, LastPass is neither open source\footnote{Although parts
   exposes the source code to users. Nonetheless, such code can be
   obfuscated to make it difficult to read, and users lack most of the
   ``Free Software'' rights~\cite{fsf-freedoms} traditionally
-  associated with ``open source'' code.} nor subject to public code
+  associated with ``open source'' code.}nor subject to public code
 audits. As such, the user is required to trust that LastPass has
 faithfully coded its software not to expose additional capabilities
 via hidden back doors. It is possible that LastPass could be compelled
@@ -943,12 +944,12 @@ behavior of the processor in such a system to control the execution
 flow of any software running atop it. As such, EC2 requires the end
 user to grant Amazon full capabilities to store, read, modify, or
 meta-analyze any the data stored or processed via an EC2-backed
-VM\footnote{It is potentially possible to use encryption system that
+VM.\footnote{It is potentially possible to use encryption system that
   don't require ever storing the encryption key itself atop
   Amazon-controlled infrastructure to work around some of these
   issues, but such homomorphic encryption systems are beyond the
   standard EC2 usage base case discussed here. See
-  Section~\ref{chap:related:minimize} for more details.}.
+  Section~\ref{chap:related:minimize} for more details.}
 
 The profile of Amazon's proclivity for trust violation follows that of
 other service-oriented cloud operators such as Dropbox and

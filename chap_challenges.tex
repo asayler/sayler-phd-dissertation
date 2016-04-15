@@ -378,12 +378,12 @@ Salt~\cite{salt}, or Puppet~\cite{puppet}. Such systems are necessary
 to help developers automate the otherwise monotonous process of
 configuring cloud compute resources manually. Indeed, the sheer number
 of cloud servers involved in most larger scale production deployments
-makes manual management impossible.~\footnote{This fact has given rise
+makes manual management impossible.\footnote{This fact has given rise
   to the sentiment that ``servers are cattle, not pets'' -- meaning
   developers should focus on automatically managing large numbers of
-  systems instead of carefully curating individual systems.}  Thus,
-new security and privacy enhancing technologies must be able to
-operate securely even when their configuration must be automated.
+  systems instead of carefully curating individual systems.}Thus, new
+security and privacy enhancing technologies must be able to operate
+securely even when their configuration must be automated.
 
 Assumptions about a developer's ability to physically access a
 machine, to interactively provide input to a machine, or to manually
@@ -583,14 +583,14 @@ party services. Notable instances of government surveillance include:
   and throttles the speed at which a user may guess passcodes. The FBI
   wished to compel Apple to update the software on the iPhone so that
   they could try to guess an unlimited number of passcodes at a high
-  rate of speed\footnote{Due to Apple's use of signature-verified
-    code, it is not possible for the FBI (or anyone else) to update
-    the Apple's software themselves. Instead, Apple (or the holder of
-    Apple's cryptographic code signing key) must approve and sign any
-    updated code before the iPhone will run
-    it.}\cite{eff-applecrypto}. Apple was disinclined to acquiesce to
-  this request~\cite{apple-fbiletter}. The case wound up being dropped
-  by the FBI after they were able to leverage an undisclosed security
+  rate of speed~\cite{eff-applecrypto}.\footnote{Due to Apple's use of
+    signature-verified code, it is not possible for the FBI (or anyone
+    else) to update the Apple's software themselves. Instead, Apple
+    (or the holder of Apple's cryptographic code signing key)must
+    approve and sign any updated code before the iPhone will run
+    it.}Apple was disinclined to acquiesce to this
+  request~\cite{apple-fbiletter}. The case wound up being dropped by
+  the FBI after they were able to leverage an undisclosed security
   vulnerability to bypass Apple's passcode guessing limits
   directly~\cite{ars-fbi-greyhats, ars-fbi-breakthrough}. As in the
   Lavabit case, this case demonstrates the government's interest in
@@ -765,7 +765,7 @@ allowed?\footnote{This question is merely a variant of the
   secure systems. The problem was most famously encountered during the
   Cold War in the design of nuclear weapons: How can you ensure a
   nuclear weapon always detonates when its use is intentional, but
-  never detonates when its use is not?~\cite{schlosser2013}} And once
+  never detonates when its use is not~\cite{schlosser2013}?}And once
 securely stored, how can a user use these secrets to bootstrap
 security and privacy enhancing solution in a manner that supports a
 range of desirable use cases?  These questions and their proposed

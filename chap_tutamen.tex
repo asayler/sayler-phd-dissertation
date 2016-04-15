@@ -4,10 +4,12 @@
 While Custos (Chapter~\ref{chap:custos}) provides a sound
 first-generated secret storage system, it has a number of flaws that
 make solving some of the more nuanced secret storage challenges
-difficult. Tutamen is a secret storage system design to overcome these
-challenges. Tutamen applies the lessons learned from building Custos
-to create a next-generation secret storage system with native support
-for multi-provider secret sharding and automated secret access.
+difficult. Tutamen\footnote{`Tutamen' is Latin for ``a means of
+  protection or defense''.}is a secret storage system design to
+overcome these challenges. Tutamen applies the lessons learned from
+building Custos to create a next-generation secret storage system with
+native support for multi-provider secret sharding and automated secret
+access.
 
 \section{A New Approach}
 \label{chap:tutamen:new}
@@ -565,7 +567,7 @@ In addition to the server and authenticator implementations, there are
 also reference Tutamen client libraries for both
 Python~\cite{src-tutamen-pytutamen} and
 Go~\cite{src-tutamen-go}.\footnote{The Go client library was created
-  by Matthew Monaco.} The Python client library services as the basis
+  by Matthew Monaco.}The Python client library services as the basis
 for the reference Tutamen CLI utility. This utility allows users to
 directly store/retrieve secrets from Tutamen storage servers and to
 control secret sharing and access control rules on Tutamen AC
@@ -612,7 +614,7 @@ In order to add Tutamen support to dm-crypt/LUKS, it was necessary to
 create a Tutamen-aware implementation~\cite{src-tutamen-askpassword}
 of the \texttt{systemd} Password Agent
 Specification~\cite{systemd-passwordagents}.\footnote{Matt Monaco is
-  primarily responsible for the Tutamen dm-crypt integration.}  This
+  primarily responsible for the Tutamen dm-crypt integration.}This
 specification is used by the LUKS/dm-crypt \texttt{cryptsetup} utility
 to request the necessary decryption secret. At boot-time,
 \texttt{cryptsetup} will send out a request for this secret. Normally
@@ -679,7 +681,7 @@ FuseBox: an alternate Dropbox client that performs client-side
 encryption of all Dropbox files, storing the corresponding encryption
 keys on the reference Tutamen server~\cite{fusebox}.\footnote{Taylor
   Andrews is primarily responsible for the Tutamen FuseBox
-  implementation.} FuseBox achieves goals similar to those achieved
+  implementation.}FuseBox achieves goals similar to those achieved
 by~\cite{goh2003}, but without requiring out-of-band key
 management. Similar to other file-system-level encryption
 systems~\cite{blaze1993, Cattaneo2001, halcrow}, FuseBox provides
@@ -687,8 +689,8 @@ transparent file encryption to end users. In order to avoid the
 storage space and security challenges presented by locally caching all
 Dropbox data (i.e., the operation mode for the official Dropbox
 client), FuseBox uses AES~\cite{daemen1999, nist2001} in a stream
-cipher mode to transparently stream and encrypt data to/from
-Dropbox's servers on demand.
+cipher mode to transparently stream and encrypt data to/from Dropbox's
+servers on demand.
 
 Since FuseBox leverages Tutamen to store each per-file encryption key,
 it becomes possible to share an encrypted file via Dropbox, share its

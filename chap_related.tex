@@ -89,9 +89,9 @@ them. Thus, if the underlying OS or third party is compromised, the
 access control system fails. Likewise, anyone in control of the
 underlying OS or third party (e.g. an administrator) automatically
 gains full control over the access control system and the ability to
-bypass it\footnote{E.g. as in the case of Edward Snowden's collection
+bypass it.\footnote{E.g. as in the case of Edward Snowden's collection
   of large troves of secret NSA data from a facility where he acted as
-  a systems administrator.}. This is an acceptable limitation in many
+  a systems administrator.}This is an acceptable limitation in many
 situations, especially those based on centrally managed systems with
 existing physical and administrative safeguards in place. But in
 distributed systems or cloud environments where physical and
@@ -314,10 +314,10 @@ to trust a single third party with their credentials, and by proxy,
 access to their online services and accounts. Nor are such services
 infallible. There have been several noted flaws and breaches of
 password management systems over the past few
-years\footnote{Fortunately the design of such systems has largely
-  mitigated the worst damages from these
-  breaches~\cite{ducklin2015}.}\cite{blackhat-lastpass,
-  changedmy-lastpass, lastpass-blog-breach}.
+years~\cite{blackhat-lastpass, changedmy-lastpass,
+  lastpass-blog-breach}.\footnote{Fortunately the design of such
+  systems has largely mitigated the worst damages from these
+  breaches~\cite{ducklin2015}.}
 
 Password management systems share some of the same goals proposed in
 this document -- namely, the storage of end user secrets in a secure
@@ -506,9 +506,9 @@ number of flaws. For example, they generally require placing trust in
 a single third party, or in the case of self-hosted solutions, a
 single server.\footnote{Although this party may now differ from the
   party providing the underlying cloud compute or data storage
-  servers.}  They also lack the cross-platform standardization
-necessary to incentivize some of market-driven forms of
-trust-preserving behavior discussed in Chapters~\ref{chap:trust}
+  servers.}They also lack the cross-platform standardization necessary
+to incentivize some of market-driven forms of trust-preserving
+behavior discussed in Chapters~\ref{chap:trust}
 and~\ref{chap:ssaas}. And they tend to be designed for use within a
 single administrative domain, limiting their usefulness in
 loosely-coupled global-scale scenarios.

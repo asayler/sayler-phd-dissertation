@@ -89,12 +89,12 @@ The major breakthrough in solving this challenge came in 1976 when
 Diffie and Hellman proposed several novel cryptographic constructs,
 including a system for multiple parties to negotiate a symmetric
 encryption key across an insecure
-channel~\cite{diffie1976}\footnote{Such methods were actually
+channel~\cite{diffie1976}.\footnote{Such methods were actually
   independently developed by the GCHQ (the British signal-intelligence
   counterpart to the U.S. National Security Agency) in the early 1970s
   prior to the publication of Diffie and Hellman's research, but this
   work was classified and remained a secret until the late
-  1990s.~\cite{singh1999}}. These concepts paved the way for the
+  1990s~\cite{singh1999}.}These concepts paved the way for the
 development of asymmetric cryptography (i.e. public-key cryptography):
 a cryptography system in which one key is used for encryption while a
 second related key is used for decryption. When properly designed, it
@@ -118,10 +118,10 @@ numbers is computationally difficult in cases where some piece of
 secret information (e.g. one of the factors) is not known. Other
 systems rely on the computation of discrete logarithms across elliptic
 curves (ECC cryptography)~\cite{koblitz1987, miller1986}, computations
-across lattices\footnote{Lattice-based encryption schemes are believed
-  to be resistant to (currently theoretical) quantum-based attacks
-  that are successful at breaking more traditional factoring and
-  ECC-based schemes.}~\cite{ajtai1996}, and beyond.
+across lattices~\cite{ajtai1996},\footnote{Lattice-based encryption
+  schemes are believed to be resistant to (currently theoretical)
+  quantum-based attacks that are successful at breaking more
+  traditional factoring and ECC-based schemes.}and beyond.
 
 While Diffie and Hellman proposed a theoretical implementation of a
 public key cryptography system, the first practical public key crypto
@@ -139,10 +139,10 @@ asymmetric cryptography systems today -- especially those that employ
   keys from long-term authentication keys, using systems such as
   Diffie-Hellman key derivation to generate the former while relying
   on the latter for the prevention of Man-in-the-Middle attacks during
-  the initial setup process.} Both asymmetric cryptography schemes
-such as RSA and secure negotiation schemes such as Diffie-Hellman can
-be used to bootstrap secure communications across an insecure channel
-by allowing two parties to derive or exchange a mutual secret
+  the initial setup process.}Both asymmetric cryptography schemes such
+as RSA and secure negotiation schemes such as Diffie-Hellman can be
+used to bootstrap secure communications across an insecure channel by
+allowing two parties to derive or exchange a mutual secret
 (e.g. session key) that can then be used to facilitate further secure
 communication using a symmetric encryption and authentication
 algorithm. Symmetric algorithms tend to be more performant (and for a
@@ -255,7 +255,7 @@ checkered history when it comes to the usability of secure
 cryptographic systems.\footnote{Usability issues are not limited
   merely to cryptographic systems. Many computing systems struggle
   with balancing security and usability~\cite{furnell2006,
-    ibrahim2010}.} Since most cryptographic systems merely reduce the
+    ibrahim2010}.}Since most cryptographic systems merely reduce the
 security of a system to the security of the cryptographic keys
 protecting a system, how one manages such keys is of the utmost
 importance. Manual key management, the defacto key management
@@ -614,7 +614,7 @@ systems. Namely:
   available to smaller in-house server farms. On the power and cooling
   front, it is not uncommon to see cloud data centers that are over
   $90\%$ efficient -- a PUE\footnote{Power Usage Effectiveness: The
-    ratio of total consumed power to useful IT power.} of
+    ratio of total consumed power to useful IT power.}of
   $\approx1.1$~\cite{google-efficiency}. On the networking front, such
   colocation allows for higher speed, lower energy, data transfers
   between machines. The net result of all these efficiency gains is

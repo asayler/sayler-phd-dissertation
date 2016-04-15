@@ -44,7 +44,7 @@ access control to a variety of user secrets from cryptographic keys to
 personal data. FPs, on the other hand are limited to storing less
 sensitive information such as cryptographically protected
 data,\footnote{At least in the normative case. There are also SSP use
-  cases that involve no FP at all, e.g. storing user passwords.}, the
+  cases that involve no FP at all, e.g. storing user passwords.}the
 keys for which reside with one or more SSPs. This allows SSPs to be
 selected on the basis of their trustworthiness while traditional
 feature providers can be selected on the basis of their feature
@@ -100,7 +100,7 @@ building privacy-preserving SSaaS-backed applications.
 At its core, an SSP provider is offering a key:value data storage
 model. Each secret (i.e. the ``value'') is tagged with a unique
 identifier (i.e. the ``key'').\footnote{Most likely a
-  UUID~\cite{leach2005} or similar unique ID standard.} The secret
+  UUID~\cite{leach2005} or similar unique ID standard.}The secret
 associated with each ID could be a cryptographic key, personal user
 data, or any other arbitrary secret value. Users are able to query
 each SSP for the secret associated with a given ID.
@@ -114,17 +114,17 @@ versioning schemes that maintain access control information on a
 per-version basis.
 
 Each SSP will expose its key-value secret store via a RESTful
-HTTPS-based API\footnote{The exact mechanism powering the API
+HTTPS-based API.\footnote{The exact mechanism powering the API
   interface is not relevant to the SSaaS model as a whole, but given
   the ubiquity and simplicity of RESTful designs, it seems a
-  reasonable choice for an SSaaS standard.}. The ubiquity of RESTful
+  reasonable choice for an SSaaS standard.}The ubiquity of RESTful
 interfaces in modern applications ensures that such an interface will
 allow simple communication between a client and the SSP across a wide
 variety of platforms. This interface will expose create, read, modify,
 delete semantics similar to most existing key:value stores. In fact,
 it is likely that most SSP implementations will use an off-the-shelf
-key-value store as the backend for storing user secrets. I intend for
-SSPs to utilize a standard API in order to allow users to interact with
+key-value store as the backend for storing user secrets. SSPs should
+utilize a standard API in order to allow users to interact with
 multiple SSPs and transfer their secrets between SSPs.
 
 \subsubsection{Access Control}
@@ -307,13 +307,13 @@ benefits:
   protect user secrets, they will not be able to ``iron over'' any
   privacy-related reputation failings with superior end user feature
   sets -- a practice employed by many traditional feature
-  providers~\footnote{As an example, consider Facebook's numerous
+  providers.\footnote{As an example, consider Facebook's numerous
     trust violations~\cite{goel2014, lomas2014, tsukayama2014} and the
     fact that such violations have had no noticeable impact on the
     number of people using Facebook~\cite{foster2014}. An SSP would
     enjoy no such network benefit from providing additional services
     beyond secret storage were they to violate user's trust; instead,
-    users would simply switch to a new SSP.}.
+    users would simply switch to a new SSP.}
 \item[Multiple Providers:] A healthy ecosystem of competing SSPs will
   allow users to select from multiple independent providers over which
   they may shard a single secret. Such sharding (discussed below)
@@ -335,7 +335,7 @@ user-facing insurance polices with their own insurance polices
 provided by independent third party insurers. These insurers would
 need to perform independent audits\footnote{Potentially similar to the
   audit model used by Certificate Authorities in the PKI system,
-  e.g.~\cite{hall-caaudit, mozilla-capolicy}.} of SSP infrastructure
+  e.g.~\cite{hall-caaudit, mozilla-capolicy}.}of SSP infrastructure
 and polices in order to evaluate trust violation risk. Such audits
 further incentivize SSPs to design their services specifically for the
 avoidance of such trust violations. Such ``cyber'' insurance benefits
@@ -376,13 +376,13 @@ separate providers inherently decreases the level of trust that any
 single provider must be afforded. If, however, a user wishes to store
 unencrypted data directly with an SSP,\footnote{Potentially because a
   given use case can't easily be split into encrypted data and
-  encryption keys.} they must place a higher degree of trust in an
+  encryption keys.}they must place a higher degree of trust in an
 SSP. In the split encrypted data + cryptographic secrets use case, the
 user must only trust the SSP with the storage (\emph{S}) and metadata
 (\emph{M}) capabilities, the same capabilities with which they must
 trust the FP. But in the case where an SSP directly stores raw user
 data, they must expand their capability profile to also include the
-access (\emph{R} ) and manipulation (\emph{W}) capabilities. Are SSPs
+access (\emph{R}) and manipulation (\emph{W}) capabilities. Are SSPs
 any more worthy (i.e. less likely to violate) this increased level of
 trust than a traditional FP?
 

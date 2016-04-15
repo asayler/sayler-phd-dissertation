@@ -15,7 +15,7 @@ access.
 \label{chap:tutamen:new}
 
 Tutamen aims to correct flaws in previous SSaaS systems such a Custos
-and relates first generation secret storage systems such as
+and related first generation secret storage systems such as
 Vault~\cite{vault}. In particular, Tutamen aims to provide better
 support for multi-SSP sharding, for autonomous use cases, and for
 global-scale scenarios that extended beyond a single administrative
@@ -38,9 +38,9 @@ design. Namely:
 \end{packed_item}
 
 Tutamen aims to correct these flaws. On the access control front, the
-true benefit of Custos' access control system is its ability to
-support out-of-band (i.e. ``implicit'' attributes) authentication
-attributes (e.g. IP address, etc). Custos's ``explicit'' attributes
+true benefit of Custos's access control system is its ability to
+support out-of-band (i.e. ``implicit'') authentication attributes
+(e.g. IP address, etc). Custos's ``explicit'' attributes
 (e.g. user-provided passwords, etc) can be better represented via
 cryptographic authentication practices such as the use of client TLS
 certificates. Cryptographic methods are both stronger and more
@@ -53,7 +53,7 @@ optional) out-of-band authentication mechanism capable of verifying a
 range of out-of-band parameters from request attributes such as time
 and IP address to multi-factor options such as SMS text message or
 email. Like Custos, this out-of-band system is extensible and
-plugin-based. Tutamen thus captures the best of the Custos access
+plugin-based. Tutamen thus captures the best of the Custos's access
 control design while also reducing complexity and increasing security.
 
 On the multi-server front, Tutamen adds support for primitives that
@@ -73,7 +73,7 @@ Section~\ref{chap:tutamen:arch}.
 
 As discussed in Chapter~\ref{chap:ssaas}, unlike standard
 configuration management systems or specific secret storage systems
-such as password managers, a general purpose secret storage presents a
+such as password managers, general purpose secret storage presents a
 number of unique requirements. Such a system must be capable of
 satisfying the following capabilities:
 
@@ -138,7 +138,7 @@ this, Tutamen employees three discrete architectural components:
   storing and enforcing secret access control requirements and for
   authenticating secret requests.
 \item[Storage Servers (SS):] The systems responsible for storing
-  secrets (or parts of secrets).
+  secrets (or shards of secrets).
 \item[Applications:] The systems leveraging the Tutamen platform to
   store and retrieve secrets.
 \end{packed_desc}
@@ -193,7 +193,7 @@ access control server where it awaits approval from an existing client
 in the account. If approved, the CSR is used to generate a signed
 certificate that is sent back to the new client for use in future ACS
 communication. To facilitate bootstrapping new accounts, client CSRs
-are also generated and sent to the AC server during new account
+are also generated and sent to the AC server during the new account
 creation process. These CSRs are automatically approved and associated
 with the new account -- i.e., the initial client is created in tandem
 with a new account while all subsequent clients are approved by
@@ -342,7 +342,7 @@ collection or read a secret).
 Tutamen is designed to be used in either centralized or distributed
 use cases. The simplest Tutamen arrangement (e.g., as shown in
 Figure~\ref{fig:tutamen:systembase}) involves leveraging a single
-Tutamen access control server and a single storage server. In this
+access control server and a single storage server. In this
 arrangement, the storage server stores a complete copy of each secret
 while a sole access control server is charged with enforcing access to
 these secrets. While this use case is easy to deploy, it has two
@@ -510,12 +510,11 @@ concepts. The details of these implementations are discussed below.
 
 The Tutamen server implementations expose RESTful
 interfaces~\cite{fielding2000} for both the access control and storage
-server APIs. These interfaces both accepts and responds using
-JSON~\cite{json} messages over the HTTPS protocol. The full access
-control server API specification as well as the API reference
-implementation source code is available
-at~\cite{src-tutamen-apiaccesscontrol}. Likewise, the storage server
-API specification and source code can be found
+server APIs. These interfaces pass data using JSON~\cite{json}
+messages over the HTTPS protocol. The full access control server API
+specification as well as the API reference implementation source code
+is available at~\cite{src-tutamen-apiaccesscontrol}. Likewise, the
+storage server API specification and source code can be found
 at~\cite{src-tutamen-apistorage}. Both implementations are freely
 available under the terms of the AGPLv3. The prototype servers are
 written in Python 3 using the Flask web
@@ -567,12 +566,12 @@ In addition to the server and authenticator implementations, there are
 also reference Tutamen client libraries for both
 Python~\cite{src-tutamen-pytutamen} and
 Go~\cite{src-tutamen-go}.\footnote{The Go client library was created
-  by Matthew Monaco.}The Python client library services as the basis
-for the reference Tutamen CLI utility. This utility allows users to
-directly store/retrieve secrets from Tutamen storage servers and to
-control secret sharing and access control rules on Tutamen AC
-servers. The CLI is useful for managing Tutamen objects even in cases
-where other applications (e.g., those discussed in
+  by Matthew Monaco.}The Python client library serves as the basis for
+the reference Tutamen CLI utility~\cite{src-tutamen-cli}. This utility
+allows users to directly store/retrieve secrets from Tutamen storage
+servers and to control secret sharing and access control rules on
+Tutamen AC servers. The CLI is useful for managing Tutamen objects
+even in cases where other applications (e.g., those discussed in
 Section~\ref{chap:tutamen:imp:apps}) are set up to interface directly
 with the Tutamen platform. As discussed in Chapter~\ref{chap:apps}, it
 is not necessary for every SSaaS application to implement all SSaaS
@@ -605,10 +604,11 @@ the data stored on laptops, desktops, and VMs. Such systems
 traditionally bootstrap security by requiring the user to enter a
 password at boot-time to unlock a locally stored encryption key which
 is then used to decrypt the block device in question. Unfortunately,
-the ``human-at-keyboard'' security root make such systems difficult or
-impossible to use atop headless servers or in other situations where
-no human can be expected to be present at boot-time. Interfacing
-Tutamen with such applications overcomes this barrier.
+this ``human-at-keyboard'' security root make such systems difficult
+or impossible to use atop headless servers or in other situations
+where no human can be expected to be physically present at
+boot-time. Interfacing Tutamen with such applications overcomes this
+barrier.
 
 In order to add Tutamen support to dm-crypt/LUKS, it was necessary to
 create a Tutamen-aware implementation~\cite{src-tutamen-askpassword}
@@ -622,8 +622,8 @@ this triggers a ``human-at-keyboard'' prompt for a boot passphrase. A
 Tutamen-aware password agent can instead respond to such requests by
 retrieving the necessary decryption secret from a Tutamen storage
 server (after first retrieving the necessary tokens from the
-corresponding Tutamen AC server). In order to support Tutamen use in a
-pre-boot environment, several modifications had to be made to the
+corresponding Tutamen AC server). In order to support Tutamen's use in
+a pre-boot environment, several modifications had to be made to the
 \texttt{initrd} creation process to add Tutamen networking support,
 the necessary Tutamen client TLS key pair, and a config file
 specifying which Tutamen servers to use and the UUIDs of the relevant
@@ -646,27 +646,27 @@ of use of QEMU's \texttt{qcow2} encryption.
 
 Using these setups, a user is able to boot servers and VM images with
 encrypted disks without requiring a human to be physically present at
-the machine. In cases where they still desires human approval of the
-boot process, the user can leverage the SMS authenticator module to
-get an on-demand confirmation from a designated human as a
-prerequisite to Tutamen releasing the correct key. This allows the
-user to gain the same level of human-in-the-loop security provided by
-a typed passphrase, but without actually requiring a human to go to
-the datacenter to type one in. In situations where one doesn't desire
-a human-in-the-loop at all, Tutamen-backed system could support
+the machine. In cases where a user still desires human approval of the
+boot process, they can leverage the SMS authenticator module to get an
+on-demand confirmation from a designated human as a prerequisite to
+Tutamen releasing the correct key. This allows the user to gain the
+same level of human-in-the-loop security provided by a typed
+passphrase, but without actually requiring a human to go to the
+datacenter to type one in. In situations where one doesn't desire a
+human-in-the-loop at all, Tutamen-backed systems could support
 automating the approval process via the use of time-of-day and
 IP-source authenticators.
 
-\subsubsection{Encrypted Cloud File Locker}
+\subsubsection{Encrypted Cloud File Storage}
 
-Cloud-based file lockers such as Dropbox~\cite{dropbox} are extremely
-popular today. Unfortunately, these systems require users to trust the
-cloud provider with full access to their (generally unencrypted)
-data. Users wishing to overcome this deficiency can optionally encrypt
-all of their data on the client before syncing it to the file locker
-provider, but as discussed in Chapter~\ref{chap:challenges}, doing so
-does not generally interact well with such services' sharing and
-multi-device use cases.
+Cloud-based file storage systems such as Dropbox~\cite{dropbox} are
+extremely popular today. Unfortunately, these systems require users to
+trust the cloud provider with full access to their (generally
+unencrypted) data. Users wishing to overcome this deficiency can
+optionally encrypt all of their data on the client before syncing it
+to the cloud storage provider, but as discussed in
+Chapter~\ref{chap:challenges}, doing so does not generally interact
+well with such services' sharing and multi-device use cases.
 
 Tutamen provides a solution to this problem by offering a secure
 key-sharing mechanism. Instead of manually distributing or sharing
@@ -719,14 +719,15 @@ Since the reference Tutamen-backed \texttt{ask-password}
 port~\cite{src-tutamen-askpassword} speaks the standard
 \texttt{systemd} Password Agent protocol, it can also be used to
 provide Tutamen-backed passphrase storage to any applications
-leveraging this protocol. This includes OpenVPN and various password
-storage utilities. As such, the Tutamen-passed \texttt{systemd}
-password agent is potentially useful in a wide range of situations
-beyond just full disk encryption. The experience of integrating the
-systemd password agent with Tutamen also suggests that Tutamen would
-provide a useful backend for a variety of other ``agent'' protocols
-(e.g.,~\cite{cox2002, ylonen1996}), adding support for the kinds of
-SSH key management applications discussed in Chapter~\ref{chap:apps}.
+leveraging this protocol. This includes OpenVPN~\cite{openvpn} and
+various password storage utilities. As such, the Tutamen-backed
+\texttt{systemd} password agent is potentially useful in a wide range
+of situations beyond just full disk encryption. The experience of
+integrating the \texttt{systemd} password agent with Tutamen also
+suggests that Tutamen would provide a useful backend for a variety of
+other ``agent'' protocols (e.g.,~\cite{cox2002, ylonen1996}), adding
+support for the kinds of SSH key management applications discussed in
+Chapter~\ref{chap:apps}.
 
 \section{Security and Trust in Tutamen}
 \label{chap:tutamen:trust}
@@ -734,7 +735,7 @@ SSH key management applications discussed in Chapter~\ref{chap:apps}.
 One of Tutamen's primary design goals is its ability to support a wide
 range of security and trust requirements. It achieves this goal
 through its support for both centralized and distributed operation as
-well as though its support for a range of authentication mechanisms.
+well as through its support for a range of authentication mechanisms.
 
 \subsection{Security of Individual Servers}
 
@@ -823,13 +824,13 @@ guarantees and the failure of three AC servers to return tokens.
 Trust in Tutamen follows from the security models of both individual
 Tutamen servers and of the distributed Tutamen deployment
 architectures. If a Tutamen application is leveraging only a single
-storage and AC server, the application is placing a high degree of
+storage and AC server, the application is placing a moderate degree of
 trust in both servers (and by proxy, the operators of both
 servers). This level of trust may be appropriate for some use cases
 (e.g., when a user is operating their own Tutamen's servers), but is
 inappropriate in many other cases (e.g., when using third party hosted
 Tutamen servers). Fortunately, Tutamen allows applications to avoid
-placing a high degree of trust in any single server by leveraging
+placing such a degree of trust in any single server by leveraging
 multiple servers and picking $k$ and $n$ in a manner commensurate with
 the degree to which each server is trusted.
 
@@ -856,11 +857,11 @@ and economic incentives are in direct competition (as is the case on
 many ``free'' third part services that depend on selling user data in
 order to generate revenue), Tutamen encourages a system where economic
 incentives are well aligned with user trust. That fact, coupled with
-the high degree of control over third party trust Tutamen grants to
-each application by allowing each application to select how many
-servers to diffuse trust across, make Tutamen a robust system in the
-face of both security and trustworthiness failures. Such robustness is
-a critical component of the SSaaS model.
+the high degree of control over third party trust Tutamen grants by
+allowing each application to select how many servers to diffuse trust
+across, make Tutamen a robust system in the face of both security and
+trustworthiness failures. Such robustness is a critical component of
+the SSaaS model.
 
 \section{Tutamen Evaluation}
 \label{chap:tutamen:eval}
@@ -923,12 +924,12 @@ account. Verifiers that include human-in-the-loop authenticators
 amount of time the human requires to provide approval. Thus, it is
 important that Tutamen applications treat token approval as an
 operation that can take anywhere from under a second to human-scale
-times (e.g., 10s of seconds). To help alleviate these waits on
-applications that must perform a high number of Tutamen requests,
-Tutamen tokens may be reused up until their expiration time. Thus, it
-is possible for an application to request a long-lived token and to
-reuse this token to access multiple secrets within the collection to
-which the token grants read access.
+times (e.g., 10s of seconds to multiple minutes). To help alleviate
+these delays on applications that must perform a high number of
+Tutamen requests, Tutamen tokens may be reused up until their
+expiration time. Thus, it is possible for an application to request a
+long-lived token and to reuse this token to access multiple secrets
+within the collection to which the token grants read access.
 
 Figure~\ref{fig:tutamen:charts:iops} shows the request rate vs
 response time (with standard deviations) of a token request operation,
@@ -963,7 +964,7 @@ multiple load-balanced servers that share a common database). That
 scalability, coupled with future performance-related code
 optimization, suggests that the Tutamen server infrastructure can be
 adopted to meet the needs of larger installations with only moderate
-effort.
+additional effort.
 
 %%  LocalWords:  HashiCorp's Lyft's Keywhiz TPMs QEMU's Xeon Tutamen
 %%  LocalWords:  viewability Custos ACS HTTPS CSR CSRs authenticators

@@ -56,6 +56,6 @@ clean-tex:
 clean-fig:
 	$(RM) figs/out/*.pdf *.eps
 
-clean-all: clean-tex clean-fig	
+clean: clean-tex clean-fig
 	$(RM) $(REPORT).pdf
 	$(RM) *~ .*~

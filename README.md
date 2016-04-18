@@ -1,6 +1,5 @@
-Securing Secrets and Managing Trust in Modern Computing Applications:
-A PhD Dissertation
-=====================================================================
+Securing Secrets and Managing Trust in Modern Computing Applications: A PhD Dissertation
+========================================================================================
 
 PhD Dissertation
 Andy Sayler  
@@ -31,8 +30,8 @@ $ make
 Final Copy
 ----------
 
-+ Dissertation: [dissertation-final.pdf](./dissertation-final.pdf).
-+ Slides: [dissertation-slides-final.pdf](./dissertation-slides-final.pdf).
++ Dissertation: [dissertation-final.pdf](./dissertation-final.pdf)
++ Slides: [dissertation-slides-final.pdf](./dissertation-slides-final.pdf)
 
 See Also
 --------

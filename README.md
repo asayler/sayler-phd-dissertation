@@ -43,6 +43,10 @@ include:
 + PhD Prelim (April 2014): https://github.com/asayler/sayler-phd-prelim
 + PhD Proposal (April 2015): https://github.com/asayler/sayler-phd-proposal
 
+This work builds on my Master's Thesis (December 2013):
+
++ https://github.com/asayler/sayler-masters-thesis
+
 It also related to a variety of my other work available at:
 
 + https://www.andysayler.com/output/
